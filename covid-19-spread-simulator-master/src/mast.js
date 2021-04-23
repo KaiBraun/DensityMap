@@ -1,18 +1,52 @@
 import {
-    BALL_RADIUS,
-    COLORS,
-    MORTALITY_PERCENTATGE,
-    TICKS_TO_RECOVER,
-    RUN,
-    SPEED,
-    STATES
-  } from './options.js'
-  import { checkCollision, calculateChangeDirection } from './collisions.js'
+  BALL_RADIUS,
+  COLORS,
+  MORTALITY_PERCENTATGE,
+  TICKS_TO_RECOVER,
+  RUN,
+  SPEED,
+  STATES
+} from './options.js'
+import { checkCollision, calculateChangeDirection, mastCollision } from './collisions.js'
 
-  export class mast {
-      constructor({x,y,sketch}) {
-        this.x = x;
-        this.y = y;
-        
-      }
+export class Mast {
+  constructor({ x, y, id, sketch }) {
+    this.x = x;
+    this.y = y;
+    this.id = id;
+    this.counter = 0;
+    this.time = 0;
+    this.ids = [];
+    this.range = BALL_RADIUS * 20;
+    this.sketch = sketch
   }
+
+  mastCollisions({ others }) {
+    for (let i = this.id + 1; i < others.length; i++) {
+      const otherBall = others[i]
+      const { state, x, y } = otherBall
+      const dx = x - this.x
+      const dy = y - this.y
+
+      const newId = true;
+      if (mastCollision({ dx, dy, mastRange: BALL_RADIUS * 20 })) {
+
+        this.ids.forEach(element => {
+          if (otherBall.id == element) {
+            newId = false;
+          }
+        });
+        if (newId) {
+          this.counter++
+          this.ids.push(this.id);
+        }
+      }
+    }
+  }
+
+  render() {
+    this.sketch.fill(COLORS['mast'])
+    this.sketch.circle(this.x, this.y, this.range);
+    this.sketch.ellipse(this.x, this.y, this.range, this.range)
+  }
+}
