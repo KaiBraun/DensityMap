@@ -126,6 +126,7 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
     sketch.background('white')
 
     masts.forEach(mast => {
+      //mast.checkState()
       mast.mastCollisions({others: balls})
       mast.render()
     })

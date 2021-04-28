@@ -110,6 +110,22 @@
       font-weight: 800;
     }
 
+    #mast {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    #mast div {
+      margin-bottom: 16px;
+      padding: 0 10px;
+    }
+
+    #mast span {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
     footer {
       padding-bottom: 8px;
       color: #777;
@@ -203,6 +219,14 @@
     <section>
       <div id="canvas">
         <div id="replay" style='display: none'>🔁 Run a new simulation</div>
+      </div>
+    </section>
+    <section>
+      <div id="mast">
+        <div>Mast1<br /><span id="mast1_count">0</span></div>
+        <div>Mast2<br /><span id="mast2_count">0</span></div>
+        <div>Mast3<br /><span id="mast3_count">0</span></div>
+        <div>Mast4<br /><span id="mast4_count">0</span></div>
       </div>
     </section>
   </main>

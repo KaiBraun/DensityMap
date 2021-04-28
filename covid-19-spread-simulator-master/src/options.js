@@ -9,7 +9,7 @@ export const CANVAS_SIZE = {
 }
 
 export const DESKTOP_CANVAS_SIZE = {
-  height: 400,
+  height: 800,
   width: 800
 }
 
@@ -19,7 +19,7 @@ export const COLORS = {
   recovered: '#D88DBC',
   infected: '#5ABA4A',
   well: '#63C8F2',
-  mast: '#00000'
+  mast: '#000000'
 }
 
 export const STATES = {
@@ -46,6 +46,20 @@ export const RUN = {
   filters: { ...DEFAULT_FILTERS },
   results: { ...STARTING_BALLS },
   tick: 0
+}
+
+export const MAST_COUNTERS = {
+  mast1Counter: 'mast1_counter',
+  mast2Counter: 'mast2_counter',
+  mast3Counter: 'mast3_counter',
+  mast4Counter: 'mast4_counter'
+}
+
+export const STARTING_MASTS = {
+  [MAST_COUNTERS.mast1Counter]: 0,
+  [MAST_COUNTERS.mast2Counter]: 0,
+  [MAST_COUNTERS.mast3Counter]: 0,
+  [MAST_COUNTERS.mast4Counter]: 0
 }
 
 export const MORTALITY_PERCENTATGE = 5

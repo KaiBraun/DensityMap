@@ -1,25 +1,20 @@
+import { mastCollision } from './collisions.js';
 import {
   BALL_RADIUS,
-  COLORS,
-  MORTALITY_PERCENTATGE,
-  TICKS_TO_RECOVER,
-  RUN,
-  SPEED,
-  STATES
-} from './options.js'
-import { checkCollision, calculateChangeDirection, mastCollision } from './collisions.js'
+  COLORS
+} from './options.js';
 
 export class Mast {
   constructor({ x, y, id, sketch }) {
     this.x = x;
     this.y = y;
     this.id = id;
-    this.counter = 0;
     this.time = 0;
     this.ids = [];
     this.range = BALL_RADIUS * 20;
     this.sketch = sketch
   }
+
 
   mastCollisions({ others }) {
     for (let i = this.id + 1; i < others.length; i++) {
@@ -43,7 +38,14 @@ export class Mast {
       }
     }
   }
-
+  
+  checkState(){
+    this.time++;
+    if(this.time>MAST_PERIOD){
+      this.time=0;
+      this.ids= [];
+    }
+  }
   render() {
     this.sketch.fill(COLORS['mast'])
     this.sketch.circle(this.x, this.y, this.range);

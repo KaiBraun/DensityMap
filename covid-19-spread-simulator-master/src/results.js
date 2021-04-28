@@ -4,6 +4,7 @@ import {
   TOTAL_TICKS,
   STATES,
   COUNTERS,
+  MAST_COUNTERS,
   resetRun
 } from './options.js'
 
@@ -27,12 +28,19 @@ const domElements = Object.fromEntries(
   })
 )
 
+const mastDomElements = Object.fromEntries(
+  Object.keys(MAST_COUNTERS).map(mast => {
+    const el = document.getElementById(mast)
+    return [mast, document.getElementById(mast)]
+  })
+)
+
 const updateGraph = () => {
   let y = 0
   const rects = Object.entries(RUN.results).map(([state, count]) => {
     const color = COLORS[state]
     if (count > 0) {
-      const percentatge = count / 200 * 50
+      const percentatge = count / 2000 * 50
       const rect = `<rect height="${percentatge}" y="${y}" width="1" fill="${color}"></rect>`
       y += percentatge
       return rect
@@ -43,6 +51,14 @@ const updateGraph = () => {
   const newGraphPoint = `<g transform="translate(${graphPoint},0)">${rects}</g>`
   graphPoint++
   graphElement.insertAdjacentHTML('beforeend', newGraphPoint)
+}
+
+const updateMasts = () => {
+  Object.entries(mastDomElements).forEach(([mast,mastDomElement]) => {
+    if(mastDomElement) {
+      mastDomElement.innerText = RUN.masts[mast]
+    }
+  })
 }
 
 export const resetValues = (isDesktopNewValue = isDesktop) => {
