@@ -25,7 +25,7 @@ export class Mast {
       const dy = y - this.y
 
       let newId = true;
-      if (mastCollision({ dx, dy, mastRange: BALL_RADIUS * 20 })) {
+      if (mastCollision({ dx, dy, mastRange: ((BALL_RADIUS +this.range)*(BALL_RADIUS +this.range))  })) {
         this.ids.forEach(element => {
           if (otherBall.id === element) {
             newId = false;
@@ -51,7 +51,6 @@ export class Mast {
   }
   render() {
     this.sketch.fill(COLORS['mast'])
-    this.sketch.circle(this.x, this.y, this.range);
-    this.sketch.ellipse(this.x, this.y, this.range, this.range)
+    this.sketch.circle(this.x, this.y, 2*this.range);
   }
 }

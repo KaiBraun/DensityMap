@@ -40,7 +40,7 @@ const updateGraph = () => {
   const rects = Object.entries(RUN.results).map(([state, count]) => {
     const color = COLORS[state]
     if (count > 0) {
-      const percentatge = count / 2000 * 50
+      const percentatge = count / 1000 * 50
       const rect = `<rect height="${percentatge}" y="${y}" width="1" fill="${color}"></rect>`
       y += percentatge
       return rect
@@ -82,13 +82,7 @@ export const updateCount = () => {
       }
     })
     
-
-    Object.entries(mastDomElements).forEach(([mast,mastDomElement]) => {
-      if(mastDomElement) {
-        mastDomElement.innerText = RUN.masts[mast]
-      }
-    })
-    //updateMasts();
+    updateMasts();
 
     if (isDesktop) {
       RUN.tick % 2 === 0 && updateGraph()
