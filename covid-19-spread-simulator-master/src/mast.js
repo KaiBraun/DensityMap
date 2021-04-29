@@ -1,7 +1,8 @@
 import { mastCollision } from './collisions.js';
 import {
   BALL_RADIUS,
-  COLORS
+  COLORS,
+  MAST_PERIOD
 } from './options.js';
 
 export class Mast {
@@ -17,26 +18,28 @@ export class Mast {
 
 
   mastCollisions({ others }) {
-    for (let i = this.id + 1; i < others.length; i++) {
+    for (let i = 0; i < others.length; i++) {
       const otherBall = others[i]
       const { state, x, y } = otherBall
       const dx = x - this.x
       const dy = y - this.y
 
-      const newId = true;
+      let newId = true;
       if (mastCollision({ dx, dy, mastRange: BALL_RADIUS * 20 })) {
-
         this.ids.forEach(element => {
-          if (otherBall.id == element) {
+          if (otherBall.id === element) {
             newId = false;
           }
-        });
+        })
         if (newId) {
-          this.counter++
-          this.ids.push(this.id);
+          this.ids.push(otherBall.id);
         }
       }
     }
+  }
+
+  getCounter() {
+    return this.ids.length
   }
   
   checkState(){

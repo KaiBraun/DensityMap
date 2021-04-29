@@ -81,6 +81,14 @@ export const updateCount = () => {
         domElement.innerText = RUN.results[state]
       }
     })
+    
+
+    Object.entries(mastDomElements).forEach(([mast,mastDomElement]) => {
+      if(mastDomElement) {
+        mastDomElement.innerText = RUN.masts[mast]
+      }
+    })
+    //updateMasts();
 
     if (isDesktop) {
       RUN.tick % 2 === 0 && updateGraph()

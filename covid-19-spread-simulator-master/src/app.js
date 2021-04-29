@@ -56,25 +56,25 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
     const mast1 = new Mast({
       x: sketch.width / 4,
       y: sketch.height / 4,
-      id: 1, 
+      id: 'mast1Counter', 
       sketch
     })
     const mast2 = new Mast({
       x: sketch.width * 0.75, 
       y: sketch.height / 4, 
-      id: 2, 
+      id: 'mast2Counter', 
       sketch
     })
     const mast3 = new Mast({
       x: sketch.width / 4, 
       y: sketch.height * 0.75, 
-      id: 3, 
+      id: 'mast3Counter', 
       sketch
     })
     const mast4 = new Mast({
       x: sketch.width * 0.75, 
       y: sketch.height * 0.75, 
-      id: 4, 
+      id: 'mast4Counter', 
       sketch
     })
     masts[0] = mast1
@@ -126,9 +126,10 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
     sketch.background('white')
 
     masts.forEach(mast => {
-      //mast.checkState()
+      mast.checkState()
       mast.mastCollisions({others: balls})
       mast.render()
+      RUN.masts[mast.id] = mast.getCounter()
     })
     balls.forEach(ball => {
       ball.checkState()

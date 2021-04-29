@@ -36,31 +36,34 @@ export const COUNTERS = {
 
 export const STARTING_BALLS = {
   [STATES.infected]: 1,
-  [STATES.well]: 1999,
+  [STATES.well]: 999,
   [STATES.recovered]: 0,
   [STATES.death]: 0,
   'max-concurrent-infected': 0
 }
 
-export const RUN = {
-  filters: { ...DEFAULT_FILTERS },
-  results: { ...STARTING_BALLS },
-  tick: 0
-}
-
 export const MAST_COUNTERS = {
-  mast1Counter: 'mast1_counter',
-  mast2Counter: 'mast2_counter',
-  mast3Counter: 'mast3_counter',
-  mast4Counter: 'mast4_counter'
+  mast1Counter: 'mast1Counter',
+  mast2Counter: 'mast2Counter',
+  mast3Counter: 'mast3Counter',
+  mast4Counter: 'mast4Counter'
 }
 
 export const STARTING_MASTS = {
-  [MAST_COUNTERS.mast1Counter]: 0,
+  [MAST_COUNTERS.mast1Counter]: 50,
   [MAST_COUNTERS.mast2Counter]: 0,
   [MAST_COUNTERS.mast3Counter]: 0,
   [MAST_COUNTERS.mast4Counter]: 0
 }
+
+export const RUN = {
+  filters: { ...DEFAULT_FILTERS },
+  results: { ...STARTING_BALLS },
+  masts: { ...STARTING_MASTS},
+  tick: 0
+}
+
+
 
 export const MORTALITY_PERCENTATGE = 5
 export const SPEED = 1
