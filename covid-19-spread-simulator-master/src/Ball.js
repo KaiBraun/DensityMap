@@ -5,7 +5,9 @@ import {
   TICKS_TO_RECOVER,
   RUN,
   SPEED,
-  STATES
+  STATES,
+  getRandomInt,
+  MAST_PERIOD
 } from './options.js'
 import { checkCollision, calculateChangeDirection } from './collisions.js'
 
@@ -19,6 +21,8 @@ export class Ball {
     this.vy = sketch.random(-1, 1) * SPEED
     this.sketch = sketch
     this.id = id
+    this.rpi = getRandomInt(0,Number.MAX_VALUE)
+    this.rpiCounter = getRandomInt(0,MAST_PERIOD)
     this.state = state
     this.timeInfected = 0
     this.hasMovement = hasMovement
@@ -47,6 +51,13 @@ export class Ball {
         this.timeInfected++
       }
     }
+
+    if(this.rpiCounter > MAST_PERIOD) {
+      this.rpiCounter = 0
+      this.rpi = getRandomInt(0,Number.MAX_VALUE)
+    } else {
+      this.rpiCounter++
+    }
   }
 
   checkCollisions ({ others }) {
@@ -63,10 +74,10 @@ export class Ball {
       if (checkCollision({ dx, dy, diameter: BALL_RADIUS * 2 })) {
         const { ax, ay } = calculateChangeDirection({ dx, dy })
 
-        this.vx -= ax
-        this.vy -= ay
-        otherBall.vx = ax
-        otherBall.vy = ay
+        this.vx -= ax*0.5
+        this.vy -= ay*0.5
+        otherBall.vx = ax*0.5
+        otherBall.vy = ay*0.5
 
         // both has same state, so nothing to do
         if (this.state === state) return

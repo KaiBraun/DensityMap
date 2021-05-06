@@ -5,7 +5,9 @@ import {
   STATES,
   COUNTERS,
   MAST_COUNTERS,
-  resetRun
+  resetRun,
+  DENSITY_COUNTERS, 
+  CSV_OUTPUT
 } from './options.js'
 
 import {
@@ -35,6 +37,13 @@ const mastDomElements = Object.fromEntries(
   })
 )
 
+const densDomElements = Object.fromEntries(
+  Object.keys(DENSITY_COUNTERS).map(dens => {
+    const el = document.getElementById(dens)
+    return [dens, document.getElementById(dens)]
+  })
+)
+
 const updateGraph = () => {
   let y = 0
   const rects = Object.entries(RUN.results).map(([state, count]) => {
@@ -61,6 +70,14 @@ const updateMasts = () => {
   })
 }
 
+const updateDensity = () => {
+  Object.entries(densDomElements).forEach(([dens, densDomElement]) => {
+    if(densDomElement) {
+      densDomElement.innerText = RUN.density[dens]
+    }
+  })
+}
+
 export const resetValues = (isDesktopNewValue = isDesktop) => {
   graphElement.innerHTML = ''
   replayElement.style.display = 'none'
@@ -83,6 +100,7 @@ export const updateCount = () => {
     })
     
     updateMasts();
+    updateDensity();
 
     if (isDesktop) {
       RUN.tick % 2 === 0 && updateGraph()

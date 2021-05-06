@@ -129,7 +129,6 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
       mast.checkState()
       mast.mastCollisions({others: balls})
       mast.render()
-      RUN.masts[mast.id] = mast.getCounter()
     })
     balls.forEach(ball => {
       ball.checkState()
@@ -140,3 +139,6 @@ export const canvas = new window.p5(sketch => { // eslint-disable-line
     updateCount()
   }
 }, document.getElementById('canvas'))
+
+
+
