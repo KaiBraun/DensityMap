@@ -41,12 +41,13 @@ export class Mast {
 
         let newRpi = true
         this.rpis.forEach(element => {
-          if(otherBall.rpi === element) {
+          if(otherBall.rpi === element[0]) {
             newRpi = false;
+            element[1]++
           }
         })
         if(newRpi) {
-          this.rpis.push(otherBall.rpi)          
+          this.rpis.push([otherBall.rpi,0])          
         }
       }
     }
@@ -71,7 +72,6 @@ export class Mast {
       RUN.density[this.id + "Corrected"] = this.correctedMastCount()
       RUN.density[this.id + "DensRpi"] = this.getRpiCounter()
       RUN.density[this.id + "Avg"] = this.getAverageDurationOfStay()
-
       // add values to output csv
       RUN.outputs[this.id + "Output"].push([
         this.getCounter(),
@@ -97,7 +97,7 @@ export class Mast {
   }
 
   correctedMastCount() {
-    return Math.round(this.rpis.length*(1-((this.getAverageDurationOfStay()/MAST_PERIOD)/2)))
+    return Math.round(this.rpis.length/(1+(this.getAverageDurationOfStay()/MAST_PERIOD)))
   }
 
   render() {

@@ -141,7 +141,7 @@ export const download_csv = () => {
   var hiddenElement = document.createElement('a');
   hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
   hiddenElement.target = '_blank';
-  hiddenElement.download = 'people.csv';
+  hiddenElement.download = 'data.csv';
   hiddenElement.click();
 }
 
@@ -149,7 +149,7 @@ export const download_csv = () => {
 
 export const MORTALITY_PERCENTATGE = 5
 export const SPEED = 0.1
-export const TOTAL_TICKS = 1600
+export const TOTAL_TICKS = 16000
 export const TICKS_TO_RECOVER = 500
 export const MAST_PERIOD = 200
 export const STATIC_PEOPLE_PERCENTATGE = 25
