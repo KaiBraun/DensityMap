@@ -2,3 +2,5 @@
 .fls
 .synctex.gz
 .fdb_latexmk
+.log
+.DS_STORE
