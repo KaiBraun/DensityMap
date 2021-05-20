@@ -74,7 +74,42 @@ Please observe the conference page limits.
 
 
 \subsection{Übersicht aller Erweiterungen}
+
+\textit{Impfpass:} - In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digiatalen Impfpass in der Corona-Warn-App.\\
+Größter Vorteil eines in der App integrierten Nachweises wäre die Digitalisierung des Verwaltungswesens und dadurch eine Vereinfachung des Organisationsaufwands.\\ Anstatt mehrere Unterlagen mit sich herumzutragen, hat man diese stattdessen gesammelt in einer App.\\
+Digitalisierung ist zudem ein positiv konnotierter Begriff, welcher einen Anreiz für die Bevölkerung schafft, die App zu nutzen. Dies ist immer ein relevanter Nutzen, da es das Ziel ist, die Corona-Warn-App von 100\% der Bevölkerung nutzen zu lassen. \\
+Implementiert man zusätzlich dazu eine Art Krankenakte, in der man Merkmale wie Gewicht und Vorerkrankungen einträgt, liese sich dadurch die Impfpriorisierung und die Reihenfolge in der Bevölkerung besser organisieren.\\
+Benötigte Daten für einen generellen Impfpass wären:\\
+- Name \\
+- Krankenkasse\\
+- Durchgeführte Impfungen\\
+Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
+- Alter\\
+- Vorerkrankungen \\
+- Gewicht \\
+- Beruf/Arbeitsumfeld\\
+Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.\\
+Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
+Somit wird Richtigkeit der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\ \\
+\textit{Gamification:}\\
+Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.\\ 
+Gamification der App kann es in verschiedenen Varianten geben. Zum Beispiel lassen sich simple Spielmechaniken wie persönliche Highscores einbauen, welche man mit anderen Nutzern der App vergleichen kann.  Dafür bieten sich Statistiken an, die sich bereits aus der Nutzung der App erstellen lassen. Dazu zählen die getroffenen Personen an einem Tag, die durchschnittliche Dauer einer Begegnung oder der ermittelte Risikofaktor. Ziel der Highscores wäre es dann, diese Werte so möglich wie gering zu halten oder im Vergleich zu anderen Nutzern bessere Werte zu haben.\\
+Vorstellbar sind auch daraus resultierende optische Veränderungen der App durch neue Farben oder ein anderes Design.\\
+Dieses Feature richtet sich vermutlich an eine jüngere Zielgruppe, die mit solchen Mechaniken meist mehr vertraut ist als ältere Generationen.\\
+Es könnte sogar sein, dass dieses Feature als Verharmlosung der ernsten Thematik interpretiert wird, was in einem gegensätzlichen Effekt zur eigentlichen Intention resultieren würde.\\
+Eine Alternative zu Highscores und anderen virtuellen Errungenschaften wäre eine Art Belohnung in der Realität, zum Beispiel durch eine in der App durchgeführte Lotterie.\\
+Dies ist vermutlich attraktiver für alle Generationen, jedoch schwieriger umzusetzen, da hier Betrug oder mehrmalige Teilnahme verhindert werden muss. Vorstellbar wäre auch eine Verbindung mit den ermittelten Statistiken, sodass Leute mit guten Werten eine höhere Gewinnchance haben.\\
+ 
 \subsection{Bewertungskriterien}
+
+Um einen möglichst einheitlichen Vergleich der Features zu garantieren, haben wir sechs Bereiche festgelegt, nach denen die Features beurteilt werden.\\
+Diese Bereiche sind wie folgt aufgeteilt:\\
+\textit{Privatsphäre:} Wie stark greift das Feature in die Privatsphäre ein?\\
+\textit{Nutzen:} Welchen effektiven Nutzen bringt das Feature und lohnt sich der Aufwand für den effektiven Nutzen?\\
+\textit{Umsetzbarkeit:} Wie realistisch ist es, dieses Feature zu implementieren in Anbetracht von Datenschutz, Programmierung oder anderen Hindernissen?\\
+\textit{Akzeptanz:} Da wir eine möglichst hohe Nutzung der App in der Bevölkerung erzielen wollen, ist es wichtig, dass das Feature entweder einen Anreiz zur Nutzung schafft oder zumindest diesen nicht schwächt. Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer auslöst.\\
+\textit{Sicherheit:} Wie gut lässt sich das implementierte Feature vor Missbrauch und Angriffen schützen?\\
+\textit{Daten:} Welche Daten werden mindestens benötigt, dass das Feature funktioniert?\\
 \subsection{Bewertung Nebenfeatures}
 
 \section{Hauptfeatures}
@@ -111,7 +146,7 @@ Figur 1 zeigt den durch diese Formel berechneten Unterschied zwischen dem realen
 Das Ziel der Simulation ist es, festzustellen, wie nah der auf diese Weise berichtigte Wert an der tatsächlichen Zahl von Handys liegt.\\
 
 \textit{Aufbau:}\\
-Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán.\\
+Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán \cite{Simulation}.\\
 Es werden 200 Handys simuliert, die als Kreise mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Auf diesem Gebiet sind 4 Masten, dargestellt durch größere Kreise, welche permanent speichern, welche Kreise in ihrer Reichweite liegen und wie lange dies der Fall ist. \\
 Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig die korrekte Anzahl zu wissen.\\
 Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus eines Mastes. Dazu wird während des Zyklus mit jeder ID eine Zeitdauer abgespeichert und aus diesem der Durchschnitt ermittelt.  Zur Laufzeit der Simulation speichern die Masten eintretende Kreise neu ab und zählen ab diesem Zeitpunkt einen Counter hoch. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Kreise geteilt.\\
@@ -175,13 +210,13 @@ Mi Hilfe der neuen Formel ergeben sich folgende Werte:
 
 \section*{Danksagung}
 
-Dankschön!
-
-\section*{Literaturverzeichnis}
+Dankschön an meine Mama und mein Papa und mein Hund Bello, der immer so lieb mit mir gekuschelt hat! Danke an unseren Sponsor
+RAID: Shadow Legends und NordVPN!
 
 \cite{b1}
 \begin{thebibliography}{00}
-\bibitem{b1} todo
+\bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
+https://github.com/midudev/covid-19-spread-simulator
 \end{thebibliography}
 \vspace{12pt}
 
