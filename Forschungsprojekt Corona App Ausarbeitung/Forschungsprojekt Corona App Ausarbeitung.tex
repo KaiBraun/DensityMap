@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage[ngerman]{babel}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -19,32 +20,28 @@ should not be used}
 \author{\IEEEauthorblockN{Gabriel Bonnet}
 \IEEEauthorblockA{\textit{Bsc. Science Softwaretechnik} \\
 \textit{Universität Stuttgart}\\
-Stuttgart, Germany \\
-st161872@stud.uni-stuttgart.de}
+Stuttgart, Germany}
 \and
 \IEEEauthorblockN{Kai Braun} 
 \IEEEauthorblockA{\textit{Bsc. Science Softwaretechnik} \\
 \textit{Universität Stuttgart}\\
-Stuttgart, Germany \\
-st161756@stud.uni-stuttgart.de}
+Stuttgart, Germany}
 \and
 \IEEEauthorblockN{Hannes Deichmann}
 \IEEEauthorblockA{\textit{Bsc. Science Softwaretechnik} \\
 \textit{Universität Stuttgart}\\
-Stuttgart, Germany \\
-st161789@stud.uni-stuttgart.de}
+Stuttgart, Germany}
 \and
 \IEEEauthorblockN{Timm Marquardt}
 \IEEEauthorblockA{\textit{Bsc. Science Informatik} \\
 \textit{Universität Stuttgart}\\
-Stuttgart, Germany \\
-st161123@stud.uni-stuttgart.de}
+Stuttgart, Germany}
 \and
 \IEEEauthorblockN{\textbf{Betreuer:} Dr. rer. Nat. Frank Dürr}
 \IEEEauthorblockA{\textit{Institut für Parallele und Verteilte Systeme} \\
 \textit{Universität Stuttgart}\\
 Stuttgart, Germany \\
-frank.duerr@ipvs.uni-stfdfdffduttgart.de}
+frank.duerr@ipvs.uni-stuttgart.de}
 \and
 \IEEEauthorblockN{\textbf{Prüfer: } Prof. Dr. rer. Nat. Kurt Rothermel}
 \IEEEauthorblockA{\textit{Institut für Parallele und Verteilte Systeme} \\
@@ -90,6 +87,87 @@ Please observe the conference page limits.
 \subsection{Density Map}
 \subsubsection{Lösungsansatz}
 \subsubsection{Simulation}
+
+\textit{Motivation:} \\
+Unser Ansatz der festen Masten basiert darauf, Handys beim Eintritt in einen Mastbereich zu registrieren und ihren RPI zu speichern.\\
+Dadurch, dass der RPI periodisch wechselt, werden zwangsläufig Handys doppelt registriert, sollten sie sich zum Zeitpunkt des Wechsels in der Reichweite des Mastes befinden. \\
+Die gemessene Anzahl an Handys weicht somit immer zu einem bestimmten Teil von der realen Menge ab. Diesen Wert korrigieren wir nach unten, abhängig von der durchschnittlichen Verweildauer.\\
+Die Wahrscheinlichkeit p einer doppelten Registrierung ist definiert durch
+
+\centerline{$p = t_V / t_Z$}
+
+wobei $t_Z$ die Dauer eines Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus. Die Berechnung der Verweildauer wird in Abschnitt "Aufbau" beschrieben. Da doppelt-registrierte Handys einfach gezählt werden sollen, muss die Hälfte des ermittelten Anteils trotzdem gezählt werden, womit sich die folgende Formel ergibt:
+
+\centerline{Korrigierte Anzahl = Gemessene Anzahl * $(1 – p/2)$}
+
+Figur 1 zeigt den durch diese Formel berechneten Unterschied zwischen dem realen und gemessenen Wert, abhängig von der durchschnittlichen Verweildauer.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Alte Formel Graph"}
+	\caption{Anteil realer Wert am gemessen, abhängig von der durchschnittlichen Verweildauer}
+\end{figure}
+
+Das Ziel der Simulation ist es, festzustellen, wie nah der auf diese Weise berichtigte Wert an der tatsächlichen Zahl von Handys liegt.\\
+
+\textit{Aufbau:}\\
+Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán.\\
+Es werden 200 Handys simuliert, die als Kreise mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Auf diesem Gebiet sind 4 Masten, dargestellt durch größere Kreise, welche permanent speichern, welche Kreise in ihrer Reichweite liegen und wie lange dies der Fall ist. \\
+Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig die korrekte Anzahl zu wissen.\\
+Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus eines Mastes. Dazu wird während des Zyklus mit jeder ID eine Zeitdauer abgespeichert und aus diesem der Durchschnitt ermittelt.  Zur Laufzeit der Simulation speichern die Masten eintretende Kreise neu ab und zählen ab diesem Zeitpunkt einen Counter hoch. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Kreise geteilt.\\
+Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
+Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was einen genaueren Wert liefert. Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer und der korrigierte Wert wird ungenauer. Dies entspricht jedoch der Anwendung in der Praxis, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
+Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Dies führt dazu, dass ein Großteil der Kreise keine Geschwindigkeit mehr haben, und nur einige wenige sich überhaupt bewegen.\\
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Simulation"}
+	\caption{Darstellung der durchgeführten Simulation}
+\end{figure}
+
+\textit{Ergebnis:}
+Die gesammelten Daten belegen, dass die durch die Formel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
+Fig. 3 stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
+Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemesser Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
+Mit Social Distancing ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert näher an dem gemessen Wert liegt als in Fig.3.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_old"}
+	\caption{Ergebnisse ohne Social Distancing}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_Social_Distancing_old"}
+	\caption{Ergebnisse mit Social Distancing}
+\end{figure}
+
+Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
+
+\textit{Schlussfolgerung:}
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die bisherige Formel nicht optimal ist. Daher haben wir einen neuen Ansatz zur Berechnung gewählt.\\
+Die Wahrscheinlichkeit p einer doppelten Registrierung bleibt gleich. Wir gehen davon aus, dass sich mit dieser und der korrekten Anzahl der IDs eines Zyklus die gemessene Anzahl berechnen lässt:\\
+\centerline{RPIs = IDs * (1 + p) }
+Nach Umformung ergibt sich somit eine neue Formel zur Angleichung unseres gemessen Wertes:\\
+\centerline{IDs = RPIs/ (1+p)}\\
+
+\textit{Simulation neuer Formel:}
+Um die neue Formel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
+Mi Hilfe der neuen Formel ergeben sich folgende Werte:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted"}
+	\caption{Neue Ergebnisse ohne Social Distancing}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_Social_Distancing"}
+	\caption{Neue Ergebnisse mit Social Distancing}
+\end{figure}
+
 
 \subsection{Bewertung der Hauptfeatures}
 
