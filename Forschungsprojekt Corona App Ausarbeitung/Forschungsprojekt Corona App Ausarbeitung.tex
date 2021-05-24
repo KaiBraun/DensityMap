@@ -120,7 +120,110 @@ Diese Bereiche sind wie folgt aufgeteilt:\\
 \subsubsection{Grüner Summand}
 
 \subsection{Density Map}
-\subsubsection{Lösungsansatz}
+Eine Density Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
+Häufig findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
+Im Sinne der erweiterten Corona Warn App möchten wir dieses Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstellen. 
+Damit kann eine Nutzer stark besuchte Gegenden identifizieren und meiden. 
+Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. 
+Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
+Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
+Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE Features der Corona Warn App vor. \\
+\subsubsection{Lösungsansatz}:\\
+Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken/verletzen. 
+Hierfür haben wir uns für die Umsetzung 2 Verfahren überlegt, mit welchen wir das Problem angehen: Mit \textbf{zentralen Masten} die in Echtzeit die Begegnungen an einem festen Ort aufzeichnen, sowie eine dezentralere Lösung \textbf{ohne Masten}. \\ \\
+\textit{Mit Masten: }\\
+Die Idee zentraler Masten ist, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle Begegnungen aufzeichnen. 
+Nach Ablauf des Zeitintervalls wird die Anzahl der Begegnungen auf einen zentralen Server hochgeladen. 
+Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander per BLE. 
+Somit sind Sicherheit und Privatsphäre gleichermaßen gesichert, wie bei der bisherigen Corona Warn App. 
+Außerdem soll erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen), sowie nur die Anzahl der Begegnungen und nicht die einzelnen RPI‘s der Geräte auf den zentralen Server geladen werden. 
+Abb. \ref{mast_func} zeigt den groben Ablauf eines zentralen Masten. \\ 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Mast_functionality"}
+	\caption{Funktionsweise eines zentralen Masten}
+	\label{mast_func}
+\end{figure}
+\\
+Wie bereits erwähnt scannt ein Mast seine Umgebung nach Endgeräten und zeichnet alle Begegnungen innerhalb eines Zeitintervalls von etwa 15 Minuten (Lebensdauer eines RPI's) auf. 
+Die Aufzeichnung erfolgt analog zur bisherigen Begegnungsaufzeichnung der Corona Warn App über BLE. 
+Es werden demnach nur die RPI's ausgetauscht und keinerlei sensible Nutzerdaten. 
+Aus Sicht des mobilen Endgerätes ist der Mast hier nur eine weitere Begegnung mit einem anderen Nutzer. 
+Da ein Mast unter Umständen einen größeren Bereich abdecken muss als ein normaler Nutzer, sollte das Signal unter Umständen je nach Umsetzbarkeit verstärkt werden. 
+Nach der Aufzeichnung überprüft der Mast, ob es sich bei der Begegnung nicht um ein bereits getroffenes Gerät handelt und erhöht dementsprechend den Counter für die Begegnungsanzahl um eins. 
+Nach Ablauf des 15 Minuten Intervalls lädt der Mast die gesammelte Anzahl an Begegnungen auf einen zentralen Server hoch, setzt seine Aufzeichnungsdaten zurück und  fängt wieder von vorne mit seiner Begegnungsaufzeichnung an. \\
+
+Da die Installation zentraler Masten an jedem belebteren Platz ein aufwändiges und kostspieliges Unterfangen sein kann schlagen wir vor, dass registrierte/zertifizierte mobile Endgeräte ebenfalls als zentraler Mast fungieren können. 
+Hierfür müssen jedoch Einschränkungen gelten, sodass die Funktion als zentraler Mast auf beispielsweise einem Smartphone nicht missbraucht wird:
+\begin{itemize}
+	\item Registrierung mobiler Endgeräte als zentrale Masten müssen von offizieller Behörde autorisiert werden. Damit kann z.B. ein Restaurantbetreiber über eine zentrale Behörde seine Einrichtung mit seinem Smartphone aufzeichnen. 
+	\item Smartphones als zentralen Masten müssen ihren Standort aktivieren und könne nur im Umfeld eines eingetragenen Bereiches (z.B. Ort des Restaurants) als Mast fungieren. 
+	\item Verletzung der Eigenschaften sollte von anderen Nutzern gemeldet werden können. 
+\end{itemize}
+
+Masten, die ihre Begegnungen aufgezeichnet haben, laden diese auf einen zentralen Server hoch. 
+Dieser verarbeitet die gesammelten Daten aller Masten und erstellt die Density Map, welche dann vom Nutzer auf seinem Endgerät abgerufen werden kann.
+Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Density Map mittels zentraler Masten. \\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Density_Map_Overview"}
+	\caption{Übersicht: Erstellen der Density Map}
+	\label{density_creation}
+\end{figure} 
+\\
+Hierbei muss noch beachtet werden, dass Smartphones ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
+Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die Tatsächliche Begegnungsanzahl herauszufinden. 
+Wie stark der Wert nach unten korrigiert werden muss hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten. 
+Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden fall einmal seinen RPI ändern und als neue Begegnung vom Masten aufgezeichnet werden. 
+In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als er in Realität. 
+Ist die durchschnittliche Verweildauer hingegen klein (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall  der RPI eines Smartphones ändert sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
+Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender Formel errechnet: 
+
+\centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}  $}
+
+Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufezeichnet. \\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Korrekturfaktor"}
+	\caption{Korrekturfaktor in Abhängigkeit der durchschnittlichen Verweildauer}
+	\label{cor_factor}
+\end{figure} \\
+
+\textit{Ohne Masten:}\\
+Beim Ansatz ohne zentrale Masten besteht die Idee darin, dass jedes Smartphone als „mobiler Mast“ arbeitet und die Funktion eines Masten übernimmt. 
+Anders als bei zentralen Masten kann nun an jedem Ort, an dem sich ein Smartphone mit der Corona Warn App befindet eine Aufzeichnung für die Density Map erfolgen. 
+Begegnen sich zwei Smartphones wird eines der beiden Geräte als Mast ausgewählt (Abb. \ref{mobile_mast}). 
+Dieses zeichnet die Begegnung der beiden untereinander auf und übernimmt alle bisherigen Aufzeichnungen des anderen Gerätes in diesem Zeitintervall. Hierbei können natürlich nur Smartphones, welche ihren Standort aktiv haben als mobiler Mast arbeiten. 
+Im besten Fall hat jedes Handy diese Funktion aktiv. \\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Mobile_Mast"}
+	\caption{Smartphones als Mobile Masten}
+	\label{mobile_mast}
+\end{figure} \\
+Beim mobilen Ansatz können diverse Probleme auftreten, welche gelöst werden müssen: Zum Beispiel können zwei Smartphones A und B ihre gesamten Daten immer an das jeweilige andere Handy überreichen, bevor ihr 15 Minuten Intervall abgelaufen ist. 
+Somit bleiben die gesammelten Daten für unendlich lange Zeit lokal auf A oder B gespeichert, ohne dass sie jemals hochgeladen werden. 
+Eine Lösung für dieses Problem wäre immer das Smarthone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist. 
+Ein weiteres Problem bei mobilen Masten besteht darin, dass sie sich innerhalb der Zeitintervalls über längere Strecken bewegen können während sie ihre Begegnungen aufzeichnen und somit das tatsächliche Bild der Density Map verzerren können. 
+Dieses Problem wird teilweise bereits durch die Corona App selbst gelöst, welche Begegnungen erst dann aufzeichnet, sobald sich Geräte über etwas längere Zeit in Kontakt stehen. 
+Bei sich schnell bewegenden Smartphones müssten sich demnach anderer Smartphones mit gleicher Geschwindigkeit in dieselbe Richtung bewegen, damit eine Begegnung aufgezeichnet wird. 
+Eine weitere Lösung, wir diesbezüglich vorschlagen ist ein sogenannter „Discount Faktor“ (Abb. \ref{disc_factor}). 
+Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in die Auswertung der Density Map. \\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Discount_Faktor"}
+	\caption{Discount Faktor für Mobile Masten}
+	\label{disc_factor}
+\end{figure} \\
+Eine Verkürzung des Zeitintervalls für Uploads auf beispielsweise 5 Minuten würde diesem Problem ebenfalls entgegenwirken.  \\
+\\
+\textit{Hybridlösung:}\\
+Um die Effekte beider Ansätze nutzen zu können und die Effizienz weitmöglichst zu erhöhen schlagen wir eine Hybridlösung aus zentralen und mobilen Masten vor. 
+Die Umsetzung hierfür ist relativ simpel. Wie oben beschrieben werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density Map zu sammeln. 
+Überall dort, wo jedoch keine solchen zentralen Masten existieren, greift der dezentrale Ansatz und die Mobiltelefone fungieren als mobile Masten. \\
+Ein weiters Zentrales Problem, das alle Lösungsansätze betrifft ist, dass nicht jede Person ein Smartphone besitzt und die  Corona Warn App auf seinem Smartphone installiert hat. 
+Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (April 2021) benutzen etwa 25.7mio (30\%). \\
+
 \subsubsection{Simulation}
 
 \textit{Motivation:} \\
