@@ -128,7 +128,8 @@ Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten.
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
 Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE Features der Corona Warn App vor. \\
-\subsubsection{Lösungsansatz}:\\
+\subsubsection{Lösungsansatz} 
+\text{ }\\
 Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken/verletzen. 
 Hierfür haben wir uns für die Umsetzung 2 Verfahren überlegt, mit welchen wir das Problem angehen: Mit \textbf{zentralen Masten} die in Echtzeit die Begegnungen an einem festen Ort aufzeichnen, sowie eine dezentralere Lösung \textbf{ohne Masten}. \\ \\
 \textit{Mit Masten: }\\
@@ -177,11 +178,11 @@ Wie stark der Wert nach unten korrigiert werden muss hängt hierbei von der Durc
 Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden fall einmal seinen RPI ändern und als neue Begegnung vom Masten aufgezeichnet werden. 
 In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als er in Realität. 
 Ist die durchschnittliche Verweildauer hingegen klein (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall  der RPI eines Smartphones ändert sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
-Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender Formel errechnet: 
+Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mittels folgender Formel errechnet: 
 
 \centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}  $}
 
-Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufezeichnet. \\
+Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Korrekturfaktor"}
@@ -225,7 +226,11 @@ Ein weiters Zentrales Problem, das alle Lösungsansätze betrifft ist, dass nich
 Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (April 2021) benutzen etwa 25.7mio (30\%). \\
 
 \subsubsection{Simulation}
-
+\text{ }\\
+Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen haben wir eine Simulation der Masten programmiert.
+Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar. 
+Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán \cite{Simulation}. \\
+\\
 \textit{Motivation:} \\
 Unser Ansatz der festen Masten basiert darauf, Handys beim Eintritt in einen Mastbereich zu registrieren und ihren RPI zu speichern.\\
 Dadurch, dass der RPI periodisch wechselt, werden zwangsläufig Handys doppelt registriert, sollten sie sich zum Zeitpunkt des Wechsels in der Reichweite des Mastes befinden. \\
@@ -238,19 +243,20 @@ wobei $t_Z$ die Dauer eines Zyklus ist und $t_V$ die durchschnittliche Verweilda
 
 \centerline{Korrigierte Anzahl = Gemessene Anzahl * $(1 – p/2)$}
 
-Figur 1 zeigt den durch diese Formel berechneten Unterschied zwischen dem realen und gemessenen Wert, abhängig von der durchschnittlichen Verweildauer.
+Abb. \ref{old_form} zeigt den durch diese Formel berechneten Unterschied zwischen dem realen und gemessenen Wert, abhängig von der durchschnittlichen Verweildauer.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Alte Formel Graph"}
 	\caption{Anteil realer Wert am gemessen, abhängig von der durchschnittlichen Verweildauer}
+	\label{old_form}
 \end{figure}
 
 Das Ziel der Simulation ist es, festzustellen, wie nah der auf diese Weise berichtigte Wert an der tatsächlichen Zahl von Handys liegt.\\
 
 \textit{Aufbau:}\\
-Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán \cite{Simulation}.\\
-Es werden 200 Handys simuliert, die als Kreise mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Auf diesem Gebiet sind 4 Masten, dargestellt durch größere Kreise, welche permanent speichern, welche Kreise in ihrer Reichweite liegen und wie lange dies der Fall ist. \\
+Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“.\\
+Es werden 1000 Handys simuliert, die als Kreise mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Auf diesem Gebiet sind 4 Masten, dargestellt durch größere Kreise, welche permanent speichern, welche Kreise in ihrer Reichweite liegen und wie lange dies der Fall ist. \\
 Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig die korrekte Anzahl zu wissen.\\
 Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus eines Mastes. Dazu wird während des Zyklus mit jeder ID eine Zeitdauer abgespeichert und aus diesem der Durchschnitt ermittelt.  Zur Laufzeit der Simulation speichern die Masten eintretende Kreise neu ab und zählen ab diesem Zeitpunkt einen Counter hoch. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Kreise geteilt.\\
 Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
@@ -261,24 +267,27 @@ Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. 
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Simulation"}
 	\caption{Darstellung der durchgeführten Simulation}
+	\label{sim}
 \end{figure}
 
 \textit{Ergebnis:}
 Die gesammelten Daten belegen, dass die durch die Formel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
-Fig. 3 stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
+Abb. \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
 Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemesser Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
-Mit Social Distancing ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert näher an dem gemessen Wert liegt als in Fig.3.
+Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert näher an dem gemessen Wert liegt als in Abb. \ref{mast_data_plotted_old}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_old"}
 	\caption{Ergebnisse ohne Social Distancing}
+	\label{mast_data_plotted_old}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_Social_Distancing_old"}
 	\caption{Ergebnisse mit Social Distancing}
+	\label{mast_data_plotted_social_distancing_old}
 \end{figure}
 
 Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
@@ -298,12 +307,14 @@ Mi Hilfe der neuen Formel ergeben sich folgende Werte:
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted"}
 	\caption{Neue Ergebnisse ohne Social Distancing}
+	\label{mast_data_plotted}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_Social_Distancing"}
 	\caption{Neue Ergebnisse mit Social Distancing}
+	\label{mast_data_plotted_social_distancing}
 \end{figure}
 
 
