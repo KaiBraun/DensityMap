@@ -197,13 +197,22 @@ CWAs mit einem Risikowert von über 13, aber keinem positiven Test Ergebnis, ab.
 Außerdem gibt es noch den dritten Summanden R\textsubscript{CWA-Likely-Negative}, der die Begegnungen mit Personen aus der Personengruppe CWA-Likely-Negativ mit einberechnet,
 wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
 
-Der Neue Risikowert wird anschließend wird in eine Bildschirmfarbe umgewandelt. 
+Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die dann als höhe des Risikos interpretiert werden kann. 
 Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet.
+\\
 
+$0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
 
+$5\le Risikowert < 9 \rightarrow \text{gelber Bildschirm}$
+
+$9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
+
+$13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
+\\
+
+Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
+sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
 Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik Abbildung Risikoberechnung(Unter der Risikoberechnung) dies veranschaulicht.
-
-
 
 \paragraph{R\textsubscript{CWA-Positive}}
 
@@ -238,7 +247,7 @@ Der TRV ergibt sich aus diesem nach der folgenden Vorschrift:
 
 \centerline{\text{ }}
 
-\text{$TRL=I \rightarrow TRV=0.0$}
+\text{$TRL=I\rightarrow TRV=0.0$}
 
 \text{$TRL=II\rightarrow TRV=0.0$}
 
