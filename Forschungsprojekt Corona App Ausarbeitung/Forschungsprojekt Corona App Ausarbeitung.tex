@@ -78,16 +78,31 @@ Alle Kontaktpersonen werden dementsprechend informiert, ohne zu wissen von wem d
 Die Corona Warn App unterscheidet prinzipiell zwischen zwei Risikostufen, die mithilfe eines grünen bzw. roten Bildschirms auf der Startseite der App angezeigt werden. 
 Ein grüner Bildschirm bedeutet hierbei keine/kaum Risikobegegnungen und damit ein vermindertes Risiko, während ein roter Bildschirm ein erhöhtes Risiko anzeigt.
 
-Der Corona Warn App zugrunde liegendes Feature ist das "Exposure Notification Framework", welches in Kooperation von Google und Apple für Corona Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
+Der Corona Warn App zugrunde liegendes Feature ist das "Exposure Notification Framework", 
+welches in Kooperation von Google und Apple für Corona Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
+um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
 \\
 \textit{Exposure Notification Framework:}\\
-Jeden tag wird vom Framework ein sogenannter Temporary Exposure Key (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. Aus diesem TEK werden Rolling Proximity Identifiers (RPI) abgeleitet. 
-Diese RPI's haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht und ein neuer RPI aus dem TEK erstellt wird. Wichtig ist hierbei, dass sich aus den RPI's nicht der TEK ableiten lässt. 
-Die RPI's werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPI werden zudem verschlüsselt Informationen über die Begegnungsdauer, sowie dem ungefähren Abstand ausgetauscht.
+Jeden tag wird vom Framework ein sogenannter Temporary Exposure Key (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. 
+Aus diesem TEK werden Rolling Proximity Identifiers (RPI) abgeleitet. 
+Diese RPI's haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht und ein neuer RPI aus dem TEK erstellt wird. Wichtig ist hierbei, 
+dass sich aus den RPI's nicht der TEK ableiten lässt. 
+Die RPI's werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPI werden zudem verschlüsselt Informationen über die Begegnungsdauer, 
+, sowie dem ungefähren Abstand ausgetauscht.
 Falls sich nun eine Person mit dem Coronavirus infiziert, werden dessen TEK (nun Diagnosis Keys genannt) der letzten 14 Tage auf einen zentralen Server hochgeladen. 
 Jedes Smartphone hat Zugriff auf diesen zentralen Server und kann die Diagnosis Keys aller Infizierten Personen  herunterladen. 
 Mithilfe der Diagnosis Keys können dann die gespeicherten RPI's aus den Begegnungen abgeglichen und im Falle einer Übereinstimmung die Begegnungsdauer und der Abstand entschlüsselt werden. 
-Aus diesen Informationen bestimmt die Corona Warn App das Infektionsrisiko der Person. 
+Zusammen mit dem Transmission Risk Level (TRL) bestimmt die Corona Warn App aus diesen Informationen das Infektionsrisiko der Person. \\
+\\
+\textit{Transmission Risk Level (TRL):}
+Das TRL wird in der CWA lokal berechnet und auf dem CWA Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
+Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person ein Übertragungspotenzial hat das anfangs niedrig ist, 
+dann auf ein Maximum steigt und innerhalb von 14 Tagen wieder abnimmt . Um daraus ein Risiko Level abzuleiten müssen verschiedene Zeitpunkte bekannt sein. 
+Darunter zählen der Symptombeginn, das Infektiös sein, das angesteckt worden sein und drei weiter Zeitpunkte die beim Testen aufgezeichnet werden müssen, 
+Zeitpunkt des Testens, Zeitpunkt des Ergebnis bekommen und Zeitpunkt des Hochladens. Aus diesen Werten ist es möglich den TRL so zu bestimmen, 
+dass er das Übertragungspotenzial widerspiegelt(Quelle CWADoku).
+Allerdings werden diese Zeitpunkte noch nicht bereitgestellt und es wird somit auf einen Standardwert zurückgegriffen. 
+Weshalb im Verlauf des Dokuments das Feature TRL Update vorgestellt wird, dass eine Lösung zeigt die fehlenden Daten zu sammeln.
 
 \subsection{Crowd sensing und Bluetooth Low Energy}
 
@@ -174,39 +189,42 @@ Diese Bereiche sind wie folgt aufgeteilt:\\
 
 \section{Hauptfeatures}
 \subsection{Erweiterte Risikoberechnung}
-\subsubsection{Definitionen}
-
-Im Folgenden werden die Begrifflichkeiten genauer definiert: 
-Generell wird angenommen, dass wegen der Inkubationszeit, 
-Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben. 
-Man unterscheidet zwischen zwei Gruppen: 
-CWA-User, die von der CWA somit aufgezeichnet werden und Not-CWA-User, die die CWA nicht nutzen und somit nicht aufgezeichnet werden.
-CWA-User werden in drei Untergruppen aufgeteilt: CWA-Positive sind alle Personen, die einen positiven Test in die CWA eingetragen haben, 
-CWA-Likely-Positive sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und 
-CWA-Likely-Negative sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
-Ebenso wird die NOT-CWA-User in drei Untergruppen aufgeteilt: 
-Not-CWA-Positive sind alle Personen, die ein positives Test Ergebnis haben, dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem nutzen), 
-Hidden-Positive sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können und Hidden-Negative sind alle Personen, die nicht infiziert sind.
-
 \subsubsection{Familienfeature}
-
 \subsubsection{Feature Potenziell Kranke}
-
 \subsubsection{Feature TRL Update}
+In diesem Feature wird das volle Potenzial des TRLs genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von vier nicht unterschreiten darf, da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. Die Implementierung dafür existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht, wie im Abschnitt (TRL) genauer beschrieben. Durch Umfragen, die beim Eingeben eines positiven Corona Tests aktiviert werden, sollen die Infizierten ihren Infektionszeitpunkt und den Symptom-Start-Zeitpunkt angeben können. Es wird angenommen, dass beim Eingeben des Testergebnisses der Zeitpunkt des Testens, der Zeitpunkt des Ergebnis Erhaltens und der Zeitpunkt des Eingebens in der App gespeichert werden. Eine Umfrage könnte folgende Fragen beinhalten:
 
-\subsubsection{Berechnung}
+\begin{itemize}
+	\item Wann haben Sie in den letzten 14 Tagen Symptome verspürt?
+	\item Wann wurden Sie vermutlich infiziert?
+\end{itemize}
 
-Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
-Um dieses zu berechnen wird das Übertragunspotenzial aus Begegnungsdauer und die Begegnungsnähe mit der CWA-Positive Person mit einbezogen und die Wahrscheinlichkeit, 
-dass eine Person infiziert ist, Positiv-Begegnungs-Wahrscheinlichkeit, mit einberechnet. 
-Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, wird der Bildschirm rot, 
-ein erhöhtes Risiko angezeigt und die Person zählt zur CWA-Likely-Positive Gruppe. 
-Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, da es sich in jedem Fall um Begegnungen mit CWA-Positive Personen handelt.
+Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und  des Rückmeldens im Testergebnis zu codieren, kann man folgende Fragen anhängen:
+
+\begin{itemize}
+	\item Wann haben Sie sich testen lassen?
+	\item Wann haben Sie das positive Ergebnis bekommen?
+\end{itemize} 
+	
+Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden, damit Nutzer besser gewarnt werden können.
+
+\subsubsection{Risikoberechnung}
+Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, 
+das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
+Generell wird angenommen, dass wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
+Um dieses zu berechnen wird das Übertragunspotenzial aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
+die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. Und zum anderen die Wahrscheinlichkeit, 
+dass eine Person infiziert ist, die im folgenden als Positiv-Begegnungs-Wahrscheinlichkeit bezeichnet wird.
+Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
+wird der Bildschirm rot, ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
+da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
 Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten. (Quelle 123)
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die momentane Risikoberechnung. 
-Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
-
+Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.\\
+\\
+\textit{Probleme und Lösungsansätze:} \\
 Ein Problem der Risikoberechnung der CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
+
 Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die angepasste Risikoberechnung beachtet:
 Mit der Dunkelziffer lässt sich die Anzahl an tatsächlich Infizierten abschätzen und sie sorgt dafür, dass CWA-Likely-Negative Personen, unter einbezug der positiven Not-CWA-User, 
 zu einem Risiko führen können, welches in der neuen Risikoberechnung nicht ignoriert wird.
@@ -217,8 +235,9 @@ Außerdem ist die Risikoberechnungsanzeige nicht transparent genug, zwar ist die
 jedoch sieht man weder den Grad des Übertragungspotenzials, noch wie der Risikowert zustande gekommen ist.
 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
-Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. 
-
+Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. \\
+\\
+\textit{Überblick:} \\
 Dazu wurde eine angepasste Risikoberechnung ausgearbeitet, die Daten des RKIs und aus anderen Features, sowie Daten aus Umfragen, nutzt, 
 um die fehlenden Daten mit einzubeziehen oder zu beschaffen. Die neue Risikoberechnung wird transparent am Ende neben einer feineren Granulierung des Risikowerts angezeigt. 
 Die neue Risikoberechnung behandelt drei Punkte die zu einem neuen Risikowert zusammenaddiert werden.
@@ -440,9 +459,9 @@ Für diesen Wert wird 14 Minuten geschätzt, damit Verbindungsfehler keinen gro�
 Jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound wird somit gezählt.
 
 \centerline{\text{ }}
-\text{$if(att<73dB) \le lowerLimit$\{}
+\text{$if(att<73dB) \le lowerBound$\{}
 
-\text{\&\&$t(att > 0dB) < upperLimit)$}
+\text{\&\&$t(att > 0dB) < upperBound)$}
 
 \text{$Contacts++$}
 
