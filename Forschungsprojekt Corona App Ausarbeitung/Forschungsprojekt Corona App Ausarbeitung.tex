@@ -89,7 +89,45 @@ Jedes Smartphone hat Zugriff auf diesen zentralen Server und kann die Diagnosis 
 Mithilfe der Diagnosis Keys können dann die gespeicherten RPI's aus den Begegnungen abgeglichen und im Falle einer Übereinstimmung die Begegnungsdauer und der Abstand entschlüsselt werden. 
 Aus diesen Informationen bestimmt die Corona Warn App das Infektionsrisiko der Person. 
 
-\subsection{Bluetooth Low Energy und Density Maps}
+\subsection{Crowd sensing und Bluetooth Low Energy}
+
+Bezüglich Crowd Sensing und Density-Maps existieren  bereits umfangreiche Arbeiten aus verschiedensten Anwendungsbereichen. 
+So werden beispielsweise Smartphones verwendet, um die Luftverschmutzung in verschiedenen Stadtteilen von Großstädten oder in Gebäuden zu messen (1). 
+Die Standortbasierten Daten werden dann auf einen Server geladen, damit Nutzer die aktuelle Belastung in den Regionen (oder auch Räumen in Gebäuden) abfragen kann. Eine ähnliche Umsetzung gibt es hinsichtlich der Lärmbelästigung (2). 
+
+Im Verkehrssektor existieren ebenfalls eine Vielzahl von Lösungen, um mithilfe von Crowd Sensing Verkehrsdaten zu sammeln, analysieren und die Lage zu verbessern. 
+Saremi et. Al. (5) Benutzen unter anderem GPS Daten von Smartphones oder Fahrzeugen, um Informationen über die Existenz von Ampeln an Kreuzungen zu extrahieren. \\
+\\
+\textit{BLE Crowd Sensing:}
+Auch im Bereich BLE existieren Crowd Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
+Tschuhiya et al. beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
+Anstelle von Smartphones werden hier Arduinos verwendet, um verschiedene Sensordaten, wie Druck, Luftfeuchtigkeit, Lichtintensität usw. zu messen. 
+Diese Daten wurde dann per BLE an die Smartphones weitergegeben, wo sie ausgewertet und dann auf einen Server hochgeladen wurden. 
+
+In (3) werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking)  verwendet, um eine IoT Sensoren Map innerhalb geschlossener Gebäuden, wie etwa Shopping Malls, zu erstellen. 
+Die Raspberry Pies werden in den einzelnen Räumen vorinstalliert und messen Sensordaten, wie Temperatur oder Luftfeuchtigkeit. 
+Außerdem werden sie mit BLE Beacons versehen, damit Nutzer per Smartphone automatisch die Daten auswerten und eine Übersichtskarte des Gebäudes erstellen kann.  
+
+Basalamah (4) beschäftigt sich mit Bluetooth Low Energy Tags zum Aufzeichnen von Bewegungsströmen größerer Menschenmassen. 
+Die BLE Tags stoßen regelmäßig Signale aus, die sich mithilfe von Smartphones empfangen lassen. 
+Dadurch kann der Standort und Status der einzelnen Tags gezielt nachverfolgt werden. 
+Im Versuch wurden Pilger beim Haddsch (Pilgerfahrt nach Mekka) mit diesen BLE Tags ausgestattet und deren Bewegung mittels Smartphones, welche an bestimmten Orten als Aufzeichnungsmast agierten, nachverfolgt. 
+An diesem Ansatz ist unsere Density-Map Lösung mittels zentraler Masten stark angelehnt, jedoch bestand die Idee hier mittels der Smartphones gezielt einzelne Tags zu identifizieren und daraus folgend die Bewegungsströme der Pilger nachzuvollziehen. 
+Unser Ansatz hingegen ist, per BLE möglichst anonym die Daten zu erfassen und damit eine Density-Map zu erstellen. 
+Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst zum Datenaustausch. \\
+\\
+Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten vom Unternehmen Google.  
+In dessen Suchmaschine lässt sich zu fasst jeder öffentlichen Einrichtung, sowie Restaurants oder Einzelhandel Läden neben den Öffnungszeiten die aktuelle Besucherzahl anzeigen. 
+Zudem wird noch die Durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt mitgegeben. 
+Die Besucherzahlen werden nicht als konkreter numerischer Wert angegeben, sondern mithilfe von Balkendiagrammen grafisch angezeigt, sodass man lediglich die Auslastung mit anderen Uhr-/Tageszeiten vergleichen kann, ohne den konkreten Wert zu kennen. 
+Das Live Stoßzeiten Feature wird jedoch nur als Diagramm für jede Einrichtung und nicht als Karte realisiert.
+Für die Umsetzung ihres Features benutzt Google voraussichtlich die personalisierten Nutzerdaten seiner User, wie beispielsweise den Standortverlauf der Google Maps Anwendung. 
+Auf deren Webseite gibt Google keine weiteren Informationen darüber Preis, lediglich wie das Feature funktioniert. \\
+\\
+Zusammenfassend lässt sich sagen, dass es eine Fülle von Arbeiten gibt, welche sich mit dem Thema Crowd Sensing beschäftigen. 
+Die meisten verwenden jedoch personalisierte Daten der Nutzer, wie den Standort, um entsprechende Karten zu generieren. 
+Auch bei der Nutzung von BLE wurden diese Daten gezielt mitgegeben, um konkrete Standorte nachzuverfolgen, anstatt die Anonymität des BLE features gezielt auszunutzen. 
+Das Erstellen einer Density-Map mittels anonymer Nutzerdaten und BLE scheint es nach unserem Wissen demnach nicht zu geben. 
 
 \section{Lösungsvorschläge}
 
