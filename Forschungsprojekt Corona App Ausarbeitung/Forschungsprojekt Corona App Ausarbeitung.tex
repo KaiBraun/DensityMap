@@ -92,23 +92,23 @@ Aus diesen Informationen bestimmt die Corona Warn App das Infektionsrisiko der P
 \subsection{Crowd sensing und Bluetooth Low Energy}
 
 Bezüglich Crowd Sensing und Density-Maps existieren  bereits umfangreiche Arbeiten aus verschiedensten Anwendungsbereichen. 
-So werden beispielsweise Smartphones verwendet, um die Luftverschmutzung in verschiedenen Stadtteilen von Großstädten oder in Gebäuden zu messen (1). 
-Die Standortbasierten Daten werden dann auf einen Server geladen, damit Nutzer die aktuelle Belastung in den Regionen (oder auch Räumen in Gebäuden) abfragen kann. Eine ähnliche Umsetzung gibt es hinsichtlich der Lärmbelästigung (2). 
+So werden beispielsweise Smartphones verwendet, um die Luftverschmutzung in verschiedenen Stadtteilen von Großstädten oder in Gebäuden zu messen \cite{AirQuality}. 
+Die Standortbasierten Daten werden dann auf einen Server geladen, damit Nutzer die aktuelle Belastung in den Regionen (oder auch Räumen in Gebäuden) abfragen kann. Eine ähnliche Umsetzung gibt es hinsichtlich der Lärmbelästigung \cite{NoiseSense}. 
 
 Im Verkehrssektor existieren ebenfalls eine Vielzahl von Lösungen, um mithilfe von Crowd Sensing Verkehrsdaten zu sammeln, analysieren und die Lage zu verbessern. 
-Saremi et. Al. (5) Benutzen unter anderem GPS Daten von Smartphones oder Fahrzeugen, um Informationen über die Existenz von Ampeln an Kreuzungen zu extrahieren. \\
+Saremi et. Al. \cite{TrafficRegulators} Benutzen unter anderem GPS Daten von Smartphones oder Fahrzeugen, um Informationen über die Existenz von Ampeln an Kreuzungen zu extrahieren. \\
 \\
 \textit{BLE Crowd Sensing:}
 Auch im Bereich BLE existieren Crowd Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
-Tschuhiya et al. beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
+Tschuhiya et al. \cite{BLESensorDevices} beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
 Anstelle von Smartphones werden hier Arduinos verwendet, um verschiedene Sensordaten, wie Druck, Luftfeuchtigkeit, Lichtintensität usw. zu messen. 
 Diese Daten wurde dann per BLE an die Smartphones weitergegeben, wo sie ausgewertet und dann auf einen Server hochgeladen wurden. 
 
-In (3) werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking)  verwendet, um eine IoT Sensoren Map innerhalb geschlossener Gebäuden, wie etwa Shopping Malls, zu erstellen. 
+In \cite{CICN} werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking)  verwendet, um eine IoT Sensoren Map innerhalb geschlossener Gebäuden, wie etwa Shopping Malls, zu erstellen. 
 Die Raspberry Pies werden in den einzelnen Räumen vorinstalliert und messen Sensordaten, wie Temperatur oder Luftfeuchtigkeit. 
 Außerdem werden sie mit BLE Beacons versehen, damit Nutzer per Smartphone automatisch die Daten auswerten und eine Übersichtskarte des Gebäudes erstellen kann.  
 
-Basalamah (4) beschäftigt sich mit Bluetooth Low Energy Tags zum Aufzeichnen von Bewegungsströmen größerer Menschenmassen. 
+Basalamah \cite{BLETags} beschäftigt sich mit Bluetooth Low Energy Tags zum Aufzeichnen von Bewegungsströmen größerer Menschenmassen. 
 Die BLE Tags stoßen regelmäßig Signale aus, die sich mithilfe von Smartphones empfangen lassen. 
 Dadurch kann der Standort und Status der einzelnen Tags gezielt nachverfolgt werden. 
 Im Versuch wurden Pilger beim Haddsch (Pilgerfahrt nach Mekka) mit diesen BLE Tags ausgestattet und deren Bewegung mittels Smartphones, welche an bestimmten Orten als Aufzeichnungsmast agierten, nachverfolgt. 
@@ -116,12 +116,12 @@ An diesem Ansatz ist unsere Density-Map Lösung mittels zentraler Masten stark a
 Unser Ansatz hingegen ist, per BLE möglichst anonym die Daten zu erfassen und damit eine Density-Map zu erstellen. 
 Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst zum Datenaustausch. \\
 \\
-Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten vom Unternehmen Google.  
+Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten vom Unternehmen Google \cite{GoogleStosszeiten}.  
 In dessen Suchmaschine lässt sich zu fasst jeder öffentlichen Einrichtung, sowie Restaurants oder Einzelhandel Läden neben den Öffnungszeiten die aktuelle Besucherzahl anzeigen. 
 Zudem wird noch die Durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt mitgegeben. 
 Die Besucherzahlen werden nicht als konkreter numerischer Wert angegeben, sondern mithilfe von Balkendiagrammen grafisch angezeigt, sodass man lediglich die Auslastung mit anderen Uhr-/Tageszeiten vergleichen kann, ohne den konkreten Wert zu kennen. 
 Das Live Stoßzeiten Feature wird jedoch nur als Diagramm für jede Einrichtung und nicht als Karte realisiert.
-Für die Umsetzung ihres Features benutzt Google voraussichtlich die personalisierten Nutzerdaten seiner User, wie beispielsweise den Standortverlauf der Google Maps Anwendung. 
+Für die Umsetzung ihres Features benutzt Google voraussichtlich die personalisierten Nutzerdaten seiner User, wie beispielsweise den Standortverlauf der Google Maps Anwendung \cite{GoogleStandortverlauf}. 
 Auf deren Webseite gibt Google keine weiteren Informationen darüber Preis, lediglich wie das Feature funktioniert. \\
 \\
 Zusammenfassend lässt sich sagen, dass es eine Fülle von Arbeiten gibt, welche sich mit dem Thema Crowd Sensing beschäftigen. 
@@ -744,6 +744,14 @@ RAID: Shadow Legends und NordVPN!
 \begin{thebibliography}{00}
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
 https://github.com/midudev/covid-19-spread-simulator
+\bibitem{AirQuality} J. Dutta, F. Gazi, S. Roy and C. Chowdhury, "AirSense: Opportunistic crowd-sensing based air quality monitoring system for smart city," 2016 IEEE SENSORS, 2016, pp. 1-3, doi: 10.1109/ICSENS.2016.7808730.
+\bibitem{NoiseSense} Z. Qin and Y. Zhu, "NoiseSense: A Crowd Sensing System for Urban Noise Mapping Service," 2016 IEEE 22nd International Conference on Parallel and Distributed Systems (ICPADS), 2016, pp. 80-87, doi: 10.1109/ICPADS.2016.0020.
+\bibitem{TrafficRegulators} F. Saremi and T. Abdelzaher, "Combining Map-Based Inference and Crowd-Sensing for Detecting Traffic Regulators," 2015 IEEE 12th International Conference on Mobile Ad Hoc and Sensor Systems, 2015, pp. 145-153, doi: 10.1109/MASS.2015.18.
+\bibitem{BLESensorDevices} Y. Tsuchiya and N. Ishikawa, "Mobile Crowdsensing from Sensor Devices Using Bluetooth Low Energy (BLE)," 2018 International Conference on Computational Science and Computational Intelligence (CSCI), 2018, pp. 800-805, doi: 10.1109/CSCI46756.2018.00160.
+\bibitem{CICN} T. You, M. Umair and Y. Hong, "Mobile crowd sensing based on CICN," 2017 International Conference on Information and Communication Technology Convergence (ICTC), 2017, pp. 1272-1275, doi: 10.1109/ICTC.2017.8190919.
+\bibitem{BLETags} A. Basalamah, "Sensing the Crowds Using Bluetooth Low Energy Tags," in IEEE Access, vol. 4, pp. 4225-4233, 2016, doi: 10.1109/ACCESS.2016.2594210.
+\bibitem{GoogleStosszeiten} "Google Stoßzeiten Feature" \\ https://support.google.com/business/answer/6263531/sto\%C3\%9Fzeiten-wartezeiten-und-besuchsdauer?hl=de (04.06.2021)
+\bibitem{GoogleStandortverlauf} "Google Standortverlauf" \\ https://support.google.com/maps/answer/6258979/google-maps\%E2\%80\%91zeitachse-computer?co=GENIE.Platform\%3DDesktop\&hl=de (04.06.2021)
 \end{thebibliography}
 \vspace{12pt}
 
