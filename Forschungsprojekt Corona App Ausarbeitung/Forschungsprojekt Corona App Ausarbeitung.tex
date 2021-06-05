@@ -190,7 +190,103 @@ Diese Bereiche sind wie folgt aufgeteilt:\\
 \section{Hauptfeatures}
 \subsection{Erweiterte Risikoberechnung}
 \subsubsection{Familienfeature}
-\subsubsection{Feature Potenziell Kranke}
+\label{Familienfeature}
+Im Folgenden wird ein Familienfeature vorgeschlagen, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
+Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
+Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln.
+Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
+Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive}, Abschnitt (CWA-Likely-Positive) und R\textsubscript{CWA-Likely-Negative}, Abschnitt (RLikely-Negative), miteinberechnet werden. 
+
+Das Austauschen von TEKs kann allerdings Eingriffe in die Privatsphäre zur Folge haben.
+Erkrankt eine Person aus einer Gruppe an Corona und gibt ihre TEKs als Diagnosis Keys frei, ist es für die anderen Gruppenangehörigen möglich mit hoher Wahrscheinlichkeit die erkrankte Person zu bestimmen.
+Aus diesem Grund sollten Gruppen nur mit vertrauenswürdigen Personen, wie engen Freunden oder Verwandten, gegründet werden.
+In Abbildung \ref{Familienfeature_Abbildung} ist eine Übersicht des Familienfeatures gegeben, welches im Folgenden beschrieben wird:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.48\textwidth]{"Familiengruppe"}
+	\caption{Familienfeature}
+	\label{Familienfeature_Abbildung}
+\end{figure}
+
+Als Servergruppe wird eine Gruppe auf einem speziell für das Familienfeature angelegten Server bezeichnet.
+Eine Servergruppe besitzt eine für den Server einmalige ID, einen private signing key und eine Liste mit verschlüsselten TEKs.
+Die Liste der verschlüsselten TEKs ist beim Anlegen einer neuen Servergruppe leer.
+
+Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen.
+Innerhalb einer lokalen Gruppe wird ein private signing key, ein private encryption key und eine Servergruppen ID gespeichert.
+Die Verwendung des private signing keys, private encryption keys und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
+Der private signing key und insbesondere private encryption key einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
+Es gibt zwei verschiedene Möglichkeiten den private signing key, private encryption key und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
+Dafür kann man entweder eine neue Servergruppe anlegen oder einer bereits existierenden Servergruppe beitreten.
+
+Entscheidet man sich dazu eine neue Servergruppe anzulegen, so wird lokal in der CWA ein private signing key und ein private encryption key generiert.
+Der private signing key wird zusammen mit einer Anfrage, eine neue Servergruppe zu erstellen, an den Server gesendet.
+Ein Verlust des private signing keys kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
+Allerdings reicht der private signing key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem private encryption key verschlüsselt sind.
+Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
+Der lokal erstelle private signing key, private encryption key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
+
+
+Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
+Das Mitglied der Servergruppe teilt den private signing key, private encryption key und die Servergruppen ID durch zum Beispiel einen QR-Code.
+Diese müssen dann nur noch abgespeichert werden.
+
+An dieser Stelle ist anzumerken, dass jedes Mitglied neue Personen zur Gruppe hinzufügen kann, ohne, dass andere Mitglieder etwas davon mitbekommen.
+Aus diesem Grund wird nochmal betont Gruppen nur mit vertrauenswürdigen Personen zu teilen, um die Privatsphäre zu schützen.
+Sollte eine Person unbefugten Zugriff auf eine Gruppe haben, ist es nicht möglich, dieser Person den Zugriff zu entziehen.
+In diesem Fall muss die lokale Gruppe gelöscht werden, damit keine weiteren TEKs geteilt werden.
+
+Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen private signing keys, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
+Damit außer der Gruppenmitglieder niemand Zugriff auf die TEKs hat, wird dabei folgendes Verfahren angewandt:
+
+Die TEKs werden mithilfe des private encryption keys einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem private signing key der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
+Dies wird zusammen mit der Servergruppen ID der Gruppe an den Server gesendet.
+Der Server nutzt den private signing key zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
+Sind die TEKs validiert, werden sie der Liste der verschlüsselten TEKs zusammen mit ihrem Hochladedatum hinzugefügt.
+Die verschlüsselten TEKs werden nach 14 Tagen aus der Liste der verschlüsselten TEKs gelöscht.
+Dies geschieht iterativ für jede lokale Gruppe.
+
+Um die TEKs der Gruppenmitglieder einer Gruppe herunterzuladen, muss eine Anfrage an den Server gestellt werden.
+Diese Anfrage beinhaltet die Servergruppen ID der Gruppe und das Datum des letzten Downloads.
+Mithilfe des private signing keys wird die Anfrage validiert und die verschlüsselten TEKs vom Server an die CWA gesendet, die nach dem Datum des letzten lokalen Downloads hochgeladen wurden.
+Die verschlüsselten TEKs können dann mit dem private encryption key der Gruppe entschlüsselt werden.
+Auch hier geschieht dies iterativ für jede lokale Gruppe.\\
+
+
+\subsubsection{Feature PKServer}
+
+Das Feature PKServer ist Voraussetzung für die in Abschnitt (Risikoberechnung) eingeführte erweiterte Risikoberechnung.
+In der aktuellen CWA werden nur Begegnungen mit CWA-Positive Personen in der Risikoberechnung betrachtet.
+Jedoch sind CWA-Likely-Positive Personen mit einer erhöhten Wahrscheinlichkeit infiziert und ansteckend, da sie Kontakt zu CWA-Positive Personen hatten.
+Diese sollen mithilfe dieses Features in die Risikoberechnung in Abschnitt (R-CWA-Likely-Positive) mit einbezogen werden.
+
+Damit diese in die Risikoberechnung mit einfließen können, benötigen wir die TEKs der CWA-Likely-Positive Personen.
+Ähnlich wie beim CWA Server sollen diese TEKs auch auf einem Server gesammelt und von da aus verteilt werden.
+Dieser Server wird in diesem Dokument als der Potenziell Kranke Server (PKServer) bezeichnet.
+Wird in der CWA ein erhöhtes Risiko mit einem Risikowert $\geq$ 13 erkannt und durch einen roten Bildschirm angezeigt, so sollen die TEKs der letzten 14 Tage, verbunden mit dem zum roten Bildschirm führenden Risikowert, auf den PKServer hochgeladen werden.
+Dies kann entweder durch das freiwillige bestätigen einer Option oder als Integration in die freiwillige Datenspende implementiert werden.
+Aufgrund der Inkubationszeit werden TEKs auf dem PKServer, die älter als 14 Tage sind, gelöscht.
+
+Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom PKServer herunter und leitet daraus die RPIs ab.
+Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt (CWA-Likely-Positive) beschrieben.
+Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA Server.
+Der mit einem TEK verbundene Risikowert wird dazu genutzt die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
+
+Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, autorisierter Schlüssel benötigt, um TEKs auf den PKServer hochladen zu können.
+Dies wirft verschiedene Probleme hervor, die zwar im Folgenden genauer erläutert, jedoch nicht gelöst, werden.
+
+Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb 14 Tage auf den PKServer hochgeladen wird.
+Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den PKServer hochgeladen werden kann.
+Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann dies zu einer ungenaueren Risikoberechnung führen.
+Sollten bereits auf dem PKServer existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, ob das erneute Hochladen von der gleichen Person getätigt wird.
+Würden diese nicht abgelehnt werden, wäre es ein leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, da der Lesezugriff auf die TEKs und Risikowerte auf dem PKServer nicht eingeschränkt ist.
+
+
+Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines roten Bildschirms, überprüft wird.
+Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
+
+
 \subsubsection{Feature TRL Update}
 In diesem Feature wird das volle Potenzial des TRLs genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von vier nicht unterschreiten darf, da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. Die Implementierung dafür existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht, wie im Abschnitt (TRL) genauer beschrieben. Durch Umfragen, die beim Eingeben eines positiven Corona Tests aktiviert werden, sollen die Infizierten ihren Infektionszeitpunkt und den Symptom-Start-Zeitpunkt angeben können. Es wird angenommen, dass beim Eingeben des Testergebnisses der Zeitpunkt des Testens, der Zeitpunkt des Ergebnis Erhaltens und der Zeitpunkt des Eingebens in der App gespeichert werden. Eine Umfrage könnte folgende Fragen beinhalten:
 
@@ -206,7 +302,7 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und  des Rückm
 	\item Wann haben Sie das positive Ergebnis bekommen?
 \end{itemize} 
 	
-Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden, damit Nutzer besser gewarnt werden können.
+Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden, damit Nutzer besser gewarnt werden können.\\
 
 \subsubsection{Risikoberechnung}
 Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, 
