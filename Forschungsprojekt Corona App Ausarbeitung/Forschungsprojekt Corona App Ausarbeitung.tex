@@ -69,16 +69,17 @@ Corona, Corona-Warn-App, Density Map, Risikoberechnung
 \subsection{Corona Warn App}
 Die deutsche "Corona Warn App" (CWA) wurde im Auftrag des Robert Koch Institutes von SAP, der deutschen Telekom und weiteren Unternehmen entwickelt. 
 Ihr Hauptziel ist die automatisierte und anonyme Kontaktverfolgung mittels Smartphones, um möglichst viele Infektionsketten zu unterbrechen und die Ausbreitung des Coronavirus weitmöglichst zu verlangsamen. 
-Zum aktuellen Zeitpunkt ist die App seit etwa einem dreiviertel Jahr aktiv und  wurde knapp 30millionen Mal heruntergeladen (Stand Mai 2021).
+Zum aktuellen Zeitpunkt ist die App seit etwa einem dreiviertel Jahr aktiv und  wurde knapp 30 Millionen Mal heruntergeladen (Stand Mai 2021).
 
-Die Funktion der Corona Warn App ist relativ simpel. Ein Nutzer lädt sich die App auf sein Smartphone und aktiviert seine Bluetooth Funktion. 
-Falls er nun mit einer weiteren Person, die ebenfalls die CWA installiert hat in Kontakt kommt, werden anonym Daten ausgetauscht und die Begegnung auf den jeweiligen Endgeräten gespeichert. 
+Die Funktion der Corona Warn App ist aus Nutzersicht relativ simpel. Der Nutzer lädt sich die App auf sein Smartphone und aktiviert seine Bluetooth Funktion. 
+Falls er nun mit einer weiteren Person, die ebenfalls die CWA installiert, hat in Kontakt kommt, werden anonym Daten ausgetauscht und die Begegnung auf den jeweiligen Endgeräten gespeichert. 
 Sofern man sich nun mit dem Coronavirus Infiziert hat, erhält man von einer Teststelle zusammen mit dem positiven Testergebnis einen Code, welchem man in seine App eintragen kann. 
 Alle Kontaktpersonen werden dementsprechend informiert, ohne zu wissen von wem diese Mitteilung letztendlich stammt. 
+
 Die Corona Warn App unterscheidet prinzipiell zwischen zwei Risikostufen, die mithilfe eines grünen bzw. roten Bildschirms auf der Startseite der App angezeigt werden. 
 Ein grüner Bildschirm bedeutet hierbei keine/kaum Risikobegegnungen und damit ein vermindertes Risiko, während ein roter Bildschirm ein erhöhtes Risiko anzeigt.
 
-Der Corona Warn App zugrunde liegendes Feature ist das "Exposure Notification Framework", 
+Der Corona Warn App zugrunde liegendes Feature ist das \glqq Exposure Notification Framework", 
 welches in Kooperation von Google und Apple für Corona Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
 um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
 \\
@@ -87,8 +88,7 @@ Jeden tag wird vom Framework ein sogenannter Temporary Exposure Key (TEK) generi
 Aus diesem TEK werden Rolling Proximity Identifiers (RPI) abgeleitet. 
 Diese RPI's haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht und ein neuer RPI aus dem TEK erstellt wird. Wichtig ist hierbei, 
 dass sich aus den RPI's nicht der TEK ableiten lässt. 
-Die RPI's werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPI werden zudem verschlüsselt Informationen über die Begegnungsdauer, 
-, sowie dem ungefähren Abstand ausgetauscht.
+Die RPI's werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPI's werden zudem verschlüsselt Informationen über die Begegnungsdauer, sowie dem ungefähren Abstand ausgetauscht.
 Falls sich nun eine Person mit dem Coronavirus infiziert, werden dessen TEK (nun Diagnosis Keys genannt) der letzten 14 Tage auf einen zentralen Server hochgeladen. 
 Jedes Smartphone hat Zugriff auf diesen zentralen Server und kann die Diagnosis Keys aller Infizierten Personen  herunterladen. 
 Mithilfe der Diagnosis Keys können dann die gespeicherten RPI's aus den Begegnungen abgeglichen und im Falle einer Übereinstimmung die Begegnungsdauer und der Abstand entschlüsselt werden. 
@@ -117,7 +117,7 @@ Saremi et. Al. \cite{TrafficRegulators} Benutzen unter anderem GPS Daten von Sma
 Auch im Bereich BLE existieren Crowd Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
 Tschuhiya et al. \cite{BLESensorDevices} beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
 Anstelle von Smartphones werden hier Arduinos verwendet, um verschiedene Sensordaten, wie Druck, Luftfeuchtigkeit, Lichtintensität usw. zu messen. 
-Diese Daten wurde dann per BLE an die Smartphones weitergegeben, wo sie ausgewertet und dann auf einen Server hochgeladen wurden. 
+Diese Daten werden dann per BLE an die Smartphones weitergegeben, wo sie ausgewertet und dann auf einen Server hochgeladen wurden. 
 
 In \cite{CICN} werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking)  verwendet, um eine IoT Sensoren Map innerhalb geschlossener Gebäuden, wie etwa Shopping Malls, zu erstellen. 
 Die Raspberry Pies werden in den einzelnen Räumen vorinstalliert und messen Sensordaten, wie Temperatur oder Luftfeuchtigkeit. 
@@ -128,10 +128,10 @@ Die BLE Tags stoßen regelmäßig Signale aus, die sich mithilfe von Smartphones
 Dadurch kann der Standort und Status der einzelnen Tags gezielt nachverfolgt werden. 
 Im Versuch wurden Pilger beim Haddsch (Pilgerfahrt nach Mekka) mit diesen BLE Tags ausgestattet und deren Bewegung mittels Smartphones, welche an bestimmten Orten als Aufzeichnungsmast agierten, nachverfolgt. 
 An diesem Ansatz ist unsere Density-Map Lösung mittels zentraler Masten stark angelehnt, jedoch bestand die Idee hier mittels der Smartphones gezielt einzelne Tags zu identifizieren und daraus folgend die Bewegungsströme der Pilger nachzuvollziehen. 
-Unser Ansatz hingegen ist, per BLE möglichst anonym die Daten zu erfassen und damit eine Density-Map zu erstellen. 
+Unser Ansatz hingegen ist es, per BLE möglichst anonym die Daten zu erfassen und damit eine Density-Map zu erstellen. 
 Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst zum Datenaustausch. \\
 \\
-Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten vom Unternehmen Google \cite{GoogleStosszeiten}.  
+Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten des Unternehmens Google \cite{GoogleStosszeiten}.  
 In dessen Suchmaschine lässt sich zu fasst jeder öffentlichen Einrichtung, sowie Restaurants oder Einzelhandel Läden neben den Öffnungszeiten die aktuelle Besucherzahl anzeigen. 
 Zudem wird noch die Durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt mitgegeben. 
 Die Besucherzahlen werden nicht als konkreter numerischer Wert angegeben, sondern mithilfe von Balkendiagrammen grafisch angezeigt, sodass man lediglich die Auslastung mit anderen Uhr-/Tageszeiten vergleichen kann, ohne den konkreten Wert zu kennen. 
@@ -600,7 +600,7 @@ Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obw
 
 \subsection{Density-Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
-Häufig findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
+In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
 Im Sinne der erweiterten Corona Warn App möchten wir dieses Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstellen. 
 Damit kann eine Nutzer stark besuchte Gegenden identifizieren und meiden. 
 Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. 
@@ -620,7 +620,7 @@ Hierfür haben wir uns für die Umsetzung 2 Verfahren überlegt, mit welchen wir
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
 Nach Ablauf des Zeitintervalls wird die Anzahl der Begegnungen auf einen zentralen Server hochgeladen.
 Anders als beim naiven Ansatz, bei dem der zentrale Server die Daten aller Smartphones erfassen würde, ist hier die Aufzeichung auf tausende bis zehntausende einzelne Masten verteilt. 
-Dadurch gäbe es keinen "single point of failure", bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
+Dadurch gäbe es keinen \glqq Single point of failure", bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
 Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst auf einen Server hochgeladen, reduziert dies den Datenstrom und die Last des znetralen Servers erheblich. 
 
 Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander per BLE. 
