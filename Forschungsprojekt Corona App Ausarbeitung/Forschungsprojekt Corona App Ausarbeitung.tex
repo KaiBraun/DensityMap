@@ -207,7 +207,7 @@ jedoch kein positives Testergebnis nachweisen können und Hidden-Negative sind a
 Für die erweiterte Risikoberechnung werden Features (Familienfeature, Feature TRL Update, 
 Feature PK-Server) benötigt, die in Abschnitt 1 bis 3 vorgestellt werden.
 Im Abschnitt 4 wird auf die erweiterte Risikoberechnung genauer eingegangen und im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
-
+\\
 \subsubsection{Familienfeature}
 \label{Familienfeature}
 Im Folgenden wird ein Familienfeature vorgeschlagen, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
@@ -389,8 +389,7 @@ $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 
 Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
-Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
-
+Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.\\
 \paragraph{R\textsubscript{CWA-Positive}}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
@@ -452,7 +451,6 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 \centerline{\text{ }}
 \centerline{ \text{R\textsubscript{CWA-Positive}} $ := \sum t_n$}
 \centerline{\text{ }}
-
 \paragraph{R\textsubscript{CWA-Likely-Positive}}
 Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
@@ -534,9 +532,7 @@ Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden 
 ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen roten Bildschirm hervorrufen kann, 
 die wiederum bei weiteren Personen rote Bildschirme hervorrufen können und so weiter. 
 Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch rote Bildschirme bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen. 
-
-
+jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 \paragraph{R\textsubscript{CWA-Likely-Negative}}
 Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung 3, grüner Kasten) berechnet alle Begegnungen mit CWA-Likely-Negative und Not-CWA-User Personen mit ein.
 Denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
@@ -620,10 +616,34 @@ mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
 \centerline{\text{ }}
 
 Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
-
+\\
 \subsubsection{Bewertung}
 
+Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
+da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
+Dabei wird auf die Privatsphäre der Nutzer geachtet, indem freiwillige, anonymisierte Datensammlungen verwendet werden.
+Da die Datenspende freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Zudem ist die Berechnung des Risikos R\textsubscript{CWA-Positive}, welches aus der aktuellen CWA übernommen wurde,
+in der erweiterten Risikoberechnung mit eingebunden, wodurch nur ein höherer Risikowert zusammen kommen kann
+und somit Personen höchstens früher gewarnt werden. 
 
+
+Die erweiterte Risikoberechnung bietet einen hohen Grad an Transparenz bezüglich des Zustandekommens und der Bedeutung des Risikowertes. 
+Außerdem werden durch die feinere Granulierung der Risikoberechnung und Risikoanzeige auch kleinere Risikostufen wahrgenommen. 
+Somit werden schneller Veränderungen des Infektionsrisikos dargestellt, wodurch dem in der CWA angezeigten Risiko mehr vertraut werden kann.
+
+Für die Verwendung des Familienfeatures und des PKServers müssen Sicherheitsmechanismen gegen Denial of Service Angriffe implementiert werden, 
+auf die in diesem Dokument nicht weiter eingegangen wird.
+Im Vergleich dazu wird bei den im Abschnitt (Feature TRL Update) vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
+der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
+
+Obwohl es 2 weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
+Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
+Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt (R-CWA-LIKELY-POSITIVE) beschriebene Funktion f zentral zu bestimmen.
+
+Durch die Installation von 2 weiteren Server, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
+werden die Kosten für diese in einen ähnlichen Umfang haben. 
+\\
 \subsection{Density-Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
 Häufig findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
