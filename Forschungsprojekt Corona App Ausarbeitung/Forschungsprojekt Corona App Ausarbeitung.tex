@@ -189,6 +189,25 @@ Diese Bereiche sind wie folgt aufgeteilt:\\
 
 \section{Hauptfeatures}
 \subsection{Erweiterte Risikoberechnung}
+Mit der Risikoberechnung wird das Übertragungspotenzial der Begegnungen ermittelt,
+um damit die Gefahr infiziert worden zu sein abzuschätzen.
+Dafür wird die Risikoberechnung der CWA erweitert, 
+um damit einen Risikowert zu berechnen, der die Gefahr widerspiegelt.
+
+Man unterscheidet zwischen zwei Gruppen: CWA-User, die von der CWA somit aufgezeichnet werden und Not-CWA-User, 
+die die CWA nicht nutzen und somit nicht aufgezeichnet werden. 
+CWA-User werden in drei Untergruppen aufgeteilt: 
+\textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
+\textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
+\textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
+Ebenso wird die NOT-CWA-User in drei Untergruppen aufgeteilt: Not-CWA-Positive sind alle Personen, die ein positives Test Ergebnis haben, 
+dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem nutzen), Hidden-Positive sind alle Personen, die infiziert wurden, 
+jedoch kein positives Testergebnis nachweisen können und Hidden-Negative sind alle Personen, die nicht infiziert sind.
+
+Für die erweiterte Risikoberechnung werden Features (Familienfeature, Feature TRL Update, 
+Feature PK-Server) benötigt, die in Abschnitt 1 bis 3 vorgestellt werden.
+Im Abschnitt 4 wird auf die erweiterte Risikoberechnung genauer eingegangen und im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
+
 \subsubsection{Familienfeature}
 \label{Familienfeature}
 Im Folgenden wird ein Familienfeature vorgeschlagen, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
@@ -226,7 +245,6 @@ Ein Verlust des private signing keys kann dazu führen, dass ein Angreifer willk
 Allerdings reicht der private signing key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem private encryption key verschlüsselt sind.
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
 Der lokal erstelle private signing key, private encryption key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
-
 
 Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
 Das Mitglied der Servergruppe teilt den private signing key, private encryption key und die Servergruppen ID durch zum Beispiel einen QR-Code.
@@ -320,8 +338,14 @@ Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikob
 \\
 \textit{Probleme und Lösungsansätze:} \\
 Ein Problem der Risikoberechnung der CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
+Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die erweiterte Risikoberechnung beachtet:
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"RiskCalculation"}
+	\caption{erweiterte Risikoberechnung}
+	\label{ErweiterteRisikoberechnung_Abbildung}
+\end{figure*}
 
-Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die angepasste Risikoberechnung beachtet:
 Mit der Dunkelziffer lässt sich die Anzahl an tatsächlich Infizierten abschätzen und sie sorgt dafür, dass CWA-Likely-Negative Personen, unter einbezug der positiven Not-CWA-User, 
 zu einem Risiko führen können, welches in der neuen Risikoberechnung nicht ignoriert wird.
 Die Downloadzahl wird genutzt, um den Risikowert nach oben zu korrigieren, da die Not-CWA-User nicht als Begegnung aufgezeichnet werden.
@@ -334,7 +358,7 @@ Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün 
 Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. \\
 \\
 \textit{Überblick:} \\
-Dazu wurde eine angepasste Risikoberechnung ausgearbeitet, die Daten des RKIs und aus anderen Features, sowie Daten aus Umfragen, nutzt, 
+Dazu wurde eine erweiterte Risikoberechnung ausgearbeitet, die Daten des RKIs und aus anderen Features, sowie Daten aus Umfragen, nutzt, 
 um die fehlenden Daten mit einzubeziehen oder zu beschaffen. Die neue Risikoberechnung wird transparent am Ende neben einer feineren Granulierung des Risikowerts angezeigt. 
 Die neue Risikoberechnung behandelt drei Punkte die zu einem neuen Risikowert zusammenaddiert werden.
 
@@ -365,7 +389,7 @@ $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 
 Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
-Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik Abbildung Risikoberechnung(Unter der Risikoberechnung) dies veranschaulicht.
+Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
 
 \paragraph{R\textsubscript{CWA-Positive}}
 
@@ -596,6 +620,8 @@ mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
 \centerline{\text{ }}
 
 Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
+
+\subsubsection{Bewertung}
 
 
 \subsection{Density-Map}
