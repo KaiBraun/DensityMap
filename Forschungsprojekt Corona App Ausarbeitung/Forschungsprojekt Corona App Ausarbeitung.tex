@@ -701,9 +701,19 @@ Wie stark der Wert nach unten korrigiert werden muss hängt hierbei von der Durc
 Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden fall einmal seinen RPI ändern und als neue Begegnung vom Masten aufgezeichnet werden. 
 In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als er in Realität.
 Ist die durchschnittliche Verweildauer hingegen kurz im Verhätlnis zum Änderungsintervall der RPI's (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall  der RPI eines Smartphones ändert sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
-Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mittels folgender Formel errechnet: 
+Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender Formel errechnet: 
+\begin{equation}
+	\text{IDs} = \frac{\text{RPIs}}{(1+p)}
+\end{equation}
+Dabei ist \glqq RPIs\grqq{} die gemessene Anzahl an RPI's des Masten und \glqq IDs\grqq{}  die voraussichtlich tatsächliche Anzahl an Endgeräten.
+Die Wahrscheinlichkeit $p$ einer doppelten Registrierung ist definiert durch:
 
-\centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
+\centerline{$p = t_V / t_Z$}
+wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus.
+Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
+Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt, folgende Formel: 
+\centerline{$\text{RPIs} = \text{Ids} + \text{IDs} \cdot p $}
+Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Formel zur berechnung der Tatächlichen Anzahl an Endgeräten.
 
 Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
 Auf der x-Achse befindet sich die durchscnittliche Verweildauer der Smatphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
