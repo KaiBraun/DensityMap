@@ -67,19 +67,19 @@ Corona, Corona-Warn-App, Density Map, Risikoberechnung
 
 \subsection{Corona Lage}
 Bei Corona oder COVID-19 handelt es sich um eine Krankheit, die durch die Coronaviren SARS-CoV ausgelöst wird. 
-Anfang 2020 waren diese Viren verantwortlich für die folgende Weltweite Corona Pandemie, die aktuell zu weltweit 3 500 000 Toten geführt hat. 
+Anfang 2020 waren diese Viren verantwortlich für die folgende weltweite Corona Pandemie, die aktuell zu weltweit 3 500 000 Toten geführt hat. 
 Corona kann symptomatisch sowie asymptomatisch auftreten, wobei Husten und Atemprobleme zu typischen Symptomen zählen.
 Übertragen wird Corona durch Schleimhäute, die durch Tröpfcheninfektion oder Aerosole gereizt werden können.
 Bei der Tröpfcheninfektion handelt es sich um Infektionen auf kurze Distanz. Durch zum Beispiel Niesen werden Tröpfchen in die Luft geschleudert, 
 die innerhalb von 1-2Metern auf den Boden sinken und in diesem Radius auch Infektionen auslösen können. 
 Die Aerosole dagegen sind leichter und können somit länger in der Luft schweben, 
-was dazu führt, dass in geschlossenen Räumen eine Ansteckungsgefahr bis zu vier Meter um die Infektiöse Person besteht. 
-Der Ansteckungszeitraum beträgt 10-20Tage und sorgt dafür, dass potenziell Infektiöse Personen bis zu 14 Tage in Quarantäne kommen.
-Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und Weltweit 1,4 Milliarden Impfdosen verabreicht, um das Coronavirus einzudämmen
+was dazu führt, dass in geschlossenen Räumen eine Ansteckungsgefahr bis zu vier Meter um die infektiöse Person besteht. 
+Der Ansteckungszeitraum beträgt 10-20 Tage und sorgt dafür, dass potenziell infektiöse Personen bis zu 14 Tage in Quarantäne kommen.
+Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 1,4 Milliarden Impfdosen verabreicht, um das Coronavirus einzudämmen
 
 Die Pandemie schränkt das Alltagsleben der gesamten Bevölkerung ein. 
-Durch verschiedene Lockdowns war es nicht mehr möglich nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten. 
-Aufgrund der hohen Übertragunsrate ist es wichtig Kontakte nachzuverfolgen und Infektionsketten zu unterbrechen.
+Durch verschiedene Lockdowns war es nicht mehr möglich, nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten. 
+Aufgrund der hohen Übertragungsrate ist es wichtig, Kontakte nachzuverfolgen und Infektionsketten zu unterbrechen.
 Nicht nur um die Anzahl Toter zu verringern, sondern auch um die Rückkehr in den Alltag zu ermöglichen, sollte Corona eingedämmt werden.
 Aus diesen Gründen wurde nach einer Corona Warn App verlangt, die ermöglichen soll, dass Kontakte automatisch nachverfolgt werden können und gefährdete Personen gewarnt werden.
 
@@ -731,13 +731,13 @@ Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Dens
 	\label{density_creation}
 \end{figure} 
 \\
-Wie in Kapitel 2 beschrieben besitzen die RPI's eine Lebensdauer von etwa 15 Minuten. 
-Dementsprechend muss beachtet werden, dass Smartphones auch  während des Aufenthaltes im Umkreis eines Masten ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
+Wie in Kapitel 2 beschrieben, besitzen die RPI's eine Lebensdauer von etwa 15 Minuten. 
+Dementsprechend muss beachtet werden, dass Smartphones auch  während des Aufenthaltes im Umkreis eines Masts ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
 Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die Tatsächliche Begegnungsanzahl herauszufinden. 
 Wie stark der Wert nach unten korrigiert werden muss hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
-Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden fall einmal seinen RPI ändern und als neue Begegnung vom Masten aufgezeichnet werden. 
-In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als er in Realität.
-Ist die durchschnittliche Verweildauer hingegen kurz im Verhätlnis zum Änderungsintervall der RPI's (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall  der RPI eines Smartphones ändert sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
+Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
+In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als es in der Realität sind.
+Ist die durchschnittliche Verweildauer hingegen kurz im Verhältnis zum Änderungsintervall der RPI's (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
 Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender Formel errechnet: 
 \begin{equation}
 	\text{IDs} = \frac{\text{RPIs}}{(1+p)}
@@ -748,12 +748,12 @@ Die Wahrscheinlichkeit $p$ einer doppelten Registrierung ist definiert durch:
 \centerline{$p = t_V / t_Z$}
 wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus.
 Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
-Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt, folgende Formel: 
+Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
 \centerline{$\text{RPIs} = \text{Ids} + \text{IDs} \cdot p $}
-Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Formel zur berechnung der Tatächlichen Anzahl an Endgeräten.
+Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Formel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
 
 Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
-Auf der x-Achse befindet sich die durchscnittliche Verweildauer der Smatphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
+Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
 Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
 \begin{figure}[h]
 	\centering
@@ -761,6 +761,13 @@ Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet ha
 	\caption{Korrekturfaktor in Abhängigkeit der durchschnittlichen Verweildauer}
 	\label{cor_factor}
 \end{figure} \\
+
+Eine Alternative zu dieser Formel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
+Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPI's abgezogen werden, um so den realen Wert zu erhalten.\\
+Diese alternative Formel ist somit wie folgt definiert:
+
+\centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
+Beide Formeln werden im Abschnitt \textit{Simulation} evaluiert und miteinander verglichen.\\
 
 \textit{Ohne Masten:}\\
 Beim Ansatz ohne zentrale Masten besteht die Idee darin, dass jedes Smartphone als „mobiler Mast“ arbeitet und die Funktion eines Masten überehmen kann.
@@ -785,7 +792,7 @@ Die Datenerfassung der Density-Map ist somit nicht mehr von vorinstallierten zen
 \end{figure} \\
 Beim mobilen Ansatz können diverse Probleme auftreten, welche gelöst werden müssen: Zum Beispiel können zwei Smartphones A und B ihre gesamten Daten immer an das jeweilige andere Handy überreichen, bevor ihr 15 Minuten Intervall abgelaufen ist. 
 Somit bleiben die gesammelten Daten für unendlich lange Zeit lokal auf A oder B gespeichert, ohne dass sie jemals hochgeladen werden. 
-Eine Lösung für dieses Problem wäre immer das Smarthone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist.
+Eine Lösung für dieses Problem wäre immer das Smartphone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist.
 
 Ein weiteres Problem bei mobilen Masten besteht darin, dass sie sich innerhalb des Zeitintervalls über längere Strecken bewegen können während sie ihre Begegnungen aufzeichnen.
 In diesem Fall entpsrechen Ort der Aufzeichnung eines anderen Gerätes und Ort des Hochladens der Daten nach Ablauf des Zeitintervalles nicht überein und das Bild der Density-Map wird verzerrt. 
@@ -828,42 +835,32 @@ Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter de
 Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
 
 \subsubsection{Simulation}
-\text{ }\\
-Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen haben wir eine Simulation der Masten programmiert.
-Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar. 
-Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation "COVID-19 spread simulator“ von Miguel Ángel Durán \cite{Simulation}. \\
+
+Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
+Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
+Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation "COVID-19 Spread Simulator“ von Miguel Ángel Durán \cite{Simulation}. \\
 \\
-\textit{Motivation:} \\
-Unser Ansatz der festen Masten basiert darauf, Handys beim Eintritt in einen Mastbereich zu registrieren und ihren RPI zu speichern.\\
-Dadurch, dass der RPI periodisch wechselt, werden zwangsläufig Handys doppelt registriert, sollten sie sich zum Zeitpunkt des Wechsels in der Reichweite des Mastes befinden. \\
-Die gemessene Anzahl an Handys weicht somit immer zu einem bestimmten Teil von der realen Menge ab. Diesen Wert korrigieren wir nach unten, abhängig von der durchschnittlichen Verweildauer.\\
-Die Wahrscheinlichkeit p einer doppelten Registrierung ist definiert durch
+Wie bereits in Abschnitt IV.B beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
+Im ersten Teil unserer Simulationen testen wir die Formel\\
+\centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
+und im zweiten Teil dieses Abschnitts die Formel
+\centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
 
-\centerline{$p = t_V / t_Z$}
-
-wobei $t_Z$ die Dauer eines Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus. Die Berechnung der Verweildauer wird in Abschnitt "Aufbau" beschrieben. Da doppelt-registrierte Handys einfach gezählt werden sollen, muss die Hälfte des ermittelten Anteils trotzdem gezählt werden, womit sich die folgende Formel ergibt:
-
-\centerline{Korrigierte Anzahl = Gemessene Anzahl * $(1 – p/2)$}
-
-Abb. \ref{old_form} zeigt den durch diese Formel berechneten Unterschied zwischen dem realen und gemessenen Wert, abhängig von der durchschnittlichen Verweildauer.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.45\textwidth]{"Alte Formel Graph"}
-	\caption{Anteil realer Wert am gemessen, abhängig von der durchschnittlichen Verweildauer}
-	\label{old_form}
-\end{figure}
-
-Das Ziel der Simulation ist es, festzustellen, wie nah der auf diese Weise berichtigte Wert an der tatsächlichen Zahl von Handys liegt.\\
+Das Ziel der Simulation ist es, festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
 
 \textit{Aufbau:}\\
-Um die Formel zu verifizieren, modifizieren wir die Simulation "COVID-19 spread simulator“.\\
-Es werden 1000 Handys simuliert, die als Kreise mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Auf diesem Gebiet sind 4 Masten, dargestellt durch größere Kreise, welche permanent speichern, welche Kreise in ihrer Reichweite liegen und wie lange dies der Fall ist. \\
-Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig die korrekte Anzahl zu wissen.\\
-Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus eines Mastes. Dazu wird während des Zyklus mit jeder ID eine Zeitdauer abgespeichert und aus diesem der Durchschnitt ermittelt.  Zur Laufzeit der Simulation speichern die Masten eintretende Kreise neu ab und zählen ab diesem Zeitpunkt einen Counter hoch. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Kreise geteilt.\\
+Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-direction-Model bestimmt.\\
+Auf diesem Gebiet sind vier Masten, in Abbildung 8 dargestellt durch größere Kreise, welche persistent speichern, welche Handys in ihrer Reichweite liegen und wie lange dies der Fall ist.\\
+Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig mit der korrekten Anzahl zu vergleichen.\\
+Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus' eines Mastes. Dazu wird während des Zyklus zu jeder ID eine Zeitdauer gemessen und aus diesen der Durchschnitt ermittelt.\\
+Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Counter hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Handys geteilt.\\
+Zwischenzeitliches Verlassen des Radius des Mastes setzt den Counter nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Counter weitergeführt.\\
 Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
-Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was einen genaueren Wert liefert. Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer und der korrigierte Wert wird ungenauer. Dies entspricht jedoch der Anwendung in der Praxis, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
-Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Dies führt dazu, dass ein Großteil der Kreise keine Geschwindigkeit mehr haben, und nur einige wenige sich überhaupt bewegen.\\
+Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.\\
+Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Countern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
+Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
+Die Berechnung der durchschnittlichen Verweildauer anhand von RPI's würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
+Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
 
 \begin{figure}[h]
 	\centering
@@ -872,11 +869,11 @@ Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. 
 	\label{sim}
 \end{figure}
 
-\textit{Ergebnis:}
-Die gesammelten Daten belegen, dass die durch die Formel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
+\textit{Ergebnisse:}
+
 Abb. \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
-Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemesser Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
-Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert näher an dem gemessen Wert liegt als in Abb. \ref{mast_data_plotted_old}.
+Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
+Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert liegt näher an dem gemessen Wert als in Abb. \ref{mast_data_plotted_old}.
 
 \begin{figure}[h]
 	\centering
@@ -892,18 +889,16 @@ Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist d
 	\label{mast_data_plotted_social_distancing_old}
 \end{figure}
 
+\textit{Schlussfolgerung:}\\
+Die gesammelten Daten belegen, dass die durch die Formel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
 Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
 
-\textit{Schlussfolgerung:}
-Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die bisherige Formel nicht optimal ist. Daher haben wir einen neuen Ansatz zur Berechnung gewählt.\\
-Die Wahrscheinlichkeit p einer doppelten Registrierung bleibt gleich. Wir gehen davon aus, dass sich mit dieser und der korrekten Anzahl der IDs eines Zyklus die gemessene Anzahl berechnen lässt:\\
-\centerline{RPIs = IDs * (1 + p) }
-Nach Umformung ergibt sich somit eine neue Formel zur Angleichung unseres gemessen Wertes:\\
-\centerline{IDs = RPIs/ (1+p)}\\
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die bisherige Formel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
 
-\textit{Simulation neuer Formel:}
-Um die neue Formel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
-Mi Hilfe der neuen Formel ergeben sich folgende Werte:
+\textit{Simulation zweiter Formel:}
+Um die Formel $\text{IDs} = \frac{\text{RPIs}}{(1+p)}$
+zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
+Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing}gezeigten Werte.
 
 \begin{figure}[h]
 	\centering
@@ -919,15 +914,20 @@ Mi Hilfe der neuen Formel ergeben sich folgende Werte:
 	\label{mast_data_plotted_social_distancing}
 \end{figure}
 
+\textit{Ergebnisse:}\\
+Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
+Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig, und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation der Fall war.\\
+Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der anderen Formel.\\
+
+
+\textit{Schlussfolgerung:}\\
+Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die zweite Formel besser als die Formel der ersten Simulation für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.
 
 \subsection{Bewertung der Hauptfeatures}
 
 \section{Zusammenfassung und Ausblick}
 
 \section*{Danksagung}
-
-Dankschön an meine Mama und mein Papa und mein Hund Bello, der immer so lieb mit mir gekuschelt hat! Danke an unseren Sponsor
-RAID: Shadow Legends und NordVPN!
 
 \begin{thebibliography}{00}
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
