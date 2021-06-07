@@ -61,9 +61,32 @@ Corona, Corona-Warn-App, Density Map, Risikoberechnung
 \end{IEEEkeywords}
 
 \section{Einleitung}
+Seit nun mehr als eineinhalb Jahren breitet sich das Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nie erlebte Ausnahmezustände.
+Laut derzeitigem Stand sind es etwa 173 Millionen Infizierte und 3,7 Millionen Todesopfer \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermutlen lässt. 
+In Deutschland wurdem dem Robert Koch Institut insgesamt 3.7 Millionen infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
+Insbesondere stellten dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeintraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
 
+Um die Ausbreitung des Viruses weitmöglichst einzudämmen wurden im Land zahlreiche vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
+Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen.
+Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudaämmen. 
+Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen, nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
+So war man beispielsweise verpflichtet in Resaurant oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
+Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von 2 Wochen merken und wieder ins Gedächtnis rufen muss.
+Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung automatisieren sollte: Die Corona Warn App \cite{}. Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anomynen Datenautausches garantiert ist.
 
-\section{Bestehende Arbeiten}
+In der Zeit der Herausgabe der App gab es viele Diskussionen und Kritik rund um die App. So wurde sie hinsichtlich der Privatphäre öfters kritisiert und musste nachgebessert werden \cite{}. 
+Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen \cite{}. 
+Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
+Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer Großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
+Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
+Die Erweiterungen wurden in Haupt- und Nebenfeatures unterteilt. In den Nebenfeatures finden sich eine Reihe von kleineren oder weniger aufwändigen Erweiterungen, wohingegen wir bei den zwei großen Hauptfeatures, der \textbf{erweiterten Risikoberechnung} und der \textbf{Density-Map} noch tiefer in den Aufbau die Funktionsweise der jeweiligen Features hineingehen.
+Alle vorgeschlagenen Erweiterungen werden in ihren jeweiligen Abschnitten zusätzlich noch hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand beurteilt. 
+
+Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befidnen sich bestehende Arbeiten. Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
+In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und beurteilt, bevor es in Abschnitt \ref{Hauptfeatures} weiter mit den beiden Hauptfeatures \textit{Erweiterte Risikoberechnung} und \textit{Density-Map} weitergeht. 
+In Abschnitt \ref{conclusion} befindet sich unsere abschließende Zusmmenfassung und ein Ausblick. 
+
+\section{Bestehende Arbeiten} \label{rel_work}
 
 \subsection{Corona Lage}
 Bei Corona oder COVID-19 handelt es sich um eine Krankheit, die durch die Coronaviren SARS-CoV ausgelöst wird. 
@@ -161,7 +184,7 @@ Die meisten verwenden jedoch personalisierte Daten der Nutzer, wie den Standort,
 Auch bei der Nutzung von BLE wurden diese Daten gezielt mitgegeben, um konkrete Standorte nachzuverfolgen, anstatt die Anonymität des BLE features gezielt auszunutzen. 
 Das Erstellen einer Density-Map mittels anonymer Nutzerdaten und BLE scheint es nach unserem Wissen demnach nicht zu geben. 
 
-\section{Lösungsvorschläge}
+\section{Lösungsvorschläge} \label{Nebenfeatures}
 
 
 \subsection{Übersicht aller Erweiterungen}
@@ -204,7 +227,7 @@ Diese Bereiche sind wie folgt aufgeteilt:\\
 \textit{Daten:} Welche Daten werden mindestens benötigt, dass das Feature funktioniert?\\
 \subsection{Bewertung Nebenfeatures}
 
-\section{Hauptfeatures}
+\section{Hauptfeatures} \label{Hauptfeatures}
 \subsection{Erweiterte Risikoberechnung}
 Mit der Risikoberechnung wird das Übertragungspotenzial der Begegnungen ermittelt,
 um damit die Gefahr infiziert worden zu sein abzuschätzen.
@@ -749,7 +772,7 @@ Die Wahrscheinlichkeit $p$ einer doppelten Registrierung ist definiert durch:
 wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus.
 Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
 Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
-\centerline{$\text{RPIs} = \text{Ids} + \text{IDs} \cdot p $}
+\centerline{$\text{RPIs} = \text{IDs} + \text{IDs} \cdot p $}
 Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Formel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
 
 Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
@@ -925,11 +948,13 @@ Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die z
 
 \subsection{Bewertung der Hauptfeatures}
 
-\section{Zusammenfassung und Ausblick}
+\section{Zusammenfassung und Ausblick} \label{conclusion}
 
 \section*{Danksagung}
 
 \begin{thebibliography}{00}
+\bibitem{CoronaZahlenWorld} https://coronavirus.jhu.edu/map.html (07.06.2021)
+\bibitem{CoronaZahlenDe} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/Fallzahlen.html (07.06.2021)
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
 https://github.com/midudev/covid-19-spread-simulator
 \bibitem{AirQuality} J. Dutta, F. Gazi, S. Roy and C. Chowdhury, "AirSense: Opportunistic crowd-sensing based air quality monitoring system for smart city," 2016 IEEE SENSORS, 2016, pp. 1-3, doi: 10.1109/ICSENS.2016.7808730.
