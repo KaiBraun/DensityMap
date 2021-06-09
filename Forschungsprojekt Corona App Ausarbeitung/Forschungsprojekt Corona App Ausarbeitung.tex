@@ -441,22 +441,32 @@ Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
 
 \subsubsection{Feature TRL Update}
-In diesem Feature wird das volle Potenzial des TRLs genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von vier nicht unterschreiten darf, da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. Die Implementierung dafür existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht, wie im Abschnitt (TRL) genauer beschrieben. Durch Umfragen, die beim Eingeben eines positiven Corona Tests aktiviert werden, sollen die Infizierten ihren Infektionszeitpunkt und den Symptom-Start-Zeitpunkt angeben können. Es wird angenommen, dass beim Eingeben des Testergebnisses der Zeitpunkt des Testens, der Zeitpunkt des Ergebnis Erhaltens und der Zeitpunkt des Eingebens in der App gespeichert werden. Eine Umfrage könnte folgende Fragen beinhalten:
+In diesem Feature wird das volle Potenzial des TRLs, der in Abschnitt (TRL) genauer beschrieben wurde, genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
+da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. 
+Die Implementierung für das TRL existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht.
+Es handelt sich hierbei konkret um den Zeitpunkt, ab dem man Infektös ist. 
+Diesen Zeitpunkt kann man allerdings nicht so einfach bestimmen, da nicht täglich Tests an der selben Person durchgeführt werden.
+Der Zeitpunkt ist jedoch wichtig, denn nur mit diesem ist es möglich den Krankheitsverlauf mit in die Risikoberechnung einzubeziehen,
+der dafür sorgt, dass eine Person nicht immer gleich Infektiös ist. 
+Um diesen Zeitpunkt zu approximieren werden Umfragen erstellt.  
+In diese Umfragen, die beim Eingeben eines positiven Corona Tests aktiviert werden, sollen die Infizierten ihren Infektionszeitpunkt und den Symptom-Start-Zeitpunkt angeben. 
+Es wird angenommen, dass beim Eingeben des Testergebnisses der Zeitpunkt des Testens, der Zeitpunkt des Ergebnis Erhaltens und der Zeitpunkt des Eingebens in der App gespeichert werden. 
+Eine Umfrage könnte folgende Fragen beinhalten:
 
 \begin{itemize}
 	\item Wann haben Sie in den letzten 14 Tagen Symptome verspürt?
 	\item Wann wurden Sie vermutlich infiziert?
 \end{itemize}
 
-Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und  des Rückmeldens im Testergebnis zu codieren, kann man folgende Fragen anhängen:
+Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und des Rückmeldens im Testergebnis zu codieren, kann man folgende Fragen anhängen:
 
 \begin{itemize}
 	\item Wann haben Sie sich testen lassen?
 	\item Wann haben Sie das positive Ergebnis bekommen?
 \end{itemize} 
 	
-Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden, damit Nutzer besser gewarnt werden können.\\
-
+Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden,
+ damit Nutzer besser gewarnt werden können.\\
 \subsubsection{Risikoberechnung}
 
 
