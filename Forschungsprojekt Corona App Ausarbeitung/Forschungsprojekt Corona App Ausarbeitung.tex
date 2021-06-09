@@ -134,7 +134,7 @@ Jedes Smartphone hat Zugriff auf diesen zentralen Server und kann die Diagnosis 
 Mithilfe der Diagnosis Keys können dann die gespeicherten RPI's aus den Begegnungen abgeglichen und im Falle einer Übereinstimmung die Begegnungsdauer und der Abstand entschlüsselt werden. 
 Zusammen mit dem Transmission Risk Level (TRL) bestimmt die Corona Warn App aus diesen Informationen das Infektionsrisiko der Person. \\
 \\
-\textit{Transmission Risk Level (TRL):}
+\textit{Transmission Risk Level (TRL):}\\
 Das TRL wird in der CWA lokal berechnet und auf dem CWA Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
 Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person ein Übertragungspotenzial hat das anfangs niedrig ist, 
 dann auf ein Maximum steigt und innerhalb von 14 Tagen wieder abnimmt . Um daraus ein Risiko Level abzuleiten müssen verschiedene Zeitpunkte bekannt sein. 
@@ -169,16 +169,16 @@ Dadurch kann der Standort und Status der einzelnen Tags gezielt nachverfolgt wer
 Im Versuch wurden Pilger beim Haddsch (Pilgerfahrt nach Mekka) mit diesen BLE Tags ausgestattet und deren Bewegung mittels Smartphones, welche an bestimmten Orten als Aufzeichnungsmast agierten, nachverfolgt. 
 An diesem Ansatz ist unsere Density-Map Lösung mittels zentraler Masten stark angelehnt, jedoch bestand die Idee hier mittels der Smartphones gezielt einzelne Tags zu identifizieren und daraus folgend die Bewegungsströme der Pilger nachzuvollziehen. 
 Unser Ansatz hingegen ist es, per BLE möglichst anonym die Daten zu erfassen und damit eine Density-Map zu erstellen. 
-Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst zum Datenaustausch. \\
-\\
+Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst zum Datenaustausch. 
+
 Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten des Unternehmens Google \cite{GoogleStosszeiten}.  
 In dessen Suchmaschine lässt sich zu fasst jeder öffentlichen Einrichtung, sowie Restaurants oder Einzelhandel Läden neben den Öffnungszeiten die aktuelle Besucherzahl anzeigen. 
 Zudem wird noch die Durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt mitgegeben. 
 Die Besucherzahlen werden nicht als konkreter numerischer Wert angegeben, sondern mithilfe von Balkendiagrammen grafisch angezeigt, sodass man lediglich die Auslastung mit anderen Uhr-/Tageszeiten vergleichen kann, ohne den konkreten Wert zu kennen. 
 Das Live Stoßzeiten Feature wird jedoch nur als Diagramm für jede Einrichtung und nicht als Karte realisiert.
 Für die Umsetzung ihres Features benutzt Google voraussichtlich die personalisierten Nutzerdaten seiner User, wie beispielsweise den Standortverlauf der Google Maps Anwendung \cite{GoogleStandortverlauf}. 
-Auf deren Webseite gibt Google keine weiteren Informationen darüber Preis, lediglich wie das Feature funktioniert. \\
-\\
+Auf deren Webseite gibt Google keine weiteren Informationen darüber Preis, lediglich wie das Feature funktioniert. 
+
 Zusammenfassend lässt sich sagen, dass es eine Fülle von Arbeiten gibt, welche sich mit dem Thema Crowd Sensing beschäftigen. 
 Die meisten verwenden jedoch personalisierte Daten der Nutzer, wie den Standort, um entsprechende Karten zu generieren. 
 Auch bei der Nutzung von BLE wurden diese Daten gezielt mitgegeben, um konkrete Standorte nachzuverfolgen, anstatt die Anonymität des BLE features gezielt auszunutzen. 
@@ -189,7 +189,8 @@ Das Erstellen einer Density-Map mittels anonymer Nutzerdaten und BLE scheint es 
 
 \subsection{Übersicht aller Erweiterungen}
 
-\textit{Impfpass:} - In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digiatalen Impfpass in der Corona-Warn-App.\\
+\textit{Impfpass:} \\
+In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digiatalen Impfpass in der Corona-Warn-App.\\
 Größter Vorteil eines in der App integrierten Nachweises wäre die Digitalisierung des Verwaltungswesens und dadurch eine Vereinfachung des Organisationsaufwands.\\ Anstatt mehrere Unterlagen mit sich herumzutragen, hat man diese stattdessen gesammelt in einer App.\\
 Digitalisierung ist zudem ein positiv konnotierter Begriff, welcher einen Anreiz für die Bevölkerung schafft, die App zu nutzen. Dies ist immer ein relevanter Nutzen, da es das Ziel ist, die Corona-Warn-App von 100\% der Bevölkerung nutzen zu lassen. \\
 Implementiert man zusätzlich dazu eine Art Krankenakte, in der man Merkmale wie Gewicht und Vorerkrankungen einträgt, liese sich dadurch die Impfpriorisierung und die Reihenfolge in der Bevölkerung besser organisieren.\\
@@ -204,7 +205,7 @@ Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
 - Beruf/Arbeitsumfeld\\
 Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.\\
 Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
-Somit wird Richtigkeit der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\ \\
+Somit wird Richtigkeit der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
 
 \textit{Gamification:}\\
 Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.\\ 
@@ -213,7 +214,23 @@ Vorstellbar sind auch daraus resultierende optische Veränderungen der App durch
 Dieses Feature richtet sich vermutlich an eine jüngere Zielgruppe, die mit solchen Mechaniken meist mehr vertraut ist als ältere Generationen.\\
 Es könnte sogar sein, dass dieses Feature als Verharmlosung der ernsten Thematik interpretiert wird, was in einem gegensätzlichen Effekt zur eigentlichen Intention resultieren würde.\\
 Eine Alternative zu Highscores und anderen virtuellen Errungenschaften wäre eine Art Belohnung in der Realität, zum Beispiel durch eine in der App durchgeführte Lotterie.\\
-Dies ist vermutlich attraktiver für alle Generationen, jedoch schwieriger umzusetzen, da hier Betrug oder mehrmalige Teilnahme verhindert werden muss. Vorstellbar wäre auch eine Verbindung mit den ermittelten Statistiken, sodass Leute mit guten Werten eine höhere Gewinnchance haben.\\
+Dies ist vermutlich attraktiver für alle Generationen, jedoch schwieriger umzusetzen, da hier Betrug oder mehrmalige Teilnahme verhindert werden muss. Vorstellbar wäre auch eine Verbindung mit den ermittelten Statistiken, sodass Leute mit guten Werten eine höhere Gewinnchance haben.
+
+Eine Umsetzung dieses Features wurde im Laufe dieser Forschungsarbeit bereits in den USA, als Lotterie im Rahmen der Impfkampagne eingeführt \cite{Lotto}.
+Jeder Geimpfte hat dabei eine Chance den Hauptgewinn von einer Millionen US-Dollar zu gewinnen.\\
+
+\textit{Ortsbezogene Informationen:}\\
+Ein Problem das im Verlauf der Pandemie auftritt ist die undurchsichtige und inkonsistente Informationsgebung 
+hinsichtich der beschlossenen Maßnahmen und Einschränkungen an die sich die Bevölkerung richten muss. 
+Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Budnesländern, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
+Selbst bei der Bundesweiten Notbremse bezogen sich die Regelungen auf die Inzidenz der einzelnen Landkreise. \cite{Notbremse}  
+Dies führte zu einer großen Verwirrung welche derzeitigen Gesetze und Verordnungen gelten, zumal diese teilweise im Tagesrythmus geändert wurden.
+
+Auf Grund dessen wäre ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
+Dabei können die Nutzer unabhängig von ihrem Standort auf die Daten eines jeweiligen Landkreises zugreifen,
+um auf einfachem Weg die offiziellen Informationen zu erhalten. 
+
+Dieses Feature existiert bereits in inoffizieller Ausführung, als \glqq Darf ich das? \grqq{} -App von der InTradeSys GmbH. \cite{DarfIchDas}\\
 
 \textit{Integration von Applikationen:}\\
 Es existieren viele verschiedene Plattformen, die fast täglich neue Nachrichten zur aktuellen Corona-Situation herausgeben \cite{RKI}, \cite{BMG}, Daten zur Eindämmung der Pandemie sammeln \cite{RKIDatenspende}, \cite{Gedaechtnistest} oder Neuigkeiten zu Forschungsarbeiten mit Bezug zu Corona veröffentlichen \cite{GesundheitsforschungNews}.
@@ -593,9 +610,20 @@ Denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 \begin{itemize}
-	\item Dunkelziffer: Mithilfe der Dunkelziffer ist eine genauere Abschätzung der Anzahl der mit Corona infizierten deutschen Bürger möglich. Denn Covid-19 hat die Eigenschaft nicht immer symptomatisch aufzutreten, es gibt somit viele Infizierte, die nicht aufgezeichnet wurden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen. Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, als positiv getestet wurden. Mithilfe der Dunkelziffer kann somit die größe der Gruppe Hidden-Positive geschätzt werden.
-	Die Dunkelziffer wurde erstmals durch eine Studie in Kupferzell (Quelle) nachgewiesen und bestimmt. Da die Datenerhebung dieser Studie vom 20. Mai bis 9. Juni 2020 durchgeführt wurde und sich die Testmöglichkeiten seitdem stark entwickelt haben, ist die damals bestimmte Dunkelziffer von 6 möglicherweise ungenau. 
-	\item  AppUsage: Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. Da die derzeitige Nutzung deutlich unter 50% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, indem die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert wird. Dazu wird die Downloadzahl der CWA (DownloadCount) und die Einwohnerzahl Deutschlands (Population) genutzt. (Quelle)
+	\item Dunkelziffer: Mithilfe der Dunkelziffer ist eine genauere Abschätzung der Anzahl der mit Corona infizierten deutschen Bürger möglich. 
+	Denn Covid-19 hat die Eigenschaft nicht immer symptomatisch aufzutreten, es gibt somit viele Infizierte, 
+	die nicht aufgezeichnet wurden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
+	Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, 
+	als positiv getestet wurden. Mithilfe der Dunkelziffer kann somit die größe der Gruppe Hidden-Positive geschätzt werden.
+	Die Dunkelziffer wurde erstmals durch eine Studie in Kupferzell \cite{Dunkelziffer} nachgewiesen und bestimmt. 
+	Da die Datenerhebung dieser Studie vom 20. Mai bis 9. Juni 2020 durchgeführt wurde und sich die Testmöglichkeiten seitdem stark entwickelt haben, 
+	ist die damals bestimmte Dunkelziffer von 6 möglicherweise ungenau. 
+	\item  AppUsage: Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. 
+	Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. 
+	Da die derzeitige Nutzung deutlich unter 50\% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, 
+	indem die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert wird. 
+	Dazu wird die Downloadzahl der CWA (DownloadCount) und die Einwohnerzahl Deutschlands (Population) genutzt. 
+	Aktuell würde die AppNutzung somit ca. $frac{1}{3}$ betragen.\cite{Einwohnerzahl} \cite{Downloads}
 \end{itemize}
 
 \centerline{\text{ }}
@@ -868,7 +896,7 @@ Mobile Masten hingegen können an jedem beliebigen Ort eine Ansammlung vieler Sm
 Sie sind demnach flexibler, was den Standort angeht.\\
 \\
 Das letzte zentrale Problem, was nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, dass nicht jede Person ein Smartphone besitzt und die  Corona Warn App auf seinem Smartphone installiert hat. 
-Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (34\%). 
+Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%). \cite{Downloads}
 Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
 
 \subsubsection{Simulation}
@@ -899,12 +927,12 @@ Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten We
 Die Berechnung der durchschnittlichen Verweildauer anhand von RPI's würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
 Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.45\textwidth]{"Simulation"}
-	\caption{Darstellung der durchgeführten Simulation}
-	\label{sim}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.45\textwidth]{"Simulation"}
+%	\caption{Darstellung der durchgeführten Simulation}
+%	\label{sim}
+%\end{figure}
 
 \textit{Ergebnisse:}
 
@@ -1013,6 +1041,13 @@ https://github.com/midudev/covid-19-spread-simulator
 \bibitem{RKIDatenspende} “RKI - 2020 - Mit Daten von Fitnessarmbändern und Smartwatches mehr über die Verbreitung des Coronavirus erfahren“ RKI.de \\ https://www.rki.de/DE/Content/Service/Presse/Pressemitteilungen/2020/04\_2020.html (09.06.2021)
 \bibitem{Gedaechtnistest} “Aufruf zum bundesweiten Gedächtnistest: Was macht „Corona“ mit unserem Kopf?“ DZNE.de \\https://www.dzne.de/aktuelles/pressemitteilungen/presse/aufruf-zum-bundesweiten-gedaechtnistest-was-macht-corona-mit-unserem-kopf (09.06.2021)
 \bibitem{GesundheitsforschungNews} "Corona: Aktuelles aus der Forschung" \\https://www.gesundheitsforschung-bmbf.de/de/corona-aktuelles-aus-der-forschung-10857.php (09.06.2021)
+\bibitem{Dunkelziffer} https://www.rki.de/DE/Content/Gesundheitsmonitoring/Studien/cml-studie/Factsheet\_Kupferzell.html (09.06.2021)
+\bibitem{Einwohnerzahl} https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/\_inhalt.html (09.06.2021
+\bibitem{Downloads} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/WarnApp/Archiv\_Kennzahlen/Kennzahlen\_21052021.pdf?\_\_blob=publicationFile (09.06.2021)
+\bibitem{Lotto} https://www.tagesschau.de/ausland/amerika/usa-ohio-impfung-lotterie-101.html (09.06.2021)
+\bibitem{Notbremse} https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3\_Downloads/Gesetze\_und\_Verordnungen/GuV/B/4\_BevSchG\_BGBL.pdf (09.06.2021)
+\bibitem{DarfIchDas} https://www.darfichdas.info/ (09.06.2021)
+
 \end{thebibliography}
 \vspace{12pt}
 
