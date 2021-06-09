@@ -284,7 +284,7 @@ In Version 1.13 der CWA wurde bereits eine freiwillige Datenspende in Zusammenar
 \section{Erweiterte Risikoberechnung} \label{Erweiterte Risikoberechnung}
 
 %Aktuelle Risikoberechnung
-Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, 
+Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an; 
 das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
 Generell wird angenommen, dass wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
 Um dieses zu berechnen wird das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
@@ -339,8 +339,8 @@ Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdige
 damit die Dunkelziffer besser miteinberechnet werden kann.
 Mit dem Feature TRL Update ist es möglich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen,
 um zu beachten, wie infektiös eine Person ist.
-Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
-Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der Risikoberechnung höher zu gewichten.
+Dabei ist das Beachten, wie infektiös eine Person ist, nicht mit dem im Abschnitt \ref{Erweiterte Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
+Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der Risikoberechnung gesondert zu gewichten.
 
 Diese Features werden in Abschnitt 1 bis 3 vorgestellt.
 Im Abschnitt 4 werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
@@ -348,11 +348,12 @@ Im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
 \\
 \subsubsection{Familienfeature}
 \label{Familienfeature}
-Im Folgenden wird das Familienfeature vorgestellt, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
+Im Folgenden wird das Familienfeature vorgestellt, welches später für die erweiterte Risikoberechnung benötigt wird.
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
-Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln.
+Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln und somit einen genaueren Risikowert zu berechnen.
 Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
-Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive}, Abschnitt (CWA-Likely-Positive) und R\textsubscript{CWA-Likely-Negative}, Abschnitt (RLikely-Negative), miteinberechnet werden. 
+Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive}, Abschnitt (CWA-Likely-Positive) und R\textsubscript{CWA-Likely-Negative}, Abschnitt (RLikely-Negative), miteinberechnet werden, sondern nur in R\textsubscript{CWA-Likely-Negative}, Abschnitt (CWA-Positive).
+Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{RLikelyNegative}, \ref{RLikelyPositive} erläutert.
 
 Das Austauschen von TEKs kann allerdings Eingriffe in die Privatsphäre zur Folge haben.
 Erkrankt eine Person aus einer Gruppe an Corona und gibt ihre TEKs als Diagnosis Keys frei, ist es für die anderen Gruppenangehörigen möglich mit hoher Wahrscheinlichkeit die erkrankte Person zu bestimmen.
@@ -365,13 +366,13 @@ In Abbildung \ref{Familienfeature_Abbildung} ist eine Übersicht des Familienfea
 	\caption{Familienfeature}
 	\label{Familienfeature_Abbildung}
 \end{figure}
-
 Als Servergruppe wird eine Gruppe auf einem speziell für das Familienfeature angelegten Server bezeichnet.
-Eine Servergruppe besitzt eine für den Server einmalige ID, einen private signing key und eine Liste mit verschlüsselten TEKs.
+Über den Server werden später die TEKs von unterschiedlichen CWA Nutzern ausgetauscht.
+Eine Servergruppe besitzt eine für den Server einmalige \textit{ID}, einen \textit{private signing key} und eine \textit{Liste mit verschlüsselten TEKs}.
 Die Liste der verschlüsselten TEKs ist beim Anlegen einer neuen Servergruppe leer.
 
-Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen.
-Innerhalb einer lokalen Gruppe wird ein private signing key, ein private encryption key und eine Servergruppen ID gespeichert.
+Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen, mit denen der Nutzer TEKs austauschen möchte.
+Innerhalb einer lokalen Gruppe wird ein \textit{private signing key}, ein \textit{private encryption key} und eine \textit{Servergruppen ID} gespeichert.
 Die Verwendung des private signing keys, private encryption keys und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
 Der private signing key und insbesondere private encryption key einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
 Es gibt zwei verschiedene Möglichkeiten den private signing key, private encryption key und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
@@ -382,7 +383,7 @@ Der private signing key wird zusammen mit einer Anfrage, eine neue Servergruppe 
 Ein Verlust des private signing keys kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
 Allerdings reicht der private signing key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem private encryption key verschlüsselt sind.
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
-Der lokal erstelle private signing key, private encryption key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
+Der lokal erstellte private signing key, private encryption key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
 
 Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
 Das Mitglied der Servergruppe teilt den private signing key, private encryption key und die Servergruppen ID durch zum Beispiel einen QR-Code.
@@ -400,7 +401,7 @@ Die TEKs werden mithilfe des private encryption keys einer Gruppe und eines sich
 Dies wird zusammen mit der Servergruppen ID der Gruppe an den Server gesendet.
 Der Server nutzt den private signing key zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
 Sind die TEKs validiert, werden sie der Liste der verschlüsselten TEKs zusammen mit ihrem Hochladedatum hinzugefügt.
-Die verschlüsselten TEKs werden nach 14 Tagen aus der Liste der verschlüsselten TEKs gelöscht.
+Die verschlüsselten TEKs werden wegen der Inkubationszeit nach 14 Tagen aus der Liste der verschlüsselten TEKs gelöscht, da sie danach nicht mehr benötigt werden.
 Dies geschieht iterativ für jede lokale Gruppe.
 
 Um die TEKs der Gruppenmitglieder einer Gruppe herunterzuladen, muss eine Anfrage an den Server gestellt werden.
@@ -430,15 +431,18 @@ Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie 
 Der mit einem TEK verbundene Risikowert wird dazu genutzt die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
 
 Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, autorisierter Schlüssel benötigt, um TEKs auf den PKServer hochladen zu können.
-Dies wirft verschiedene Probleme hervor, die zwar im Folgenden genauer erläutert, jedoch nicht gelöst, werden.
+Dadurch entfällt die Integrität der hochgeladenen TEKs.
+Dies wirft verschiedene Probleme hervor, die im Folgenden diskutiert werden. 
+Die Lösung dieser Probleme geht jedoch über den Umfang dieses Dokuments hinaus und wird deswegen nur angerissen.
 
 Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb 14 Tage auf den PKServer hochgeladen wird.
-Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den PKServer hochgeladen werden kann.
-Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann dies zu einer ungenaueren Risikoberechnung führen.
 Sollten bereits auf dem PKServer existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, ob das erneute Hochladen von der gleichen Person getätigt wird.
 Würden diese nicht abgelehnt werden, wäre es ein leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, da der Lesezugriff auf die TEKs und Risikowerte auf dem PKServer nicht eingeschränkt ist.
+Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den PKServer hochgeladen werden kann.
+Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann dies zu einer ungenaueren Risikoberechnung führen, 
+falls die erste Begegnung, die bei einer Person zu einem erhöhten Risiko geführt hat, nicht die Begegnung ist, an der sich die Person angesteckt hat.
 
-Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines roten Bildschirms, überprüft wird.
+Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines erhöhten Risikowertes, überprüft wird.
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
 
 \subsubsection{Feature TRL Update}
