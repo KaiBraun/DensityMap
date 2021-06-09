@@ -946,7 +946,36 @@ Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zude
 \textit{Schlussfolgerung:}\\
 Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die zweite Formel besser als die Formel der ersten Simulation für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.
 
-\subsection{Bewertung der Hauptfeatures}
+\subsubsection{Bewertung}
+Das Feature der Density-Map erziehlt im Hinblick auf die Eindämmung des Coronaviruses keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.
+Die Hauptidee hinter der Implementierung dieser Erweiterung innerhalb der Corona Warn App ist die, Orte großer Menschenmassen bewusst zu meiden und damit die Ausbreitung des Viruses einzudämmen.
+Durch einen vorausschauenderen Lebensalltag oder Kontaktbeschränkungen seitens der Regierung kann dieser Effekt auch erreicht werden. 
+Jedoch ist die Density-Map ein Feature, welches auch außerhalb der Pandemiezeit effektiv genutzt werden kann und einen Nutzen bringt.
+Gerade in Zeiten, in denen keine größeren Einschränkungen gelten ist es vermutlich umso wichtiger, weiterhin bewusst Abstand zu größeren Ansammlungen zu halten, um der Ausbreitung einer weiteren Infektionswelle vorzubeugen. 
+Deshalb träge die Density-Map vor Allem in Zeiten der Lockerung der Beschränkungsmaßnahmen einen guten Teil dazu bei, den Zustand zu erhalten.
+
+Auch die Tatsache, dass bereits ein vergleichbares Feature von Google existiert stellt den Nutzen des Features natürlich in Frage. 
+Jedoch wird das Feature dem Ziel, eine im Hinblick auf Privatsphäre fortgeschrittenere Alternative zu entwickeln gerecht. 
+Die Density-Map sammelt in allen vorgestellten Lösungsansätzen keine Sensiblen Nutzerdaten und verfolgt einen weitesgehend dezentralen Ansatz. 
+Trotzdem ist logisch, dass man bei einem Feature, welches die Ansammlung größerer Menschenmassen tracken möchte, nicht zu 100\% anonym ist. 
+Vielmehr greift hier der Effekt der K-Anonymity, dass man nur eine von vielen Personen ist, sowie der Fakt, dass die eigene Identität hinter einem temporären RPI verborgen ist.
+Trotzdem ist gerade im infrastrukturlosen Ansatz ohne zentrale Masten möglich, Ansammlung von Menschen im Privaten Raum (wie etwa Parties) zu tracken. 
+
+Auch im Hinblick auf Akzeptabilität könnte das Feature auf Probleme stoßen. 
+Unwissende Nutzer, die sich nicht mit der Umsetzung des Features auskennen könnten davon ausgehen, dass man mithilfe der Density-Map dauerhaft getrackt werden kann.
+Ein ähnliches Phänomen gab es bereits, als die Corona Warn App das erste Mal vorgestellt wurde. 
+Dagegen hilft eine klare Aufklärung darüber, wie das Feature im konkreten funktioniert, sowie eine freiwillige Teinahme am Benutzen der Density-Map. 
+
+Im Aspekt der Sicherheit stellt die Density-Map kein höheres Risiko als die bisherige Corona Warn App dar. 
+Es existieren keine sensiblen Nutzerdaten, die durch eine Angriff auf das System preisgegeben werden könnten. Durch die dezentrale Auswertung und Aggregation der Daten existiert außerdem kein Single Point of Failure. 
+Es könnte natürlich passieren, dass einzelne Masten gehackt werden, wodurch beispielsweise die Begegnungsaufzeichnung für diesen Ort verfälscht werden könnte.
+Dies stellt jedoch weder ein Risiko für alle anderen Masten dar, noch für einen Nutzer, der sich in Nähe eines gehackten Masten befindet, da wie bereits nur anonyme und verschlüsselte Daten mit dem Masten ausgetauscht werden. 
+
+Für die Umsetzung des Density-Map features stellt sich ein größerere Aufwand zur Installation der zentralen Masten auf. Um eine gute deutschlandweite Abdeckung zuerreichen müssten hierfür vermutlich zehn- bis hunderttausende von Geräten zu Verfügung gestellt werden, die als zantraler Mast fungieren könnten.
+Beim infrastrukturlosen Ansatz würde dieser Punkt jedoch wegfallen.
+
+Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona Warn App, sowohl im Hiblick auf die Eindämmung des Viruses, als auch für eine unabhängige Nutzung außerhalb der Pandemie, dar.
+Dabei schafft sie es das BLE-Feature der App erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
 
 \section{Zusammenfassung und Ausblick} \label{conclusion}
 
