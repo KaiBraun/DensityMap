@@ -259,30 +259,74 @@ Die CWA soll so erweitert werden, dass die Informationen zwar weiterhin auf den 
 Durch das Zusammenführen verschiedenster Informationen wird eine sehr große Reichweite erzeugt, die gerade für die Datensammlung und Forschung große Relevanz hat.
 Desweiteren würde die CWA durch die zusätzlichen Informationen attraktiver, was einen positiven Effekt auf die Kontaktverfolgung hätte.\\
 
-\section{Hauptfeatures} \label{Hauptfeatures}
-\subsection{Erweiterte Risikoberechnung}
-Mit der Risikoberechnung wird das Übertragungspotenzial der Begegnungen ermittelt,
-um damit die Gefahr infiziert worden zu sein abzuschätzen.
-Dafür wird die Risikoberechnung der CWA erweitert, 
-um damit einen Risikowert zu berechnen, der die Gefahr widerspiegelt.
+\section{Erweiterte Risikoberechnung} \label{Erweiterte Risikoberechnung}
 
-Man unterscheidet zwischen zwei Gruppen: CWA-User, die von der CWA somit aufgezeichnet werden und Not-CWA-User, 
-die die CWA nicht nutzen und somit nicht aufgezeichnet werden. 
-CWA-User werden in drei Untergruppen aufgeteilt: 
+%Aktuelle Risikoberechnung
+Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, 
+das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
+Generell wird angenommen, dass wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
+Um dieses zu berechnen wird das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
+die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. Und zum anderen die Wahrscheinlichkeit, 
+dass eine Person infiziert ist, die im folgenden als \textit{Positiv-Begegnungs-Wahrscheinlichkeit} bezeichnet wird.
+Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
+wird der Bildschirm rot, ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
+da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
+Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten. (Quelle 123)
+Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
+Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
+
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
+	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung}}
+	\label{Risikoberechnung_Abbildung}
+\end{figure*}
+
+%Definitionen
+Mit der Risikoberechnung wird das Übertragungspotenzial und die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnungen ermittelt,
+um damit die Gefahr infiziert worden zu sein, abzuschätzen.
+Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
+Dafür wird die Risikoberechnung der CWA erweitert, 
+um damit einen Risikowert zu berechnen, der die Gefahr besser widerspiegelt.
+
+Dabei wird zwischen zwei Personengruppen, die jeweils in 3 Untergruppen unterteilt werden, unterschieden, 
+da die Positiv-Begegnungs-Wahrscheinlichkeit von Person zu Person stark variieren kann.
+Es wird unterschieden zwischen \textit{CWA-User}, die von der CWA somit aufgezeichnet werden und \textit{Not-CWA-User}, 
+die die CWA nicht aktiv nutzen und somit nicht aufgezeichnet werden. Die CWA nicht aktiv nutzen heißt, dass keine TEKs geteilt werden.
+Die CWA-User werden in drei Untergruppen aufgeteilt: 
 \textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
 \textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
 \textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
-Ebenso wird die NOT-CWA-User in drei Untergruppen aufgeteilt: Not-CWA-Positive sind alle Personen, die ein positives Test Ergebnis haben, 
-dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem nutzen), Hidden-Positive sind alle Personen, die infiziert wurden, 
-jedoch kein positives Testergebnis nachweisen können und Hidden-Negative sind alle Personen, die nicht infiziert sind.
+Ebenso wird die NOT-CWA-User in drei Untergruppen aufgeteilt: \textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, 
+dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), \textit{Hidden-Positive} sind alle Personen, die infiziert wurden, 
+jedoch kein positives Testergebnis nachweisen können und \textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
 
-Für die erweiterte Risikoberechnung werden Features (Familienfeature, Feature TRL Update, 
-Feature PK-Server) benötigt, die in Abschnitt 1 bis 3 vorgestellt werden.
-Im Abschnitt 4 wird auf die erweiterte Risikoberechnung genauer eingegangen und im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
+%Probleme und Lösungsvorschläge
+Bei näherer Betrachtung der Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
+Zum einen fließen nur Begegnungen mit CWA-Positive Personen in diese mit ein.
+Deshalb sollen alle Personengruppen miteinbezogen werden.
+Zum anderen wird die Dunkelziffer nicht berücksichtigt. Diese soll im Folgenden durch die Begegnungsanzahl betrachtet werden.
+Desweiteren soll die geringe Nutzerzahl der CWA zum Hochkorrigieren der Begegnungsanzahl genutzt werden.
+Als letzten Kritikpunkt wird die Granulierung und Transparenz der Risikoberechnung aufgezeigt. 
+Aus diesem Grund soll der Risikowert in vier unterschiedliche Risikostufen (grün, gelb, orange, rot) aufgeteilt werden, dessen Zustandekommen mit angezeigt wird.
+
+Für die erweiterte Risikoberechnung werden die Features Familienfeature, Feature TRL Update und
+Feature PK-Server benötigt.
+
+Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdigen Personen,
+damit die Dunkelziffer besser miteinberechnet werden kann.
+Mit dem Feature TRL Update ist es möglich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen,
+um zu beachten, wie infektiös eine Person ist.
+Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
+Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der Risikoberechnung höher zu gewichten.
+
+Diese Features werden in Abschnitt 1 bis 3 vorgestellt.
+Im Abschnitt 4 werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
+Im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
 \\
 \subsubsection{Familienfeature}
 \label{Familienfeature}
-Im Folgenden wird ein Familienfeature vorgeschlagen, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
+Im Folgenden wird das Familienfeature vorgestellt, welches später dafür genutzt wird die Risikoberechnung innerhalb der CWA zu verbessern.
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
 Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln.
 Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
@@ -372,10 +416,8 @@ Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann 
 Sollten bereits auf dem PKServer existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, ob das erneute Hochladen von der gleichen Person getätigt wird.
 Würden diese nicht abgelehnt werden, wäre es ein leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, da der Lesezugriff auf die TEKs und Risikowerte auf dem PKServer nicht eingeschränkt ist.
 
-
 Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines roten Bildschirms, überprüft wird.
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
-
 
 \subsubsection{Feature TRL Update}
 In diesem Feature wird das volle Potenzial des TRLs genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von vier nicht unterschreiten darf, da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. Die Implementierung dafür existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht, wie im Abschnitt (TRL) genauer beschrieben. Durch Umfragen, die beim Eingeben eines positiven Corona Tests aktiviert werden, sollen die Infizierten ihren Infektionszeitpunkt und den Symptom-Start-Zeitpunkt angeben können. Es wird angenommen, dass beim Eingeben des Testergebnisses der Zeitpunkt des Testens, der Zeitpunkt des Ergebnis Erhaltens und der Zeitpunkt des Eingebens in der App gespeichert werden. Eine Umfrage könnte folgende Fragen beinhalten:
@@ -395,28 +437,24 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und  des Rückm
 Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden, damit Nutzer besser gewarnt werden können.\\
 
 \subsubsection{Risikoberechnung}
-Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an, 
-das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
-Generell wird angenommen, dass wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
-Um dieses zu berechnen wird das Übertragunspotenzial aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
-die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. Und zum anderen die Wahrscheinlichkeit, 
-dass eine Person infiziert ist, die im folgenden als Positiv-Begegnungs-Wahrscheinlichkeit bezeichnet wird.
-Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
-wird der Bildschirm rot, ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
-da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
-Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten. (Quelle 123)
-Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die momentane Risikoberechnung. 
-Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.\\
-\\
-\textit{Probleme und Lösungsansätze:} \\
-Ein Problem der Risikoberechnung der CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
-Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die erweiterte Risikoberechnung beachtet:
+
+
+In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der Risikowert zusammensetzt.
+
 \begin{figure*}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{"RiskCalculation"}
 	\caption{erweiterte Risikoberechnung}
 	\label{ErweiterteRisikoberechnung_Abbildung}
 \end{figure*}
+
+In Abschnitt (Probleme und Lösungsansätze) werden Probleme und Lösungsansätze der aktuellen Risikoberechnung genauer erläutert.
+Danach werden in Abschnitt (sfndao- ABC) die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
+
+\paragraph{Probleme und Lösungsansätze}
+
+Das Hauptproblem der Risikoberechnung der aktuellen CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
+Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die erweiterte Risikoberechnung beachtet:
 
 Mit der Dunkelziffer lässt sich die Anzahl an tatsächlich Infizierten abschätzen und sie sorgt dafür, dass CWA-Likely-Negative Personen, unter einbezug der positiven Not-CWA-User, 
 zu einem Risiko führen können, welches in der neuen Risikoberechnung nicht ignoriert wird.
@@ -426,13 +464,7 @@ werden in der neuen Berechnung stärker als die CWA-Likely-Negative gewichtet.
 Außerdem ist die Risikoberechnungsanzeige nicht transparent genug, zwar ist die Anzahl an Begegnungen mit CWA-Positive Personen sichtbar, 
 jedoch sieht man weder den Grad des Übertragungspotenzials, noch wie der Risikowert zustande gekommen ist.
 
-Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
-Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. \\
-\\
-\textit{Überblick:} \\
-Dazu wurde eine erweiterte Risikoberechnung ausgearbeitet, die Daten des RKIs und aus anderen Features, sowie Daten aus Umfragen, nutzt, 
-um die fehlenden Daten mit einzubeziehen oder zu beschaffen. Die neue Risikoberechnung wird transparent am Ende neben einer feineren Granulierung des Risikowerts angezeigt. 
-Die neue Risikoberechnung behandelt drei Punkte die zu einem neuen Risikowert zusammenaddiert werden.
+Dafür wurde die Berechnung des Risikowertes in 3 Summanden aufgeteilt, damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
 
 \centerline{\text{ }}
 \centerline{\text{Neuer Risikowert := }}
@@ -445,8 +477,10 @@ Der zweite Summand R\textsubscript{CWA-Likely-Positive} schätzt das Risiko von 
 CWAs mit einem Risikowert von über 13, aber keinem positiven Test Ergebnis, ab.
 Außerdem gibt es noch den dritten Summanden R\textsubscript{CWA-Likely-Negative}, der die Begegnungen mit Personen aus der Personengruppe CWA-Likely-Negativ mit einberechnet,
 wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
+Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
 
-Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die dann als höhe des Risikos interpretiert werden kann. 
+Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
+Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. \\
 Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet.
 \\
 
@@ -458,10 +492,11 @@ $9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
 
 $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 \\
-
+Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
+Ein transparenter Risikowert macht es für Nutzer leichter nachvollziehbar, wie sie sich bei einem erhöhten Risiko Verhalten sollten und fördert die aktive Nutzerzahl.
 Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
-Im Folgenden werden die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.\\
+
 \paragraph{R\textsubscript{CWA-Positive}}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
@@ -1050,7 +1085,7 @@ https://github.com/midudev/covid-19-spread-simulator
 \bibitem{Lotto} https://www.tagesschau.de/ausland/amerika/usa-ohio-impfung-lotterie-101.html (09.06.2021)
 \bibitem{Notbremse} https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3\_Downloads/Gesetze\_und\_Verordnungen/GuV/B/4\_BevSchG\_BGBL.pdf (09.06.2021)
 \bibitem{DarfIchDas} https://www.darfichdas.info/ (09.06.2021)
-
+\bibitem{Risikoberechnung} "Corona-Warn-App Dokumentation" \\https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk\_calculation/risk\_calculation\_enf\_v2\_overview.pdf (09.06.2021)
 \end{thebibliography}
 \vspace{12pt}
 
