@@ -435,14 +435,14 @@ Dadurch entfällt die Integrität der hochgeladenen TEKs.
 Dies wirft verschiedene Probleme hervor, die im Folgenden diskutiert werden. 
 Die Lösung dieser Probleme geht jedoch über den Umfang dieses Dokuments hinaus und wird deswegen nur angerissen.
 
-Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb 14 Tage auf den PKServer hochgeladen wird.
+Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb von 14 Tagen auf den PKServer hochgeladen wird.
 Sollten bereits auf dem PKServer existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, ob das erneute Hochladen von der gleichen Person getätigt wird.
 Würden diese nicht abgelehnt werden, wäre es ein leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, da der Lesezugriff auf die TEKs und Risikowerte auf dem PKServer nicht eingeschränkt ist.
 Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den PKServer hochgeladen werden kann.
 Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann dies zu einer ungenaueren Risikoberechnung führen, 
-falls die erste Begegnung, die bei einer Person zu einem erhöhten Risiko geführt hat, nicht die Begegnung ist, an der sich die Person angesteckt hat.
+falls die erste Begegnung, die bei einer Person zu einem Risikowert $\geq$ 13 geführt hat, nicht die Begegnung ist, an der sich die Person angesteckt hat.
 
-Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines erhöhten Risikowertes, überprüft wird.
+Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines Risikowertes $\geq$ 13, überprüft wird.
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
 
 \subsubsection{Feature TRL Update}
