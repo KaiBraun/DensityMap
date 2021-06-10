@@ -77,7 +77,7 @@ Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenke
 Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte und es gäbe noch Lücken und Erweiterungsbedarf für eine wirkungsvolle und ausgereifte App.
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
-Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
+Einen besonderen Fokus legen wir hierbei auf die Crowd-Sensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
 Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
 Dabei sind wir folgendermaßen vorgegangen: Zunächst wurde eine Übersicht aller von uns überlegten Erweiterungen erstellt. 
 Diese Erweiterungen wurden dann in Haupt- und Nebenfeatures unterteilt. 
@@ -561,8 +561,10 @@ Hier wird die Definition nochmals wiederholt.
 
 Der erste Summand ist R\textsubscript{CWA-Positive} und berechnet das Risiko, indem nur Begegnungen mit positiv getesteten (CWA-Positive) Personen einbezogen werden. 
 Dabei wird jede Begegnung gewichtet, je nach dem wie hoch das Übertragungspotenzial der Begegnung ist. 
+
 Der zweite Summand R\textsubscript{CWA-Likely-Positive} schätzt das Risiko von Begegnungen mit Likely-Positive Personen, sprich roten Bildschirmen bzw. 
 CWAs mit einem Risikowert von über 13, aber keinem positiven Test Ergebnis, ab.
+
 Außerdem gibt es noch den dritten Summanden R\textsubscript{CWA-Likely-Negative}, der die Begegnungen mit Personen aus der Personengruppe CWA-Likely-Negativ mit einberechnet,
 wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
 Der neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
@@ -760,8 +762,15 @@ jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten hab
 \subsubsection{R\textsubscript{CWA-Likely-Negative}}
 \label{CWALikelyNegative}
 
-Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein,
-denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
+Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) 
+bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein.
+Neben dem Unterschied der gezählten Personengruppen, gibt es bei den  Risiken R\textsubscript{CWA-Positive} und 
+R\textsubscript{CWA-Likely-Positive} einen Indikator aus historischen Daten, 
+der beschreibt, dass diese Personengruppen bereits an Corona erkrankt sind oder mit einer gewissen hohen Wahrscheinlicheit später an Corona erkranken werden. 
+Hierbei handelt es sich um Verifizierte Daten in Form von Testergebnissen der CWA-Positive Personengruppe, die in die CWA eingetragen wurden.
+Bei dem Risiko R\textsubscript{CWA-Likely-Negative} fehlen diese Indikatoren jedoch, obwohl auch von ihnen eine Gefahr aus geht,
+denn es befinden sich in den beschriebenen Personenegruppen Infizierte, deren Erkrankung weder festgestellt noch hochgeladen wurde.
+
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 \begin{itemize}
@@ -770,9 +779,13 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 	die nicht aufgezeichnet werden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
 	Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, 
 	als positiv getestet wurden. Mithilfe der Dunkelziffer kann somit die größe der Gruppe Hidden-Positive geschätzt werden.
+	Hidden Posiive wurden in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert und sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können. 
+
 	Die Dunkelziffer wurde erstmals durch eine Studie in Kupferzell \cite{Dunkelziffer} nachgewiesen und bestimmt. 
 	Da die Datenerhebung dieser Studie vom 20. Mai bis 9. Juni 2020 durchgeführt wurde und sich die Testmöglichkeiten seitdem stark entwickelt haben, 
-	ist die damals bestimmte Dunkelziffer von 6 möglicherweise ungenau. 
+	ist die damals bestimmte Dunkelziffer von Sechs möglicherweise ungenau. 
+	Eine Dunkelziffer von Sechs würde allerdings bedeuten, dass die Anzahl der Infizierten um den Faktor Sechs größer ist, 
+	als die Anzahl durch Tests aufgezeichneten Infizierten.
 	\item  AppUsage: Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. 
 	Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. 
 	Da die derzeitige Nutzung deutlich unter 50\% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, 
@@ -785,8 +798,8 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 \centerline{$AppUsage := \frac{DownloadCount}{Population}$}
 \centerline{\text{ }}
 
-Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage beachtet.
-Denn obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
+Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage betrachtet.
+Obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
 ist es bei einer hohen Anzahl an Begegnungen wahrscheinlicher infiziert zu werden, als bei einer niedrigen, denn in der Not-CWA-User Gruppe gibt es viele Personen, die infektiös sind. 
 Deswegen wird hierfür die Personengruppe Likely-Negative benötigt. 
 
@@ -799,10 +812,10 @@ Für dieses Risiko wird hauptsächlich mit einer Positiv-Begegnungs-Wahrscheinli
 da man mit dieser die Gruppen Not-CWA-Positive und Hidden-Positive mit einfließen lassen kann.
 Dabei wird das Übertragungspotenzial nicht wie bei den anderen Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive} berechnet, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit einer CWA-Likely-Negative Person zu gering ist. 
-Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird dafür genutzt,
+Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird genutzt,
 um den Einfluss der Gruppen Not-CWA-Positive und Hidden-Positive zu berechnen und wird unter anderem durch die Dunkelziffer und die AppNutzung bestimmt.
 
-Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att Aunter 73 Dezibel ist,
+Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att unter 73 Dezibel ist,
 der Abstand somit kleiner als 8 Meter ist und die Begegnungsdauer zwischen einem \textit{LowerBound} und einem \textit{UpperBound} ist. 
 
 Da nicht jede noch so kurze Begegnungen aufgezeichnet werden soll,
@@ -812,14 +825,19 @@ Bei einer einzigen langen Begegnung werden viele Begegnungen mit einer Begegnung
 15 Minuten aufgezeichnet, da der RPI alle 15 Minuten gewechselt wird. 
 Um dies zu verhindern gibt es zum einen das Familienfeature, 
 welches meist lange Begegnungen mit Freunden bzw. Verwandten von vornherein ausschließt und zum anderen gibt es den UpperBound.
-Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit kurze Distanzierungen keinen großen Einfluss haben.
+Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit zeitlich kurze Distanzierungen keinen großen Einfluss haben.
 Für diesen Wert wird 14 Minuten geschätzt, damit Verbindungsfehler keinen großen Einfluss auf die Begegnungsanzahl haben.
-Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt.
+Dabei werden zwar Begegnungen zwischen 14 und 15 Minuten auch herausgefiltert, 
+jedoch werden Begegnungen mit einer Begegnungesdauer > 30 Minuten meist als zwei Begegnungen aufgezeichnet,
+da nur eine der drei aufgezeichneten Begegnungen eine Dauer von genau 14 bis \SI{15}{Minuten} hat.
+Die Anzahl der Begegnungen gleicht sich damit aus.
+Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt, deren Distanz kleiner als \SI{73}{dB} ist.
+Dafür wird die Funktion \textit{t(x)} verwendet, die für geltendes x die Begegnungsdauer einer Begegnung bestimmt.
 
 \centerline{\text{ }}
-\text{$if(att<73dB) \le lowerBound$\{}
+\text{$if(t(att<\SI{73}{dB})) \geq lowerBound$}
 
-\text{\&\&$t(att > 0dB) < upperBound)$}
+\text{\&\&$t(att > \SI{0}{dB}) < upperBound)$\{}
 
 \text{$Contacts++$}
 
@@ -827,10 +845,15 @@ Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gez
 
 \centerline{\text{ }}
 
-Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl man sich ansteckt, wird zuerst die aktuelle Anzahl infizierter ausgerechnet, 
-um damit die Positiv-Begegnungs-Wahrscheinlichkeit auszurechnen. 
-Die aktuelle Anzahl positiv getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu berechnen. 
-Davon wird {currentCWAPositive} subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl, man zu einer hohen Wahrscheinlichkeit infiziert wird,
+wird zuerst die aktuelle Anzahl Infizierter ausgerechnet, um damit die Positiv-Begegnungs-Wahrscheinlichkeit zu berechnen.
+Bei der Positiv-Begegnungs-Wahrscheinlichkeit handelt es sich um die Wahrscheinlichkeit, wie wahrscheinlich eine Begegnunge infiziert ist.
+
+Im Folgenden wird beschrieben wie \textit{PersonIsInfected} zusammengesetz ist.
+PersonIsInfected, beschreibt die Wahrscheinlichkeit, dass eine Person infiziert ist. Dafür wird die Anzahl Infizierter durch die gesamt Bevölkerung geteilt.
+Die aktuelle Anzahl positiv Getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu erhalten. 
+Davon wird \textit{currentCWAPositive} subtrahiert, da das Risiko der CWA-Positive Gruppe bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+Es werden somit nur noch die postiv Getesteten mit einberechnet, die kein Testergebnis in die CWA eingetragen haben, denn
 CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in den letzten 14 Tagen in die CWA eingetragen hat.
 
 \centerline{\text{ }}
@@ -838,35 +861,46 @@ CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in
 \centerline{$\frac{((\text{currentPositiveTested} \cdot \text{Dunkelziffer}) - \text{currentCWAPositive}}{\text{Population}}$}
 \centerline{\text{ }}
 
-R\textsubscript{CWA-Likely-Negative} setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit zusammen und wird auf 13 beschränkt, 
-da die Person gewarnt werden soll, allerdings nicht als hoch Infektiös gilt. 
-Dabei wird die Anzahl Contacts mit der AppUsage nach oben korrigiert, um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
-Aktuell beträgt die AppUsage ca. $1/3$ \cite{Downloads}, somit werden die Contacts um das Dreifache erhöht. 
+Aktuell beträgt die AppUsage ca. $\frac{1}{3}$ \cite{Downloads}, was dazu fürt, dass nur $\frac{1}{3}$ der Begegnungen aufgezeichnet werden.
+Die Anzahl aufgezeichneter Begegnungen muss somit um den Faktor drei nach oben korrigiert werden, 
+um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
 
 \centerline{\text{ }}
 \centerline{$\text{CorrectContacts} := \frac{Contacts}{AppUsage}$}
 \centerline{\text{ }}
 
-Da mit einem Beschränkten Wachstum gerechnet wird und somit die Positive-Begegnungs-Wahrscheinlichkeit subtrahiert werden muss, 
-muss mit der Gegenwahrscheinlichkeit gerechnet werden. Denn umso höher die Infektionswahrscheinlichkeit, 
-desto geringer ist die Gegenwahrscheinlichkeit und desto näher ist R\textsubscript{CWA-Likely-Negative} an der Schranke 13. 
-Um die Wahrscheinlichkeit zu berechnen infiziert worden zu sein, wird die Wahrscheinlichkeit, dass eine Person nicht infektiös ist, 
-mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
+Anschließend wird mit einem Beschränkten Wachstum gearbeitet, da von den Personengruppen die in das Risiko R\textsubscript{CWA-Likely-Positive} einfließen, 
+ein geringeres Risiko ausgeht.
+
+\centerline{\text{ }}
+\centerline{\text{$ \text{BeschränktesWachstum(x)} := S - S \cdot p^x  = (1-p^x) \cdot S$}}
+\centerline{\text{ }}
+
+Für die Schranke S wird der Wert 13 verwendet, da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt. 
+Außerdem soll eine Person mit vielen Begegnungen zwar gewarnt werden, allerdings nicht als hoch infektiös gelten.
+
+Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso mehr Personen man trifft, 
+desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13 sein. 
+
+Dabei wird für x CorrectContacts eingesetzt. 
+Damit ergibt sich aus $p^x$ die Wahrscheinlichkeit, nur nicht infizierte Personen getroffen zu haben. 
+Wenn die Wahrscheinlichkeit $p^x$ gegen Null geht und es somit sehr wahrscheinlich wird mindestens eine infizierte Person getroffen zu haben,
+geht der Wert für R\textsubscript{CWA-Likely-Negative} gegen die Schranke 13.
+
+Im Anschluss wird die zusammengesetzte Funktion, um R\textsubscript{CWA-Likely-Negative} zu berechnen, dargestellt.
 
 \centerline{\text{ }}
 \centerline{\text{R\textsubscript{CWA-Likely-Negative}$=$}}
-\centerline{\text{$(1 - ( 1-\text{PersonIsInfected} )\text{CorrectContacts}) \cdot 13$}}
+\centerline{\text{$(1 - ( 1-\text{PersonIsInfected} )^\text{CorrectContacts}) \cdot 13$}}
 \centerline{\text{ }}
 
-Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
-\\
-\subsection{Bewertung}
-\label{Bewertung_Risikoberechnung}
+\subsection{Diskussion}\label{Bewertung_Risikoberechnung}
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
 Dabei wird auf die Privatsphäre der Nutzer geachtet, indem freiwillige, anonymisierte Datensammlungen verwendet werden.
-Da die Datenspende freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Da die Datenspende des Features PKServer und des Features TRL Update freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Ohne die Datenspende ist es kaum möglich eine genaue Funktion für den Riskikowert R\textsubscript{CWA-Likely-Positive} zu bestimmen. 
 Zudem ist die Berechnung des Risikos R\textsubscript{CWA-Positive}, welches aus der aktuellen CWA übernommen wurde,
 in der erweiterten Risikoberechnung mit eingebunden, wodurch nur ein höherer Risikowert zusammen kommen kann
 und somit Personen höchstens früher gewarnt werden. 
@@ -880,11 +914,14 @@ auf die im Rahmen dieser Forschungsarbeit nicht weiter eingegangen wird.
 Im Vergleich dazu wird bei den im Abschnitt \ref{Feature TRL Update} vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
 der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
 
-Obwohl es 2 weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
+Obwohl es zwei weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
 Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
 Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
 
-Durch die Installation von 2 weiteren Server, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
+Da auch hier auf frewilliger Basis nur pseudonymisierte Identifier geteilt und auf die Server hochgeladen werden, wird die Privatsphäre der Nutzer nicht weiter, als in der aktuellen CWA, eingeschränkt.
+Außerdem werden Privatsphäre kritische Daten durch Kryptographie im Familienfeature vor äußeren Eingriffen geschützt und werden somit nur mit der eigenen Gruppe geteilt.
+
+Durch die Installation von zwei weiteren Servern, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
 werden die Kosten für diese einen ähnlichen Umfang haben. 
 
 \section{Density-Map}
