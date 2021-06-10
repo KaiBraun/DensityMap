@@ -508,11 +508,11 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und des Rückme
 Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und mithilfe des TRLs für jeden Diagnosis Key abgeschätzt werden,
 damit Nutzer besser gewarnt werden können.
 
- %Vorher Risikoberechnung
+%Vorher Risikoberechnung
 \subsection{Berechnung}
 \label{Berechnung}
 
-In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der Risikowert zusammensetzt.
+In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der neue Risikowert R\textsubscript{new} zusammensetzt.
 
 \begin{figure*}[h]
 	\centering
@@ -538,20 +538,26 @@ werden in der neuen Berechnung anders als Begegnungen mit CWA-Likely-Negative Pe
 Außerdem ist die Risikoberechnungsanzeige nicht transparent genug, zwar ist die Anzahl an Begegnungen mit CWA-Positive Personen sichtbar, 
 jedoch sieht man weder den Grad des Übertragungspotenzials, noch wie der Risikowert zustande gekommen ist.
 
-Dafür wurde die Berechnung des Risikowertes in 3 Summanden aufgeteilt, damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
+Die neue Berechnungsvorschrift unterscheidet zwischen 
+Begegnungen mit sicher Infizierten (CWA-Positive Gruppe mit positivem Testergebnis),
+wahrscheinlich positiven Personen (CWA-Likely-Positive Gruppe) und wahrscheinlich nicht Infizierten (CWA-Likely-Negative Gruppe). 
+Dementsprechend setzt sich der neue Risikowert aus drei Summanden zusammen,
+damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
+Der \textit{neue Risikowert} R\textsubscript{new} wurde bereits in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert.
+Hier wird die Definition nochmals wiederholt.
 
 \centerline{\text{ }}
-\centerline{\text{Neuer Risikowert := }}
+\centerline{\text{R\textsubscript{new} := }}
 \centerline{\text{R\textsubscript{CWA-Positive} + R\textsubscript{CWA-Likely-Positive} + R\textsubscript{CWA-Likely-Negative}}}
 \centerline{\text{ }}
 
-Der erste Summand ist R\textsubscript{CWA-Positive} und berechnet das Risiko, indem nur Begegnungen mit CWA-Positive Personen einbezogen werden. 
+Der erste Summand ist R\textsubscript{CWA-Positive} und berechnet das Risiko, indem nur Begegnungen mit positiv getesteten (CWA-Positive) Personen einbezogen werden. 
 Dabei wird jede Begegnung gewichtet, je nach dem wie hoch das Übertragungspotenzial der Begegnung ist. 
 Der zweite Summand R\textsubscript{CWA-Likely-Positive} schätzt das Risiko von Begegnungen mit Likely-Positive Personen, sprich roten Bildschirmen bzw. 
 CWAs mit einem Risikowert von über 13, aber keinem positiven Test Ergebnis, ab.
 Außerdem gibt es noch den dritten Summanden R\textsubscript{CWA-Likely-Negative}, der die Begegnungen mit Personen aus der Personengruppe CWA-Likely-Negativ mit einberechnet,
 wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
-Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
+Der neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
 Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können.
@@ -559,13 +565,13 @@ Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm a
 Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet, die die entsprechenden Risikoklassen symbolisieren.
 \\
 
-$0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
+$0\le R\textsubscript{new} < 5 \rightarrow \text{grüner Bildschirm}$
 
-$5\le Risikowert < 9 \rightarrow \text{gelber Bildschirm}$
+$5\le R\textsubscript{new} < 9 \rightarrow \text{gelber Bildschirm}$
 
-$9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
+$9\le R\textsubscript{new} < 13 \rightarrow \text{orangener Bildschirm}$
 
-$13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
+$13 \le R\textsubscript{new}  \rightarrow \text{roter Bildschirm}$
 \\
 
 Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
@@ -585,26 +591,31 @@ Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t}
 \centerline{$\text{WeightedExposureTime} := t \cdot \text{attFactor}$}
 \centerline{\text{ }}
 
-Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
+Wobei der \textit{attFactor} durch \SI{22}{dB} folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
 
 
 \centerline{\text{ }}
 
-\text{$att < 63dB:attFactor=0.8$}
+\text{$att < \SI{63}{dB}:attFactor=0.8$}
 
-\text{$63dB \le att<73dB:attFactor=1.0$}
+\text{$\SI{63}{dB} \le att<\SI{73}{dB}:attFactor=1.0$}
 
-\text{$73dB \le att<79dB:attFactor=0.1$}
+\text{$\SI{73}{dB} \le att<\SI{79}{dB}:attFactor=0.1$}
 
-\text{$79dB \le att:attFactor=0$}
+\text{$\SI{79}{dB} \le att:attFactor=0$}
 \centerline{\text{ }}
 
-Dabei kann man die Werte 63dB bzw. 73dB, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
+Dabei kann man die Werte \SI{63}{dB} bzw. \SI{73}{dB}, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
 Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden \cite{}(Quelle cwa-risk-assessment).
 
-Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wir danach aus der Weighted Exposure Time wird die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
-Das Transmission Risk Level wird in Abschnitt TRL genauer beschrieben und bezieht die Wahrscheinlichkeit mit ein, dass eine Person die Krankheit auch wirklich überträgt. 
-Der TRV ergibt sich aus TRL nach der folgenden Vorschrift:
+Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wird danach aus der Weighted Exposure Time die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
+
+\centerline{\text{ }}
+\centerline{$t_n := \text{Weighted Exposure Time}\cdot TRV$}
+\centerline{\text{ }}
+
+Das Transmission Risk Level wird in Abschnitt \ref{TRL} genauer beschrieben und bezieht die Wahrscheinlichkeit mit ein, dass eine Person die Krankheit auch wirklich überträgt. 
+Der TRV ergibt sich aus dem TRL nach der folgenden Vorschrift:
 
 \centerline{\text{ }}
 
@@ -625,11 +636,7 @@ Der TRV ergibt sich aus TRL nach der folgenden Vorschrift:
 \text{$TRL=VIII\rightarrow TRV=1.6$}
 \centerline{\text{ }}
 
-Mit dem TRV lässt sich dann t\textsubscript{n} bestimmen:
-
-\centerline{\text{ }}
-\centerline{$t_n := \text{Weighted Exposure Time}\cdot TRV$}
-\centerline{\text{ }}
+Mit dem TRV lässt sich dann t\textsubscript{n} bestimmen.
 
 Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Summe gebildet und man erhält damit das Risiko R\textsubscript{CWA-Positive}:
 
@@ -643,29 +650,34 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
 
-Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature \ref{Familienfeature} nicht mit einbezogen, 
+Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature, Abschnitt \ref{Familienfeature}, nicht mit einbezogen, 
 da diese sonst aufgrund der potenziell langen Begegnungsdauer und 
 kurzen Distanz ein hohes R\textsubscript{CWA-Likely-Positive} Risiko hervorrufen könnten und man im Regelfall diesen Personen ohnehin sofort mitteilt, wenn man ansteckend sein könnte. 
 
 Zudem werden Begegnungen mit Diagnosis Keys nicht mit einberechnet, da diese bereits im Summand R\textsubscript{CWA-Positive} betrachtet werden. Dies geschieht, 
 indem bei der Risikoberechnung die Begegnungs RPIs mit den Diagnosis Keys auf dem CWA Server abgeglichen werden und nur die RPIs mit einbezogen werden, 
-die keinen passenden Diagnosis Keys auf dem CWA Server liegen haben.
+für die keine passenden Diagnosis Keys auf dem CWA Server existieren.
 
 Zuerst wird, wie beim Summand R\textsubscript{CWA-Positive}, das Übertragungspotenzial einer Begegnung bestimmt, indem die Weighted Exposure Time ausgewertet wird. 
 
 Aus der Weighted Exposure Time wird danach allerdings nicht die Normalised Exposure Time bestimmt, wie dies beim Summand R\textsubscript{CWA-Positive} der Fall ist, 
 da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Positive Personen nicht vorweisen können.
 
-Anstelle davon wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
+Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
 
 Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
 Aus diesem Grund wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
-Um die Positiv-Begegnungs-Wahrscheinlichkeit zu erhalten wird jedoch erst eine Funktion \textit{f} benötigt, die diese Wahrscheinlichkeit angibt.
+Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
 
-Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist. 
-Der Risikowert wurde zuvor mit dem TEK zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben. Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
+\centerline{\text{ }}
+\centerline{$f: Risikowert -> Positiv-Begegnungs-Wahrscheinlichkeit$}
+\centerline{\text{ }}
 
-Zunächst werden Risikowert-Intervalle gebildet, da Risikowerte nicht nur natürliche Zahlen als Werte annehmen können. 
+Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist.
+Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben.
+
+Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
+Zunächst werden, wie beim Bilden von Häufigkeitsverteilungen oder Histogrammen, Intervalle gebildet, um 
 Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i mit i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
 dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
 
