@@ -61,40 +61,44 @@ Corona, Corona-Warn-App, Density Map, Risikoberechnung
 \end{IEEEkeywords}
 
 \section{Einleitung}
+\label{Einleitung}
 Seit nun mehr als eineinhalb Jahren breitet sich das Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nie erlebte Ausnahmezustände.
-Laut derzeitigem Stand sind es etwa 173 Millionen Infizierte und 3,7 Millionen Todesopfer \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermutlen lässt. 
-In Deutschland wurdem dem Robert Koch Institut insgesamt 3.7 Millionen infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
+Laut derzeitigem Stand sind es etwa 173 Millionen Infizierte und 3,7 Millionen Todesopfer \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höhere Werte vermuten lässt. 
+In Deutschland wurden dem Robert-Koch-Institut insgesamt 3.7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
 Insbesondere stellten dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeintraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
 
-Um die Ausbreitung des Viruses weitmöglichst einzudämmen wurden im Land zahlreiche vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
+Um die Ausbreitung des Viruses weitmöglichst einzudämmen wurden im Land zahlreiche Vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
 Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen.
-Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudaämmen. 
+Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudämmen. 
 Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen, nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
-So war man beispielsweise verpflichtet in Resaurant oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
+So war man beispielsweise verpflichtet in Restaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man, im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung, benachrichtigt werden kann.
 Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von 2 Wochen merken und wieder ins Gedächtnis rufen muss.
-Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung automatisieren sollte: Die Corona Warn App \cite{}. Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anomynen Datenautausches garantiert ist.
+Aus diesem Grund wurde von der Bundesrepublik Deutschland die Entwicklung einer App in Auftrag gegeben, die diese Kontaktverfolgung automatisieren sollte: Die \textit{Corona Warn App} (CWA) \cite{}. Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenaustausches garantiert ist.
 
 In der Zeit der Herausgabe der App gab es viele Diskussionen und Kritik rund um die App. So wurde sie hinsichtlich der Privatphäre öfters kritisiert und musste nachgebessert werden \cite{}. 
 Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen \cite{}. 
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
-Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer Großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
+Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
 Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
-Die Erweiterungen wurden in Haupt- und Nebenfeatures unterteilt. In den Nebenfeatures finden sich eine Reihe von kleineren oder weniger aufwändigen Erweiterungen, wohingegen wir bei den zwei großen Hauptfeatures, der \textbf{erweiterten Risikoberechnung} und der \textbf{Density-Map} noch tiefer in den Aufbau die Funktionsweise der jeweiligen Features hineingehen.
+Die Erweiterungen wurden in Haupt- und Nebenfeatures unterteilt. 
+In den Nebenfeatures finden sich eine Reihe von kleineren oder weniger aufwändigen Erweiterungen, wohingegen wir bei den zwei großen Hauptfeatures, der \textbf{erweiterten Risikoberechnung} und der \textbf{Density-Map}, noch tiefer in den Aufbau und die Funktionsweise der jeweiligen Features hineingehen.
 Alle vorgeschlagenen Erweiterungen werden in ihren jeweiligen Abschnitten zusätzlich noch hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand beurteilt. 
 
-Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befidnen sich bestehende Arbeiten. Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
-In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und beurteilt, bevor es in Abschnitt \ref{Hauptfeatures} weiter mit den beiden Hauptfeatures \textit{Erweiterte Risikoberechnung} und \textit{Density-Map} weitergeht. 
-In Abschnitt \ref{conclusion} befindet sich unsere abschließende Zusmmenfassung und ein Ausblick. 
+Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befinden sich bestehende Arbeiten. 
+Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
+In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und beurteilt,
+bevor es in Abschnitt \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} mit der \textit{erweiterten Risikoberechnung} und der \textit{Density-Map} weiter geht. 
+In Abschnitt \ref{Conclusion} befindet sich unsere abschließende Zusmmenfassung und ein Ausblick. 
 
 \section{Bestehende Arbeiten} \label{rel_work}
 
-In diesem Abschnitt wird zunächst auf die Corona Lage, sowie auf die funktionsweise der aktuellen Corona Warn App eingegangen, auf die unsere Arbeit basiert. 
-Des weiteren wir auf bestehende Arbeiten in Richtung Crowd-Sensing, insbesondere mittels des BLE Features, eingegangen. 
+In diesem Abschnitt wird zunächst auf die Corona Lage, sowie auf die Funktionsweise der aktuellen Corona Warn App, eingegangen, auf der unsere Arbeit basiert. 
+Des weiteren wird auf bestehende Arbeiten in Richtung Crowd-Sensing, insbesondere mittels des BLE Features, eingegangen. 
 
 \subsection{Corona Lage}
-Bei Corona oder COVID-19 handelt es sich um eine Krankheit, die durch die Coronaviren SARS-CoV ausgelöst wird. 
-Anfang 2020 waren diese Viren verantwortlich für die folgende weltweite Corona Pandemie, die aktuell zu weltweit 3 500 000 Toten geführt hat. 
+Bei Corona oder COVID-19 handelt es sich um eine Krankheit, die durch die Coronaviren SARS-CoV-2 ausgelöst wird. 
+Anfang 2020 waren diese Viren verantwortlich für die darauf folgende, weltweite Corona Pandemie, die aktuell zu ca. 3 500 000 Toten weltweit geführt hat. 
 Corona kann symptomatisch sowie asymptomatisch auftreten, wobei Husten und Atemprobleme zu typischen Symptomen zählen.
 Übertragen wird Corona durch Schleimhäute, die durch Tröpfcheninfektion oder Aerosole gereizt werden können.
 Bei der Tröpfcheninfektion handelt es sich um Infektionen auf kurze Distanz. Durch zum Beispiel Niesen werden Tröpfchen in die Luft geschleudert, 
@@ -102,7 +106,8 @@ die innerhalb von 1-2 Metern auf den Boden sinken und in diesem Radius auch Infe
 Die Aerosole dagegen sind leichter und können somit länger in der Luft schweben, 
 was dazu führt, dass in geschlossenen Räumen eine Ansteckungsgefahr bis zu vier Meter um die infektiöse Person besteht. 
 Der Ansteckungszeitraum beträgt 10-20 Tage und sorgt dafür, dass potenziell infektiöse Personen bis zu 14 Tage in Quarantäne kommen.
-Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 1,4 Milliarden Impfdosen verabreicht, um das Coronavirus einzudämmen
+Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 1,4 Milliarden Impfdosen verabreicht, um das Coronavirus einzudämmen.
+%Hier fehlen Quellen zu den ganzen Daten. Woher kommen die?
 
 Die Pandemie schränkt das Alltagsleben der gesamten Bevölkerung ein. 
 Durch verschiedene Lockdowns war es nicht mehr möglich, nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten. 
@@ -111,74 +116,80 @@ Nicht nur um die Anzahl Toter zu verringern, sondern auch um die Rückkehr in de
 Aus diesen Gründen wurde nach einer Corona Warn App verlangt, die ermöglichen soll, dass Kontakte automatisch nachverfolgt werden können und gefährdete Personen gewarnt werden.
 
 \subsection{Corona Warn App}
-Die deutsche \glqq Corona Warn App\grqq{} (CWA) wurde im Auftrag des Robert Koch Institutes von SAP, der deutschen Telekom und weiteren Unternehmen entwickelt \cite{CWA}. 
+Die deutsche \textit{Corona Warn App} (CWA) wurde im Auftrag der Bundesrepublik Deutschland von SAP, der deutschen Telekom und weiteren Unternehmen entwickelt \cite{CWA}. 
 Ihr Hauptziel ist die automatisierte und anonyme Kontaktverfolgung mittels Smartphones, um möglichst viele Infektionsketten zu unterbrechen und die Ausbreitung des Coronavirus weitmöglichst zu verlangsamen. 
-Zum aktuellen Zeitpunkt ist die App seit etwa einem dreiviertel Jahr aktiv und  wurde knapp 30 Millionen Mal in den App Stores von Apple und Google heruntergeladen (Stand Mai 2021) \cite{Downloads}.
+Zum aktuellen Zeitpunkt ist die App seit etwa einem dreiviertel Jahr aktiv und wurde knapp 30 Millionen Mal in den App Stores von Apple und Google heruntergeladen (Stand Mai 2021) \cite{Downloads}.
 
 Die Funktion der Corona Warn App ist aus Nutzersicht relativ simpel. Der Nutzer lädt sich die App auf sein Smartphone und aktiviert seine Bluetooth-Funktion. 
 Falls er nun mit einer weiteren Person, die ebenfalls die CWA installiert hat, in Kontakt kommt, werden anonym Daten ausgetauscht und die Begegnung auf den jeweiligen Endgeräten gespeichert. 
-Sofern man sich nun mit dem Coronavirus infiziert hat, erhält man von einer Teststelle zusammen mit dem positiven Testergebnis einen Code, welchem man in seine App eintragen kann. 
-Alle Kontaktpersonen werden dementsprechend informiert, ohne zu wissen, von wem diese Mitteilung letztendlich stammt. 
+Sofern man sich nun mit dem Coronavirus infiziert und ein positives Testergebnis erhält, hat man die Option das positive Testergebnis in die App einzutragen. 
+Alle Kontaktpersonen werden daraufhin informiert, ohne zu wissen, von wem diese Mitteilung letztendlich stammt. 
 
 Die Corona Warn App unterscheidet prinzipiell zwischen zwei Risikostufen, die mithilfe eines grünen bzw. roten Bildschirms auf der Startseite der App angezeigt werden. 
 Ein grüner Bildschirm bedeutet hierbei keine/kaum Risikobegegnungen und damit ein vermindertes Risiko, während ein roter Bildschirm ein erhöhtes Risiko anzeigt.
 
-Der Corona Warn App zugrunde liegendes Feature ist das \glqq Exposure Notification Framework", 
-welches in Kooperation von Google und Apple für Corona Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
+Der Corona Warn App zugrunde liegendes Feature ist das \glqq Exposure Notification Framework\grqq, 
+welches in Kooperation von Google und Apple für Kontaktverfolgungs Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
 um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
-\\
-\textit{Exposure Notification Framework:}\\
-Jeden Tag wird vom Framework ein sogenannter Temporary Exposure Key (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. 
-Aus diesem TEK werden Rolling Proximity Identifiers (RPI) abgeleitet. 
-Diese RPI's haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht werden und ein neuer RPI aus dem TEK erstellt wird. Wichtig ist hierbei, 
-dass sich aus den RPI's nicht der TEK ableiten lässt. 
-Die RPI's werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPI's werden zudem verschlüsselt Informationen über die Begegnungsdauer, sowie dem ungefähren Abstand ausgetauscht.
-Falls sich nun eine Person mit dem Coronavirus infiziert, werden dessen TEK (nun Diagnosis Keys genannt) der letzten 14 Tage auf einen zentralen Server hochgeladen. 
-Jedes Smartphone hat Zugriff auf diesen zentralen Server und kann die Diagnosis Keys aller Infizierten Personen  herunterladen. 
-Mithilfe der Diagnosis Keys können dann die gespeicherten RPI's aus den Begegnungen abgeglichen und im Falle einer Übereinstimmung die Begegnungsdauer und der Abstand entschlüsselt werden. 
-Zusammen mit dem Transmission Risk Level (TRL) bestimmt die Corona Warn App aus diesen Informationen das Infektionsrisiko der Person. \\
-\\
-\textit{Transmission Risk Level (TRL):}\\
+
+\subsection{Exposure Notification Framework:}
+Das Exposure Notification Framework basiert auf dem \textit{Decentralized Privacy-Preserving Proximity Tracing} (DP-3T) Protokoll \cite{DP-3T}.
+Jeden Tag wird vom Framework ein sogenannter \textit{Temporary Exposure Key} (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. 
+Aus diesem TEK werden \textit{Rolling Proximity Identifier} (RPIs) abgeleitet. 
+Diese RPIs haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht werden und ein neuer RPI aus dem TEK erstellt wird. Wichtig ist hierbei, 
+dass sich aus den RPIs nicht der TEK ableiten lässt. 
+Die RPIs werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPIs werden zudem verschlüsselt Informationen über die Begegnungsdauer, sowie dem ungefähren Abstand ausgetauscht.
+Falls sich nun eine Person mit dem Coronavirus infiziert, werden dessen TEKs (nun \textit{Diagnosis Keys} genannt) der letzten 14 Tage auf einen zentralen Server hochgeladen.
+Dieser zentrale Server wird in diesem Dokument als \textit{CWA Server} bezeichnet.
+Jedes Smartphone hat Zugriff auf den CWA Server und kann die Diagnosis Keys aller infizierten Personen herunterladen.
+Mithilfe der Diagnosis Keys können dann die gespeicherten RPIs aus den Begegnungen abgeglichen und, im Falle einer Übereinstimmung, die Begegnungsdauer und der Abstand entschlüsselt werden. 
+Zusammen mit dem \textit{Transmission Risk Level} (TRL) bestimmt die Corona Warn App aus diesen Informationen einen \textit{Risikowert}, der das Infektionsrisiko der Person widerspiegelt.
+
+\subsection{Transmission Risk Level (TRL):}
 Das TRL wird in der CWA lokal berechnet und auf dem CWA Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
 Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person ein Übertragungspotenzial hat das anfangs niedrig ist, 
 dann auf ein Maximum steigt und innerhalb von 14 Tagen wieder abnimmt. Um daraus ein Risiko Level abzuleiten müssen verschiedene Zeitpunkte bekannt sein. 
 Darunter zählen der Symptombeginn, das Infektiös sein, das angesteckt worden sein und drei weiter Zeitpunkte die beim Testen aufgezeichnet werden müssen, 
 Zeitpunkt des Testens, Zeitpunkt des Ergebnis bekommen und Zeitpunkt des Hochladens. Aus diesen Werten ist es möglich den TRL so zu bestimmen, 
-dass er das Übertragungspotenzial widerspiegelt(Quelle CWADoku).
-Allerdings werden diese Zeitpunkte noch nicht bereitgestellt und es wird somit auf einen Standardwert zurückgegriffen. 
-Weshalb im Verlauf des Dokuments das Feature TRL Update vorgestellt wird, dass eine Lösung zeigt die fehlenden Daten zu sammeln.
+dass er das Übertragungspotenzial widerspiegelt \cite{}(Quelle CWADoku).
+Allerdings werden diese Zeitpunkte noch nicht bereitgestellt und es wird somit auf einen Standardwert zurückgegriffen,
+weshalb in Abschnitt \ref{Feature TRL Update} das Feature TRL Update vorgestellt wird, dass eine Lösung zeigt die fehlenden Daten zu sammeln.
 
 \subsection{Crowd-Sensing und Bluetooth Low Energy}
 Die allermeisten technischen Geräte besitzen in der heutigen Zeit die Möglichkeit, sich mit dem Internet zu verbinden und Daten untereinander auszutauschen.
-Seien es Smartphones, Laptops oder weitere IoT-Geräte, sie alle besitzen die Funktion die Umgebungdaten mittels Sensoren zu sammeln und diese Daten über das Internet weiterzugeben.
-Mobile Crowdsensing beschreibt den Vorgang, ein großes System solcher mobilen Endgeräte aufzubauen, um Sensordaten im großen Maßstab zu sammeln und auswerten zu können \cite{MCS}.
-Die Vorteile des Crowd-Sensings liegen auf der Hand: Anstatt Daten im großen Stile aufwändig über ein zentrales Gerät zu sammeln kann die Vielzahl an bereits existierenden externen Geräten genutzt werden, um diese Daten dezentral zu sammeln und verarbeiten.
-Somit muss lediglich die Auswertung der Daten auf einem zentralen Server stattfinden, auf denen die einzelnen Geräte ihre Daten senden. 
+Seien es Smartphones, Laptops oder weitere IoT-Geräte, sie alle besitzen die Funktion die Umgebungsdaten mittels Sensoren zu sammeln und diese Daten über das Internet weiterzugeben.
+Mobile Crowd-Sensing beschreibt den Vorgang, ein großes System solcher mobilen Endgeräte aufzubauen, um Sensordaten im großen Maßstab zu sammeln und auswerten zu können \cite{MCS}.
+Die Vorteile des Crowd-Sensings liegen auf der Hand: Anstatt Daten im großen Stile aufwändig über ein zentrales Gerät zu sammeln kann die Vielzahl an bereits existierenden externen Geräten genutzt werden, um diese Daten dezentral zu sammeln und zu verarbeiten.
+Somit muss lediglich die Auswertung der Daten auf einem zentralen Server stattfinden, zu dem die einzelnen Geräte ihre Daten senden. 
 
-Bezüglich Crowd-Sensing existieren  bereits umfangreiche Arbeiten aus verschiedensten Anwendungsbereichen. 
+Bezüglich Crowd-Sensing existieren bereits umfangreiche Arbeiten aus verschiedensten Anwendungsbereichen. 
 So werden beispielsweise Smartphones verwendet, um die Luftverschmutzung in verschiedenen Stadtteilen von Großstädten oder in Gebäuden zu messen \cite{AirQuality}. 
-Die Standortbasierten Daten werden dann auf einen Server geladen, damit Nutzer die aktuelle Belastung in den Regionen (oder auch Räumen in Gebäuden) abfragen kann. Eine ähnliche Umsetzung gibt es hinsichtlich der Lärmbelästigung \cite{NoiseSense}. 
+Die Standortbasierten Daten werden dann auf einen Server geladen, damit Nutzer die aktuelle Belastung in den Regionen (oder auch Räumen in Gebäuden) abfragen können. 
+Eine ähnliche Umsetzung gibt es hinsichtlich der Lärmbelästigung \cite{NoiseSense}. 
 
-Im Verkehrssektor existieren ebenfalls eine Vielzahl von Lösungen, um mithilfe von Crowd Sensing Verkehrsdaten zu sammeln, analysieren und die Lage zu verbessern. 
-Saremi et. Al. \cite{TrafficRegulators} Benutzen unter anderem GPS Daten von Smartphones oder Fahrzeugen, um Informationen über die Existenz von Ampeln an Kreuzungen zu extrahieren. 
+Im Verkehrssektor existieren ebenfalls eine Vielzahl von Lösungen, um mithilfe von Crowd-Sensing Verkehrsdaten zu sammeln, analysieren und die Lage zu verbessern. 
+Saremi et al. \cite{TrafficRegulators} benutzen unter anderem GPS Daten von Smartphones oder Fahrzeugen, um Informationen über die Existenz von Ampeln an Kreuzungen zu extrahieren. 
 
-Anhand dieser Beispiele lassen sich auch die Probleme des Crowd-Sensings herauskristalisieren. Wie etwa wird die Integrität der gegebenen Daten sichergestellt?
+Anhand dieser Beispiele lassen sich auch die Probleme des Crowd-Sensings herauskristallisieren. 
+Wie etwa wird die Integrität der gegebenen Daten sichergestellt?
 Für das Beispiel der Luftverschmutzung könnte beispielsweise der Fall auftreten, dass ein Smartphone bewusst falsche Messdaten an den zentralen Server sendet, ohne dass dieser die Inkorrektheit der Daten feststellen kann.
 Die Corona Warn App stellt die Datenintegrität dadurch her, dass Nutzer einen vom Gesundheitsamt bereitgestellten Code eingeben müssen, damit man als Infizierter verifiziert ist \cite{CWA}.
-Ein weiteres Problem stellt die Privatheit der Daten dar. Werden beim Crowd-Sensing sensible Nutzerdaten, wie der Standort mitgeliefert, könnte damit unter Umständen eine Menge von Nutzerdaten auf einem zentralen Server gesammelt und missbraucht werden.
-Auch in diesem Fall bietet die Corona Warn App Schutzt, indem nur anonyme TEK's auf den zentralen Server geladen werden und sensiblere Daten, wie die Begegnungsdauer und Entfernung dezentral und verschlüsselt auf den einzelnen Smarphones vorliegen.\\
-\\
-\textit{BLE Crowd Sensing:}
-Auch im Bereich BLE existieren Crowd Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
+Ein weiteres Problem stellt die Privatheit der Daten dar. 
+Werden beim Crowd-Sensing sensible Nutzerdaten, wie der Standort mitgeliefert, könnte damit unter Umständen eine Menge von Nutzerdaten auf einem zentralen Server gesammelt und missbraucht werden.
+Auch in diesem Fall bietet die Corona Warn App Schutz, indem nur anonyme TEKs auf den CWA Server geladen werden und sensiblere Daten, wie die Begegnungsdauer und Entfernung dezentral und verschlüsselt auf den einzelnen Smarphones vorliegen.
+
+\subsection{BLE Crowd-Sensing:}
+Auch im Bereich BLE existieren Crowd-Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
 Tschuhiya et al. \cite{BLESensorDevices} beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
 Anstelle von Smartphones werden hier Arduinos verwendet, um verschiedene Sensordaten, wie Druck, Luftfeuchtigkeit, Lichtintensität usw. zu messen. 
 Diese Daten werden dann per BLE an die Smartphones weitergegeben, wo sie ausgewertet und dann auf einen Server hochgeladen wurden. 
 
-In \cite{CICN} werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking)  verwendet, um eine IoT Sensoren Map innerhalb geschlossener Gebäuden, wie etwa Shopping Malls, zu erstellen. 
+In \cite{CICN} werden Smartphones und vorinstallierte Raspberry Pies mit CICN (Community Information-Centric Networking) verwendet,
+um eine IoT Sensoren Map innerhalb geschlossener Gebäude, wie etwa Einkaufszentren, zu erstellen. 
 Die Raspberry Pies werden in den einzelnen Räumen vorinstalliert und messen Sensordaten, wie Temperatur oder Luftfeuchtigkeit. 
-Außerdem werden sie mit BLE Beacons versehen, damit Nutzer per Smartphone automatisch die Daten auswerten und eine Übersichtskarte des Gebäudes erstellen kann.  
+Außerdem werden sie mit BLE Beacons versehen, damit Nutzer per Smartphone automatisch die Daten auswerten und eine Übersichtskarte des Gebäudes erstellen können.
 
-Basalamah \cite{BLETags} beschäftigt sich mit Bluetooth Low Energy Tags zum Aufzeichnen von Bewegungsströmen größerer Menschenmassen. 
+Basalamah \cite{BLETags} beschäftigt sich mit Bluetooth Low Energy Tags zum Aufzeichnen von Bewegungsströmen größerer Menschenmassen.
 Die BLE Tags stoßen regelmäßig Signale aus, die sich mithilfe von Smartphones empfangen lassen. 
 Dadurch kann der Standort und Status der einzelnen Tags gezielt nachverfolgt werden. 
 Im Versuch wurden Pilger beim Haddsch (Pilgerfahrt nach Mekka) mit diesen BLE Tags ausgestattet und deren Bewegung mittels Smartphones, welche an bestimmten Orten als Aufzeichnungsmast agierten, nachverfolgt. 
@@ -188,46 +199,54 @@ Außerdem verwenden wir keine speziellen BLE Tags sondern die Smartphones selbst
 
 Ein Feature, das unserer Density-Map am nächsten kommt sind vermutlich die live Stoßzeiten des Unternehmens Google \cite{GoogleStosszeiten}.  
 In dessen Suchmaschine lässt sich zu fasst jeder öffentlichen Einrichtung, sowie Restaurants oder Einzelhandel Läden neben den Öffnungszeiten die aktuelle Besucherzahl anzeigen. 
-Zudem wird noch die Durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt mitgegeben. 
+Zudem wird noch die durchschnittliche Aufenthaltsdauer von Personen, sowie eine Abschätzung der Auslastung über den Tag verteilt, mitgegeben. 
 Die Besucherzahlen werden nicht als konkreter numerischer Wert angegeben, sondern mithilfe von Balkendiagrammen grafisch angezeigt, sodass man lediglich die Auslastung mit anderen Uhr-/Tageszeiten vergleichen kann, ohne den konkreten Wert zu kennen. 
 Das Live Stoßzeiten Feature wird jedoch nur als Diagramm für jede Einrichtung und nicht als Karte realisiert.
 Für die Umsetzung ihres Features benutzt Google voraussichtlich die personalisierten Nutzerdaten seiner User, wie beispielsweise den Standortverlauf der Google Maps Anwendung \cite{GoogleStandortverlauf}. 
-Auf deren Webseite gibt Google keine weiteren Informationen darüber Preis, lediglich wie das Feature funktioniert. 
+Auf deren Webseite gibt Google keine weiteren Informationen darüber preis, lediglich wie das Feature funktioniert. 
 
-Zusammenfassend lässt sich sagen, dass es eine Fülle von Arbeiten gibt, welche sich mit dem Thema Crowd Sensing beschäftigen. 
+Zusammenfassend lässt sich sagen, dass es eine Fülle von Arbeiten gibt, welche sich mit dem Thema Crowd-Sensing beschäftigen. 
 Die meisten verwenden jedoch personalisierte Daten der Nutzer, wie den Standort, um entsprechende Karten zu generieren. 
 Location-Privacy ist ein aktuelles Forschungsgebiet und es existieren eine Reihe von Lösungen, die dieses Problem behandeln \cite{Location}. 
 Die Corona Warn App hingegen verfolgt den Ansatz der kompletten Pseudonymisierung der Daten, bei dem der Nutzer zu jeder Zeit hinter einem zufällig generierten RPI verborgen ist. 
-Auch bei der Nutzung von BLE wurden sensible Daten gezielt mitgegeben, um konkrete Standorte nachzuverfolgen, anstatt die Anonymität des BLE features gezielt auszunutzen. 
-Das Erstellen einer Density-Map mittels anonymer Nutzerdaten und BLE scheint es nach unserem Wissen demnach nicht zu geben. 
+Auch bei der Nutzung von BLE wurden sensible Daten gezielt mitgegeben, um konkrete Standorte nachzuverfolgen, anstatt die Anonymität des BLE Features gezielt auszunutzen. 
+Das Erstellen einer Density-Map mittels anonymer Nutzerdaten und BLE scheint es nach unserem Wissensstand demnach nicht zu geben. 
 
 \section{Lösungsvorschläge} \label{Nebenfeatures}
 In diesem Abschnitt werden die Erweiterungen der Corona Warn App präsentiert, die im Verlauf der Forschungsarbeit von uns entwickelt und analysiert wurden. 
-Ausgenommen sind die beiden Hauptfeatures \textbf{Erweiterte Risikoberechnung} und \textbf{Density-Map}, welche separat in Abschitt \ref{} und \ref{} beschrieben sind.
+Ausgenommen sind die beiden Hauptfeatures \textbf{erweiterte Risikoberechnung} und \textbf{Density-Map}, welche separat in Abschitt \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} beschrieben sind.
 Da das Thema Corona derzeit hochaktuell und präsent ist, wurden einige der vorgestellten Erweiterungen im Verlauf unserer Arbeit von anderen Parteien bereits in ähnlicher Form umgesetzt.
-Auch die Corona Warn App befindet sich kontinuierlich en Entwicklung wodurch die von uns hier vorgeschlagenen Features in der akutellen Version der App bereits vorhanden sind oder in naher Zukunft erscheinen sollen. 
+Auch die Corona Warn App befindet sich kontinuierlich in Entwicklung, wodurch die von uns hier vorgeschlagenen Features in der akutellen Version der App bereits vorhanden sind oder in naher Zukunft erscheinen sollen. 
 
 \subsection{Bewertungskriterien}
+\label{Bewertungskriterien}
 
-Um einen möglichst einheitlichen Vergleich der Features zu garantieren, haben wir sechs Bereiche festgelegt, in denen die Features beschrieben werden.\\
+Um einen möglichst einheitlichen Vergleich der Features zu garantieren, haben wir sechs Bereiche festgelegt, in denen die Features beschrieben werden.
 Diese Bereiche sind wie folgt aufgeteilt:\\
 \textit{Privatsphäre:} Wie stark greift das Feature in die Privatsphäre ein?\\
 \textit{Nutzen:} Welchen effektiven Nutzen bringt das Feature und lohnt sich der Aufwand für den effektiven Nutzen?\\
 \textit{Umsetzbarkeit:} Wie realistisch ist es, dieses Feature zu implementieren in Anbetracht von Datenschutz, Programmierung oder anderen Hindernissen?\\
-\textit{Akzeptanz:} Da ein möglichst hohe Nutzung der App in der Bevölkerung erzielt werden soll, ist es wichtig, dass das Feature entweder einen Anreiz zur Nutzung schafft oder zumindest diesen nicht schwächt. Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer auslöst.\\
+\textit{Akzeptanz:} Da eine möglichst hohe Nutzung der App in der Bevölkerung erzielt werden soll, ist es wichtig, dass das Feature entweder einen Anreiz zur Nutzung schafft oder zumindest diesen nicht schwächt. 
+Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer auslöst.\\
 \textit{Sicherheit:} Wie gut lässt sich das implementierte Feature vor Missbrauch und Angriffen schützen?\\
 \textit{Daten:} Welche Daten werden mindestens benötigt, dass das Feature funktioniert?\\
 
 
 \subsection{Übersicht aller Erweiterungen}
 
-Im Folgenden werden alle Erweiterungen, welche uns zu Beginn der Forschungsarbeit als tiefergehendes Feature möglich erschienen, aufgezählt und nach unseren in Abschnitt III.A genannten Kriterien beschrieben.\\
+Im Folgenden werden alle Erweiterungen, welche uns zu Beginn der Forschungsarbeit als tiefergehendes Feature möglich erschienen, aufgezählt und nach unseren in Abschnitt \ref{Bewertungskriterien} genannten Kriterien beschrieben.\\
 
-\textit{Impfpass:} \\ 
-In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digiatalen Impfpass in der Corona-Warn-App.\\
-Größter Vorteil eines in der App integrierten Nachweises wäre die Digitalisierung des Verwaltungswesens und dadurch eine Vereinfachung des Organisationsaufwands.\\ Anstatt mehrere Unterlagen mit sich herumzutragen, hat man diese stattdessen gesammelt in einer App.\\
-Digitalisierung ist zudem ein positiv konnotierter Begriff, welcher einen Anreiz für die Bevölkerung schafft, die App zu nutzen. Dies ist immer ein relevanter Nutzen, da es das Ziel ist, die Corona-Warn-App von 100\% der Bevölkerung nutzen zu lassen. \\
-Implementiert man zusätzlich dazu eine Art Krankenakte, in der man Merkmale wie Gewicht und Vorerkrankungen einträgt, liese sich dadurch die Impfpriorisierung und die Reihenfolge in der Bevölkerung besser organisieren.\\
+\subsubsection{Impfpass}
+In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. 
+Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digitalen Impfpass in der Corona-Warn-App.
+
+Größter Vorteil eines in der App integrierten Nachweises wäre die Digitalisierung des Verwaltungswesens und dadurch eine Vereinfachung des Organisationsaufwands. 
+Anstatt mehrere Unterlagen mit sich herumzutragen, hat man diese stattdessen gesammelt in einer App.
+
+Digitalisierung ist zudem ein positiv konnotierter Begriff, welcher einen Anreiz für die Bevölkerung schafft, die App zu nutzen. 
+Dies ist von großer Relevanz, da es das Ziel ist, dass die Corona-Warn-App von 100\% der Bevölkerung genutzt wird.
+
+Implementiert man zusätzlich dazu eine Art Krankenakte, in der man Merkmale wie Gewicht und Vorerkrankungen einträgt, ließe sich dadurch die Impfpriorisierung und die Reihenfolge in der Bevölkerung besser organisieren.
 Benötigte Daten für einen generellen Impfpass wären:\\
 - Name \\
 - Krankenkasse\\
@@ -237,51 +256,60 @@ Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
 - Vorerkrankungen \\
 - Gewicht \\
 - Beruf/Arbeitsumfeld\\
-Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.\\
-Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
-Somit wird Richtigkeit der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
+Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.
+Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.
+Somit wird die Integrität der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
 
-\textit{Gamification:}\\
-Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.\\ 
-Gamification der App kann es in verschiedenen Varianten geben. Zum Beispiel lassen sich simple Spielmechaniken wie persönliche Highscores einbauen, welche man mit anderen Nutzern der App vergleichen kann.  Dafür bieten sich Statistiken an, die sich bereits aus der Nutzung der App erstellen lassen. Dazu zählen die getroffenen Personen an einem Tag, die durchschnittliche Dauer einer Begegnung oder der ermittelte Risikofaktor. Ziel der Highscores wäre es dann, diese Werte so möglich wie gering zu halten oder im Vergleich zu anderen Nutzern bessere Werte zu haben.\\
-Vorstellbar sind auch daraus resultierende optische Veränderungen der App durch neue Farben oder ein anderes Design.\\
-Dieses Feature richtet sich vermutlich an eine jüngere Zielgruppe, die mit solchen Mechaniken meist mehr vertraut ist als ältere Generationen.\\
-Es könnte sogar sein, dass dieses Feature als Verharmlosung der ernsten Thematik interpretiert wird, was in einem gegensätzlichen Effekt zur eigentlichen Intention resultieren würde.\\
-Eine Alternative zu Highscores und anderen virtuellen Errungenschaften wäre eine Art Belohnung in der Realität, zum Beispiel durch eine in der App durchgeführte Lotterie.\\
-Dies ist vermutlich attraktiver für alle Generationen, jedoch schwieriger umzusetzen, da hier Betrug oder mehrmalige Teilnahme verhindert werden muss. Vorstellbar wäre auch eine Verbindung mit den ermittelten Statistiken, sodass Leute mit guten Werten eine höhere Gewinnchance haben.
+\subsubsection{Gamification}
+Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.
+
+Gamification der App kann es in verschiedenen Varianten geben. 
+Zum Beispiel lassen sich einfache Spielmechaniken wie persönliche Highscores einbauen, welche man mit anderen Nutzern der App vergleichen kann. 
+Dafür bieten sich Statistiken an, die sich bereits aus der Nutzung der App erstellen lassen. 
+Dazu zählen die getroffenen Personen an einem Tag, die durchschnittliche Dauer einer Begegnung oder der ermittelte Risikofaktor. 
+Ziel der Highscores wäre es dann, diese Werte so möglich wie gering zu halten oder im Vergleich zu anderen Nutzern bessere Werte zu haben.
+
+Vorstellbar sind auch daraus resultierende optische Veränderungen der App durch neue Farben oder ein anderes Design.
+
+Dieses Feature richtet sich vermutlich an eine jüngere Zielgruppe, die mit solchen Mechaniken meist mehr vertraut ist als ältere Generationen.
+Es könnte sogar sein, dass dieses Feature als Verharmlosung der ernsten Thematik interpretiert wird, was in einem gegensätzlichen Effekt zur eigentlichen Intention resultieren würde.
+
+Eine Alternative zu Highscores und anderen virtuellen Errungenschaften wäre eine Art Belohnung in der Realität, zum Beispiel durch eine in der App durchgeführte Lotterie.
+Dies ist vermutlich attraktiver für alle Generationen, jedoch schwieriger umzusetzen, da hier Betrug oder mehrmalige Teilnahme verhindert werden muss. 
+Vorstellbar wäre auch eine Verbindung mit den ermittelten Statistiken, sodass Leute mit guten Werten eine höhere Gewinnchance haben.
 
 Eine Umsetzung dieses Features wurde im Laufe dieser Forschungsarbeit bereits in den USA, als Lotterie im Rahmen der Impfkampagne eingeführt \cite{Lotto}.
 Jeder Geimpfte hat dabei eine Chance den Hauptgewinn von einer Millionen US-Dollar zu gewinnen.\\
 
-\textit{Ortsbezogene Informationen:}\\
+\subsubsection{Ortsbezogene Informationen}
 Ein Problem das im Verlauf der Pandemie auftritt ist die undurchsichtige und inkonsistente Informationsgebung 
 hinsichtich der beschlossenen Maßnahmen und Einschränkungen an die sich die Bevölkerung richten muss. 
 Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Budnesländern, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
-Selbst bei der Bundesweiten Notbremse bezogen sich die Regelungen auf die Inzidenz der einzelnen Landkreise. \cite{Notbremse}  
+Selbst bei der Bundesweiten Notbremse bezogen sich die Regelungen auf die Inzidenz der einzelnen Landkreise \cite{Notbremse}.
 Dies führte zu einer großen Verwirrung welche derzeitigen Gesetze und Verordnungen gelten, zumal diese teilweise im Tagesrythmus geändert wurden.
 
 Auf Grund dessen wäre ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
 Dabei können die Nutzer unabhängig von ihrem Standort auf die Daten eines jeweiligen Landkreises zugreifen,
 um auf einfachem Weg die offiziellen Informationen zu erhalten. 
 
-Dieses Feature existiert bereits in inoffizieller Ausführung, als \glqq Darf ich das? \grqq{} -App von der InTradeSys GmbH. \cite{DarfIchDas}\\
+Dieses Feature existiert bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
 
-\textit{Integration von Applikationen:}\\
+\subsubsection{Integration von Applikationen}
 Es existieren viele verschiedene Plattformen, die fast täglich neue Nachrichten zur aktuellen Corona-Situation herausgeben \cite{RKI}, \cite{BMG}, Daten zur Eindämmung der Pandemie sammeln \cite{RKIDatenspende}, \cite{Gedaechtnistest} oder Neuigkeiten zu Forschungsarbeiten mit Bezug zu Corona veröffentlichen \cite{GesundheitsforschungNews}.
 In diesem Feature werden Nachrichten, Datensammlungen, Umfragen und Forschungsarbeiten als \textit{Informationen} zusammengefasst.
 Die CWA ist der perfekte Ort all diese Informationen der Plattformen zu vereinen. 
 Da sie von der Bundesregierung in Auftrag gegeben wurde, besitzt sie ein hohes maß an Integrität und Datenschutz steht im Vordergrund.
 
-Es ist Ziel dieses Features die CWA so zu erweitern, dass sie Anlaufstelle für jede Person wird, die relevante und qualitativ hochwertige Informationen zu Corona sucht.
+Es ist Ziel dieses Features die CWA so zu erweitern, dass sie Anlaufstelle für jede Person wird, die aktuelle, relevante und qualitativ hochwertige Informationen zu Corona sucht.
 Dabei steht im Vordergrund, dass die Informationen geprüft sein sollen, um die Verbeitung von falschen Informationen zu vermeiden. 
 Dazu dürfen nur vertrauenswürdige Quellen verwendet werden, wie zum Beispiel die Bundesregierung, das Robert-Koch-Institut oder Forschungsinstitute. 
 Die CWA soll so erweitert werden, dass die Informationen zwar weiterhin auf den eigenen Webseiten der Herausgeber veröffentlicht werden, jedoch zusätzlich in die CWA eingebunden werden.
 
 Durch das Zusammenführen verschiedenster Informationen wird eine sehr große Reichweite erzeugt, die gerade für die Datensammlung und Forschung große Relevanz hat.
-Desweiteren würde die CWA durch die zusätzlichen Informationen attraktiver, was einen positiven Effekt auf die Kontaktverfolgung hätte.
+Des weiteren würde die CWA durch die zusätzlichen Informationen attraktiver, was einen positiven Effekt auf die Kontaktverfolgung hätte.
 
 In Version 1.13 der CWA wurde bereits eine freiwillige Datenspende in Zusammenarbeit mit dem Robert-Koch-Institut eingefügt \cite{freiwilligeDatenspende}. 
-\section{Erweiterte Risikoberechnung} \label{Erweiterte Risikoberechnung}
+\section{Erweiterte Risikoberechnung} \label{Erweiterte_Risikoberechnung}
 
 %Aktuelle Risikoberechnung
 Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an; 
@@ -328,7 +356,7 @@ Bei näherer Betrachtung der Risikoberechnung der CWA sind uns mehrere Kritikpun
 Zum einen fließen nur Begegnungen mit CWA-Positive Personen in diese mit ein.
 Deshalb sollen alle Personengruppen miteinbezogen werden.
 Zum anderen wird die Dunkelziffer nicht berücksichtigt. Diese soll im Folgenden durch die Begegnungsanzahl betrachtet werden.
-Desweiteren soll die geringe Nutzerzahl der CWA zum Hochkorrigieren der Begegnungsanzahl genutzt werden.
+Des weiteren soll die geringe Nutzerzahl der CWA zum Hochkorrigieren der Begegnungsanzahl genutzt werden.
 Als letzten Kritikpunkt wird die Granulierung und Transparenz der Risikoberechnung aufgezeigt. 
 Aus diesem Grund soll der Risikowert in vier unterschiedliche Risikostufen (grün, gelb, orange, rot) aufgeteilt werden, dessen Zustandekommen mit angezeigt wird.
 
@@ -346,7 +374,7 @@ Diese Features werden in Abschnitt 1 bis 3 vorgestellt.
 Im Abschnitt 4 werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
 Im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
 \\
-\subsubsection{Familienfeature}
+\subsection{Familienfeature}
 \label{Familienfeature}
 Im Folgenden wird das Familienfeature vorgestellt, welches später für die erweiterte Risikoberechnung benötigt wird.
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
@@ -411,7 +439,7 @@ Die verschlüsselten TEKs können dann mit dem private encryption key der Gruppe
 Auch hier geschieht dies iterativ für jede lokale Gruppe.\\
 
 
-\subsubsection{Feature PKServer}
+\subsection{Feature PKServer}
 
 Das Feature PKServer ist Voraussetzung für die in Abschnitt (Risikoberechnung) eingeführte erweiterte Risikoberechnung.
 In der aktuellen CWA werden nur Begegnungen mit CWA-Positive Personen in der Risikoberechnung betrachtet.
@@ -445,7 +473,8 @@ falls die erste Begegnung, die bei einer Person zu einem Risikowert $\geq$ 13 ge
 Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines Risikowertes $\geq$ 13, überprüft wird.
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
 
-\subsubsection{Feature TRL Update}
+\subsection{Feature TRL Update}
+\label{Feature TRL Update}
 In diesem Feature wird das volle Potenzial des TRLs, der in Abschnitt (TRL) genauer beschrieben wurde, genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
 da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. 
 Die Implementierung für das TRL existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht.
@@ -471,10 +500,9 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und des Rückme
 \end{itemize} 
 	
 Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden,
- damit Nutzer besser gewarnt werden können.\\
-\subsubsection{Risikoberechnung}
+ damit Nutzer besser gewarnt werden können.
 
-
+\subsection{Risikoberechnung}
 In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der Risikowert zusammensetzt.
 
 \begin{figure*}[h]
@@ -487,7 +515,8 @@ In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\t
 In Abschnitt (Probleme und Lösungsansätze) werden Probleme und Lösungsansätze der aktuellen Risikoberechnung genauer erläutert.
 Danach werden in Abschnitt (sfndao- ABC) die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
 
-\paragraph{Probleme und Lösungsansätze}
+\subsubsection{Probleme und Lösungsansätze}
+\label{Probleme_und_Lösungsansätze}
 
 Das Hauptproblem der Risikoberechnung der aktuellen CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
 Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die erweiterte Risikoberechnung beachtet:
@@ -533,7 +562,7 @@ Ein transparenter Risikowert macht es für Nutzer leichter nachvollziehbar, wie 
 Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
 
-\paragraph{R\textsubscript{CWA-Positive}}
+\subsubsection{R\textsubscript{CWA-Positive}}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
@@ -594,7 +623,8 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 \centerline{\text{ }}
 \centerline{ \text{R\textsubscript{CWA-Positive}} $ := \sum t_n$}
 \centerline{\text{ }}
-\paragraph{R\textsubscript{CWA-Likely-Positive}}
+
+\subsubsection{R\textsubscript{CWA-Likely-Positive}}
 Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
 Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature (Abschnitt Familienfeature) nicht mit einbezogen, 
@@ -675,8 +705,9 @@ Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden 
 ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen roten Bildschirm hervorrufen kann, 
 die wiederum bei weiteren Personen rote Bildschirme hervorrufen können und so weiter. 
 Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch rote Bildschirme bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
-\paragraph{R\textsubscript{CWA-Likely-Negative}}
+jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.
+
+\subsubsection{R\textsubscript{CWA-Likely-Negative}}
 Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung 3, grüner Kasten) berechnet alle Begegnungen mit CWA-Likely-Negative und Not-CWA-User Personen mit ein.
 Denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
@@ -771,7 +802,7 @@ mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
 
 Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
 \\
-\subsubsection{Bewertung}
+\subsection{Bewertung}
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
@@ -798,7 +829,8 @@ Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in 
 Durch die Installation von 2 weiteren Server, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
 werden die Kosten für diese in einen ähnlichen Umfang haben. 
 \\
-\subsection{Density-Map}
+\section{Density-Map}
+\label{Density_Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
 In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
 Im Sinne der erweiterten Corona Warn App möchten wir dieses Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstellen. 
@@ -807,7 +839,7 @@ Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten.
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
 Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE-Features der Corona Warn App vor. \\
-\subsubsection{Lösungsansatz} 
+\subsection{Lösungsansatz} 
 \text{ }\\
 Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken/verletzen. 
 Ein naiver Ansatz wäre beispielsweise, dass jedes Smartphone seine gesammelte Begegnungsanzahl auf einen zentralen Server hochlädt und dieser diese Daten auswertet. 
@@ -971,7 +1003,7 @@ Das letzte zentrale Problem, was nicht nur unsere Lösungsansätze sondern auch 
 Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%). \cite{Downloads}
 Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
 
-\subsubsection{Simulation}
+\subsection{Simulation}
 
 Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
 Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
@@ -1060,7 +1092,7 @@ Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zude
 \textit{Schlussfolgerung:}\\
 Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die zweite Formel besser als die Formel der ersten Simulation für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
 
-\subsubsection{Bewertung}
+\subsection{Bewertung}
 Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.\\
 Die Hauptidee hinter der Implementierung dieser Erweiterung innerhalb der Corona Warn App ist die, Orte großer Menschenmassen bewusst zu meiden und damit die Ausbreitung des Viruses einzudämmen.\\
 Durch einen vorausschauenderen Lebensalltag oder Kontaktbeschränkungen seitens der Regierung kann dieser Effekt auch erreicht werden.\\
@@ -1093,7 +1125,7 @@ Beim infrastrukturlosen Ansatz würde dieser Punkt jedoch wegfallen.\\
 Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona Warn App, sowohl im Hinblick auf die Eindämmung des Virus, als auch für eine unabhängige Nutzung außerhalb der Pandemie, dar.\\
 Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
 
-\section{Zusammenfassung und Ausblick} \label{conclusion}
+\section{Zusammenfassung und Ausblick} \label{Conclusion}
 
 \section*{Danksagung}
 
@@ -1103,6 +1135,7 @@ Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den 
 \bibitem{CWA} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/WarnApp/Warn\_App.html (09.06.2021)
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
 https://github.com/midudev/covid-19-spread-simulator
+\bibitem{DP-3T} C. Troncoso et al., "Decentralized Privacy-Preserving Proximity Tracing" \\https://github.com/DP-3T/documents/blob/master/DP3T\%20White\%20Paper.pdf (10.06.2021)
 \bibitem{MCS} R. K. Ganti, F. Ye and H. Lei, "Mobile crowdsensing: current state and future challenges," in IEEE Communications Magazine, vol. 49, no. 11, pp. 32-39, November 2011, doi: 10.1109/MCOM.2011.6069707.
 \bibitem{AirQuality} J. Dutta, F. Gazi, S. Roy and C. Chowdhury, "AirSense: Opportunistic crowd-sensing based air quality monitoring system for smart city," 2016 IEEE SENSORS, 2016, pp. 1-3, doi: 10.1109/ICSENS.2016.7808730.
 \bibitem{NoiseSense} Z. Qin and Y. Zhu, "NoiseSense: A Crowd Sensing System for Urban Noise Mapping Service," 2016 IEEE 22nd International Conference on Parallel and Distributed Systems (ICPADS), 2016, pp. 80-87, doi: 10.1109/ICPADS.2016.0020.
