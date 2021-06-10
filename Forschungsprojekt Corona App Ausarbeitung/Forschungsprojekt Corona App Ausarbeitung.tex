@@ -774,7 +774,7 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 \centerline{\text{ }}
 
 Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage betrachtet.
-Denn obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
+Obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
 ist es bei einer hohen Anzahl an Begegnungen wahrscheinlicher infiziert zu werden, als bei einer niedrigen, denn in der Not-CWA-User Gruppe gibt es viele Personen, die infektiös sind. 
 Deswegen wird hierfür die Personengruppe Likely-Negative benötigt. 
 
@@ -787,7 +787,7 @@ Für dieses Risiko wird hauptsächlich mit einer Positiv-Begegnungs-Wahrscheinli
 da man mit dieser die Gruppen Not-CWA-Positive und Hidden-Positive mit einfließen lassen kann.
 Dabei wird das Übertragungspotenzial nicht wie bei den anderen Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive} berechnet, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit einer CWA-Likely-Negative Person zu gering ist. 
-Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird trotzdem genutzt,
+Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird genutzt,
 um den Einfluss der Gruppen Not-CWA-Positive und Hidden-Positive zu berechnen und wird unter anderem durch die Dunkelziffer und die AppNutzung bestimmt.
 
 Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att unter 73 Dezibel ist,
@@ -804,13 +804,13 @@ Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit zeitl
 Für diesen Wert wird 14 Minuten geschätzt, damit Verbindungsfehler keinen großen Einfluss auf die Begegnungsanzahl haben.
 Dabei werden zwar Begegnungen zwischen 14 und 15 Minuten auch herausgefiltert, 
 jedoch werden Begegnungen mit einer Begegnungesdauer > 30 Minuten meist als zwei Begegnungen aufgezeichnet,
-da nur eine der drei aufgezeichneten Begegnungen eine dauer von genau 14-15Minuten hat.
+da nur eine der drei aufgezeichneten Begegnungen eine Dauer von genau 14 bis \SI{15}{Minuten} hat.
 Die Anzahl der Begegnungen gleicht sich damit aus.
-Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt.
+Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt, deren Distanz kleiner als \SI{73}{dB} ist.
 Dafür wird die Funktion \textit{t(x)} verwendet, die für geltendes x die Begegnungsdauer einer Begegnung bestimmt.
 
 \centerline{\text{ }}
-\text{$if(t(att<\SI{73}{dB})) \le lowerBound$\{}
+\text{$if(t(att<\SI{73}{dB})) \geq lowerBound$\{}
 
 \text{\&\&$t(att > \SI{0}{dB}) < upperBound)$}
 
@@ -820,11 +820,15 @@ Dafür wird die Funktion \textit{t(x)} verwendet, die für geltendes x die Begeg
 
 \centerline{\text{ }}
 
-Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl, man zu einer hohen Wahrscheinlichkeit eine infizierte Person getroffen hat,
-wird zuerst die aktuelle Anzahl Infizierter ausgerechnet, 
-um damit die Positiv-Begegnungs-Wahrscheinlichkeit zu berechnen. 
-Die aktuelle Anzahl positiv Getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu berechnen. 
-Davon wird \textit{currentCWAPositive} subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl, man zu einer hohen Wahrscheinlichkeit infiziert wird,
+wird zuerst die aktuelle Anzahl Infizierter ausgerechnet, um damit die Positiv-Begegnungs-Wahrscheinlichkeit zu berechnen.
+Bei der Positiv-Begegnungs-Wahrscheinlichkeit handelt es sich um die Wahrscheinlichkeit, wie wahrscheinlich eine Begegnunge infiziert ist.
+
+Im Folgenden wird beschrieben wie \textit{PersonIsInfected} zusammengesetz ist.
+PersonIsInfected, beschreibt die Wahrscheinlichkeit, dass eine Person infiziert ist. Dafür wird die Anzahl Infizierter durch die gesamt Bevölkerung geteilt.
+Die aktuelle Anzahl positiv Getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu erhalten. 
+Davon wird \textit{currentCWAPositive} subtrahiert, da das Risiko der CWA-Positive Gruppe bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+Es werden somit nur noch die postiv Getesteten mit einberechnet, die kein Testergebnis in die CWA eingetragen haben, denn
 CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in den letzten 14 Tagen in die CWA eingetragen hat.
 
 \centerline{\text{ }}
@@ -832,33 +836,32 @@ CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in
 \centerline{$\frac{((\text{currentPositiveTested} \cdot \text{Dunkelziffer}) - \text{currentCWAPositive}}{\text{Population}}$}
 \centerline{\text{ }}
 
-R\textsubscript{CWA-Likely-Negative} setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit \textit{PersonIsInfected} zusammen und wird auf 13 beschränkt, 
-da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt und da die Person gewarnt werden soll, allerdings nicht als hoch Infektiös gilt. Dabei wird 
-Dabei wird die Anzahl Contacts mit der AppUsage nach oben korrigiert, um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
-Aktuell beträgt die AppUsage ca. $1/3$ \cite{Downloads}, somit werden die Contacts um das Dreifache erhöht. 
+Aktuell beträgt die AppUsage ca. $frac{1}{3}$ \cite{Downloads}, was dazu fürt, dass nur $frac{1}{3}$ der Begegnungen aufgezeichnet werden.
+Die Anzahl aufgezeichneter Begegnungen muss somit mit dem Faktor Drei nach oben korrigiert werden, 
+um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
 
 \centerline{\text{ }}
 \centerline{$\text{CorrectContacts} := \frac{Contacts}{AppUsage}$}
 \centerline{\text{ }}
 
-Hier wird mit einem Beschränkten Wachstum gearbeitet, da von den Personengruppen die in das Risiko R\textsubscript{CWA-Likely-Positive} einfließen, ein geringeres Risiko ausgeht.
+Anschließend wird mit einem Beschränkten Wachstum gearbeitet, da von den Personengruppen die in das Risiko R\textsubscript{CWA-Likely-Positive} einfließen, 
+ein geringeres Risiko ausgeht.
 
 \centerline{\text{ }}
 \centerline{\text{$ \text{BeschränktesWachstum(x)} := S - S \cdot p^x  = (1-p^x) \cdot S$}}
 \centerline{\text{ }}
 
-Für die Schranke S wird der Wert 13 wie oben begründet verwendet.
-Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso höher die Infektionswahrscheinlichkeit ist, 
-desto geringer ist die Gegenwahrscheinlichkeit von PersonIsInfected und desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13. 
+Für die Schranke S wird der Wert 13 verwendet, da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt 
+Außerdem soll eine Person mit vielen Begegnungen zwar gewarnt werden, allerdings nicht als hoch Infektiös gelten.
+Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso mehr Personen man mit einer 
 
-
+denn umso höher die Infektionswahrscheinlichkeit ist, 
+desto geringer ist die Gegenwahrscheinlichkeit und desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13 sein. 
 
 \centerline{\text{ }}
 \centerline{\text{R\textsubscript{CWA-Likely-Negative}$=$}}
 \centerline{\text{$(1 - ( 1-\text{PersonIsInfected} )^\text{CorrectContacts}) \cdot 13$}}
 \centerline{\text{ }}
-
-
 
 \subsection{Diskussion}\label{Bewertung_Risikoberechnung}
 
