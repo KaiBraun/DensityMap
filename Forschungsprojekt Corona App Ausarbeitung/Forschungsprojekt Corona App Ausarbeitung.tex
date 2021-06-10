@@ -314,7 +314,7 @@ In Version 1.13 der CWA wurde bereits eine freiwillige Datenspende in Zusammenar
 \section{Erweiterte Risikoberechnung} \label{Erweiterte_Risikoberechnung}
 
 %Aktuelle Risikoberechnung
-Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an; 
+Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an: 
 das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
 Generell wird angenommen, dass, wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
 Um dieses zu berechnen wird zum einen das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
@@ -327,12 +327,12 @@ Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterl
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
-%\begin{figure*}[h]
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
-%	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung}}
-%	\label{Risikoberechnung_Abbildung}
-%\end{figure*}
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
+	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung}}
+	\label{Risikoberechnung_Abbildung}
+\end{figure*}
 
 %Definitionen
 Mit der Risikoberechnung wird das Übertragungspotenzial und die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnungen ermittelt,
@@ -810,9 +810,9 @@ Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gez
 Dafür wird die Funktion \textit{t(x)} verwendet, die für geltendes x die Begegnungsdauer einer Begegnung bestimmt.
 
 \centerline{\text{ }}
-\text{$if(t(att<\SI{73}{dB})) \geq lowerBound$\{}
+\text{$if(t(att<\SI{73}{dB})) \geq lowerBound$}
 
-\text{\&\&$t(att > \SI{0}{dB}) < upperBound)$}
+\text{\&\&$t(att > \SI{0}{dB}) < upperBound)$\{}
 
 \text{$Contacts++$}
 
@@ -836,8 +836,8 @@ CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in
 \centerline{$\frac{((\text{currentPositiveTested} \cdot \text{Dunkelziffer}) - \text{currentCWAPositive}}{\text{Population}}$}
 \centerline{\text{ }}
 
-Aktuell beträgt die AppUsage ca. $frac{1}{3}$ \cite{Downloads}, was dazu fürt, dass nur $frac{1}{3}$ der Begegnungen aufgezeichnet werden.
-Die Anzahl aufgezeichneter Begegnungen muss somit mit dem Faktor Drei nach oben korrigiert werden, 
+Aktuell beträgt die AppUsage ca. $\frac{1}{3}$ \cite{Downloads}, was dazu fürt, dass nur $\frac{1}{3}$ der Begegnungen aufgezeichnet werden.
+Die Anzahl aufgezeichneter Begegnungen muss somit um den Faktor drei nach oben korrigiert werden, 
 um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
 
 \centerline{\text{ }}
@@ -851,12 +851,18 @@ ein geringeres Risiko ausgeht.
 \centerline{\text{$ \text{BeschränktesWachstum(x)} := S - S \cdot p^x  = (1-p^x) \cdot S$}}
 \centerline{\text{ }}
 
-Für die Schranke S wird der Wert 13 verwendet, da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt 
-Außerdem soll eine Person mit vielen Begegnungen zwar gewarnt werden, allerdings nicht als hoch Infektiös gelten.
-Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso mehr Personen man mit einer 
+Für die Schranke S wird der Wert 13 verwendet, da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt. 
+Außerdem soll eine Person mit vielen Begegnungen zwar gewarnt werden, allerdings nicht als hoch infektiös gelten.
 
-denn umso höher die Infektionswahrscheinlichkeit ist, 
-desto geringer ist die Gegenwahrscheinlichkeit und desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13 sein. 
+Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso mehr Personen man trifft, 
+desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13 sein. 
+
+Dabei wird für x CorrectContacts eingesetzt. 
+Damit ergibt sich aus $p^x$ die Wahrscheinlichkeit, nur nicht infizierte Personen getroffen zu haben. 
+Wenn die Wahrscheinlichkeit $p^x$ gegen Null geht und es somit sehr wahrscheinlich wird mindestens eine infizierte Person getroffen zu haben,
+geht der Wert für R\textsubscript{CWA-Likely-Negative} gegen die Schranke 13.
+
+Im Anschluss wird die zusammengesetzte Funktion, um R\textsubscript{CWA-Likely-Negative} zu berechnen, dargestellt.
 
 \centerline{\text{ }}
 \centerline{\text{R\textsubscript{CWA-Likely-Negative}$=$}}
@@ -868,7 +874,8 @@ desto geringer ist die Gegenwahrscheinlichkeit und desto näher soll R\textsubsc
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
 Dabei wird auf die Privatsphäre der Nutzer geachtet, indem freiwillige, anonymisierte Datensammlungen verwendet werden.
-Da die Datenspende freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Da die Datenspende des Features PKServer und des Features TRL Update freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Ohne die Datenspende ist es kaum möglich eine genaue Funktion für den Riskikowert R\textsubscript{CWA-Likely-Positive} zu bestimmen. 
 Zudem ist die Berechnung des Risikos R\textsubscript{CWA-Positive}, welches aus der aktuellen CWA übernommen wurde,
 in der erweiterten Risikoberechnung mit eingebunden, wodurch nur ein höherer Risikowert zusammen kommen kann
 und somit Personen höchstens früher gewarnt werden. 
@@ -882,11 +889,14 @@ auf die im Rahmen dieser Forschungsarbeit nicht weiter eingegangen wird.
 Im Vergleich dazu wird bei den im Abschnitt \ref{Feature TRL Update} vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
 der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
 
-Obwohl es 2 weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
+Obwohl es zwei weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
 Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
 Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
 
-Durch die Installation von 2 weiteren Server, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
+Da auch hier auf frewilliger Basis nur pseudonymisierte Identifier geteilt und auf die Server hochgeladen werden, wird die Privatsphäre der Nutzer nicht weiter, als in der aktuellen CWA, eingeschränkt.
+Außerdem werden Privatsphäre kritische Daten durch Kryptographie im Familienfeature vor äußeren Eingriffen geschützt und werden somit nur mit der eigenen Gruppe geteilt.
+
+Durch die Installation von zwei weiteren Servern, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
 werden die Kosten für diese einen ähnlichen Umfang haben. 
 
 \section{Density-Map}
@@ -1097,12 +1107,12 @@ Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten We
 Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
 Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
 
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=0.45\textwidth]{"Simulation"}
-%	\caption{Darstellung der durchgeführten Simulation}
-%	\label{sim}
-%\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Simulation"}
+	\caption{Darstellung der durchgeführten Simulation}
+	\label{sim}
+\end{figure}
 
 \textit{Ergebnisse:}
 
