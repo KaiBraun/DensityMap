@@ -60,23 +60,26 @@ TODO
 Corona, Corona-Warn-App, Density Map, Risikoberechnung
 \end{IEEEkeywords}
 
-\section{Einleitung}
-\label{Einleitung}
-Seit nun mehr als eineinhalb Jahren breitet sich das Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nie erlebte Ausnahmezustände.
-Laut derzeitigem Stand sind es etwa 173 Millionen Infizierte und 3,7 Millionen Todesopfer \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höhere Werte vermuten lässt. 
-In Deutschland wurden dem Robert-Koch-Institut insgesamt 3.7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
-Insbesondere stellten dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeintraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
+\section{Einleitung} \label{Einleitung}
+Seit nun mehr als eineinhalb Jahren breitet sich das Corona Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nicht erlebte Ausnahmezustände.
+Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Viruses gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermuten lässt. 
+In Deutschland wurdem dem Robert Koch Institut insgesamt 3.7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
+Insbesondere stellen dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeintraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
 
 Um die Ausbreitung des Viruses weitmöglichst einzudämmen wurden im Land zahlreiche Vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
 Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen.
 Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudämmen. 
 Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen, nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
-So war man beispielsweise verpflichtet in Restaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man, im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung, benachrichtigt werden kann.
+So ist man beispielsweise verpflichtet in Resaurant oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
 Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von 2 Wochen merken und wieder ins Gedächtnis rufen muss.
-Aus diesem Grund wurde von der Bundesrepublik Deutschland die Entwicklung einer App in Auftrag gegeben, die diese Kontaktverfolgung automatisieren sollte: Die \textit{Corona Warn App} (CWA) \cite{}. Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenaustausches garantiert ist.
+Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung automatisieren sollte: Die Corona Warn App \cite{CWA}. 
+Diese soll dabei helfen, die Kontaktverfolgung zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
+Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anomynen Datenautausches garantiert ist.
 
-In der Zeit der Herausgabe der App gab es viele Diskussionen und Kritik rund um die App. So wurde sie hinsichtlich der Privatphäre öfters kritisiert und musste nachgebessert werden \cite{}. 
-Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen \cite{}. 
+Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App. So stand sie hinsichtlich des Datenschutzes öfters in Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
+Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen, da zu wenige Leute die App nutzen \cite{CWAKritik2}.
+Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenken, die von der Bevölkerung geäußert werden (wie etwa, dass die App uns ausspioniere) stellen sich als Mythen heraus. 
+trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte und es gäbe noch Lücken und Erweiterungsbedarf für eine wirkungsvolle und ausgereifte App.
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
 Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
@@ -1166,6 +1169,8 @@ Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den 
 \bibitem{CoronaZahlenWorld} https://coronavirus.jhu.edu/map.html (07.06.2021)
 \bibitem{CoronaZahlenDe} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/Fallzahlen.html (07.06.2021)
 \bibitem{CWA} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/WarnApp/Warn\_App.html (09.06.2021)
+\bibitem{CWAKritik} https://www.zeit.de/digital/datenschutz/2020-04/datenschutz-corona-tracing-app-dezentrale-speicherung
+\bibitem{CWAKritik2} https://www.zeit.de/wissen/gesundheit/2020-08/corona-warn-app-contact-tracing-downloads-nutzung-niedrig
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
 https://github.com/midudev/covid-19-spread-simulator
 \bibitem{DP-3T} C. Troncoso et al., "Decentralized Privacy-Preserving Proximity Tracing" \\https://github.com/DP-3T/documents/blob/master/DP3T\%20White\%20Paper.pdf (10.06.2021)
