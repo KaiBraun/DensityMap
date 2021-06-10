@@ -673,34 +673,36 @@ Aus diesem Grund wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt, welch
 Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
 
 \centerline{\text{ }}
-\centerline{$f: Risikowert -> Positiv-Begegnungs-Wahrscheinlichkeit$}
+\centerline{$f: Risikowert \rightarrow Wahrscheinlichkeit$}
 \centerline{\text{ }}
 
 Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist.
 Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben.
 
 Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
-Zunächst werden, wie beim Bilden von Häufigkeitsverteilungen oder Histogrammen, Intervalle gebildet, um 
-Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i mit i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
+Zunächst werden, Intervalle gebildet, da die Menge der Risikowerte nicht diskret, sondern stetig ist.
+Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i$ mit $i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
 dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
 \centerline{$x_i := [13+i, 14+i[$}
 \centerline{\text{ }}
 
-Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem PKServer alle $\le 13$ sind. 
+Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem PKServer alle $\geq 13$ sind.
 Damit die Wahrscheinlicht bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
-wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ hat und die Anzahl an Personen, 
-die sowohl einen Risikowert innerhalb des Intervalls $x_i$ hat, als auch später an Corona erkrankt ist. 
-Dafür werden die TEKs auf dem PKServer und die Diagnosis Keys auf dem CWA Server verwendet. Aus den TEKs auf dem PKServer kann die Anzahl an Personen bestimmt werden,
-die einen Risikowert innerhalb des Intervalls $x_i$ hat.
+wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben und die Anzahl an Personen, 
+die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind. 
+
+Dafür werden die TEKs auf dem PKServer und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
+Aus den TEKs auf dem PKServer kann die Anzahl an Personen bestimmt werden,
+die einen Risikowert innerhalb des Intervalls $x_i$ haben.
 Werden zusätzlich zu den TEKs auf dem PKServer die Diagnosis Keys auf dem CWA Server dazu genommen, 
-kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ hat, als auch später an Corona erkrankt ist, 
+kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
 indem die TEKs auf dem PKServer und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
-Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, wie folgt bestimmen:
+Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit $P_{x_i}$, infiziert zu sein, wie folgt bestimmen:
 
 \centerline{\text{ }}
-\centerline{$\frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
+\centerline{$P_{x_i} := \frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
 \centerline{\text{ }}
 
 Zur \textit{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
@@ -722,8 +724,9 @@ obwohl diese infiziert sind, da noch kein positives Testergebnis aufgrund der ge
 Die davon betroffenen TEKs würden die Funktion $f$ negativ beeinflussen.
 
 Nachdem für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, bestimmt wurde, wird durch ein Regressionsverfahren die Funktion $f$ bestimmt, 
-die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. Hierbei ist besonders zu beachten, 
-dass die Funktion $f$ etwa alle 7 Tage mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
+die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. 
+Hierbei ist besonders zu beachten, dass die Funktion $f$ periodisch mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
+Eine Aktualisierungsperiode sollte ca. 7 Tage andauern, da der Zeitraum $s_0$ bis $s_1$ 7 Tage lang ist.
 Beim Herunterladen von Keys (vom CWA Server oder PKServer) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
 Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden: 
 
@@ -744,10 +747,10 @@ dass CWA-Likely-Positive Personen nur einen Risikowert $\le 13$ bei anderen Pers
 Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden kann. 
 
 Nimmt man diese Begrenzung nicht vor, 
-ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen roten Bildschirm hervorrufen kann, 
-die wiederum bei weiteren Personen rote Bildschirme hervorrufen können und so weiter. 
-Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch rote Bildschirme bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
+ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen hohen Risikowert $\geq 13$ hervorrufen kann, 
+die wiederum bei weiteren Personen hohe Risikowerte $\geq 13$ hervorrufen können und so weiter. 
+Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch erhöhte Risikowerte $\leq 13$ bei anderen hervorrufen, 
+jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 
 \subsubsection{R\textsubscript{CWA-Likely-Negative}}
 \label{CWALikelyNegative}
