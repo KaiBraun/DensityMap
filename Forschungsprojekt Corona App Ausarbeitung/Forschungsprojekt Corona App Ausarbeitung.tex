@@ -288,15 +288,20 @@ Jeder Geimpfte hat dabei eine Chance den Hauptgewinn von einer Millionen US-Doll
 \subsubsection{Ortsbezogene Informationen}
 Ein Problem das im Verlauf der Pandemie auftritt ist die undurchsichtige und inkonsistente Informationsgebung 
 hinsichtich der beschlossenen Maßnahmen und Einschränkungen an die sich die Bevölkerung richten muss. 
-Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Budnesländern, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
+Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Landesministerien, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
 Selbst bei der Bundesweiten Notbremse bezogen sich die Regelungen auf die Inzidenz der einzelnen Landkreise \cite{Notbremse}.
 Dies führte zu einer großen Verwirrung welche derzeitigen Gesetze und Verordnungen gelten, zumal diese teilweise im Tagesrythmus geändert wurden.
 
-Auf Grund dessen wäre ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
+Auf Grund dessen ist ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
 Dabei können die Nutzer unabhängig von ihrem Standort auf die Daten eines jeweiligen Landkreises zugreifen,
 um auf einfachem Weg die offiziellen Informationen zu erhalten. 
 
-Dieses Feature existiert bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
+Die Ortsbezogenen Informationen benötigen keinerlei Nutzerdaten und liefern lediglich zusätzliche Informationen über die aktuelle Corona Lage Innerhalb eines Landkreises.
+Aus diesem Grund ist eine Implementierung dieses Features in keinster Weise bendenklich im Sinne der Sicherheit und Privatheit der Nutzer.
+Durch einen Hackerangriff könnte man im schlimmsten Fall über diese Funktion herausfinden, in welchem Landkreis sich ein Nutzer mit hoher Wahrscheinlichkeit aufhällt.
+Da die Informationen größtenteils auf den jeweiligen Websiten der Länder zu Verfügung steht, ist eine Umsetzung des Features auch nicht mit einem großen Aufwand verbunden.  
+
+Dieses Feature existiert seit Oktober 2020 bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
 
 \subsubsection{Integration von Applikationen}
 Es existieren viele verschiedene Plattformen, die fast täglich neue Nachrichten zur aktuellen Corona-Situation herausgeben \cite{RKI}, \cite{BMG}, Daten zur Eindämmung der Pandemie sammeln \cite{RKIDatenspende}, \cite{Gedaechtnistest} oder Neuigkeiten zu Forschungsarbeiten mit Bezug zu Corona veröffentlichen \cite{GesundheitsforschungNews}.
