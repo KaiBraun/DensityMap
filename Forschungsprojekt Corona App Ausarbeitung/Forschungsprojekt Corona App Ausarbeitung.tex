@@ -146,6 +146,7 @@ Mithilfe der Diagnosis Keys können dann die gespeicherten RPIs aus den Begegnun
 Zusammen mit dem \textit{Transmission Risk Level} (TRL) bestimmt die Corona Warn App aus diesen Informationen einen \textit{Risikowert}, der das Infektionsrisiko der Person widerspiegelt.
 
 \subsection{Transmission Risk Level (TRL):}
+\label{TRL}
 Das TRL wird in der CWA lokal berechnet und auf dem CWA Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
 Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person ein Übertragungspotenzial hat das anfangs niedrig ist, 
 dann auf ein Maximum steigt und innerhalb von 14 Tagen wieder abnimmt. Um daraus ein Risiko Level abzuleiten müssen verschiedene Zeitpunkte bekannt sein. 
@@ -309,19 +310,20 @@ Durch das Zusammenführen verschiedenster Informationen wird eine sehr große Re
 Des weiteren würde die CWA durch die zusätzlichen Informationen attraktiver, was einen positiven Effekt auf die Kontaktverfolgung hätte.
 
 In Version 1.13 der CWA wurde bereits eine freiwillige Datenspende in Zusammenarbeit mit dem Robert-Koch-Institut eingefügt \cite{freiwilligeDatenspende}. 
+
 \section{Erweiterte Risikoberechnung} \label{Erweiterte_Risikoberechnung}
 
 %Aktuelle Risikoberechnung
 Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an; 
 das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
-Generell wird angenommen, dass wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
-Um dieses zu berechnen wird das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
+Generell wird angenommen, dass, wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
+Um dieses zu berechnen wird zum einen das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
 die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. Und zum anderen die Wahrscheinlichkeit, 
 dass eine Person infiziert ist, die im folgenden als \textit{Positiv-Begegnungs-Wahrscheinlichkeit} bezeichnet wird.
 Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
-wird der Bildschirm rot, ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
+wird der Bildschirm rot und ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
 da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
-Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten. (Quelle 123)
+Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten \cite{}.
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
@@ -337,7 +339,7 @@ Mit der Risikoberechnung wird das Übertragungspotenzial und die Positiv-Begegnu
 um damit die Gefahr infiziert worden zu sein, abzuschätzen.
 Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
 Dafür wird die Risikoberechnung der CWA erweitert, 
-um damit einen Risikowert zu berechnen, der die Gefahr besser widerspiegelt.
+um damit einen \textit{Risikowert} zu berechnen, der die Gefahr widerspiegelt.
 
 Dabei wird zwischen zwei Personengruppen, die jeweils in 3 Untergruppen unterteilt werden, unterschieden, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit von Person zu Person stark variieren kann.
@@ -347,14 +349,14 @@ Die CWA-User werden in drei Untergruppen aufgeteilt:
 \textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
 \textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
 \textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
-Ebenso wird die NOT-CWA-User in drei Untergruppen aufgeteilt: \textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, 
+Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: \textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, 
 dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), \textit{Hidden-Positive} sind alle Personen, die infiziert wurden, 
 jedoch kein positives Testergebnis nachweisen können und \textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
 
 %Probleme und Lösungsvorschläge
-Bei näherer Betrachtung der Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
+Bei näherer Betrachtung der aktuellen Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
 Zum einen fließen nur Begegnungen mit CWA-Positive Personen in diese mit ein.
-Deshalb sollen alle Personengruppen miteinbezogen werden.
+Deshalb sollen in der erweiterten Risikoberechnung alle Personengruppen miteinbezogen werden.
 Zum anderen wird die Dunkelziffer nicht berücksichtigt. Diese soll im Folgenden durch die Begegnungsanzahl betrachtet werden.
 Des weiteren soll die geringe Nutzerzahl der CWA zum Hochkorrigieren der Begegnungsanzahl genutzt werden.
 Als letzten Kritikpunkt wird die Granulierung und Transparenz der Risikoberechnung aufgezeigt. 
@@ -367,21 +369,23 @@ Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdige
 damit die Dunkelziffer besser miteinberechnet werden kann.
 Mit dem Feature TRL Update ist es möglich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen,
 um zu beachten, wie infektiös eine Person ist.
-Dabei ist das Beachten, wie infektiös eine Person ist, nicht mit dem im Abschnitt \ref{Erweiterte Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
-Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der Risikoberechnung gesondert zu gewichten.
+Dabei ist das Beachten, wie infektiös eine Person ist, nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
+Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der erweiterten Risikoberechnung gesondert zu gewichten.
 
-Diese Features werden in Abschnitt 1 bis 3 vorgestellt.
-Im Abschnitt 4 werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
-Im 5. Abschnitt wird die erweiterte Risikoberechnung bewertet.
+Die oben genannten Features werden in Abschnitt \ref{Familienfeature} bis \ref{Feature TRL Update} vorgestellt.
+In Abschnitt \ref{Berechnung} werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
+Zuletzt wird die erweiterte Risikoberechnung in Abschnitt \ref{Bewertung_Risikoberechnung} bewertet.
 \\
 \subsection{Familienfeature}
 \label{Familienfeature}
+
 Im Folgenden wird das Familienfeature vorgestellt, welches später für die erweiterte Risikoberechnung benötigt wird.
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
 Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln und somit einen genaueren Risikowert zu berechnen.
 Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
-Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive}, Abschnitt (CWA-Likely-Positive) und R\textsubscript{CWA-Likely-Negative}, Abschnitt (RLikely-Negative), miteinberechnet werden, sondern nur in R\textsubscript{CWA-Likely-Negative}, Abschnitt (CWA-Positive).
-Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{RLikelyNegative}, \ref{RLikelyPositive} erläutert.
+Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} miteinberechnet werden,
+sondern nur in R\textsubscript{CWA-Positive}.
+Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{CWALikelyPositive} und \ref{CWALikelyNegative} erläutert.
 
 Das Austauschen von TEKs kann allerdings Eingriffe in die Privatsphäre zur Folge haben.
 Erkrankt eine Person aus einer Gruppe an Corona und gibt ihre TEKs als Diagnosis Keys frei, ist es für die anderen Gruppenangehörigen möglich mit hoher Wahrscheinlichkeit die erkrankte Person zu bestimmen.
@@ -390,31 +394,32 @@ In Abbildung \ref{Familienfeature_Abbildung} ist eine Übersicht des Familienfea
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.48\textwidth]{"Familiengruppe"}
+	\includegraphics[width=0.5\textwidth]{"Familiengruppe"}
 	\caption{Familienfeature}
 	\label{Familienfeature_Abbildung}
 \end{figure}
+
 Als Servergruppe wird eine Gruppe auf einem speziell für das Familienfeature angelegten Server bezeichnet.
 Über den Server werden später die TEKs von unterschiedlichen CWA Nutzern ausgetauscht.
-Eine Servergruppe besitzt eine für den Server einmalige \textit{ID}, einen \textit{private signing key} und eine \textit{Liste mit verschlüsselten TEKs}.
+Eine Servergruppe besitzt eine für den Server einmalige \textit{ID}, einen \textit{Private Signing Key} und eine \textit{Liste mit verschlüsselten TEKs}.
 Die Liste der verschlüsselten TEKs ist beim Anlegen einer neuen Servergruppe leer.
 
 Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen, mit denen der Nutzer TEKs austauschen möchte.
-Innerhalb einer lokalen Gruppe wird ein \textit{private signing key}, ein \textit{private encryption key} und eine \textit{Servergruppen ID} gespeichert.
-Die Verwendung des private signing keys, private encryption keys und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
-Der private signing key und insbesondere private encryption key einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
-Es gibt zwei verschiedene Möglichkeiten den private signing key, private encryption key und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
+Innerhalb einer lokalen Gruppe wird ein \textit{Private Signing Key}, ein \textit{Private Encryption Key} und eine \textit{Servergruppen ID} gespeichert.
+Die Verwendung des Private Signing Keys, Private Encryption Keys und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
+Der Private Signing Key und insbesondere Private Encryption Key einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
+Es gibt zwei verschiedene Möglichkeiten den Private Signing Key, Private Encryption Key und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
 Dafür kann man entweder eine neue Servergruppe anlegen oder einer bereits existierenden Servergruppe beitreten.
 
-Entscheidet man sich dazu eine neue Servergruppe anzulegen, so wird lokal in der CWA ein private signing key und ein private encryption key generiert.
-Der private signing key wird zusammen mit einer Anfrage, eine neue Servergruppe zu erstellen, an den Server gesendet.
-Ein Verlust des private signing keys kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
-Allerdings reicht der private signing key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem private encryption key verschlüsselt sind.
+Entscheidet man sich dazu eine neue Servergruppe anzulegen, so wird lokal in der CWA ein Private Signing Key und ein Private Encryption Key generiert.
+Der Private Signing Key wird zusammen mit einer Anfrage, eine neue Servergruppe zu erstellen, an den Server gesendet.
+Ein Verlust des Private Signing Keys kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
+Allerdings reicht der Private Signing Key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem Private Encryption Key verschlüsselt sind.
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
-Der lokal erstellte private signing key, private encryption key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
+Der lokal erstellte Private Signing Key, Private Encryption Key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
 
 Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
-Das Mitglied der Servergruppe teilt den private signing key, private encryption key und die Servergruppen ID durch zum Beispiel einen QR-Code.
+Das Mitglied der Servergruppe teilt den Private Signing Key, Private Encryption Key und die Servergruppen ID durch zum Beispiel einen QR-Code.
 Diese müssen dann nur noch abgespeichert werden.
 
 An dieser Stelle ist anzumerken, dass jedes Mitglied neue Personen zur Gruppe hinzufügen kann, ohne, dass andere Mitglieder etwas davon mitbekommen.
@@ -422,39 +427,39 @@ Aus diesem Grund wird nochmal betont Gruppen nur mit vertrauenswürdigen Persone
 Sollte eine Person unbefugten Zugriff auf eine Gruppe haben, ist es nicht möglich, dieser Person den Zugriff zu entziehen.
 In diesem Fall muss die lokale Gruppe gelöscht werden, damit keine weiteren TEKs geteilt werden.
 
-Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen private signing keys, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
+Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen Private Signing Keys, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
 Damit außer der Gruppenmitglieder niemand Zugriff auf die TEKs hat, wird dabei folgendes Verfahren angewandt:
 
-Die TEKs werden mithilfe des private encryption keys einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem private signing key der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
+Die TEKs werden mithilfe des Private Encryption Keys einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem Private Signing Key der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
 Dies wird zusammen mit der Servergruppen ID der Gruppe an den Server gesendet.
-Der Server nutzt den private signing key zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
+Der Server nutzt den Private Signing Key zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
 Sind die TEKs validiert, werden sie der Liste der verschlüsselten TEKs zusammen mit ihrem Hochladedatum hinzugefügt.
 Die verschlüsselten TEKs werden wegen der Inkubationszeit nach 14 Tagen aus der Liste der verschlüsselten TEKs gelöscht, da sie danach nicht mehr benötigt werden.
 Dies geschieht iterativ für jede lokale Gruppe.
 
 Um die TEKs der Gruppenmitglieder einer Gruppe herunterzuladen, muss eine Anfrage an den Server gestellt werden.
 Diese Anfrage beinhaltet die Servergruppen ID der Gruppe und das Datum des letzten Downloads.
-Mithilfe des private signing keys wird die Anfrage validiert und die verschlüsselten TEKs vom Server an die CWA gesendet, die nach dem Datum des letzten lokalen Downloads hochgeladen wurden.
-Die verschlüsselten TEKs können dann mit dem private encryption key der Gruppe entschlüsselt werden.
+Mithilfe des Private Signing Keys wird die Anfrage validiert und die verschlüsselten TEKs vom Server an die CWA gesendet, die nach dem Datum des letzten lokalen Downloads hochgeladen wurden.
+Die verschlüsselten TEKs können dann mit dem Private Encryption Key der Gruppe entschlüsselt werden.
 Auch hier geschieht dies iterativ für jede lokale Gruppe.\\
 
-
 \subsection{Feature PKServer}
+\label{PKServer}
 
-Das Feature PKServer ist Voraussetzung für die in Abschnitt (Risikoberechnung) eingeführte erweiterte Risikoberechnung.
+Das Feature PKServer ist Voraussetzung für die erweiterte Risikoberechnung.
 In der aktuellen CWA werden nur Begegnungen mit CWA-Positive Personen in der Risikoberechnung betrachtet.
 Jedoch sind CWA-Likely-Positive Personen mit einer erhöhten Wahrscheinlichkeit infiziert und ansteckend, da sie Kontakt zu CWA-Positive Personen hatten.
-Diese sollen mithilfe dieses Features in die Risikoberechnung in Abschnitt (R-CWA-Likely-Positive) mit einbezogen werden.
+Diese sollen mithilfe dieses Features in den Summanden R\textsubscript{CWA-Likely-Positive} in Abschnitt \ref{CWALikelyPositive} mit einbezogen werden.
 
 Damit diese in die Risikoberechnung mit einfließen können, benötigen wir die TEKs der CWA-Likely-Positive Personen.
 Ähnlich wie beim CWA Server sollen diese TEKs auch auf einem Server gesammelt und von da aus verteilt werden.
-Dieser Server wird in diesem Dokument als der Potenziell Kranke Server (PKServer) bezeichnet.
+Dieser Server wird in diesem Dokument als der \textit{Potenziell Kranke Server} (PKServer) bezeichnet.
 Wird in der CWA ein erhöhtes Risiko mit einem Risikowert $\geq$ 13 erkannt und durch einen roten Bildschirm angezeigt, so sollen die TEKs der letzten 14 Tage, verbunden mit dem zum roten Bildschirm führenden Risikowert, auf den PKServer hochgeladen werden.
-Dies kann entweder durch das freiwillige bestätigen einer Option oder als Integration in die freiwillige Datenspende implementiert werden.
+Dies kann entweder durch das freiwillige Bestätigen einer Option oder als Integration in die freiwillige Datenspende implementiert werden.
 Aufgrund der Inkubationszeit werden TEKs auf dem PKServer, die älter als 14 Tage sind, gelöscht.
 
 Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom PKServer herunter und leitet daraus die RPIs ab.
-Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt (CWA-Likely-Positive) beschrieben.
+Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt \ref{CWALikelyPositive} beschrieben.
 Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA Server.
 Der mit einem TEK verbundene Risikowert wird dazu genutzt die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
 
@@ -475,7 +480,7 @@ Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufw
 
 \subsection{Feature TRL Update}
 \label{Feature TRL Update}
-In diesem Feature wird das volle Potenzial des TRLs, der in Abschnitt (TRL) genauer beschrieben wurde, genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
+In diesem Feature wird das volle Potenzial des TRLs, welches in Abschnitt \ref{TRL} genauer beschrieben wurde, genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
 da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. 
 Die Implementierung für das TRL existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht.
 Es handelt sich hierbei konkret um den Zeitpunkt, ab dem man Infektös ist. 
@@ -499,10 +504,13 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und des Rückme
 	\item Wann haben Sie das positive Ergebnis bekommen?
 \end{itemize} 
 	
-Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und das Übertragungspotenzial mit dem TRL für jeden Diagnosis Key abgeschätzt werden,
- damit Nutzer besser gewarnt werden können.
+Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und mithilfe des TRLs für jeden Diagnosis Key abgeschätzt werden,
+damit Nutzer besser gewarnt werden können.
 
-\subsection{Risikoberechnung}
+ %Vorher Risikoberechnung
+\subsection{Berechnung}
+\label{Berechnung}
+
 In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der Risikowert zusammensetzt.
 
 \begin{figure*}[h]
@@ -512,20 +520,20 @@ In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\t
 	\label{ErweiterteRisikoberechnung_Abbildung}
 \end{figure*}
 
-In Abschnitt (Probleme und Lösungsansätze) werden Probleme und Lösungsansätze der aktuellen Risikoberechnung genauer erläutert.
-Danach werden in Abschnitt (sfndao- ABC) die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
+In Abschnitt \ref{Probleme_und_Loesungsansaetze_Risikoberechnung} werden Probleme und Lösungsansätze der aktuellen Risikoberechnung genauer erläutert.
+Danach werden in Abschnitt \ref{CWAPositive} - \ref{CWALikelyNegative} die drei Summanden näher beschrieben, wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildung} dies veranschaulicht.
 
 \subsubsection{Probleme und Lösungsansätze}
-\label{Probleme_und_Lösungsansätze}
+\label{Probleme_und_Loesungsansaetze_Risikoberechnung}
 
-Das Hauptproblem der Risikoberechnung der aktuellen CWA ist, dass diese zu wenige relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
+Das Hauptproblem der Risikoberechnung der aktuellen CWA ist, dass diese zu wenige, relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
 Alle anderen Personengruppen werden ignoriert. Der Risikowert ist somit geringer als er eigentlich sein sollte. Im Folgenden werden weitere Faktoren beschrieben, die die erweiterte Risikoberechnung beachtet:
 
-Mit der Dunkelziffer lässt sich die Anzahl an tatsächlich Infizierten abschätzen und sie sorgt dafür, dass CWA-Likely-Negative Personen, unter einbezug der positiven Not-CWA-User, 
+Mit der Dunkelziffer lässt sich die Anzahl an tatsächlich Infizierten abschätzen und sie sorgt dafür, dass CWA-Likely-Negative Personen, unter Einbezug der infizierten Not-CWA-User, 
 zu einem Risiko führen können, welches in der neuen Risikoberechnung nicht ignoriert wird.
 Die Downloadzahl wird genutzt, um den Risikowert nach oben zu korrigieren, da die Not-CWA-User nicht als Begegnung aufgezeichnet werden.
-Begegnungen mit CWA-Likely-Positive Personen, die eine höhere Wahrscheinlichkeit haben infiziert zu sein, da sie direkten Kontakt zu Infizierten hatten, 
-werden in der neuen Berechnung stärker als die CWA-Likely-Negative gewichtet.
+Begegnungen mit CWA-Likely-Positive Personen, die eine erhöhte Wahrscheinlichkeit haben infiziert zu sein, da sie direkten Kontakt zu Infizierten hatten, 
+werden in der neuen Berechnung anders als Begegnungen mit CWA-Likely-Negative Personen gewichtet.
 Außerdem ist die Risikoberechnungsanzeige nicht transparent genug, zwar ist die Anzahl an Begegnungen mit CWA-Positive Personen sichtbar, 
 jedoch sieht man weder den Grad des Übertragungspotenzials, noch wie der Risikowert zustande gekommen ist.
 
@@ -545,8 +553,9 @@ wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
 Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
-Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können. \\
-Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet.
+Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können.
+
+Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben verwendet: Rot, Orange, Gelb und Grün.
 \\
 
 $0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
@@ -560,21 +569,22 @@ $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
 Ein transparenter Risikowert macht es für Nutzer leichter nachvollziehbar, wie sie sich bei einem erhöhten Risiko Verhalten sollten und fördert die aktive Nutzerzahl.
 Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
-sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.
+sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.\\
 
 \subsubsection{R\textsubscript{CWA-Positive}}
+\label{CWAPositive}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
 Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier konstant 1. 
-Es wird also nur das Übertragungspotential betrachtet. Dafür wird zunächst zu einer Begegnung die Weighted Exposure Time ausgewertet. 
-Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit t anhand der geringsten Dämpfung (attenuation) att  wie folgt: 
+Es wird also nur das Übertragungspotential betrachtet. Dafür wird zunächst zu einer Begegnung die \textit{Weighted Exposure Time} ausgewertet. 
+Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t} anhand der geringsten Dämpfung (attenuation) \textit{att}  wie folgt: 
 
 \centerline{\text{ }}
 \centerline{$\text{WeightedExposureTime} := t \cdot \text{attFactor}$}
 \centerline{\text{ }}
 
-Wobei der attFactor durch folgende Intervalle aus der Distanz att bestimmt wird:
+Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att bestimmt wird:
 
 \centerline{\text{ }}
 
@@ -588,10 +598,11 @@ Wobei der attFactor durch folgende Intervalle aus der Distanz att bestimmt wird:
 \centerline{\text{ }}
 
 Dabei kann man die Werte 63dB bzw. 73dB, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
-Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden (Quelle cwa-risk-assessment).
-Aus der Weighted Exposure Time wird dann die Normalised Exposure Time t­n mithilfe des Transmission Risk Levels TRL ermittelt und des daraus resultierenden Transmission Risk Values TRV. 
+Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden \cite{}(Quelle cwa-risk-assessment).
+
+Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wir danach aus der Weighted Exposure Time wird die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
 Das Transmission Risk Level wird in Abschnitt TRL genauer beschrieben und bezieht die Wahrscheinlichkeit mit ein, dass eine Person die Krankheit auch wirklich überträgt. 
-Der TRV ergibt sich aus diesem nach der folgenden Vorschrift:
+Der TRV ergibt sich aus TRL nach der folgenden Vorschrift:
 
 \centerline{\text{ }}
 
@@ -625,25 +636,35 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 \centerline{\text{ }}
 
 \subsubsection{R\textsubscript{CWA-Likely-Positive}}
+\label{CWALikelyPositive}
+
 Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
-Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature (Abschnitt Familienfeature) nicht mit einbezogen, 
+
+Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature \ref{Familienfeature} nicht mit einbezogen, 
 da diese sonst aufgrund der potenziell langen Begegnungsdauer und 
 kurzen Distanz ein hohes R\textsubscript{CWA-Likely-Positive} Risiko hervorrufen könnten und man im Regelfall diesen Personen ohnehin sofort mitteilt, wenn man ansteckend sein könnte. 
+
 Zudem werden Begegnungen mit Diagnosis Keys nicht mit einberechnet, da diese bereits im Summand R\textsubscript{CWA-Positive} betrachtet werden. Dies geschieht, 
 indem bei der Risikoberechnung die Begegnungs RPIs mit den Diagnosis Keys auf dem CWA Server abgeglichen werden und nur die RPIs mit einbezogen werden, 
 die keinen passenden Diagnosis Keys auf dem CWA Server liegen haben.
+
 Zuerst wird, wie beim Summand R\textsubscript{CWA-Positive}, das Übertragungspotenzial einer Begegnung bestimmt, indem die Weighted Exposure Time ausgewertet wird. 
+
 Aus der Weighted Exposure Time wird danach allerdings nicht die Normalised Exposure Time bestimmt, wie dies beim Summand R\textsubscript{CWA-Positive} der Fall ist, 
 da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Positive Personen nicht vorweisen können.
-Anstelle davon wird als nächstes aus der Weighted Exposure Time jeder Begegnung die Standardized Exposure Time $t_s$ ermittelt. 
+
+Anstelle davon wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
+
 Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
 Aus diesem Grund wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
-Um die Positiv-Begegnungs-Wahrscheinlichkeit zu erhalten wird jedoch erst eine Funktion f benötigt, die diese Wahrscheinlichkeit angibt. 
-Die Funktion $f$ nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist. 
-Der Risikowert wurde zuvor mit dem TEK zusammen vom PKServer (Abschnitt Feature Potenziell Kranke) heruntergeladen. Um f zu bestimmen wird folgendes Verfahren angewandt:
+Um die Positiv-Begegnungs-Wahrscheinlichkeit zu erhalten wird jedoch erst eine Funktion \textit{f} benötigt, die diese Wahrscheinlichkeit angibt.
+
+Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist. 
+Der Risikowert wurde zuvor mit dem TEK zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben. Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
+
 Zunächst werden Risikowert-Intervalle gebildet, da Risikowerte nicht nur natürliche Zahlen als Werte annehmen können. 
-Anhand der gesammelten Daten (Abschnitt Feature Potenziell Kranke) wird für jedes Risikowert-Intervall $x_i mit i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
+Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i mit i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
 dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
@@ -665,18 +686,20 @@ Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert 
 \centerline{$\frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
 \centerline{\text{ }}
 
-Zur Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$ werden nur die TEKs gezählt, 
+Zur \textit{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
 die auf PKServer und den CWA Server hochgeladen wurden und einen Risikowert innerhalb $x_i$ aufweisen. 
 
-Zur Anzahl TEKs auf dem PKServer mit Risikowert  $\in x_i$  werden alle TEKs auf dem PKServer gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
-Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA Server einige Tage vergehen und 
+Zur \textit{Anzahl TEKs auf dem PKServer mit Risikowert $\in x_i$} werden alle TEKs auf dem PKServer gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
 
-Keys auf beiden Servern nur 14 Tage lang gespeichert werden, muss für Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden. 
-Die Anzahl TEKs auf dem PKServer mit Risikowert  $\in x_i$ werden ab dem Startzeitpunkt $s_0$, der 14 Tage in der Vergangenheit liegt, bis zu einem Endzeitpunkt $s_1$, 
-der 7 Tage nach $s_0$ liegt, gezählt. Die Anzahl TEKs auf dem PKServer und
-CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
+Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA Server einige Tage vergehen und 
+Keys auf beiden Servern nur 14 Tage lang gespeichert werden, muss für die Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden.
+
+Die Anzahl TEKs auf dem PKServer mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$, der 14 Tage in der Vergangenheit liegt, bis zu einem Endzeitpunkt $s_1$, 
+der 7 Tage nach $s_0$ liegt, gezählt. 
+Die Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
 Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den PKServer hochgeladen worden sein. 
-Verwendet man zur Bestimmung der Funktion f zum Beispiel die TEKs der letzten 7 Tage auf dem PKServer, 
+
+Verwendet man zur Bestimmung der Funktion \textit{f} zum Beispiel die TEKs der letzten 7 Tage auf dem PKServer, 
 so werden viele dieser TEKs nicht als Diagnosis Keys auf den CWA Server hochgeladen, 
 obwohl diese infiziert sind, da noch kein positives Testergebnis aufgrund der geringen zeitlichen Distanz vorliegt. 
 Die davon betroffenen TEKs würden die Funktion $f$ negativ beeinflussen.
@@ -693,7 +716,7 @@ Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden:
 
 Hierbei ist ContactRS der Risikowert des Begegneten.
 Als nächstes wird aus den Standardized Exposure Times der einzelnen Begegnungen mit CWA-Likely-Positive Personen die Summe gebildet und das Ergebnis auf 13 begrenzt, 
-um daraus das Risiko RCWA-Likely-Positive zu erhalten:
+um daraus das Risiko R\textsubscript{CWA-Likely-Positive} zu erhalten:
 
 \centerline{\text{ }}
 \centerline{$R_{\text{CWA-Likely-Positive}}$ := min($\sum t_s$, 13)}
@@ -701,21 +724,25 @@ um daraus das Risiko RCWA-Likely-Positive zu erhalten:
 
 Die Begrenzung des Summanden R\textsubscript{CWA-Likely-Positive} auf 13 hat zur Folge, 
 dass CWA-Likely-Positive Personen nur einen Risikowert $\le 13$ bei anderen Personen hervorrufen können. 
-Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden kann. Nimmt man diese Begrenzung nicht vor, 
+Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden kann. 
+
+Nimmt man diese Begrenzung nicht vor, 
 ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen roten Bildschirm hervorrufen kann, 
 die wiederum bei weiteren Personen rote Bildschirme hervorrufen können und so weiter. 
 Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch rote Bildschirme bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.
+jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 
 \subsubsection{R\textsubscript{CWA-Likely-Negative}}
-Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung 3, grüner Kasten) berechnet alle Begegnungen mit CWA-Likely-Negative und Not-CWA-User Personen mit ein.
-Denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
+\label{CWALikelyNegative}
+
+Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein,
+denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 \begin{itemize}
 	\item Dunkelziffer: Mithilfe der Dunkelziffer ist eine genauere Abschätzung der Anzahl der mit Corona infizierten deutschen Bürger möglich. 
 	Denn Covid-19 hat die Eigenschaft nicht immer symptomatisch aufzutreten, es gibt somit viele Infizierte, 
-	die nicht aufgezeichnet wurden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
+	die nicht aufgezeichnet werden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
 	Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, 
 	als positiv getestet wurden. Mithilfe der Dunkelziffer kann somit die größe der Gruppe Hidden-Positive geschätzt werden.
 	Die Dunkelziffer wurde erstmals durch eine Studie in Kupferzell \cite{Dunkelziffer} nachgewiesen und bestimmt. 
@@ -725,8 +752,8 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 	Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. 
 	Da die derzeitige Nutzung deutlich unter 50\% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, 
 	indem die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert wird. 
-	Dazu wird die Downloadzahl der CWA (DownloadCount) und die Einwohnerzahl Deutschlands (Population) genutzt. 
-	Aktuell würde die AppNutzung somit ca. $frac{1}{3}$ betragen.\cite{Einwohnerzahl} \cite{Downloads}
+	Dazu wird die Downloadzahl der CWA (\textit{DownloadCount}) \cite{Downloads} und die Einwohnerzahl Deutschlands (\textit{Population}) \cite{Einwohnerzahl} genutzt. 
+	Aktuell würde die AppNutzung somit ca. $\frac{1}{3}$ betragen.
 \end{itemize}
 
 \centerline{\text{ }}
@@ -735,29 +762,34 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage beachtet.
 Denn obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
-ist es bei einer hohen Anzahl an Begegnungen wahrscheinlicher infiziert zu werden, als bei einer niedrigen, denn in der Not-CWA-User Gruppe gibt es Personen, die infektiös sind. 
+ist es bei einer hohen Anzahl an Begegnungen wahrscheinlicher infiziert zu werden, als bei einer niedrigen, denn in der Not-CWA-User Gruppe gibt es viele Personen, die infektiös sind. 
 Deswegen wird hierfür die Personengruppe Likely-Negative benötigt. 
+
 Hierbei werden, wie beim Risiko R\textsubscript{CWA-Likely-Positive}, 
-Begegnungen mit Gruppenangehörigen aus dem Familienfeature (Abschnitt Familienfeature) und Begegnungen mit Diagnosis Keys, 
-sowie zusätzlich Begegnungen mit Likely-Positive (Abschnitt Potenziell Kranke)  nicht mit einberechnet, 
+Begegnungen mit Gruppenangehörigen aus dem Familienfeature, Abschnitt \ref{Familienfeature} und Begegnungen mit Diagnosis Keys, 
+sowie zusätzlich Begegnungen mit Likely-Positive Personen nicht mit einberechnet, 
 da diese bereits in die Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive} mit einfließen.
 
 Für dieses Risiko wird hauptsächlich mit einer Positiv-Begegnungs-Wahrscheinlichkeit gerechnet,
 da man mit dieser die Gruppen Not-CWA-Positive und Hidden-Positive mit einfließen lassen kann.
-Dabei wird das Übertragungspotenzial nicht wie bei den anderen Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive}  berechnet, 
+Dabei wird das Übertragungspotenzial nicht wie bei den anderen Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive} berechnet, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit einer CWA-Likely-Negative Person zu gering ist. 
-Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird dafür genutzt, 
+Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird dafür genutzt,
 um den Einfluss der Gruppen Not-CWA-Positive und Hidden-Positive zu berechnen und wird unter anderem durch die Dunkelziffer und die AppNutzung bestimmt.
 
 Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att Aunter 73 Dezibel ist,
-der Abstand somit kleiner als 8 Meter ist und die Begegnungsdauer zwischen einem LowerBound und einem UpperBound ist. 
+der Abstand somit kleiner als 8 Meter ist und die Begegnungsdauer zwischen einem \textit{LowerBound} und einem \textit{UpperBound} ist. 
 
-Damit nicht jede noch so kurze Begegnungen aufgezeichnet wird,
-wird eine LowerBound auf 2 Minuten gesetzt. Bei einer einzigen langen Begegnung werden viele Begegnungen mit einer Begegnungsdauer von ca.
-15 Minuten aufgezeichnet, da der RPI alle 15 Minuten gewechselt wird. Um dies zu verhindern wird noch einen UpperBound benötigt.
-Dafür soll jede Signalstärke mit einberechnet werden, damit kurze Distanzierungen keinen großen Einfluss haben.
+Da nicht jede noch so kurze Begegnungen aufgezeichnet werden soll,
+wird ein LowerBound auf 2 Minuten gesetzt. 
+
+Bei einer einzigen langen Begegnung werden viele Begegnungen mit einer Begegnungsdauer von ca.
+15 Minuten aufgezeichnet, da der RPI alle 15 Minuten gewechselt wird. 
+Um dies zu verhindern gibt es zum einen das Familienfeature, 
+welches meist lange Begegnungen mit Freunden bzw. Verwandten von vornherein ausschließt und zum anderen gibt es den UpperBound.
+Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit kurze Distanzierungen keinen großen Einfluss haben.
 Für diesen Wert wird 14 Minuten geschätzt, damit Verbindungsfehler keinen großen Einfluss auf die Begegnungsanzahl haben.
-Jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound wird somit gezählt.
+Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt.
 
 \centerline{\text{ }}
 \text{$if(att<73dB) \le lowerBound$\{}
@@ -772,25 +804,26 @@ Jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound wird somit gez
 
 Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl man sich ansteckt, wird zuerst die aktuelle Anzahl infizierter ausgerechnet, 
 um damit die Positiv-Begegnungs-Wahrscheinlichkeit auszurechnen. 
-Die aktuelle Anzahl positiv getesteter wird mit der Dunkelziffer multipliziert, 
-um die Anzahl aktuell Infizierter zu berechnen. Damit wird currentCWAPositive subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt.  
+Die aktuelle Anzahl positiv getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu berechnen. 
+Davon wird {currentCWAPositive} subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in den letzten 14 Tagen in die CWA eingetragen hat.
 
 \centerline{\text{ }}
 \centerline{$\text{PersonIsInfected} :=$}
 \centerline{$\frac{((\text{currentPositiveTested} \cdot \text{Dunkelziffer}) - \text{currentCWAPositive}}{\text{Population}}$}
 \centerline{\text{ }}
 
-R\textsubscript{CWA-Likely-Negative}setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit zusammen und wird auf 13 beschränkt, 
+R\textsubscript{CWA-Likely-Negative} setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit zusammen und wird auf 13 beschränkt, 
 da die Person gewarnt werden soll, allerdings nicht als hoch Infektiös gilt. 
-Dabei wird die Anzahl Contacts mit der AppUsage nach oben korrigiert, um die Anzahl wirklicher Begegnungen CorrectContacts besser abzuschätzen. 
-Aktuell beträgt die AppUsage ca. $1/3$ (Quelle), somit werden die Contacts um das Dreifache erhöht. 
+Dabei wird die Anzahl Contacts mit der AppUsage nach oben korrigiert, um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
+Aktuell beträgt die AppUsage ca. $1/3$ \cite{Downloads}, somit werden die Contacts um das Dreifache erhöht. 
 
 \centerline{\text{ }}
 \centerline{$\text{CorrectContacts} := \frac{Contacts}{AppUsage}$}
 \centerline{\text{ }}
 
 Da mit einem Beschränkten Wachstum gerechnet wird und somit die Positive-Begegnungs-Wahrscheinlichkeit subtrahiert werden muss, 
-muss mit der Gegenwahrscheinlichkeit gerechnet werden. Denn umso höher die  Infektionswahrscheinlichkeit, 
+muss mit der Gegenwahrscheinlichkeit gerechnet werden. Denn umso höher die Infektionswahrscheinlichkeit, 
 desto geringer ist die Gegenwahrscheinlichkeit und desto näher ist R\textsubscript{CWA-Likely-Negative} an der Schranke 13. 
 Um die Wahrscheinlichkeit zu berechnen infiziert worden zu sein, wird die Wahrscheinlichkeit, dass eine Person nicht infektiös ist, 
 mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
@@ -803,6 +836,7 @@ mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
 Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
 \\
 \subsection{Bewertung}
+\label{Bewertung_Risikoberechnung}
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
@@ -812,23 +846,22 @@ Zudem ist die Berechnung des Risikos R\textsubscript{CWA-Positive}, welches aus 
 in der erweiterten Risikoberechnung mit eingebunden, wodurch nur ein höherer Risikowert zusammen kommen kann
 und somit Personen höchstens früher gewarnt werden. 
 
-
 Die erweiterte Risikoberechnung bietet einen hohen Grad an Transparenz bezüglich des Zustandekommens und der Bedeutung des Risikowertes. 
 Außerdem werden durch die feinere Granulierung der Risikoberechnung und Risikoanzeige auch kleinere Risikostufen wahrgenommen. 
 Somit werden schneller Veränderungen des Infektionsrisikos dargestellt, wodurch dem in der CWA angezeigten Risiko mehr vertraut werden kann.
 
 Für die Verwendung des Familienfeatures und des PKServers müssen Sicherheitsmechanismen gegen Denial of Service Angriffe implementiert werden, 
-auf die in diesem Dokument nicht weiter eingegangen wird.
-Im Vergleich dazu wird bei den im Abschnitt (Feature TRL Update) vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
+auf die im Rahmen dieser Forschungsarbeit nicht weiter eingegangen wird.
+Im Vergleich dazu wird bei den im Abschnitt \ref{Feature TRL Update} vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
 der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
 
 Obwohl es 2 weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
 Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
-Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt (R-CWA-LIKELY-POSITIVE) beschriebene Funktion f zentral zu bestimmen.
+Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
 
 Durch die Installation von 2 weiteren Server, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
-werden die Kosten für diese in einen ähnlichen Umfang haben. 
-\\
+werden die Kosten für diese einen ähnlichen Umfang haben. 
+
 \section{Density-Map}
 \label{Density_Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
