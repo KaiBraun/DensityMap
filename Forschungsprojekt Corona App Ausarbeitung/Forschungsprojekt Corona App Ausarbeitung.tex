@@ -231,7 +231,8 @@ Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer 
 
 \subsection{Übersicht aller Erweiterungen}
 
-Im Folgenden werden alle Erweiterungen, welche uns zu Beginn der Forschungsarbeit als tiefergehendes Feature möglich erschienen, aufgezählt und nach unseren in Abschnitt \ref{Bewertungskriterien} genannten Kriterien beschrieben.\\
+Im Folgenden werden Erweiterungen beschrieben, welche als Lösungen für bestehende Probleme dienen und als Feature in die Corona Warn App implementiert werden könnten oder dies mittlerweile bereits sind. Sie werden anhand unserer in Abschnitt \ref{Bewertungskriterien} genannten Kriterien erläutert und spezifiziert.\\
+
 
 \subsubsection{Impfpass}
 In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. 
@@ -253,9 +254,12 @@ Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
 - Vorerkrankungen \\
 - Gewicht \\
 - Beruf/Arbeitsumfeld\\
-Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.
-Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.
+Bei einem unverbindlichen Impfpass wären diese Angaben nicht gesichert, die Integrität der Daten also nicht gewährleistet. Dies resultiert darin, dass der Impfpass nicht von offiziellen Einrichtungen genutzt werden könnte, sondern lediglich vom Nutzer selbst.\\
+Stattdessen müsste man, um die Daten als integer zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
 Somit wird die Integrität der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
+Im Verlauf dieser Arbeit wurde ein Teil dieses Feature in der Corona-Warn-App implementiert \cite{Impfnachweis}, allerdings nur für die Impfung gegen Corona. Impfungen gegen andere Krankheiten werden noch nicht berücksichtigt.\\
+Der gewählte Ansatz verfolgt eine beschränkte Bearbeitung des Impfnachweises, sodass der Nachweis als offizielles Dokument für z.B. Reisen in andere Länder benutzt werden kann.\\ 
+
 
 \subsubsection{Gamification}
 Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.
@@ -345,9 +349,10 @@ Die CWA-User werden in drei Untergruppen aufgeteilt:
 \textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
 \textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
 \textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
-Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: \textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, 
-dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), \textit{Hidden-Positive} sind alle Personen, die infiziert wurden, 
-jedoch kein positives Testergebnis nachweisen können und \textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
+Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: 
+\textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), 
+\textit{Hidden-Positive} sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können und 
+\textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
 
 %Probleme und Lösungsvorschläge
 Bei näherer Betrachtung der aktuellen Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
@@ -551,7 +556,7 @@ Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
 Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können.
 
-Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben verwendet: Rot, Orange, Gelb und Grün.
+Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet, die die entsprechenden Risikoklassen symbolisieren.
 \\
 
 $0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
@@ -562,17 +567,17 @@ $9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
 
 $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 \\
+
 Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
 Ein transparenter Risikowert macht es für Nutzer leichter nachvollziehbar, wie sie sich bei einem erhöhten Risiko Verhalten sollten und fördert die aktive Nutzerzahl.
-Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
+Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm in der App angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.\\
 
-\subsubsection{R\textsubscript{CWA-Positive}}
-\label{CWAPositive}
+\subsubsection{R\textsubscript{CWA-Positive}}\label{CWAPositive}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
-Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier konstant 1. 
+Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier 1. 
 Es wird also nur das Übertragungspotential betrachtet. Dafür wird zunächst zu einer Begegnung die \textit{Weighted Exposure Time} ausgewertet. 
 Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t} anhand der geringsten Dämpfung (attenuation) \textit{att}  wie folgt: 
 
@@ -580,7 +585,8 @@ Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t}
 \centerline{$\text{WeightedExposureTime} := t \cdot \text{attFactor}$}
 \centerline{\text{ }}
 
-Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att bestimmt wird:
+Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
+
 
 \centerline{\text{ }}
 
@@ -949,10 +955,10 @@ wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittlich
 Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
 Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
 \centerline{$\text{RPIs} = \text{IDs} + \text{IDs} \cdot p $}
-Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
+Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten und wird im Folgenden als ID-basierte Formel bezeichnet.
 
-Eine Übersicht, infwiefern der gemessene Wert mithilfe der Korrekturformel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
-Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
+Eine Übersicht, inwiefern der gemessene Wert mithilfe der Korrekturformel korrigiert wird, wird in Abb. \ref{cor_factor} aufgezeichnet. 
+Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smartphones (ID's) angibt.
 Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
 \begin{figure}[h]
 	\centering
@@ -961,13 +967,14 @@ Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet ha
 	\label{cor_factor}
 \end{figure} \\
 
-Eine Alternative zur Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
+Eine Alternative zur ID-basierten Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
 Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
 Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPI's abgezogen werden, um so den realen Wert zu erhalten.\\
 Diese \textit{alternative Korrekturformel} ist somit wie folgt definiert:
 \begin{equation}
 	\text{IDs} = \text{RPIs} * (1-p/2)
 \end{equation}
+Auf Grund des Ansatzes, dass die Anzahl der IDs unbekannt ist und die Anzahl der RPIs bekannt, wird diese Formel im Folgenden als RPI-basierte Formel bezeichnet.\\
 Beide Formeln werden im Abschnitt \textit{Simulation} evaluiert und miteinander verglichen.\\
 
 \textit{Ohne Masten:}\\
@@ -1036,32 +1043,33 @@ Das letzte zentrale Problem, welches nicht nur unsere Lösungsansätze sondern a
 Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%). \cite{Downloads}
 Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
 
-\subsection{Simulation}
+\subsection{Simulation der RPI-basierten Formel}
 
 Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
 Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
 Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}. \\
 \\
 Wie bereits in Abschnitt IV.B beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
-Im ersten Teil unserer Simulationen testen wir zunächst die \textit{alternative Korrekturformel}.\\
+Im ersten Teil unserer Simulationen testen wir zunächst die \textit{RPI-basierte Korrekturformel}.\\
 \centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
-und im zweiten Teil dieses Abschnitts die \textit{Korrekturformel}
+und im zweiten Teil dieses Abschnitts die \textit{ID-basierte Korrekturformel}
 \centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
-Der Grund, weshalb zuerst die alternative Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertiung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
-Erst daraufhin wurde die tatsächliche Korrekturformel erstellt. 
+Der Grund, weshalb zuerst die RPI-basierte Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
+Erst daraufhin wurde die ID-basierte Korrekturformel erstellt. 
 
-Das Ziel der Simulation ist es, festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
+Das Ziel der Simulation ist es festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
 
 \textit{Aufbau:}\\
-Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-direction-Model bestimmt.\\
+Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-Direction-Model bestimmt.\\
 Auf diesem Gebiet sind vier Masten, in Abbildung 8 dargestellt durch größere Kreise, welche persistent speichern, welche Handys in ihrer Reichweite liegen und wie lange dies der Fall ist.\\
 Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig mit der korrekten Anzahl zu vergleichen.\\
 Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus' eines Mastes. Dazu wird während des Zyklus zu jeder ID eine Zeitdauer gemessen und aus diesen der Durchschnitt ermittelt.\\
-Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Counter hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Handys geteilt.\\
-Zwischenzeitliches Verlassen des Radius des Mastes setzt den Counter nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Counter weitergeführt.\\
+Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Zähler hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Zähler addiert und durch die gemessene Anzahl der Handys geteilt.\\
+Zwischenzeitliches Verlassen des Radius des Mastes setzt den Zähler nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Zähler weitergeführt.\\
+Die Zähler messen die Zeit in Ticks, welche die generelle Zeiteinheit der Simulation ist. Ein Durchlauf einer Simulation dauert 16000 Ticks, während der die Masten in einem Zyklus von 200 Ticks ihre Aufzeichnungen durchführen.\\
 Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
 Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.\\
-Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Countern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
+Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Zählern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
 Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
 Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
 Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
@@ -1075,8 +1083,9 @@ Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. 
 
 \textit{Ergebnisse:}
 
-Abb. \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
+Abbildung \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne dass Social Distancing benutzt wird.\\
 Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
+Auf der x-Achse befindet sich die Zeit, die den gesamten Verlauf der Simulation darstellt.\\
 Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert liegt näher an dem gemessen Wert als in Abb. \ref{mast_data_plotted_old}.
 
 \begin{figure}[h]
@@ -1094,14 +1103,13 @@ Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist d
 \end{figure}
 
 \textit{Schlussfolgerung:}\\
-Die gesammelten Daten belegen, dass die durch die alternative Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
+Die gesammelten Daten belegen, dass die durch die RPI-basierte Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
 Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
 
-Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die alternative Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die RPI-basierte Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
 
-\textit{Simulation Korrekturformel:}
-Um die Korrekturformel $\text{IDs} = \frac{\text{RPIs}}{(1+p)}$
-zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
+\textit{Simulation der ID-basierten Korrekturformel:}
+Um die ID-basierte Korrekturformel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
 Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing} gezeigten Werte.
 
 \begin{figure}[h]
@@ -1119,13 +1127,12 @@ Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} un
 \end{figure}
 
 \textit{Ergebnisse:}\\
-Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch Korrekturformel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
-Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig, und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit alternativer Korrekturformel der Fall war.\\
-Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der alternativen Korrekturformel.\\
-
+Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die ID-basierte Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
+Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit der RPI-basierten Formel der Fall war.\\
+Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der RPI-basierten Korrekturformel.\\
 
 \textit{Schlussfolgerung:}\\
-Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die Korrekturformel besser als die alternative Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
+Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die ID-basierte Korrekturformel besser als die RPI-basierte Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
 
 \subsection{Bewertung}
 Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.\\
@@ -1252,6 +1259,8 @@ https://github.com/midudev/covid-19-spread-simulator
 \bibitem{DarfIchDas} https://www.darfichdas.info/ (09.06.2021)
 \bibitem{Risikoberechnung} \glqq Corona-Warn-App Dokumentation\grqq \\https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk\_calculation/risk\_calculation\_enf\_v2\_overview.pdf (09.06.2021)
 \bibitem{freiwilligeDatenspende} \glqq Corona-Warn-App: Freiwillige Datenspende für verbesserte Wirksamkeit\grqq \\https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182 (09.06.2021)
+\bibitem{Impfnachweis}
+https://www.pharmazeutische-zeitung.de/corona-warn-app-kann-impfnachweis-anzeigen-126188/
 \end{thebibliography}
 \vspace{12pt}
 
