@@ -4,11 +4,11 @@
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
-\usepackage{sistyle}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage[ngerman]{babel}
+\usepackage{sistyle}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -34,21 +34,24 @@ Stuttgart, Germany}
 \IEEEauthorblockA{\textit{Bsc. Science Informatik} \\
 \textit{Universität Stuttgart}\\
 Stuttgart, Germany}
+\and
+\IEEEauthorblockN{\textbf{Betreuer:} Dr. rer. Nat. Frank Dürr}
+\IEEEauthorblockA{\textit{Institut für Parallele und Verteilte Systeme} \\
+\textit{Universität Stuttgart}\\
+Stuttgart, Germany \\
+frank.duerr@ipvs.uni-stuttgart.de}
+\and
+\IEEEauthorblockN{\textbf{Prüfer: } Prof. Dr. rer. Nat. Kurt Rothermel}
+\IEEEauthorblockA{\textit{Institut für Parallele und Verteilte Systeme} \\
+\textit{Universität Stuttgart}\\
+Stuttgart, Germany \\
+kurt.rothermel@ipvs.uni-stuttgart.de}
 }
 
 \maketitle
 
 \begin{abstract}
-Das Coronavirus sorgt nun seit Anfang 2020 für sowohl ind Deutschland als auch weltweit für Ausnahmezustände. 
-Um die Ausbreitung des Viruses weitestmöglich einzudmämmen wurden vielerlei Maßnahmen und Vorkehrungen getroffen, wie etwa Kontaktbeschränkungen oder Lockdowns.
-Eine der effektivsten Methoden die Infektonsketten zu unterbrechen und die Ausbreitung zu verlangsamen ist die Kontakverfolgung. 
-Dabei werden von einem Infizierten alle Kontaktpersonen innerhalb der letzten 14 Tage ermittelt, welche sich dann in Isolation begeben sollten. 
-Da die manuelle Kontaktverfolgung ein aufwändiges Unterfangen darstellt wurde im Autrag des RKI die Corona Warn App entwickelt, die diese Kontaktverfolgung per Smartphone automatisieren soll. 
-Die Corona Warn App stand seit ihrer Herausgabe jedoch häufig unter Kritik und scheint in vielerlei Hinsicht noch nicht komplett ausgereift.
-Unser Ziel ist es, mögliche Erweiterungen der Corona Warn App zu finden und  zu analysieren.
-Hierbei wird ein besonderer Fokus auf die Crowd-Sensing Mechanismen gelegt, welche die Corona Warn App vorzuweisen hat. 
-Die Erweiterungen wurden Unterteilt in die Nebenfeatures, sowie die zwei Hauptfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map}.
-Jede vorgeschlagene Erweiterung wird anschließend diese Erweiterungen unter verschiedenen Aspekten beurteilt. 
+TODO
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -79,16 +82,14 @@ Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich d
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
 Einen besonderen Fokus legen wir hierbei auf die Crowdsensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
 Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
-Dabei sind wir folgendermaßen vorgegangen: Zunächst wurde eine Übersicht aller von uns überlegten Erweiterungen erstellt. 
-Diese Erweiterungen wurden dann in Haupt- und Nebenfeatures unterteilt. 
-
+Die Erweiterungen wurden in Haupt- und Nebenfeatures unterteilt. 
 In den Nebenfeatures finden sich eine Reihe von kleineren oder weniger aufwändigen Erweiterungen, wohingegen wir bei den zwei großen Hauptfeatures, der \textbf{erweiterten Risikoberechnung} und der \textbf{Density-Map}, noch tiefer in den Aufbau und die Funktionsweise der jeweiligen Features hineingehen.
 Alle vorgeschlagenen Erweiterungen werden in ihren jeweiligen Abschnitten zusätzlich noch hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand beurteilt. 
 
 Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befinden sich bestehende Arbeiten. 
 Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
 In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und beurteilt,
-bevor in Abschnitt \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} jeweils die beiden Hauptfeatues der \textit{erweiterten Risikoberechnung} und der \textit{Density-Map} im genaueren betrachtet werden. 
+bevor in Abschnitt \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} jeweils die beiden Hauptfeatues der \textit{erweiterten Risikoberechnung} und der \textit{Density-Map} beschrieben werden. 
 In Abschnitt \ref{Conclusion} befindet sich unsere abschließende Zusmmenfassung und ein Ausblick. 
 
 \section{Bestehende Arbeiten} \label{rel_work}
@@ -234,8 +235,7 @@ Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer 
 
 \subsection{Übersicht aller Erweiterungen}
 
-Im Folgenden werden Erweiterungen beschrieben, welche als Lösungen für bestehende Probleme dienen und als Feature in die Corona Warn App implementiert werden könnten oder dies mittlerweile bereits sind. Sie werden anhand unserer in Abschnitt \ref{Bewertungskriterien} genannten Kriterien erläutert und spezifiziert.\\
-
+Im Folgenden werden alle Erweiterungen, welche uns zu Beginn der Forschungsarbeit als tiefergehendes Feature möglich erschienen, aufgezählt und nach unseren in Abschnitt \ref{Bewertungskriterien} genannten Kriterien beschrieben.\\
 
 \subsubsection{Impfpass}
 In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. 
@@ -257,12 +257,9 @@ Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
 - Vorerkrankungen \\
 - Gewicht \\
 - Beruf/Arbeitsumfeld\\
-Bei einem unverbindlichen Impfpass wären diese Angaben nicht gesichert, die Integrität der Daten also nicht gewährleistet. Dies resultiert darin, dass der Impfpass nicht von offiziellen Einrichtungen genutzt werden könnte, sondern lediglich vom Nutzer selbst.\\
-Stattdessen müsste man, um die Daten als integer zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
+Bei einem unverbindlichen Impfpass wären diese Angaben nicht wirklich nutzbar außer für den Endnutzer, da man auf die Eigenverantwortung des einzelnen Nutzers angewiesen wäre, die Daten also einfach gefälscht werden können.
+Stattdessen müsste man, um die Daten als sicher zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.
 Somit wird die Integrität der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
-Im Verlauf dieser Arbeit wurde ein Teil dieses Feature in der Corona-Warn-App implementiert \cite{Impfnachweis}, allerdings nur für die Impfung gegen Corona. Impfungen gegen andere Krankheiten werden noch nicht berücksichtigt.\\
-Der gewählte Ansatz verfolgt eine beschränkte Bearbeitung des Impfnachweises, sodass der Nachweis als offizielles Dokument für z.B. Reisen in andere Länder benutzt werden kann.\\ 
-
 
 \subsubsection{Gamification}
 Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.
@@ -288,20 +285,15 @@ Jeder Geimpfte hat dabei eine Chance den Hauptgewinn von einer Millionen US-Doll
 \subsubsection{Ortsbezogene Informationen}
 Ein Problem das im Verlauf der Pandemie auftritt ist die undurchsichtige und inkonsistente Informationsgebung 
 hinsichtich der beschlossenen Maßnahmen und Einschränkungen an die sich die Bevölkerung richten muss. 
-Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Landesministerien, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
+Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Budnesländern, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
 Selbst bei der Bundesweiten Notbremse bezogen sich die Regelungen auf die Inzidenz der einzelnen Landkreise \cite{Notbremse}.
 Dies führte zu einer großen Verwirrung welche derzeitigen Gesetze und Verordnungen gelten, zumal diese teilweise im Tagesrythmus geändert wurden.
 
-Auf Grund dessen ist ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
+Auf Grund dessen wäre ein Feature hilfreich, das die aktuellen Verordnungen abhängig vom jeweiligen Landkreis darstellt und einen Überblick verschafft.
 Dabei können die Nutzer unabhängig von ihrem Standort auf die Daten eines jeweiligen Landkreises zugreifen,
 um auf einfachem Weg die offiziellen Informationen zu erhalten. 
 
-Die Ortsbezogenen Informationen benötigen keinerlei Nutzerdaten und liefern lediglich zusätzliche Informationen über die aktuelle Corona Lage Innerhalb eines Landkreises.
-Aus diesem Grund ist eine Implementierung dieses Features in keinster Weise bendenklich im Sinne der Sicherheit und Privatheit der Nutzer.
-Durch einen Hackerangriff könnte man im schlimmsten Fall über diese Funktion herausfinden, in welchem Landkreis sich ein Nutzer mit hoher Wahrscheinlichkeit aufhällt.
-Da die Informationen größtenteils auf den jeweiligen Websiten der Länder zu Verfügung steht, ist eine Umsetzung des Features auch nicht mit einem großen Aufwand verbunden.  
-
-Dieses Feature existiert seit Oktober 2020 bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
+Dieses Feature existiert bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
 
 \subsubsection{Integration von Applikationen}
 Es existieren viele verschiedene Plattformen, die fast täglich neue Nachrichten zur aktuellen Corona-Situation herausgeben \cite{RKI}, \cite{BMG}, Daten zur Eindämmung der Pandemie sammeln \cite{RKIDatenspende}, \cite{Gedaechtnistest} oder Neuigkeiten zu Forschungsarbeiten mit Bezug zu Corona veröffentlichen \cite{GesundheitsforschungNews}.
@@ -335,12 +327,12 @@ Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterl
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
-	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung}}
-	\label{Risikoberechnung_Abbildung}
-\end{figure*}
+%\begin{figure*}[h]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
+%	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung}}
+%	\label{Risikoberechnung_Abbildung}
+%\end{figure*}
 
 %Definitionen
 Mit der Risikoberechnung wird das Übertragungspotenzial und die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnungen ermittelt,
@@ -516,11 +508,11 @@ Im Falle, dass es nicht möglich ist, die Zeitpunkte des Testens und des Rückme
 Mit diesen Daten kann dann der Zeitpunkt des Infektiös seins kalkuliert werden und mithilfe des TRLs für jeden Diagnosis Key abgeschätzt werden,
 damit Nutzer besser gewarnt werden können.
 
-%Vorher Risikoberechnung
+ %Vorher Risikoberechnung
 \subsection{Berechnung}
 \label{Berechnung}
 
-In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der neue Risikowert R\textsubscript{new} zusammensetzt.
+In diesem Abschnitt werden die drei Summanden R\textsubscript{CWA-Positive}, R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} beschrieben, aus denen sich der Risikowert zusammensetzt.
 
 \begin{figure*}[h]
 	\centering
@@ -546,26 +538,20 @@ werden in der neuen Berechnung anders als Begegnungen mit CWA-Likely-Negative Pe
 Außerdem ist die Risikoberechnungsanzeige nicht transparent genug, zwar ist die Anzahl an Begegnungen mit CWA-Positive Personen sichtbar, 
 jedoch sieht man weder den Grad des Übertragungspotenzials, noch wie der Risikowert zustande gekommen ist.
 
-Die neue Berechnungsvorschrift unterscheidet zwischen 
-Begegnungen mit sicher Infizierten (CWA-Positive Gruppe mit positivem Testergebnis),
-wahrscheinlich positiven Personen (CWA-Likely-Positive Gruppe) und wahrscheinlich nicht Infizierten (CWA-Likely-Negative Gruppe). 
-Dementsprechend setzt sich der neue Risikowert aus drei Summanden zusammen,
-damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
-Der \textit{neue Risikowert} R\textsubscript{new} wurde bereits in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert.
-Hier wird die Definition nochmals wiederholt.
+Dafür wurde die Berechnung des Risikowertes in 3 Summanden aufgeteilt, damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
 
 \centerline{\text{ }}
-\centerline{\text{R\textsubscript{new} := }}
+\centerline{\text{Neuer Risikowert := }}
 \centerline{\text{R\textsubscript{CWA-Positive} + R\textsubscript{CWA-Likely-Positive} + R\textsubscript{CWA-Likely-Negative}}}
 \centerline{\text{ }}
 
-Der erste Summand ist R\textsubscript{CWA-Positive} und berechnet das Risiko, indem nur Begegnungen mit positiv getesteten (CWA-Positive) Personen einbezogen werden. 
+Der erste Summand ist R\textsubscript{CWA-Positive} und berechnet das Risiko, indem nur Begegnungen mit CWA-Positive Personen einbezogen werden. 
 Dabei wird jede Begegnung gewichtet, je nach dem wie hoch das Übertragungspotenzial der Begegnung ist. 
 Der zweite Summand R\textsubscript{CWA-Likely-Positive} schätzt das Risiko von Begegnungen mit Likely-Positive Personen, sprich roten Bildschirmen bzw. 
 CWAs mit einem Risikowert von über 13, aber keinem positiven Test Ergebnis, ab.
 Außerdem gibt es noch den dritten Summanden R\textsubscript{CWA-Likely-Negative}, der die Begegnungen mit Personen aus der Personengruppe CWA-Likely-Negativ mit einberechnet,
 wobei auch die Personengruppe der Not-CWA-User mit betrachtet wird.
-Der neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
+Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die als höhe des Infektionsrisikos interpretiert werden kann.
 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
 Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können.
@@ -573,13 +559,13 @@ Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm a
 Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet, die die entsprechenden Risikoklassen symbolisieren.
 \\
 
-$0\le R\textsubscript{new} < 5 \rightarrow \text{grüner Bildschirm}$
+$0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
 
-$5\le R\textsubscript{new} < 9 \rightarrow \text{gelber Bildschirm}$
+$5\le Risikowert < 9 \rightarrow \text{gelber Bildschirm}$
 
-$9\le R\textsubscript{new} < 13 \rightarrow \text{orangener Bildschirm}$
+$9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
 
-$13 \le R\textsubscript{new}  \rightarrow \text{roter Bildschirm}$
+$13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 \\
 
 Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
@@ -599,31 +585,26 @@ Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t}
 \centerline{$\text{WeightedExposureTime} := t \cdot \text{attFactor}$}
 \centerline{\text{ }}
 
-Wobei der \textit{attFactor} durch \SI{22}{dB} folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
+Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
 
 
 \centerline{\text{ }}
 
-\text{$att < \SI{63}{dB}:attFactor=0.8$}
+\text{$att < 63dB:attFactor=0.8$}
 
-\text{$\SI{63}{dB} \le att<\SI{73}{dB}:attFactor=1.0$}
+\text{$63dB \le att<73dB:attFactor=1.0$}
 
-\text{$\SI{73}{dB} \le att<\SI{79}{dB}:attFactor=0.1$}
+\text{$73dB \le att<79dB:attFactor=0.1$}
 
-\text{$\SI{79}{dB} \le att:attFactor=0$}
+\text{$79dB \le att:attFactor=0$}
 \centerline{\text{ }}
 
-Dabei kann man die Werte \SI{63}{dB} bzw. \SI{73}{dB}, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
+Dabei kann man die Werte 63dB bzw. 73dB, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
 Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden \cite{}(Quelle cwa-risk-assessment).
 
-Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wird danach aus der Weighted Exposure Time die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
-
-\centerline{\text{ }}
-\centerline{$t_n := \text{Weighted Exposure Time}\cdot TRV$}
-\centerline{\text{ }}
-
-Das Transmission Risk Level wird in Abschnitt \ref{TRL} genauer beschrieben und bezieht die Wahrscheinlichkeit mit ein, dass eine Person die Krankheit auch wirklich überträgt. 
-Der TRV ergibt sich aus dem TRL nach der folgenden Vorschrift:
+Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wir danach aus der Weighted Exposure Time wird die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
+Das Transmission Risk Level wird in Abschnitt TRL genauer beschrieben und bezieht die Wahrscheinlichkeit mit ein, dass eine Person die Krankheit auch wirklich überträgt. 
+Der TRV ergibt sich aus TRL nach der folgenden Vorschrift:
 
 \centerline{\text{ }}
 
@@ -644,7 +625,11 @@ Der TRV ergibt sich aus dem TRL nach der folgenden Vorschrift:
 \text{$TRL=VIII\rightarrow TRV=1.6$}
 \centerline{\text{ }}
 
-Mit dem TRV lässt sich dann t\textsubscript{n} bestimmen.
+Mit dem TRV lässt sich dann t\textsubscript{n} bestimmen:
+
+\centerline{\text{ }}
+\centerline{$t_n := \text{Weighted Exposure Time}\cdot TRV$}
+\centerline{\text{ }}
 
 Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Summe gebildet und man erhält damit das Risiko R\textsubscript{CWA-Positive}:
 
@@ -658,56 +643,49 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
 
-Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature, Abschnitt \ref{Familienfeature}, nicht mit einbezogen, 
+Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature \ref{Familienfeature} nicht mit einbezogen, 
 da diese sonst aufgrund der potenziell langen Begegnungsdauer und 
 kurzen Distanz ein hohes R\textsubscript{CWA-Likely-Positive} Risiko hervorrufen könnten und man im Regelfall diesen Personen ohnehin sofort mitteilt, wenn man ansteckend sein könnte. 
 
 Zudem werden Begegnungen mit Diagnosis Keys nicht mit einberechnet, da diese bereits im Summand R\textsubscript{CWA-Positive} betrachtet werden. Dies geschieht, 
 indem bei der Risikoberechnung die Begegnungs RPIs mit den Diagnosis Keys auf dem CWA Server abgeglichen werden und nur die RPIs mit einbezogen werden, 
-für die keine passenden Diagnosis Keys auf dem CWA Server existieren.
+die keinen passenden Diagnosis Keys auf dem CWA Server liegen haben.
 
 Zuerst wird, wie beim Summand R\textsubscript{CWA-Positive}, das Übertragungspotenzial einer Begegnung bestimmt, indem die Weighted Exposure Time ausgewertet wird. 
 
 Aus der Weighted Exposure Time wird danach allerdings nicht die Normalised Exposure Time bestimmt, wie dies beim Summand R\textsubscript{CWA-Positive} der Fall ist, 
 da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Positive Personen nicht vorweisen können.
 
-Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
+Anstelle davon wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
 
 Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
 Aus diesem Grund wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
-Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
+Um die Positiv-Begegnungs-Wahrscheinlichkeit zu erhalten wird jedoch erst eine Funktion \textit{f} benötigt, die diese Wahrscheinlichkeit angibt.
 
-\centerline{\text{ }}
-\centerline{$f: Risikowert \rightarrow Wahrscheinlichkeit$}
-\centerline{\text{ }}
+Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist. 
+Der Risikowert wurde zuvor mit dem TEK zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben. Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
 
-Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist.
-Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben.
-
-Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
-Zunächst werden, Intervalle gebildet, da die Menge der Risikowerte nicht diskret, sondern stetig ist.
-Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i$ mit $i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
+Zunächst werden Risikowert-Intervalle gebildet, da Risikowerte nicht nur natürliche Zahlen als Werte annehmen können. 
+Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i mit i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
 dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
 \centerline{$x_i := [13+i, 14+i[$}
 \centerline{\text{ }}
 
-Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem PKServer alle $\geq 13$ sind.
+Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem PKServer alle $\le 13$ sind. 
 Damit die Wahrscheinlicht bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
-wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben und die Anzahl an Personen, 
-die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind. 
-
-Dafür werden die TEKs auf dem PKServer und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
-Aus den TEKs auf dem PKServer kann die Anzahl an Personen bestimmt werden,
-die einen Risikowert innerhalb des Intervalls $x_i$ haben.
+wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ hat und die Anzahl an Personen, 
+die sowohl einen Risikowert innerhalb des Intervalls $x_i$ hat, als auch später an Corona erkrankt ist. 
+Dafür werden die TEKs auf dem PKServer und die Diagnosis Keys auf dem CWA Server verwendet. Aus den TEKs auf dem PKServer kann die Anzahl an Personen bestimmt werden,
+die einen Risikowert innerhalb des Intervalls $x_i$ hat.
 Werden zusätzlich zu den TEKs auf dem PKServer die Diagnosis Keys auf dem CWA Server dazu genommen, 
-kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
+kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ hat, als auch später an Corona erkrankt ist, 
 indem die TEKs auf dem PKServer und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
-Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit $P_{x_i}$, infiziert zu sein, wie folgt bestimmen:
+Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, wie folgt bestimmen:
 
 \centerline{\text{ }}
-\centerline{$P_{x_i} := \frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
+\centerline{$\frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
 \centerline{\text{ }}
 
 Zur \textit{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
@@ -729,9 +707,8 @@ obwohl diese infiziert sind, da noch kein positives Testergebnis aufgrund der ge
 Die davon betroffenen TEKs würden die Funktion $f$ negativ beeinflussen.
 
 Nachdem für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, bestimmt wurde, wird durch ein Regressionsverfahren die Funktion $f$ bestimmt, 
-die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. 
-Hierbei ist besonders zu beachten, dass die Funktion $f$ periodisch mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
-Eine Aktualisierungsperiode sollte ca. 7 Tage andauern, da der Zeitraum $s_0$ bis $s_1$ 7 Tage lang ist.
+die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. Hierbei ist besonders zu beachten, 
+dass die Funktion $f$ etwa alle 7 Tage mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
 Beim Herunterladen von Keys (vom CWA Server oder PKServer) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
 Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden: 
 
@@ -752,16 +729,23 @@ dass CWA-Likely-Positive Personen nur einen Risikowert $\le 13$ bei anderen Pers
 Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden kann. 
 
 Nimmt man diese Begrenzung nicht vor, 
-ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen hohen Risikowert $\geq 13$ hervorrufen kann, 
-die wiederum bei weiteren Personen hohe Risikowerte $\geq 13$ hervorrufen können und so weiter. 
-Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch erhöhte Risikowerte $\leq 13$ bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
+ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen roten Bildschirm hervorrufen kann, 
+die wiederum bei weiteren Personen rote Bildschirme hervorrufen können und so weiter. 
+Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch rote Bildschirme bei anderen hervorrufen, 
+jedoch können die Personen, die dadurch einen roten Bildschirm erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 
 \subsubsection{R\textsubscript{CWA-Likely-Negative}}
 \label{CWALikelyNegative}
 
-Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein,
-denn aktuell haben nur ein Bruchteil der Infizierten ein positives Test Ergebnis in die App eingetragen. 
+Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) 
+bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein.
+Neben dem Unterschied der gezählten Personengruppen, gibt es bei den  Risiken R\textsubscript{CWA-Positive} und 
+R\textsubscript{CWA-Likely-Positive} einen Indikator aus historischen Daten, 
+der beschreibt, dass diese Personengruppen bereits an Corona erkrankt sind oder mit einer gewissen hohen Wahrscheinlicheit später an Corona erkranken werden. 
+Hierbei handelt es sich um Verifizierte Daten in Form von Testergebnissen der CWA-Positive Personengruppe, die in die CWA eingetragen wurden.
+Bei dem Risiko R\textsubscript{CWA-Likely-Negative} fehlen diese Indikatoren jedoch, obwohl auch von ihnen eine Gefahr aus geht,
+denn es befinden sich in den beschriebenen Personenegruppen Infizierte, deren Erkrankung weder festgestellt noch hochgeladen wurde.
+
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 \begin{itemize}
@@ -770,9 +754,13 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 	die nicht aufgezeichnet werden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
 	Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, 
 	als positiv getestet wurden. Mithilfe der Dunkelziffer kann somit die größe der Gruppe Hidden-Positive geschätzt werden.
+	Hidden Posiive wurden in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert und sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können. 
+
 	Die Dunkelziffer wurde erstmals durch eine Studie in Kupferzell \cite{Dunkelziffer} nachgewiesen und bestimmt. 
 	Da die Datenerhebung dieser Studie vom 20. Mai bis 9. Juni 2020 durchgeführt wurde und sich die Testmöglichkeiten seitdem stark entwickelt haben, 
-	ist die damals bestimmte Dunkelziffer von 6 möglicherweise ungenau. 
+	ist die damals bestimmte Dunkelziffer von Sechs möglicherweise ungenau. 
+	Eine Dunkelziffer von Sechs würde allerdings bedeuten, dass die Anzahl der Infizierten um den Faktor Sechs größer ist, 
+	als die Anzahl durch Tests aufgezeichneten Infizierten.
 	\item  AppUsage: Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. 
 	Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. 
 	Da die derzeitige Nutzung deutlich unter 50\% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, 
@@ -785,7 +773,7 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 \centerline{$AppUsage := \frac{DownloadCount}{Population}$}
 \centerline{\text{ }}
 
-Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage beachtet.
+Wie auch beim Risiko R\textsubscript{CWA-Positive} werden beim Risiko R\textsubscript{CWA-Likely-Negative} die Begegnungen der letzten 14 Tage betrachtet.
 Denn obwohl sich jemand nur mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User getroffen hat
 ist es bei einer hohen Anzahl an Begegnungen wahrscheinlicher infiziert zu werden, als bei einer niedrigen, denn in der Not-CWA-User Gruppe gibt es viele Personen, die infektiös sind. 
 Deswegen wird hierfür die Personengruppe Likely-Negative benötigt. 
@@ -799,10 +787,10 @@ Für dieses Risiko wird hauptsächlich mit einer Positiv-Begegnungs-Wahrscheinli
 da man mit dieser die Gruppen Not-CWA-Positive und Hidden-Positive mit einfließen lassen kann.
 Dabei wird das Übertragungspotenzial nicht wie bei den anderen Risiken R\textsubscript{CWA-Positive} und R\textsubscript{CWA-Likely-Positive} berechnet, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit einer CWA-Likely-Negative Person zu gering ist. 
-Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird dafür genutzt,
+Die Positiv-Begegnungs-Wahrscheinlichkeit mit Begegnungen aus der CWA-Likely-Negative Gruppe wird trotzdem genutzt,
 um den Einfluss der Gruppen Not-CWA-Positive und Hidden-Positive zu berechnen und wird unter anderem durch die Dunkelziffer und die AppNutzung bestimmt.
 
-Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att Aunter 73 Dezibel ist,
+Um das Übertragungspotenzial trotzdem miteinfließen zu lassen werden alle Begegnungen gezählt bei denen die Signalstärke att unter 73 Dezibel ist,
 der Abstand somit kleiner als 8 Meter ist und die Begegnungsdauer zwischen einem \textit{LowerBound} und einem \textit{UpperBound} ist. 
 
 Da nicht jede noch so kurze Begegnungen aufgezeichnet werden soll,
@@ -812,14 +800,19 @@ Bei einer einzigen langen Begegnung werden viele Begegnungen mit einer Begegnung
 15 Minuten aufgezeichnet, da der RPI alle 15 Minuten gewechselt wird. 
 Um dies zu verhindern gibt es zum einen das Familienfeature, 
 welches meist lange Begegnungen mit Freunden bzw. Verwandten von vornherein ausschließt und zum anderen gibt es den UpperBound.
-Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit kurze Distanzierungen keinen großen Einfluss haben.
+Für den UpperBound soll jede Signalstärke mit einberechnet werden, damit zeitlich kurze Distanzierungen keinen großen Einfluss haben.
 Für diesen Wert wird 14 Minuten geschätzt, damit Verbindungsfehler keinen großen Einfluss auf die Begegnungsanzahl haben.
+Dabei werden zwar Begegnungen zwischen 14 und 15 Minuten auch herausgefiltert, 
+jedoch werden Begegnungen mit einer Begegnungesdauer > 30 Minuten meist als zwei Begegnungen aufgezeichnet,
+da nur eine der drei aufgezeichneten Begegnungen eine dauer von genau 14-15Minuten hat.
+Die Anzahl der Begegnungen gleicht sich damit aus.
 Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gezählt.
+Dafür wird die Funktion \textit{t(x)} verwendet, die für geltendes x die Begegnungsdauer einer Begegnung bestimmt.
 
 \centerline{\text{ }}
-\text{$if(att<73dB) \le lowerBound$\{}
+\text{$if(t(att<\SI{73}{dB})) \le lowerBound$\{}
 
-\text{\&\&$t(att > 0dB) < upperBound)$}
+\text{\&\&$t(att > \SI{0}{dB}) < upperBound)$}
 
 \text{$Contacts++$}
 
@@ -827,10 +820,11 @@ Somit wird jede Begegnung mit Begegnungsdauer zwischen Lower- und UpperBound gez
 
 \centerline{\text{ }}
 
-Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl man sich ansteckt, wird zuerst die aktuelle Anzahl infizierter ausgerechnet, 
-um damit die Positiv-Begegnungs-Wahrscheinlichkeit auszurechnen. 
-Die aktuelle Anzahl positiv getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu berechnen. 
-Davon wird {currentCWAPositive} subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt. 
+Um die Wahrscheinlichkeit zu berechnen, bei welcher Begegnungsanzahl, man zu einer hohen Wahrscheinlichkeit eine infizierte Person getroffen hat,
+wird zuerst die aktuelle Anzahl Infizierter ausgerechnet, 
+um damit die Positiv-Begegnungs-Wahrscheinlichkeit zu berechnen. 
+Die aktuelle Anzahl positiv Getesteter wird mit der Dunkelziffer multipliziert, um die Anzahl aktuell Infizierter zu berechnen. 
+Davon wird \textit{currentCWAPositive} subtrahiert, da das Risiko bereits in R\textsubscript{CWA-Positive} mit einfließt. 
 CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in den letzten 14 Tagen in die CWA eingetragen hat.
 
 \centerline{\text{ }}
@@ -838,8 +832,8 @@ CurrentCWAPositive ist die Anzahl an Personen, die ein positives Testergebnis in
 \centerline{$\frac{((\text{currentPositiveTested} \cdot \text{Dunkelziffer}) - \text{currentCWAPositive}}{\text{Population}}$}
 \centerline{\text{ }}
 
-R\textsubscript{CWA-Likely-Negative} setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit zusammen und wird auf 13 beschränkt, 
-da die Person gewarnt werden soll, allerdings nicht als hoch Infektiös gilt. 
+R\textsubscript{CWA-Likely-Negative} setzt sich aus dieser Positiv-Begegnungs-Wahrscheinlichkeit \textit{PersonIsInfected} zusammen und wird auf 13 beschränkt, 
+da dieser Wert in der aktuellen CWA zu einem erhöhten Risiko führt und da die Person gewarnt werden soll, allerdings nicht als hoch Infektiös gilt. Dabei wird 
 Dabei wird die Anzahl Contacts mit der AppUsage nach oben korrigiert, um die Anzahl wirklicher Begegnungen \textit{CorrectContacts} besser abzuschätzen. 
 Aktuell beträgt die AppUsage ca. $1/3$ \cite{Downloads}, somit werden die Contacts um das Dreifache erhöht. 
 
@@ -847,21 +841,26 @@ Aktuell beträgt die AppUsage ca. $1/3$ \cite{Downloads}, somit werden die Conta
 \centerline{$\text{CorrectContacts} := \frac{Contacts}{AppUsage}$}
 \centerline{\text{ }}
 
-Da mit einem Beschränkten Wachstum gerechnet wird und somit die Positive-Begegnungs-Wahrscheinlichkeit subtrahiert werden muss, 
-muss mit der Gegenwahrscheinlichkeit gerechnet werden. Denn umso höher die Infektionswahrscheinlichkeit, 
-desto geringer ist die Gegenwahrscheinlichkeit und desto näher ist R\textsubscript{CWA-Likely-Negative} an der Schranke 13. 
-Um die Wahrscheinlichkeit zu berechnen infiziert worden zu sein, wird die Wahrscheinlichkeit, dass eine Person nicht infektiös ist, 
-mit der Anzahl an getroffenen Personen CorrectContacts exponiert.
+Hier wird mit einem Beschränkten Wachstum gearbeitet, da von den Personengruppen die in das Risiko R\textsubscript{CWA-Likely-Positive} einfließen, ein geringeres Risiko ausgeht.
+
+\centerline{\text{ }}
+\centerline{\text{$ \text{BeschränktesWachstum(x)} := S - S \cdot p^x  = (1-p^x) \cdot S$}}
+\centerline{\text{ }}
+
+Für die Schranke S wird der Wert 13 wie oben begründet verwendet.
+Für p wird die Gegenwahrscheinlichkeit von PersonIsInfected verwendet, denn umso höher die Infektionswahrscheinlichkeit ist, 
+desto geringer ist die Gegenwahrscheinlichkeit von PersonIsInfected und desto näher soll R\textsubscript{CWA-Likely-Negative} an der Schranke 13. 
+
+
 
 \centerline{\text{ }}
 \centerline{\text{R\textsubscript{CWA-Likely-Negative}$=$}}
-\centerline{\text{$(1 - ( 1-\text{PersonIsInfected} )\text{CorrectContacts}) \cdot 13$}}
+\centerline{\text{$(1 - ( 1-\text{PersonIsInfected} )^\text{CorrectContacts}) \cdot 13$}}
 \centerline{\text{ }}
 
-Somit ist es möglich ein erhöhtes Risiko in der App angezeigt zu bekommen, obwohl man keinen Diagnosis Key getroffen hat. 
-\\
-\subsection{Bewertung}
-\label{Bewertung_Risikoberechnung}
+
+
+\subsection{Diskussion}\label{Bewertung_Risikoberechnung}
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
@@ -891,18 +890,18 @@ werden die Kosten für diese einen ähnlichen Umfang haben.
 \label{Density_Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
 In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
-Im Sinne der erweiterten Corona Warn App möchten wir das Crowd-Sensing Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstzuellen. 
-Damit kann eine Nutzer eine Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
+Im Sinne der erweiterten Corona Warn App möchten wir dieses Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstellen. 
+Damit kann eine Nutzer stark besuchte Gegenden identifizieren und meiden. 
 Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. 
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
 Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE-Features der Corona Warn App vor. \\
-\subsection{Lösungsansatz} \label{Lösungsansatz}
+\subsection{Lösungsansatz} 
 \text{ }\\
 Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken/verletzen. 
 Ein naiver Ansatz wäre beispielsweise, dass jedes Smartphone seine gesammelte Begegnungsanzahl auf einen zentralen Server hochlädt und dieser diese Daten auswertet. 
-Jedoch müssten dafür neben der Standorte der einzelnen Smatphones auch die RPIs aller aufgezeichneten Geräte mit hochgeladen werden, um etwa eine doppelte Zählung bestimmter Endgeräte zu verhindern. 
-Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten um anonyme RPIs handelt) auf einem zentralen Server würde jedoch der grundsätzlichen Philosophie der Corona Warn App widersprechen.
+Jedoch müssten dafür neben der Standorte der einzelnen Smatphones auch die RPI's aller aufgezeichneten Geräte mit hochgeladen werden, um etwa eine doppelte Zählung bestimmter Endgeräte zu verhindern. 
+Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten um anonyme RPI's handelt) auf einem zentralen Server würde jedoch der grundsätzlichen Philosophie der Corona Warn App widersprechen.
 Diese verfolgte in ihrer Kontaktverfolgung einen möglichst dezentralen Ansatz, um die Privatsphäre der Nutzer zu garantieren.
 Dementsprechend suchen wir ebenfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen. 
 Hierfür haben wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angeganen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
@@ -917,7 +916,7 @@ Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst
 Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander mittels anonymer RPIs per BLE. 
 Somit sind in diesem Aspekt Sicherheit und Privatsphäre gleichermaßen gesichert, wie bei der bisherigen Corona Warn App. 
 Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Anzahl der Begegnungen und nicht die einzelnen RPI‘s der Geräte. 
-Diese Aggregation der Daten stellt sicher, dass keine einzelnen RPIs oder Personen über die Masten hinweg nachverfolgt und damit identifiziert werden können. 
+Diese Aggregation der Daten stellt sicher, dass keine einzelnen RPI's oder Personen über die Masten hinweg nachverfolgt und damit identifiziert werden können. 
 Abb. \ref{mast_func} zeigt den groben Ablauf eines zentralen Masten. \\ 
 \begin{figure}[h]
 	\centering
@@ -926,9 +925,9 @@ Abb. \ref{mast_func} zeigt den groben Ablauf eines zentralen Masten. \\
 	\label{mast_func}
 \end{figure}
 \\
-Wie bereits erwähnt scannt ein Mast seine Umgebung nach Endgeräten und zeichnet alle Begegnungen innerhalb eines Zeitintervalls von etwa 15 Minuten (Lebensdauer eines RPIs) auf. 
+Wie bereits erwähnt scannt ein Mast seine Umgebung nach Endgeräten und zeichnet alle Begegnungen innerhalb eines Zeitintervalls von etwa 15 Minuten (Lebensdauer eines RPI's) auf. 
 Die Aufzeichnung erfolgt analog zur bisherigen Begegnungsaufzeichnung der Corona Warn App über BLE. 
-Es werden demnach nur die RPIs ausgetauscht und keinerlei sensible Nutzerdaten. 
+Es werden demnach nur die RPI's ausgetauscht und keinerlei sensible Nutzerdaten. 
 Nach der Aufzeichnung überprüft der Mast, ob es sich bei der Begegnung nicht um ein bereits bekanntes Gerät handelt und erhöht dementsprechend den Counter für die Begegnungsanzahl um eins. 
 Nach Ablauf des 15 Minuten Intervalls lädt der Mast die gesammelte Anzahl an Begegnungen auf einen zentralen Server hoch, setzt seine Aufzeichnungsdaten zurück und  fängt wieder von vorne mit seiner Begegnungsaufzeichnung an. 
 
@@ -959,18 +958,18 @@ Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Dens
 	\label{density_creation}
 \end{figure} 
 \\
-Wie in Abschnitt \ref{Ex_not_frame} beschrieben, besitzen die RPIs eine Lebensdauer von etwa 15 Minuten. 
+Wie in Abschnitt \ref{Ex_not_frame} beschrieben, besitzen die RPI's eine Lebensdauer von etwa 15 Minuten. 
 Dementsprechend muss beachtet werden, dass Smartphones auch  während des Aufenthaltes im Umkreis eines Masts ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
 Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die Tatsächliche Begegnungsanzahl herauszufinden. 
 Wie stark der Wert nach unten korrigiert werden muss, hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
 Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach $15 min.$ der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
 In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als es in der Realität sind.
-Ist die durchschnittliche Verweildauer hingegen kurz im Verhältnis zum Änderungsintervall der RPIs (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
-Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender \textit{ID-basierter Korrekturformel} errechnet: 
+Ist die durchschnittliche Verweildauer hingegen kurz im Verhältnis zum Änderungsintervall der RPI's (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
+Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender \textit{Korrekturformel} errechnet: 
 \begin{equation}
 	\text{IDs} = \frac{\text{RPIs}}{(1+p)}
 \end{equation}
-Dabei ist \glqq RPIs\grqq{} die gemessene Anzahl an RPIs des Masten und \glqq IDs\grqq{}  die voraussichtlich tatsächliche Anzahl an Endgeräten.
+Dabei ist \glqq RPIs\grqq{} die gemessene Anzahl an RPI's des Masten und \glqq IDs\grqq{}  die voraussichtlich tatsächliche Anzahl an Endgeräten.
 Die Wahrscheinlichkeit $p$ einer doppelten Registrierung ist definiert durch:
 
 \centerline{$p = t_V / t_Z$}
@@ -978,10 +977,10 @@ wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittlich
 Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
 Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
 \centerline{$\text{RPIs} = \text{IDs} + \text{IDs} \cdot p $}
-Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten und wird im Folgenden als ID-basierte Formel bezeichnet.
+Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
 
-Eine Übersicht, inwiefern der gemessene Wert mithilfe der ID-basierten Korrekturformel korrigiert wird, wird in Abb. \ref{cor_factor} aufgezeichnet. 
-Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smartphones (ID's) angibt.
+Eine Übersicht, infwiefern der gemessene Wert mithilfe der Korrekturformel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
+Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
 Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
 \begin{figure}[h]
 	\centering
@@ -990,21 +989,20 @@ Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet ha
 	\label{cor_factor}
 \end{figure} \\
 
-Eine Alternative zur ID-basierten Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
+Eine Alternative zur Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
 Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
-Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPIs abgezogen werden, um so den realen Wert zu erhalten.\\
+Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPI's abgezogen werden, um so den realen Wert zu erhalten.\\
 Diese \textit{alternative Korrekturformel} ist somit wie folgt definiert:
 \begin{equation}
 	\text{IDs} = \text{RPIs} * (1-p/2)
 \end{equation}
-Auf Grund des Ansatzes, dass die Anzahl der IDs unbekannt ist und die Anzahl der RPIs bekannt, wird diese Formel im Folgenden als RPI-basierte Formel bezeichnet.\\
 Beide Formeln werden im Abschnitt \textit{Simulation} evaluiert und miteinander verglichen.\\
 
 \textit{Ohne Masten:}\\
 Beim Ansatz ohne zentrale Masten besteht die Idee darin, dass jedes Smartphone als „mobiler Mast“ arbeitet und die Funktion eines Masten überehmen kann.
 Auch bei diesem Ansatz möchten wir zunächst die Daten dezentral bündeln und aggregieren, um den bereits erwähnten Privatsphäre- und Sicherheitsrisiken des naiven Ansatzes entgegenzuwirken.  
 
-Begegnen sich zwei Smartphones tauschen diese, wie bisher in der aktuellen Corona Warn App, ihre RPIs und Daten untereinander aus. 
+Begegnen sich zwei Smartphones tauschen diese, wie bisher in der aktuellen Corona Warn App, ihre RPI's und Daten untereinander aus. 
 Zusätzlich wird nun eines der beiden Geräte als Mast ausgewählt (Abb. \ref{mobile_mast}). 
 Dieses zeichnet die Begegnung der beiden untereinander auf und übernimmt alle bisherigen Aufzeichnungen des anderen Gerätes in diesem Zeitintervall.
 Die Aufzeichnungsdaten werden also transitiv bis Ende des Intervalls weitergegeben. 
@@ -1057,7 +1055,7 @@ Werden etwa die beiden indirekten Begegnungen $U$ und $V$ an ein weiteres Smartp
 Um die Effekte beider Ansätze nutzen zu können und die Effizienz weitmöglichst zu erhöhen, schlagen wir eine Hybridlösung aus zentralen und mobilen Masten vor. 
 Die Umsetzung hierfür ist relativ simpel. Wie oben beschrieben, werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density-Map zu sammeln. 
 Überall dort, wo jedoch keine solchen zentralen Masten existieren, greift der dezentrale Ansatz und die Mobiltelefone fungieren als mobile Masten. 
-Der im infrastrukuturbasierenden Ansatz beschriebene spezielle Tag für RPIs der Masten kann hier verwendet werden, damit ein Smartphone erkennt, ob er sich zurzeit im Umkreis eines zentralen Masten befindet oder nicht. 
+Der im infrastrukuturbasierenden Ansatz beschriebene spezielle Tag für RPI's der Masten kann hier verwendet werden, damit ein Smartphone erkennt, ob er sich zurzeit im Umkreis eines zentralen Masten befindet oder nicht. 
 Mittels Hybridlösung könnte man die Vorteile beider Ansätze vereinen und die Nachteile ausgleichen. Zentrale Masten können zuverlässiger einen festen Ort aufzeichnen, da für diese Funktion optimiert sind und sich dauerhaft an diesem Ort befinden.
 Mobile Masten hingegen können an jedem beliebigen Ort eine Ansammlung vieler Smartphones und damit vieler Menschen erkennen und auch eine Bewegung großer Menschenmassen aufzeichnen.
 Sie sind demnach flexibler, was den Standort angeht.\\
@@ -1070,64 +1068,68 @@ Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverte
 
 Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
 Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
-Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}.
-\subsubsection{Simulation der RPI-basierten Formel}
-\text{}\\
-Wie bereits in Abschnitt \ref{Lösungsansatz} beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
-Im ersten Teil unserer Simulationen testen wir zunächst die \textit{RPI-basierte Korrekturformel}.\\
-\centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
-und im zweiten Teil dieses Abschnitts die \textit{ID-basierte Korrekturformel}
-\centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
-Der Grund, weshalb zuerst die RPI-basierte Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
-Daraufhin wurde die ID-basierte Korrekturformel erstellt. 
-
-Das Ziel der Simulation ist es festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
+Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}. \\
 \\
+Wie bereits in Abschnitt IV.B beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
+Im ersten Teil unserer Simulationen testen wir zunächst die \textit{alternative Korrekturformel}.\\
+\centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
+und im zweiten Teil dieses Abschnitts die \textit{Korrekturformel}
+\centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
+Der Grund, weshalb zuerst die alternative Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertiung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
+Erst daraufhin wurde die tatsächliche Korrekturformel erstellt. 
+
+Das Ziel der Simulation ist es, festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
+
 \textit{Aufbau:}\\
-Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-Direction-Model bestimmt.\\
+Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-direction-Model bestimmt.\\
 Auf diesem Gebiet sind vier Masten, in Abbildung 8 dargestellt durch größere Kreise, welche persistent speichern, welche Handys in ihrer Reichweite liegen und wie lange dies der Fall ist.\\
 Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig mit der korrekten Anzahl zu vergleichen.\\
 Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus' eines Mastes. Dazu wird während des Zyklus zu jeder ID eine Zeitdauer gemessen und aus diesen der Durchschnitt ermittelt.\\
-Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Zähler hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Zähler addiert und durch die gemessene Anzahl der Handys geteilt.\\
-Zwischenzeitliches Verlassen des Radius des Mastes setzt den Zähler nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Zähler weitergeführt.\\
-Die Zähler messen die Zeit in Ticks, welche die generelle Zeiteinheit der Simulation ist. Ein Durchlauf einer Simulation dauert 16000 Ticks, während der die Masten in einem Zyklus von 200 Ticks ihre Aufzeichnungen durchführen.\\
+Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Counter hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Counter addiert und durch die gemessene Anzahl der Handys geteilt.\\
+Zwischenzeitliches Verlassen des Radius des Mastes setzt den Counter nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Counter weitergeführt.\\
 Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
 Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.\\
-Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Zählern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
+Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Countern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
 Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
 Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
-Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\ \\
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.45\textwidth]{"Simulation"}
-	\caption{Darstellung der durchgeführten Simulation}
-	\label{sim}
-\end{figure}
-\textit{Ergebnisse:}\\
-Abbildung \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne dass Social Distancing benutzt wird.\\
+Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.45\textwidth]{"Simulation"}
+%	\caption{Darstellung der durchgeführten Simulation}
+%	\label{sim}
+%\end{figure}
+
+\textit{Ergebnisse:}
+
+Abb. \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne das Social Distancing benutzt wird.\\
 Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
-Auf der x-Achse befindet sich die Zeit, die den gesamten Verlauf der Simulation darstellt.\\
-Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert liegt näher an dem gemessen Wert als in Abb. \ref{mast_data_plotted_old}. \\ \\
+Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert liegt näher an dem gemessen Wert als in Abb. \ref{mast_data_plotted_old}.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_old"}
 	\caption{Ergebnisse ohne Social Distancing}
 	\label{mast_data_plotted_old}
 \end{figure}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{"Mast_Data_Plotted_Social_Distancing_old"}
 	\caption{Ergebnisse mit Social Distancing}
 	\label{mast_data_plotted_social_distancing_old}
 \end{figure}
+
 \textit{Schlussfolgerung:}\\
-Die gesammelten Daten belegen, dass die durch die RPI-basierte Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
+Die gesammelten Daten belegen, dass die durch die alternative Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
 Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
 
-Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die RPI-basierte Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die alternative Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
 
-\subsubsection{Simulation der ID-basierten Korrekturformel}
-Um die ID-basierte Korrekturformel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
+\textit{Simulation Korrekturformel:}
+Um die Korrekturformel $\text{IDs} = \frac{\text{RPIs}}{(1+p)}$
+zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
 Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing} gezeigten Werte.
 
 \begin{figure}[h]
@@ -1145,12 +1147,13 @@ Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} un
 \end{figure}
 
 \textit{Ergebnisse:}\\
-Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die ID-basierte Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
-Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit der RPI-basierten Formel der Fall war.\\
-Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der RPI-basierten Korrekturformel.\\
+Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch Korrekturformel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
+Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig, und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit alternativer Korrekturformel der Fall war.\\
+Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der alternativen Korrekturformel.\\
+
 
 \textit{Schlussfolgerung:}\\
-Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die ID-basierte Korrekturformel besser als die RPI-basierte Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
+Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die Korrekturformel besser als die alternative Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
 
 \subsection{Bewertung}
 Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.\\
@@ -1187,7 +1190,7 @@ Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den 
 
 \section{Zusammenfassung und Ausblick} \label{Conclusion}
 In dieser Forschungsarbeit wurden verschiedene Erweiterungen zur aktuellen Corona Warn App erläutert und auf unterschiedliche Kriterien hin beurteilt. 
-Dabei wurden zunächst einige kleinere Nebenfeatures betrachtet, bevor auf die zwei Haupfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map} näher eingegangen wurde. 
+Dabei wurden zunächst einige kleinere Nebenfeatures betrachtet, bevor auf die zwei Haupfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map} näher eingegangen wird. 
 Jedes der Features wurde im Anschluss nach den Kriterien: Privatsphäre, Nutzen, Umsetzbarkeit, Akzeptabilität, Sicherheit und benötigte Daten bewertet. 
 
 Einige der von uns vorgestellten Nebenfeatures wurden im Verlauf der Arbeit von anderen Parteien in ähnlicher Form bereits umgesetzt oder sind in naher Zukunft zu erwarten.
@@ -1196,20 +1199,19 @@ die \glqq Darf ich das? \grqq -App für orstbezogene Maßnahmen und Beschränkun
 sowie ein demnächst Erscheinender digitaler Impfpass für die CWA. 
 Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA dartstellen.
 
-Im Abschnitt \ref{Erweiterte_Risikoberechnung} wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
-Hierbei handelt es sich um das Familienfeature, Feature PKServer und Feature TRL Update. 
+Im darauffolgenden Abschnitt wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
+Bei diesen Features handelt es sich um das Familienfeature, Feature PKServer und Feature TRL Update. 
 Im Rahmen des Familienfeatures können Gruppen in der CWA angelegt werden, um längere Begegnungen mit der eigenen Familie nicht als mehrere unterschiedliche Begegnungen aufzuzeichnen. 
-Das Feature PKServer sammelt die TEKs der Personen, die einen Risikowert $>13$ in der CWA besitzen, um diese in der Risikoberechnung stärker zu gewichten. 
-Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv getestete Auskunft über ihren Krankheitsverlauf geben können.
-
+Das Feature PKServer sammelt die TEKs der Personen, die einen Risikowert >13 in der CWA besitzen, um diese in der Risikoberechnung stärker zu gewichten. 
+Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv getestete Auskunft über ihren Krankheitsverlauf geben können
 Mit diesen Daten lässt sich das aktuelle TRL genauer berechnen.
-Die drei Features werden genutzt, um die aktuelle Risikoberechnung mit zwei weiteren Summanden zu erweitern.
+Diese drei Features werden genutzt, um die Risikoberechnung mit zwei weiteren Summanden zu erweitern.
 Die Summanden lösen aktuelle Probleme der CWA, indem sie alle Personengruppen mit einbezieht, die in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert werden.
 Außerdem wird aufrund der geringen Nutzerzahl der CWA von 33\% die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert, um die tatsächliche Begnungsanzahl abzuschätzen. 
 Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv getesteten ein Risiko zuzuschreiben.
 Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.
 
-Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden.
+Mithilfe der erweiterten Risikoberechnung würde das Infektionsrisiko besser abgeschätzt werden.
 Außerdem würde dieses Feature die Effizienz und Nutzen der CWA steigern, da die transparente und feingranularere Risikoberechnung schneller und genaueres Feedback zum aktuellen Verhalten bietet. 
 Trotz niedriger Beteiligung an Nutzern würde der aktuelle Risikowert nicht unterschritten werden, er würde sich allerdings nicht drastisch verändern.
 Obwohl zwei weitere Server zentral Daten sammeln, wird durch Anonymisierung die Privatheit und Sicherheit garantiert.
@@ -1218,32 +1220,27 @@ Die Risikoberechnung findet weiterhin dezentral auf den Smartphones der Nutzer s
 Das zweite Hauptfeature beschäftigt sich mit der Density-Map. 
 Hierfür wurden unterschiedliche Ansätze überlegt, die das Problem der dezentralen und anonymen Datenerfassung angehen: 
 der infrastrukuturbasierte Ansatz mittels zentraler Masten, sowie der infrastrukturlose Ansatz ohne Masten. 
-
 Im infrastrukturbasierten Ansatz werden zentrale Masten and stark Besuchten Orten und Plätzen aufgestellt, die mithilfe der BLE-Funktion die Anzahl aller erfassten Smartphones aufzeichnen.
-Die aufgezeichnete Anzahl wird im Intervall von 15 Minuten zunächst beim Masten aggregiert und dann auf einen zentralen Server geladen, auf dem die Daten aller Masten verarbeitet und eine Density-Map erstellt werden kann.
+Die aufgezeichnete Anzahl wird im Intervall von 15 Minuten auf einen zentralen Server geladen, auf dem die Daten aller Masten verarbeitet und eine Density-Map erstellt werden kann.
 Dabei musste beachtet werden, dass die tatsächliche Anzahl an Personen durch mehrere Faktoren von der gemessenen Anzahl vom Masten abweicht und demensprechend korrigiert werden musste.
-Zum einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Masten aufgezeichnet, welche mittels der Korrekturformel nach unten korrigiert wurden.
-Des weiteren besitzt nur ein Bruchteil der Bevölkerung die CWA. Für diesen Fall wurde von einer Gleichverteilung der Nutzer unter der Bevölkerung ausgegangen und der gemessene Wert der Masten auf die Gesamtbevölkerung abgeschätzt.
+Zum einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Masten aufgezeichnet, welche mittels einer Formel nach unten korrigiert wurden.
+Zweitens besitzt nur ein Bruchteil der Bevölkerung die CWA. Für diesen Fall wurde von einer Gleichverteilung der Nutzer unter der Beovölkerung ausgegangen und der gemessene Wert der Masten auf die Gesamtbevölkerung abgeschätzt.
 
-Beim infrastrukturlosen Ansatz fällt die Implementierung der zentralen Masten weg. 
-Nun werden einzelne Smartphones untereinander als mobiler Mast festgelegt, die ihre Umgebung aufzeichnen.
-Auch hier werden die Daten zunächst aggregiert, bevor sie auf den zantralen Server geladen werden.
-
-Für den infrastrukuturbasierten Ansatz wurde eine Simulation erstellt, die die Umsetzbarkeit des Features und die Korrektheit der Formel zur Korrektur nachweisen soll. 
+Für den infrastrukuturbasierenden Ansatz wurde eine Simulation erstellt, die die Umsetzbarkeit des Features und die Korrektheit der Formel zur Korrektur nachweisen soll. 
 Dabei werden 100 Smartphones mittels Punkte simuliert, die sich in einem Random-Direction Model über ein festes Gebiet bewegen. 
 Zudem gibt es nocht den \glqq Social Distancing \grqq{} Modus, bei dem etwa 80\% der Handy's keine Bewegung aufweisen und somit ein Lockdown simuliert wird.
 Mithilfe von 4 zentralen Masten werden die Smartphones im Umkreis der jeweiligen Masten aufgezeichnet. 
 Zu Verifizierungszwecken besitzen die Handys sowohl eine feste ID, als auch die temporären RPIs, die der Mast im Falle einer Begegnung aufzeichnen kann. 
-Die Ergebnisse der Aufzeichnung zeigen, dass die Korrekturformel sowohl im Falle mit, als auch ohne Social Distancing den gemessenen Wert gut nach unten korrigieren kann. 
+Die Ergebnisse der Aufzeichnung zeigen, dass die zweite erarbeitete Formel sowohl im Falle mit, als auch ohne Social Distancing den gemessenen Wert gut nach unten korrigieren kann. 
 
 Die Density-Map stellt eine effektive Methode dar, Orte mit vielen Besuchern bewusst meiden zu können.
 Dabei bietet sie eine Privatsphäre-konforme Alternative zum Stoßzeiten Feature von Google, da hier die anonymen RPIs zur Aufzeichnung verwendet werden. 
 Außerdem werden die Daten dezentral gebündelt und aggregiert, wodurch einzelne Personen nicht nachverfolgt werden können. 
 
 Die gewonnenen Erkenntnisse aus den Absätzen \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar. 
-In diesem Zusammenhang wäre es lohnenswert, die in den Absätzen größtenteils theoretischen Ausarbeitungen in der Zukunft in einer realen Umgebung zu testen und zu untersuchen. 
-Damit könnten die theoretischen Ausarbeitungen validiert und im nächsten Schritt in die aktuelle CWA eingebunden werden.
-Des Weiteren könnte im Falle der Implementierung vorgestellter Erweiterungsmöglichkeiten untersucht werden, inwiefern sich diese auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit der Nutzer auswirken. 
+In diesem Zusammenhang wäre es lohnenswert, die in den Absätzen größtenteils theoretischen Ausarbeitungen in einer realen Umgebung zu testen und zu untersuchen. 
+Damit könnten die theoretischen Ausarbeitungen validiert werden und im nächsten Schritt in die aktuelle CWA eingebunden werden.
+Des Weiteren könnte im Falle der Implementierung vorgestellter Erweiterungsmöglichkeiten untersucht werden, inwiefern sich diese auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit auswirken. 
 
 \begin{thebibliography}{00}
 \bibitem{CoronaZahlenWorld} https://coronavirus.jhu.edu/map.html (07.06.2021)
@@ -1277,8 +1274,6 @@ https://github.com/midudev/covid-19-spread-simulator
 \bibitem{DarfIchDas} https://www.darfichdas.info/ (09.06.2021)
 \bibitem{Risikoberechnung} \glqq Corona-Warn-App Dokumentation\grqq \\https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk\_calculation/risk\_calculation\_enf\_v2\_overview.pdf (09.06.2021)
 \bibitem{freiwilligeDatenspende} \glqq Corona-Warn-App: Freiwillige Datenspende für verbesserte Wirksamkeit\grqq \\https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182 (09.06.2021)
-\bibitem{Impfnachweis}
-https://www.pharmazeutische-zeitung.de/corona-warn-app-kann-impfnachweis-anzeigen-126188/
 \end{thebibliography}
 \vspace{12pt}
 
