@@ -348,9 +348,10 @@ Die CWA-User werden in drei Untergruppen aufgeteilt:
 \textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
 \textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
 \textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
-Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: \textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, 
-dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), \textit{Hidden-Positive} sind alle Personen, die infiziert wurden, 
-jedoch kein positives Testergebnis nachweisen können und \textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
+Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: 
+\textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), 
+\textit{Hidden-Positive} sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können und 
+\textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
 
 %Probleme und Lösungsvorschläge
 Bei näherer Betrachtung der aktuellen Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
@@ -554,7 +555,7 @@ Der Neue Risikowert wird anschließend in eine Bildschirmfarbe umgewandelt, die 
 Zudem sollte es eine geringere Abstufung der Risikostufen geben, denn nur grün und rot wecken den Eindruck, dass man bei einem grünen nicht gefährdet wäre. 
 Ab einem gewissen Risiko sollte auch ein gelber sowie ein orangener Bildschirm angezeigt werden, damit die Nutzer ihr Verhalten besser regulieren können.
 
-Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben verwendet: Rot, Orange, Gelb und Grün.
+Dabei werden anstatt der ursprünglichen zwei Farben nun vier Farben Rot, Orange, Gelb und Grün verwendet, die die entsprechenden Risikoklassen symbolisieren.
 \\
 
 $0\le Risikowert < 5 \rightarrow \text{grüner Bildschirm}$
@@ -565,17 +566,17 @@ $9\le Risikowert < 13 \rightarrow \text{orangener Bildschirm}$
 
 $13 \le Risikowert  \rightarrow \text{roter Bildschirm}$
 \\
+
 Ein weiteres Problem der aktuellen Risikoberechnung ist die geringe Transparenz des Zustandekommens des Risikowertes.
 Ein transparenter Risikowert macht es für Nutzer leichter nachvollziehbar, wie sie sich bei einem erhöhten Risiko Verhalten sollten und fördert die aktive Nutzerzahl.
-Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm angegeben, 
+Damit die Risikoberechnung transparenter für die Nutzer wird, werden die Anteile der einzelnen Summanden zum farbigen Bildschirm in der App angegeben, 
 sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.\\
 
-\subsubsection{R\textsubscript{CWA-Positive}}
-\label{CWAPositive}
+\subsubsection{R\textsubscript{CWA-Positive}}\label{CWAPositive}
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
-Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier konstant 1. 
+Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier 1. 
 Es wird also nur das Übertragungspotential betrachtet. Dafür wird zunächst zu einer Begegnung die \textit{Weighted Exposure Time} ausgewertet. 
 Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t} anhand der geringsten Dämpfung (attenuation) \textit{att}  wie folgt: 
 
@@ -583,7 +584,8 @@ Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t}
 \centerline{$\text{WeightedExposureTime} := t \cdot \text{attFactor}$}
 \centerline{\text{ }}
 
-Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att bestimmt wird:
+Wobei der \textit{attFactor} durch folgende Intervalle aus der Distanz att, des BLE-Signals bestimmt wird:
+
 
 \centerline{\text{ }}
 
