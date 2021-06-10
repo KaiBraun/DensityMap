@@ -134,7 +134,7 @@ Der Corona Warn App zugrunde liegendes Feature ist das \glqq Exposure Notificati
 welches in Kooperation von Google und Apple für Kontaktverfolgungs Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
 um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
 
-\subsection{Exposure Notification Framework:}
+\subsection{Exposure Notification Framework:} \label{Ex_not_frame}
 Das Exposure Notification Framework basiert auf dem \textit{Decentralized Privacy-Preserving Proximity Tracing} (DP-3T) Protokoll \cite{DP-3T}.
 Jeden Tag wird vom Framework ein sogenannter \textit{Temporary Exposure Key} (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. 
 Aus diesem TEK werden \textit{Rolling Proximity Identifier} (RPIs) abgeleitet. 
@@ -881,16 +881,17 @@ Ein naiver Ansatz wäre beispielsweise, dass jedes Smartphone seine gesammelte B
 Jedoch müssten dafür neben der Standorte der einzelnen Smatphones auch die RPI's aller aufgezeichneten Geräte mit hochgeladen werden, um etwa eine doppelte Zählung bestimmter Endgeräte zu verhindern. 
 Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten um anonyme RPI's handelt) auf einem zentralen Server würde jedoch der grundsätzlichen Philosophie der Corona Warn App widersprechen.
 Diese verfolgte in ihrer Kontaktverfolgung einen möglichst dezentralen Ansatz, um die Privatsphäre der Nutzer zu garantieren.
-Dementsprechend suchen wir ebebfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen. 
-Hierfür haben wir uns für die Umsetzung 2 Verfahren überlegt, mit welchen wir das Problem angehen: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
+Dementsprechend suchen wir ebenfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen. 
+Hierfür haben wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angeganen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
 \textit{Infrastrukturbasierte Lösung mit Masten: }\\
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
-Nach Ablauf des Zeitintervalls wird die Anzahl der Begegnungen auf einen zentralen Server hochgeladen.
+Nach Ablauf des Zeitintervalls werden die erfasste Anzahl an Smartphones zunächst ausgewertet und zu einem Zahlenwert aggregiert.
+Diese Anzahl an Begegnungen wird dann auf einen zentralen Server hochgeladen.
 Anders als beim naiven Ansatz, bei dem der zentrale Server die Daten aller Smartphones erfassen würde, ist hier die Aufzeichung auf tausende bis zehntausende einzelne Masten verteilt. 
 Dadurch gäbe es keinen \glqq Single point of failure\grqq, bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
 Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst auf einen Server hochgeladen, reduziert dies den Datenstrom und die Last des znetralen Servers erheblich. 
 
-Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander per BLE. 
+Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander mittels anonymer RPIs per BLE. 
 Somit sind in diesem Aspekt Sicherheit und Privatsphäre gleichermaßen gesichert, wie bei der bisherigen Corona Warn App. 
 Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Anzahl der Begegnungen und nicht die einzelnen RPI‘s der Geräte. 
 Diese Aggregation der Daten stellt sicher, dass keine einzelnen RPI's oder Personen über die Masten hinweg nachverfolgt und damit identifiziert werden können. 
@@ -908,24 +909,24 @@ Es werden demnach nur die RPI's ausgetauscht und keinerlei sensible Nutzerdaten.
 Nach der Aufzeichnung überprüft der Mast, ob es sich bei der Begegnung nicht um ein bereits bekanntes Gerät handelt und erhöht dementsprechend den Counter für die Begegnungsanzahl um eins. 
 Nach Ablauf des 15 Minuten Intervalls lädt der Mast die gesammelte Anzahl an Begegnungen auf einen zentralen Server hoch, setzt seine Aufzeichnungsdaten zurück und  fängt wieder von vorne mit seiner Begegnungsaufzeichnung an. 
 
-Da ein Mast unter Umständen einen größeren Bereich abdecken muss als ein normaler Nutzer, sollte das Signal (z.B. mit Repeatern) unter Umständen verstärkt werden, falls dies mit BLE möglich.
+Da ein Mast unter Umständen einen größeren Bereich abdecken muss als ein normaler Nutzer, sollte das Signal (z.B. mit Repeatern) unter Umständen verstärkt werden.
 Andernfalls müsste ein Ort in mehrere Bereiche unterteilt werden, die dann von einzelnen Masten aufgezeichnet werden können. \\
 Hier wird auch deutlich, dass sich die Aufzeichnungsradien der einzelnen Masten möglichst nicht überschneiden sollte, da sonst ein Smartphone von mehreren Masten gleichtzeitig aufgenommen wird.
-Eine mögliche Lösung für dieses Problem wäre, die BLE Signale der Masten mit bestimmten Tags zu versehen, sodass ein Smartphone erkennt, falls es sich im Radius von mehreren Masten aufhällt und dementsprechend nur einem Masten seine Daten sendet. 
+Eine mögliche Lösung für dieses Problem wäre, die BLE-Signale der Masten mit bestimmten Tags zu versehen, sodass ein Smartphone erkennt, falls es sich im Radius von mehreren Masten aufhällt und dementsprechend nur einem Masten seine Daten sendet. 
 
 Da die Installation zentraler Masten an jedem belebteren Platz ein aufwändiges und kostspieliges Unterfangen sein kann schlagen wir vor, dass registrierte/zertifizierte mobile Endgeräte ebenfalls als zentraler Mast fungieren können. 
 Hierfür müssen jedoch Einschränkungen gelten, sodass die Funktion als zentraler Mast auf beispielsweise einem Smartphone nicht missbraucht wird.
 Folgende Regeln und Restriktionen sollten für alle Masten gelten:
 \begin{itemize}
-	\item Masten können selbständig von Dritten erworben oder im Falle eines Smarphones, welches als zentraler Mast fungieren soll, die App installiert werden. 
-	Jedoch muss vor der Nutzung des Features das Gerät von einer offizienllen Behörde autorisiert werden. Damit darf dann etwa ein Restaurantbetreiber, über eine zentrale Behörde registriert, seine Einrichtung mit seinem Smartphone aufzeichnen. 
+	\item Masten können selbständig von Dritten erworben oder im Falle eines Smarphones, welches als zentraler Mast fungieren soll, die zertifizierte App installiert werden. 
+	Jedoch muss vor der Nutzung des Features das Gerät von einer offiziellen Behörde autorisiert werden. Damit darf dann etwa ein Restaurantbetreiber, über eine zentrale Behörde registriert, seine Einrichtung mit seinem Smartphone aufzeichnen. 
 	\item Zentrale Masten müssen währende ihrer Nutzung dauerhaft ihren Standort aktivieren und können nur im Umfeld ihres registrierten Bereiches (z.B. Ort des Restaurants) als Mast fungieren. 
 	Verlässt ein Mast den für ihn zugewiesenen Aufzeichnungsbereich sollt dieser seine Aufzeichnung automatisch stoppen. Dies verhindert, dass das Feature für unerlaubte Zwecke benutzt wird.
 	\item Verletzung der Eigenschaften sollte von anderen Nutzern gemeldet werden können. 
 	Beispiele für Verletzung der Eigenschaften wäre etwa eine Person, die in einem unerlaubten Gebiet (z.B. Wohngebiet) einen Masten betreibt oder ein Mast, der viele Begegnungen aufzeichnet, obwohl sich keine Person im Umkreis befindet.  
 \end{itemize}
 
-Masten, die ihre Begegnungen aufgezeichnet haben, laden diese auf einen zentralen Server hoch. 
+Masten, die ihre Begegnungen aufgezeichnet haben, laden die aggregierten auf einen zentralen Server hoch. 
 Dieser verarbeitet die gesammelten Daten aller Masten und erstellt die Density Map, welche dann vom Nutzer auf seinem Endgerät abgerufen werden kann.
 Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Density Map mittels zentraler Masten. \\
 \begin{figure}[h]
@@ -935,14 +936,14 @@ Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Dens
 	\label{density_creation}
 \end{figure} 
 \\
-Wie in Kapitel 2 beschrieben, besitzen die RPI's eine Lebensdauer von etwa 15 Minuten. 
+Wie in Abschnitt \ref{Ex_not_frame} beschrieben, besitzen die RPI's eine Lebensdauer von etwa 15 Minuten. 
 Dementsprechend muss beachtet werden, dass Smartphones auch  während des Aufenthaltes im Umkreis eines Masts ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
 Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die Tatsächliche Begegnungsanzahl herauszufinden. 
-Wie stark der Wert nach unten korrigiert werden muss hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
-Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach 15min. der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
+Wie stark der Wert nach unten korrigiert werden muss, hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
+Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach $15 min.$ der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
 In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als es in der Realität sind.
 Ist die durchschnittliche Verweildauer hingegen kurz im Verhältnis zum Änderungsintervall der RPI's (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
-Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender Formel errechnet: 
+Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender \textit{Korrekturformel} errechnet: 
 \begin{equation}
 	\text{IDs} = \frac{\text{RPIs}}{(1+p)}
 \end{equation}
@@ -954,9 +955,9 @@ wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittlich
 Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
 Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
 \centerline{$\text{RPIs} = \text{IDs} + \text{IDs} \cdot p $}
-Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Formel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
+Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten.
 
-Eine Übersicht infwiefern der gemessene Wert mithilfe der Formel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
+Eine Übersicht, infwiefern der gemessene Wert mithilfe der Korrekturformel korrigiert wird in Abb. \ref{cor_factor} aufgezeichnet. 
 Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smatphones (ID's) angibt.
 Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
 \begin{figure}[h]
@@ -966,16 +967,18 @@ Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet ha
 	\label{cor_factor}
 \end{figure} \\
 
-Eine Alternative zu dieser Formel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
+Eine Alternative zur Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
+Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
 Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPI's abgezogen werden, um so den realen Wert zu erhalten.\\
-Diese alternative Formel ist somit wie folgt definiert:
-
-\centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
+Diese \textit{alternative Korrekturformel} ist somit wie folgt definiert:
+\begin{equation}
+	\text{IDs} = \text{RPIs} * (1-p/2)
+\end{equation}
 Beide Formeln werden im Abschnitt \textit{Simulation} evaluiert und miteinander verglichen.\\
 
 \textit{Ohne Masten:}\\
 Beim Ansatz ohne zentrale Masten besteht die Idee darin, dass jedes Smartphone als „mobiler Mast“ arbeitet und die Funktion eines Masten überehmen kann.
-Auch bei diesem Ansatz möchten wir znächst die Daten dezentral bündeln und aggregieren, um den bereits erwähnten Privatsphäre- und Sicherheitsrisiken des naiven Ansatzes entgegenzuwirken.  
+Auch bei diesem Ansatz möchten wir zunächst die Daten dezentral bündeln und aggregieren, um den bereits erwähnten Privatsphäre- und Sicherheitsrisiken des naiven Ansatzes entgegenzuwirken.  
 
 Begegnen sich zwei Smartphones tauschen diese, wie bisher in der aktuellen Corona Warn App, ihre RPI's und Daten untereinander aus. 
 Zusätzlich wird nun eines der beiden Geräte als Mast ausgewählt (Abb. \ref{mobile_mast}). 
@@ -984,9 +987,9 @@ Die Aufzeichnungsdaten werden also transitiv bis Ende des Intervalls weitergegeb
 Nach Ablauf des Zeitintervalls lädt das Smartphone, welches als mobiler Mast ausgewählt wurde, die aggregierte Begegnungsanzahl mit seinem aktuellen Standort auf den zentralen Server.
 
 Bei dieser Methode können natürlich nur Smartphones, welche ihren Standort aktiv haben, als mobiler Mast arbeiten. 
-Im besten Fall hat jedes Handy diese Funktion aktiv. Smatphones, die ihren Standort nicht aktiv haben, werden können von anderen Smartphones mit aktiven Standort aufgezeichnet, jedoch selbst nie als mobiler Mast ausgewählt werden.
+Im besten Fall hat jedes Handy diese Funktion aktiv. Smartphones, die ihren Standort nicht aktiv haben, werden können von anderen Smartphones mit aktiven Standort aufgezeichnet, jedoch selbst nie als mobiler Mast ausgewählt werden.
 
-Anders als bei zentralen Masten kann nun an jedem Ort, an dem sich ein Smartphone mit der Corona Warn App befindet eine Aufzeichnung für die Density-Map erfolgen. 
+Anders als bei zentralen Masten kann nun an jedem Ort, an dem sich ein Smartphone mit der Corona Warn App befindet, eine Aufzeichnung für die Density-Map erfolgen. 
 Die Datenerfassung der Density-Map ist somit nicht mehr von vorinstallierten zentralen Masten abhängig.\\
 \begin{figure}[h]
 	\centering
@@ -999,42 +1002,43 @@ Somit bleiben die gesammelten Daten für unendlich lange Zeit lokal auf A oder B
 Eine Lösung für dieses Problem wäre immer das Smartphone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist.
 
 Ein weiteres Problem bei mobilen Masten besteht darin, dass sie sich innerhalb des Zeitintervalls über längere Strecken bewegen können während sie ihre Begegnungen aufzeichnen.
-In diesem Fall entpsrechen Ort der Aufzeichnung eines anderen Gerätes und Ort des Hochladens der Daten nach Ablauf des Zeitintervalles nicht überein und das Bild der Density-Map wird verzerrt. 
+In diesem Fall entsprechen Ort der Aufzeichnung eines anderen Gerätes und Ort des Hochladens der Daten nach Ablauf des Zeitintervalles nicht überein und das Bild der Density-Map wird verzerrt. 
 Dieses Problem wird teilweise bereits durch die Corona App selbst gelöst, welche Begegnungen erst dann aufzeichnet, sobald sich Geräte über etwas längere Zeit in Kontakt stehen. 
 Bei sich schnell bewegenden Smartphones müssten sich demnach anderer Smartphones mit gleicher Geschwindigkeit in dieselbe Richtung bewegen, damit eine Begegnung aufgezeichnet wird. 
 Das Verkürzen des Zeitintervalls für Uploads auf beispielsweise 5 Minuten würde diesem Problem ebenfalls entgegenwirken, da in kürzeren Intervallen die Smartphones sich im Schnitt weniger weit bewegen können.
 
 Eine weitere Lösung, die wir diesbezüglich vorschlagen ist ein sogenannter „Discount Faktor“. 
-Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in die Auswertung der Density Map. \\
+Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in der Auswertung der Density Map. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Discount_Faktor"}
 	\caption{Discount Faktor für Mobile Masten}
 	\label{disc_factor}
 \end{figure} \\
-In Abbildung \ref{disc_factor} begegnen sich die beiden Smartphones $A$ und $B$. $A$ hat bereits die RPI's $X, Y, Z$ und $W$ aufgezeichnet und B die RPI's $X, Z, V, U$. 
-Nun tauschen die beiden Smartphones ihre RPI's gemäß funktionsweise der Corona Warn App aus. Außerdem wird $A$ als mobiler Mast ausgewählt und übernimmt die Aufzeichnungen von $B$ für die Density-Map.
-Die RPI's $V$ und $U$ wurden nur von $B$ aufgezeichnet. Dies bedeutet, dass sie sich nicht im direkten Umkreis von $A$ befinden können. $B$ muss sich vor der Begegnung mit $A$ also an einem anderen Ort befunden haben und sich zu $A$ bewegt haben (aus Sicht von $A$).
-Dementpsrechend werden die Begegnungen RPI's $U$ und $V$ mit dem Discount Faktor $\gamma$ versehen.
+In Abbildung \ref{disc_factor} begegnen sich die beiden Smartphones $A$ und $B$. $A$ hat bereits die RPIs $X, Y, Z$ und $W$ aufgezeichnet und B die RPIs $X, Z, V, U$. 
+Nun tauschen die beiden Smartphones ihre RPIs gemäß Funktionsweise der Corona Warn App aus. Außerdem wird $A$ als mobiler Mast ausgewählt und übernimmt die Aufzeichnungen von $B$ für die Density-Map.
+Die RPIs $V$ und $U$ wurden nur von $B$ aufgezeichnet. Dies bedeutet, dass sie sich nicht im direkten Umkreis von $A$ befinden können. $B$ muss sich vor der Begegnung mit $A$ also an einem anderen Ort befunden haben und sich zu $A$ bewegt haben (aus Sicht von $A$).
+Dementsprechend werden die Begegnungen RPIs $U$ und $V$ mit dem Discount Faktor $\gamma$ versehen.
 Der Discount Faktor kann auf verschiedene Arten realisiert werden. Er könnte beispielsweise einen Zahlenwert im Intervall $(0,1)$ annehmen. 
 Somit würden indirekte Begegnungen mit dem Faktor multipliziert und nicht voll gewertet werden. Im Beispiel wären die zwei indirekten Begegnungen $U$ und $V$ mit gewähltem $\gamma = 0.6$ versehen und nur als $2 \cdot 0.6 = 1.2$ Begegnungen aufgezeichnet werden.
+
 Eine andere Lösung wäre beim Auswerten der Density-Map indirekten Begegnungen mit anderen Standorten zu versehen. 
-Während alle direkten Begegnungen von $A$ im unmittelbaren Umkreis seines Standortes auf der Map angezeigt werden $U$ und $V$(beim hochladen aggregiert in 2 Begegnungen) in einem größeren Radius um $A$ angezeigt.
+Während alle direkten Begegnungen von $A$ im unmittelbaren Umkreis seines Standortes auf der Map angezeigt werden $U$ und $V$(beim Hochladen aggregiert in 2 Begegnungen) in einem größeren Radius um $A$ angezeigt.
 In diesem Fall wäre der Discount Faktor nur eine Markierung und müsste keinen numerischen Wert erhalten. 
 
 Der Discount Faktor kann ebenfalls transitiv weitergegeben werden. 
-Sollten etwa die beiden indirekten Begegnungen $U$ und $V$ an ein weiteres Smartphone $C$ übergeben werden, so würden sie bei $C$ doppelt mit dem Discount Faktor versehen werden.\\
+Werden etwa die beiden indirekten Begegnungen $U$ und $V$ an ein weiteres Smartphone $C$ übergeben, so werden sie bei $C$ doppelt mit dem Discount Faktor versehen.\\
 \\
 \textit{Hybridlösung:}\\
-Um die Effekte beider Ansätze nutzen zu können und die Effizienz weitmöglichst zu erhöhen schlagen wir eine Hybridlösung aus zentralen und mobilen Masten vor. 
-Die Umsetzung hierfür ist relativ simpel. Wie oben beschrieben werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density-Map zu sammeln. 
+Um die Effekte beider Ansätze nutzen zu können und die Effizienz weitmöglichst zu erhöhen, schlagen wir eine Hybridlösung aus zentralen und mobilen Masten vor. 
+Die Umsetzung hierfür ist relativ simpel. Wie oben beschrieben, werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density-Map zu sammeln. 
 Überall dort, wo jedoch keine solchen zentralen Masten existieren, greift der dezentrale Ansatz und die Mobiltelefone fungieren als mobile Masten. 
 Der im infrastrukuturbasierenden Ansatz beschriebene spezielle Tag für RPI's der Masten kann hier verwendet werden, damit ein Smartphone erkennt, ob er sich zurzeit im Umkreis eines zentralen Masten befindet oder nicht. 
 Mittels Hybridlösung könnte man die Vorteile beider Ansätze vereinen und die Nachteile ausgleichen. Zentrale Masten können zuverlässiger einen festen Ort aufzeichnen, da für diese Funktion optimiert sind und sich dauerhaft an diesem Ort befinden.
 Mobile Masten hingegen können an jedem beliebigen Ort eine Ansammlung vieler Smartphones und damit vieler Menschen erkennen und auch eine Bewegung großer Menschenmassen aufzeichnen.
 Sie sind demnach flexibler, was den Standort angeht.\\
 \\
-Das letzte zentrale Problem, was nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, dass nicht jede Person ein Smartphone besitzt und die  Corona Warn App auf seinem Smartphone installiert hat. 
+Das letzte zentrale Problem, welches nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, dass nicht jede Person ein Smartphone besitzt und die  Corona Warn App auf seinem Smartphone installiert hat. 
 Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%). \cite{Downloads}
 Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
 
@@ -1045,10 +1049,12 @@ Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich 
 Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}. \\
 \\
 Wie bereits in Abschnitt IV.B beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
-Im ersten Teil unserer Simulationen testen wir die Formel\\
+Im ersten Teil unserer Simulationen testen wir zunächst die \textit{alternative Korrekturformel}.\\
 \centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
-und im zweiten Teil dieses Abschnitts die Formel
+und im zweiten Teil dieses Abschnitts die \textit{Korrekturformel}
 \centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
+Der Grund, weshalb zuerst die alternative Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertiung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
+Erst daraufhin wurde die tatsächliche Korrekturformel erstellt. 
 
 Das Ziel der Simulation ist es, festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
 
@@ -1063,7 +1069,7 @@ Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher 
 Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.\\
 Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Countern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
 Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
-Die Berechnung der durchschnittlichen Verweildauer anhand von RPI's würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
+Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
 Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\
 
 \begin{figure}[h]
@@ -1094,13 +1100,13 @@ Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist d
 \end{figure}
 
 \textit{Schlussfolgerung:}\\
-Die gesammelten Daten belegen, dass die durch die Formel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
+Die gesammelten Daten belegen, dass die durch die alternative Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
 Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
 
-Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die bisherige Formel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die alternative Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
 
-\textit{Simulation zweiter Formel:}
-Um die Formel $\text{IDs} = \frac{\text{RPIs}}{(1+p)}$
+\textit{Simulation Korrekturformel:}
+Um die Korrekturformel $\text{IDs} = \frac{\text{RPIs}}{(1+p)}$
 zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
 Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing} gezeigten Werte.
 
@@ -1119,13 +1125,13 @@ Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} un
 \end{figure}
 
 \textit{Ergebnisse:}\\
-Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
-Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig, und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation der Fall war.\\
-Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der anderen Formel.\\
+Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch Korrekturformel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
+Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig, und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit alternativer Korrekturformel der Fall war.\\
+Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der alternativen Korrekturformel.\\
 
 
 \textit{Schlussfolgerung:}\\
-Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die zweite Formel besser als die Formel der ersten Simulation für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
+Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die Korrekturformel besser als die alternative Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
 
 \subsection{Bewertung}
 Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.\\
