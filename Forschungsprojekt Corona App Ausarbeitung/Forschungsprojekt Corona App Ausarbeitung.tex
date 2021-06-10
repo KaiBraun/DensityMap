@@ -888,7 +888,7 @@ Hierfür haben wir uns für die Umsetzung 2 Verfahren überlegt, mit welchen wir
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
 Nach Ablauf des Zeitintervalls wird die Anzahl der Begegnungen auf einen zentralen Server hochgeladen.
 Anders als beim naiven Ansatz, bei dem der zentrale Server die Daten aller Smartphones erfassen würde, ist hier die Aufzeichung auf tausende bis zehntausende einzelne Masten verteilt. 
-Dadurch gäbe es keinen \glqq Single point of failure", bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
+Dadurch gäbe es keinen \glqq Single point of failure\grqq, bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
 Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst auf einen Server hochgeladen, reduziert dies den Datenstrom und die Last des znetralen Servers erheblich. 
 
 Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander per BLE. 
@@ -1043,7 +1043,7 @@ Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverte
 
 Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
 Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
-Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation "COVID-19 Spread Simulator“ von Miguel Ángel Durán \cite{Simulation}. \\
+Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}. \\
 \\
 Wie bereits in Abschnitt IV.B beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
 Im ersten Teil unserer Simulationen testen wir die Formel\\
@@ -1173,30 +1173,30 @@ Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den 
 \bibitem{CWAKritik2} https://www.zeit.de/wissen/gesundheit/2020-08/corona-warn-app-contact-tracing-downloads-nutzung-niedrig
 \bibitem{Simulation} Miguel Ángel Durán, COVID-19 spread simulator, 
 https://github.com/midudev/covid-19-spread-simulator
-\bibitem{DP-3T} C. Troncoso et al., "Decentralized Privacy-Preserving Proximity Tracing" \\https://github.com/DP-3T/documents/blob/master/DP3T\%20White\%20Paper.pdf (10.06.2021)
-\bibitem{MCS} R. K. Ganti, F. Ye and H. Lei, "Mobile crowdsensing: current state and future challenges," in IEEE Communications Magazine, vol. 49, no. 11, pp. 32-39, November 2011, doi: 10.1109/MCOM.2011.6069707.
-\bibitem{AirQuality} J. Dutta, F. Gazi, S. Roy and C. Chowdhury, "AirSense: Opportunistic crowd-sensing based air quality monitoring system for smart city," 2016 IEEE SENSORS, 2016, pp. 1-3, doi: 10.1109/ICSENS.2016.7808730.
-\bibitem{NoiseSense} Z. Qin and Y. Zhu, "NoiseSense: A Crowd Sensing System for Urban Noise Mapping Service," 2016 IEEE 22nd International Conference on Parallel and Distributed Systems (ICPADS), 2016, pp. 80-87, doi: 10.1109/ICPADS.2016.0020.
-\bibitem{TrafficRegulators} F. Saremi and T. Abdelzaher, "Combining Map-Based Inference and Crowd-Sensing for Detecting Traffic Regulators," 2015 IEEE 12th International Conference on Mobile Ad Hoc and Sensor Systems, 2015, pp. 145-153, doi: 10.1109/MASS.2015.18.
-\bibitem{BLESensorDevices} Y. Tsuchiya and N. Ishikawa, "Mobile Crowdsensing from Sensor Devices Using Bluetooth Low Energy (BLE)," 2018 International Conference on Computational Science and Computational Intelligence (CSCI), 2018, pp. 800-805, doi: 10.1109/CSCI46756.2018.00160.
-\bibitem{CICN} T. You, M. Umair and Y. Hong, "Mobile crowd sensing based on CICN," 2017 International Conference on Information and Communication Technology Convergence (ICTC), 2017, pp. 1272-1275, doi: 10.1109/ICTC.2017.8190919.
-\bibitem{BLETags} A. Basalamah, "Sensing the Crowds Using Bluetooth Low Energy Tags," in IEEE Access, vol. 4, pp. 4225-4233, 2016, doi: 10.1109/ACCESS.2016.2594210.
-\bibitem{GoogleStosszeiten} "Google Stoßzeiten Feature" \\ https://support.google.com/business/answer/6263531/sto\%C3\%9Fzeiten-wartezeiten-und-besuchsdauer?hl=de (04.06.2021)
-\bibitem{LocationPrivacy} Marius Wernke, Pavel Skvortsov, Frank Dürr, Kurt Rothermel,  "A classification of location privacy attacks and approaches", in Springer, November 2012
-\bibitem{GoogleStandortverlauf} "Google Standortverlauf" \\ https://support.google.com/maps/answer/6258979/google-maps\%E2\%80\%91zeitachse-computer?co=GENIE.Platform\%3DDesktop\&hl=de (04.06.2021)
-\bibitem{RKI} "Robert-Koch-Institut" \\ https://www.rki.de/DE/Home/homepage\_node.html (09.06.2021)
-\bibitem{BMG} "Bundesministerium für Gesundheit (BMG)" \\ https://www.bundesgesundheitsministerium.de (09.06.2021)
-\bibitem{RKIDatenspende} “RKI - 2020 - Mit Daten von Fitnessarmbändern und Smartwatches mehr über die Verbreitung des Coronavirus erfahren“ RKI.de \\ https://www.rki.de/DE/Content/Service/Presse/Pressemitteilungen/2020/04\_2020.html (09.06.2021)
-\bibitem{Gedaechtnistest} “Aufruf zum bundesweiten Gedächtnistest: Was macht „Corona“ mit unserem Kopf?“ DZNE.de \\https://www.dzne.de/aktuelles/pressemitteilungen/presse/aufruf-zum-bundesweiten-gedaechtnistest-was-macht-corona-mit-unserem-kopf (09.06.2021)
-\bibitem{GesundheitsforschungNews} "Corona: Aktuelles aus der Forschung" \\https://www.gesundheitsforschung-bmbf.de/de/corona-aktuelles-aus-der-forschung-10857.php (09.06.2021)
+\bibitem{DP-3T} C. Troncoso et al., \glqq Decentralized Privacy-Preserving Proximity Tracing\grqq \\https://github.com/DP-3T/documents/blob/master/DP3T\%20White\%20Paper.pdf (10.06.2021)
+\bibitem{MCS} R. K. Ganti, F. Ye and H. Lei, \glqq Mobile crowdsensing: current state and future challenges,\grqq in IEEE Communications Magazine, vol. 49, no. 11, pp. 32-39, November 2011, doi: 10.1109/MCOM.2011.6069707.
+\bibitem{AirQuality} J. Dutta, F. Gazi, S. Roy and C. Chowdhury, \glqq AirSense: Opportunistic crowd-sensing based air quality monitoring system for smart city,\grqq 2016 IEEE SENSORS, 2016, pp. 1-3, doi: 10.1109/ICSENS.2016.7808730.
+\bibitem{NoiseSense} Z. Qin and Y. Zhu, \glqq NoiseSense: A Crowd Sensing System for Urban Noise Mapping Service,\grqq 2016 IEEE 22nd International Conference on Parallel and Distributed Systems (ICPADS), 2016, pp. 80-87, doi: 10.1109/ICPADS.2016.0020.
+\bibitem{TrafficRegulators} F. Saremi and T. Abdelzaher, \glqq Combining Map-Based Inference and Crowd-Sensing for Detecting Traffic Regulators,\grqq 2015 IEEE 12th International Conference on Mobile Ad Hoc and Sensor Systems, 2015, pp. 145-153, doi: 10.1109/MASS.2015.18.
+\bibitem{BLESensorDevices} Y. Tsuchiya and N. Ishikawa, \glqq Mobile Crowdsensing from Sensor Devices Using Bluetooth Low Energy (BLE),\grqq 2018 International Conference on Computational Science and Computational Intelligence (CSCI), 2018, pp. 800-805, doi: 10.1109/CSCI46756.2018.00160.
+\bibitem{CICN} T. You, M. Umair and Y. Hong, \glqq Mobile crowd sensing based on CICN,\grqq 2017 International Conference on Information and Communication Technology Convergence (ICTC), 2017, pp. 1272-1275, doi: 10.1109/ICTC.2017.8190919.
+\bibitem{BLETags} A. Basalamah, \glqq Sensing the Crowds Using Bluetooth Low Energy Tags,\grqq in IEEE Access, vol. 4, pp. 4225-4233, 2016, doi: 10.1109/ACCESS.2016.2594210.
+\bibitem{GoogleStosszeiten} \glqq Google Stoßzeiten Feature\grqq \\ https://support.google.com/business/answer/6263531/sto\%C3\%9Fzeiten-wartezeiten-und-besuchsdauer?hl=de (04.06.2021)
+\bibitem{LocationPrivacy} Marius Wernke, Pavel Skvortsov, Frank Dürr, Kurt Rothermel,  \glqq A classification of location privacy attacks and approaches\grqq, in Springer, November 2012
+\bibitem{GoogleStandortverlauf} \glqq Google Standortverlauf\grqq \\ https://support.google.com/maps/answer/6258979/google-maps\%E2\%80\%91zeitachse-computer?co=GENIE.Platform\%3DDesktop\&hl=de (04.06.2021)
+\bibitem{RKI} \glqq Robert-Koch-Institut\grqq \\ https://www.rki.de/DE/Home/homepage\_node.html (09.06.2021)
+\bibitem{BMG} \glqq Bundesministerium für Gesundheit (BMG)\grqq \\ https://www.bundesgesundheitsministerium.de (09.06.2021)
+\bibitem{RKIDatenspende} \glqq RKI - 2020 - Mit Daten von Fitnessarmbändern und Smartwatches mehr über die Verbreitung des Coronavirus erfahren\grqq RKI.de \\ https://www.rki.de/DE/Content/Service/Presse/Pressemitteilungen/2020/04\_2020.html (09.06.2021)
+\bibitem{Gedaechtnistest} \glqq Aufruf zum bundesweiten Gedächtnistest: Was macht \glqq Corona\grqq mit unserem Kopf?\grqq DZNE.de \\https://www.dzne.de/aktuelles/pressemitteilungen/presse/aufruf-zum-bundesweiten-gedaechtnistest-was-macht-corona-mit-unserem-kopf (09.06.2021)
+\bibitem{GesundheitsforschungNews} \glqq Corona: Aktuelles aus der Forschung\grqq \\https://www.gesundheitsforschung-bmbf.de/de/corona-aktuelles-aus-der-forschung-10857.php (09.06.2021)
 \bibitem{Dunkelziffer} https://www.rki.de/DE/Content/Gesundheitsmonitoring/Studien/cml-studie/Factsheet\_Kupferzell.html (09.06.2021)
 \bibitem{Einwohnerzahl} https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/\_inhalt.html (09.06.2021
 \bibitem{Downloads} https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/WarnApp/Archiv\_Kennzahlen/Kennzahlen\_21052021.pdf?\_\_blob=publicationFile (09.06.2021)
 \bibitem{Lotto} https://www.tagesschau.de/ausland/amerika/usa-ohio-impfung-lotterie-101.html (09.06.2021)
 \bibitem{Notbremse} https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3\_Downloads/Gesetze\_und\_Verordnungen/GuV/B/4\_BevSchG\_BGBL.pdf (09.06.2021)
 \bibitem{DarfIchDas} https://www.darfichdas.info/ (09.06.2021)
-\bibitem{Risikoberechnung} "Corona-Warn-App Dokumentation" \\https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk\_calculation/risk\_calculation\_enf\_v2\_overview.pdf (09.06.2021)
-\bibitem{freiwilligeDatenspende} "Corona-Warn-App: Freiwillige Datenspende für verbesserte Wirksamkeit" \\https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182 (09.06.2021)
+\bibitem{Risikoberechnung} \glqq Corona-Warn-App Dokumentation\grqq \\https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk\_calculation/risk\_calculation\_enf\_v2\_overview.pdf (09.06.2021)
+\bibitem{freiwilligeDatenspende} \glqq Corona-Warn-App: Freiwillige Datenspende für verbesserte Wirksamkeit\grqq \\https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182 (09.06.2021)
 \end{thebibliography}
 \vspace{12pt}
 
