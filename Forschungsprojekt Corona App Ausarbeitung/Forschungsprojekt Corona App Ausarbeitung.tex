@@ -40,7 +40,7 @@ Stuttgart, Germany}
 \maketitle
 
 \begin{abstract}
-Das Coronavirus sorgt nun seit Anfang 2020 für sowohl ind Deutschland als auch weltweit für Ausnahmezustände. 
+Das Coronavirus sorgt nun seit Anfang 2020 sowohl in Deutschland als auch weltweit für Ausnahmezustände. 
 Um die Ausbreitung des Viruses weitestmöglich einzudmämmen wurden vielerlei Maßnahmen und Vorkehrungen getroffen, wie etwa Kontaktbeschränkungen oder Lockdowns.
 Eine der effektivsten Methoden die Infektonsketten zu unterbrechen und die Ausbreitung zu verlangsamen ist die Kontakverfolgung. 
 Dabei werden von einem Infizierten alle Kontaktpersonen innerhalb der letzten 14 Tage ermittelt, welche sich dann in Isolation begeben sollten. 
@@ -48,12 +48,12 @@ Da die manuelle Kontaktverfolgung ein aufwändiges Unterfangen darstellt wurde i
 Die Corona Warn App stand seit ihrer Herausgabe jedoch häufig unter Kritik und scheint in vielerlei Hinsicht noch nicht komplett ausgereift.
 Unser Ziel ist es, mögliche Erweiterungen der Corona Warn App zu finden und  zu analysieren.
 Hierbei wird ein besonderer Fokus auf die Crowd-Sensing Mechanismen gelegt, welche die Corona Warn App vorzuweisen hat. 
-Die Erweiterungen wurden Unterteilt in die Nebenfeatures, sowie die zwei Hauptfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map}.
+Die Erweiterungen wurden unterteilt in Nebenfeatures, sowie in die zwei Hauptfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map}.
 Jede vorgeschlagene Erweiterung wird anschließend diese Erweiterungen unter verschiedenen Aspekten beurteilt. 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Corona, Corona-Warn-App, Density Map, Risikoberechnung
+Corona, Corona-Warn-App, Crowd-Sensing, Density-Map, Risikoberechnung
 \end{IEEEkeywords}
 
 \section{Einleitung} \label{Einleitung}
@@ -67,9 +67,10 @@ Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlau
 Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudämmen. 
 Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
 So ist man beispielsweise verpflichtet, in Resaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
+
 Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von zwei Wochen merken und wieder ins Gedächtnis rufen muss.
-Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung automatisieren sollte: Die Corona Warn App \cite{CWA}. 
-Diese soll dabei helfen, die Kontaktverfolgung zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
+Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung vereinfachen sollte: Die Corona Warn App \cite{CWA}. 
+Diese soll dabei helfen, die Kontaktverfolgung per Smartphone zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
 Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenautausches garantiert ist.
 
 Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App. So stand sie hinsichtlich des Datenschutzes öfters in der Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
@@ -79,9 +80,9 @@ Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich d
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
 Einen besonderen Fokus legen wir hierbei auf die Crowd-Sensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
-Das Ziel des Crowd-Sensings ist es, ein großes Sensornetz mit bereits vorhandenen Geräten (wie beispielsweies Smartphones) aufzubauen und gesammelte Daten zentral verarbeiten zu können. 
+Ziel des Crowd-Sensings ist es, ein großes Sensorennetz mit bereits vorhandenen Geräten (wie beispielsweies Smartphones) aufzubauen, um gesammelte Daten zentral verarbeiten zu können. 
 Dies kann in kürzester Zeit ohne teure Infrastruktur realisiert werden, da Smartphones bereits Flächendeckend vorhanden sind.
-Die Probleme der Crowd-Sensing Methode, wie die Integrität und Privatheit der daten, wurden in der Corona Warn App gezielt aufgegriffen und behandelt durch Anonymen Datenaustausch per Bluetooth Low Energy und von Teststellen verifizierte positive Testergebnisse.
+Die Probleme der Crowd-Sensing Methode, wie die Integrität und Privatheit der Daten, wurden in der Corona Warn App gezielt aufgegriffen und behandelt durch Anonymen Datenaustausch per Bluetooth Low Energy und von Teststellen verifizierte positive Testergebnisse.
 
 Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
 Dabei sind wir folgendermaßen vorgegangen: Zunächst wurde eine Vielzahl aller möglichen funktionalen Erweiterungen identifiziert und eine Übersicht erstellt. 
@@ -97,9 +98,9 @@ Diese beiden Erweiterungen werden zusammen mit einer Reihe weiterer Nebenfeature
 
 Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befinden sich bestehende Arbeiten. 
 Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
-In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und beurteilt,
+In Abschnitt \ref{Nebenfeatures} werden dann eine Reihe von Nebenfeatures beschrieben und bewertet,
 bevor in Abschnitt \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} jeweils die beiden Hauptfeatues der \textit{erweiterten Risikoberechnung} und der \textit{Density-Map} im genaueren betrachtet werden. 
-In Abschnitt \ref{Conclusion} befindet sich unsere abschließende Zusmmenfassung und ein Ausblick. 
+In Abschnitt \ref{Conclusion} befindet sich unsere abschließende Zusammenfassung und ein Ausblick. 
 
 \section{Bestehende Arbeiten} \label{rel_work}
 
