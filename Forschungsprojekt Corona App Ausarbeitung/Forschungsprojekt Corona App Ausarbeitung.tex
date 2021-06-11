@@ -393,7 +393,7 @@ Mit dem Feature TRL Update ist es mögl, währendeich den Krankheitsverlauf in d
 Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
 Das TRL beschreibt den Grad der Infektiosität im Krankheitsfall an, 
 während das Übertragunspotenzial aus Begegnungsdauer und Nähe mit einer infizierten Person berechnet wird, um die Gefahr einer Infektion zu berechnen.  
-Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der erweiterten Risikoberechnung gesondert zu gewichten.
+Das Feature DK-Server wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der erweiterten Risikoberechnung gesondert zu gewichten.
 
 Die oben genannten Features werden in Abschnitt \ref{Familienfeature} bis \ref{Feature TRL Update} vorgestellt.
 In Abschnitt \ref{Berechnung} werden Probleme und Lösungsansätze der aktuellen Risikoberechnung diskutiert und die drei Summanden, aus denen der Risikowert zusammengesetzt ist, genauer erläutert.
@@ -432,9 +432,9 @@ Die Liste der verschlüsselten TEKs ist beim Anlegen einer neuen Servergruppe le
 
 Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen, mit denen der Nutzer TEKs austauschen möchte.
 Innerhalb einer lokalen Gruppe wird ein \textit{Private Signing Key} (PSK), ein \textit{Private Encryption Key} (PEK) und eine \textit{Servergruppen ID} gespeichert.
-PSKs und PEKs werden genutzt, um TEKs zu verschlüsseln und signieren.
+PSKs und PEKs werden genutzt, um TEKs zu verschlüsseln und zu signieren.
 Die Verwendung des PSK, PEKs und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
-Der PSK und insbesondere PEK einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
+Der PSK und insbesondere der PEK einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
 Es gibt zwei verschiedene Möglichkeiten den PSK, PEK und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
 Dafür kann man entweder eine neue Servergruppe anlegen oder einer bereits existierenden Servergruppe beitreten.
 
@@ -445,7 +445,7 @@ Allerdings reicht der PSK nicht aus, um die TEKs von Gruppenmitgliedern lesen zu
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
 Der lokal erstellte PSK, PEK, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
 
-Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
+Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man Kontaknt zu einem Mitglied der Servergruppe.
 Das Mitglied der Servergruppe teilt den PSK, PEK und die Servergruppen ID durch zum Beispiel einen QR-Code.
 Diese müssen dann nur noch abgespeichert werden.
 
@@ -454,10 +454,12 @@ Aus diesem Grund wird nochmal betont Gruppen nur mit vertrauenswürdigen Persone
 Sollte eine Person unbefugten Zugriff auf eine Gruppe haben, ist es nicht möglich, dieser Person den Zugriff zu entziehen.
 In diesem Fall muss die lokale Gruppe gelöscht werden, damit keine weiteren TEKs geteilt werden.
 
-Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen PSKs, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
+Hat man eine oder mehrere Gruppen lokal erstellt und die zugehörigen PSKs, PEKs und Servergruppen IDs hinzugefügt, 
+werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
 Damit außer der Gruppenmitglieder niemand Zugriff auf die TEKs hat, wird dabei folgendes Verfahren angewandt:
 
-Die TEKs werden mithilfe des PEKs einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem PSK der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
+Die TEKs werden mithilfe des PEKs einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und 
+dann mit dem PSK der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
 Dies wird zusammen mit der Servergruppen ID der Gruppe an den Server gesendet.
 Der Server nutzt den PSK zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
 Sind die TEKs validiert, werden sie der Liste der verschlüsselten TEKs zusammen mit ihrem Hochladedatum hinzugefügt.
@@ -470,45 +472,51 @@ Mithilfe des PSKs wird die Anfrage validiert und die verschlüsselten TEKs vom S
 Die verschlüsselten TEKs können dann mit dem PEK der Gruppe entschlüsselt werden.
 Auch hier geschieht dies iterativ für jede lokale Gruppe.\\
 
-\subsection{Feature PKServer}
-\label{PKServer}
+\subsection{Feature DK-Server}
+\label{DK-Server}
 
-Das Feature PKServer ist Voraussetzung für die erweiterte Risikoberechnung.
+Das Feature DK-Server ist Voraussetzung für die erweiterte Risikoberechnung.
 In der aktuellen CWA werden nur Begegnungen mit CWA-Positive Personen in der Risikoberechnung betrachtet.
 Jedoch sind CWA-Likely-Positive Personen mit einer erhöhten Wahrscheinlichkeit infiziert und ansteckend, da sie Kontakt zu CWA-Positive Personen hatten.
 Diese sollen mithilfe dieses Features in den Summanden R\textsubscript{CWA-Likely-Positive} in Abschnitt \ref{CWALikelyPositive} mit einbezogen werden.
 
 Damit diese in die Risikoberechnung mit einfließen können, benötigen wir die TEKs der CWA-Likely-Positive Personen.
 Ähnlich wie beim CWA Server sollen diese TEKs auch auf einem Server gesammelt und von da aus verteilt werden.
-Dieser Server wird in diesem Dokument als der \textit{Potenziell Kranke Server} (PKServer) bezeichnet.
-Wird in der CWA ein erhöhtes Risiko mit einem Risikowert $\geq$ 13 erkannt und durch einen roten Bildschirm angezeigt, so sollen die TEKs der letzten 14 Tage, verbunden mit dem zum roten Bildschirm führenden Risikowert, auf den PKServer hochgeladen werden.
+Dieser Server wird in diesem Dokument als der \textit{Direkte Kontakte Server} (DK-Server) bezeichnet.
+Wird in der CWA ein erhöhtes Risiko mit einem Risikowert $\geq$ 13 erkannt und durch einen roten Bildschirm angezeigt, 
+so sollen die TEKs der letzten 14 Tage, verbunden mit dem zum roten Bildschirm führenden Risikowert, auf den DK-Server hochgeladen werden.
 Dies kann entweder durch das freiwillige Bestätigen einer Option oder als Integration in die freiwillige Datenspende implementiert werden.
-Aufgrund der Inkubationszeit werden TEKs auf dem PKServer, die älter als 14 Tage sind, gelöscht.
+Aufgrund der Inkubationszeit werden TEKs auf dem DK-Server, die älter als 14 Tage sind, gelöscht.
 
-Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom PKServer herunter und leitet daraus die RPIs ab.
+Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom DK-Server herunter und leitet daraus die RPIs ab.
 Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt \ref{CWALikelyPositive} beschrieben.
 Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA Server.
-Der mit einem TEK verbundene Risikowert wird dazu genutzt die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
+Der mit einem TEK verbundene Risikowert wird dazu genutzt, um die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
 
-Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, autorisierter Schlüssel benötigt, um TEKs auf den PKServer hochladen zu können.
+Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, 
+autorisierter Schlüssel benötigt, um TEKs auf den DK-Server hochladen zu können.
 Dadurch entfällt die Integrität der hochgeladenen TEKs.
 Dies wirft verschiedene Probleme auf, die im Folgenden diskutiert werden. 
 Die Lösung dieser Probleme geht jedoch über den Umfang dieses Forschungsarbeit hinaus und wird deswegen nur angerissen.
 
-Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb von 14 Tagen auf den PKServer hochgeladen wird.
-Sollten bereits auf dem PKServer existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, ob das erneute Hochladen von der gleichen Person getätigt wird.
-Würden diese nicht abgelehnt werden, wäre es ein leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, da der Lesezugriff auf die TEKs und Risikowerte auf dem PKServer nicht eingeschränkt ist.
-Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den PKServer hochgeladen werden kann.
+Die vorgeschlagene Implementierung dieses Features sieht vor, dass ein TEK nicht mehrmals innerhalb von 14 Tagen auf den DK-Server hochgeladen wird.
+Sollten bereits auf dem DK-Server existierende TEKs erneut hochgeladen werden, so müssen diese abgelehnt werden, weil nicht bestätigt wird, 
+ob das erneute Hochladen von der gleichen Person getätigt wird.
+Würden diese nicht abgelehnt werden, wäre es ein Leichtes für einen Angreifer die Risikowerte der TEKs zu verändern, 
+da der Lesezugriff auf die TEKs und Risikowerte auf dem DK-Server nicht eingeschränkt ist.
+Dies führt dazu, dass nur der erste Risikowert, der zu einem roten Bildschirm führt, zusammen mit den TEKs auf den DK-Server hochgeladen werden kann.
 Da die Risikowerte in direkter Verbindung mit der Risikoberechnung stehen, kann dies zu einer ungenaueren Risikoberechnung führen, 
 falls die erste Begegnung, die bei einer Person zu einem Risikowert $\geq$ 13 geführt hat, nicht die Begegnung ist, an der sich die Person angesteckt hat.
 
-Es ist des weiteren möglich falsche TEKs auf den PKServer hochzuladen, da weder die Existenz eines TEKs, noch das Vorhanden sein eines Risikowertes $\geq$ 13, überprüft wird.
+Es ist des Weiteren möglich falsche TEKs auf den DK-Server hochzuladen, 
+da weder die Existenz eines TEKs, noch das Vorhanden sein eines Risikowertes $\geq$ 13, überprüft wird.
 Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufwand und Ressourcen.\\
 
 \subsection{Feature TRL Update}
 \label{Feature TRL Update}
-In diesem Feature wird das volle Potenzial des TRLs, welches in Abschnitt \ref{TRL} genauer beschrieben wurde, genutzt. Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
-da mit zu geringer Sicherheit gesagt werden kann, dass eine Infizierte Person nicht mehr infektiös ist. 
+In diesem Feature wird das volle Potenzial des TRLs, welches in Abschnitt \ref{TRL} genauer beschrieben wurde, genutzt. 
+Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
+da mit zu geringer Sicherheit gesagt werden kann, dass eine infizierte Person nicht mehr infektiös ist. 
 Die Implementierung für das TRL existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht.
 Es handelt sich hierbei konkret um den Zeitpunkt, ab dem man Infektös ist. 
 Diesen Zeitpunkt kann man allerdings nicht so einfach bestimmen, da nicht täglich Tests an der selben Person durchgeführt werden.
@@ -697,7 +705,7 @@ da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Posi
 Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
 
 Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
-Aus diesem Grund wird die \textot{Positiv-Begegnungs-Wahrscheinlichkeit} benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
+Aus diesem Grund wird die \textit{Positiv-Begegnungs-Wahrscheinlichkeit} benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
 Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
 
 \centerline{\text{ }}
@@ -705,48 +713,48 @@ Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahr
 \centerline{\text{ }}
 
 Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist.
-Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom PKServer heruntergeladen, wie in Abschnitt \ref{PKServer} beschrieben.
+Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom DK-Server heruntergeladen, wie in Abschnitt \ref{DK-Server} beschrieben.
 
 Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
 Zunächst werden, Intervalle gebildet, da die Menge der Risikowerte nicht diskret, sondern stetig ist.
-Anhand der auf dem PKServer und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i$ mit $i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
+Anhand der auf dem DK-Server und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i$ mit $i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
 dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
 \centerline{$x_i := [13+i, 14+i[$}
 \centerline{\text{ }}
 
-Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem PKServer alle $\geq 13$ sind.
+Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem DK-Server alle $\geq 13$ sind.
 Damit die Wahrscheinlicht bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
 wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben und die Anzahl an Personen, 
 die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind. 
 
-Dafür werden die TEKs auf dem PKServer und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
-Aus den TEKs auf dem PKServer kann die Anzahl an Personen bestimmt werden,
+Dafür werden die TEKs auf dem DK-Server und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
+Aus den TEKs auf dem DK-Server kann die Anzahl an Personen bestimmt werden,
 die einen Risikowert innerhalb des Intervalls $x_i$ haben.
-Werden zusätzlich zu den TEKs auf dem PKServer die Diagnosis Keys auf dem CWA Server dazu genommen, 
+Werden zusätzlich zu den TEKs auf dem DK-Server die Diagnosis Keys auf dem CWA Server dazu genommen, 
 kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
-indem die TEKs auf dem PKServer und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
+indem die TEKs auf dem DK-Server und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
 Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit $P_{x_i}$, infiziert zu sein, wie folgt bestimmen:
 
 \centerline{\text{ }}
-\centerline{$P_{x_i} := \frac{\text{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem PKServer mit Risikowert} \in x_i}$}
+\centerline{$P_{x_i} := \frac{\text{Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem DK-Server mit Risikowert} \in x_i}$}
 \centerline{\text{ }}
 
-Zur \textit{Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
-die auf PKServer und den CWA Server hochgeladen wurden und einen Risikowert innerhalb $x_i$ aufweisen. 
+Zur \textit{Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
+die auf DK-Server und den CWA Server hochgeladen wurden und einen Risikowert innerhalb $x_i$ aufweisen. 
 
-Zur \textit{Anzahl TEKs auf dem PKServer mit Risikowert $\in x_i$} werden alle TEKs auf dem PKServer gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
+Zur \textit{Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$} werden alle TEKs auf dem DK-Server gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
 
 Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA Server einige Tage vergehen und 
 Keys auf beiden Servern nur 14 Tage lang gespeichert werden, muss für die Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden.
 
-Die Anzahl TEKs auf dem PKServer mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$, der 14 Tage in der Vergangenheit liegt, bis zu einem Endzeitpunkt $s_1$, 
+Die Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$, der 14 Tage in der Vergangenheit liegt, bis zu einem Endzeitpunkt $s_1$, 
 der 7 Tage nach $s_0$ liegt, gezählt. 
-Die Anzahl TEKs auf dem PKServer und CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
-Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den PKServer hochgeladen worden sein. 
+Die Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
+Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den DK-Server hochgeladen worden sein. 
 
-Verwendet man zur Bestimmung der Funktion \textit{f} zum Beispiel die TEKs der letzten 7 Tage auf dem PKServer, 
+Verwendet man zur Bestimmung der Funktion \textit{f} zum Beispiel die TEKs der letzten 7 Tage auf dem DK-Server, 
 so werden viele dieser TEKs nicht als Diagnosis Keys auf den CWA Server hochgeladen, 
 obwohl diese infiziert sind, da noch kein positives Testergebnis aufgrund der geringen zeitlichen Distanz vorliegt. 
 Die davon betroffenen TEKs würden die Funktion $f$ negativ beeinflussen.
@@ -755,7 +763,7 @@ Nachdem für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, be
 die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. 
 Hierbei ist besonders zu beachten, dass die Funktion $f$ periodisch mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
 Eine Aktualisierungsperiode sollte ca. 7 Tage andauern, da der Zeitraum $s_0$ bis $s_1$ 7 Tage lang ist.
-Beim Herunterladen von Keys (vom CWA Server oder PKServer) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
+Beim Herunterladen von Keys (vom CWA Server oder DK-Server) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
 Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden: 
 
 \centerline{\text{ }}
@@ -920,7 +928,7 @@ Im Anschluss wird die zusammengesetzte Funktion, um R\textsubscript{CWA-Likely-N
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden,
 da mehr Faktoren betrachtet werden. Weiterhin gilt jedoch: Je mehr Personen die CWA nutzen, desto effektiver ist diese.
 Dabei wird auf die Privatsphäre der Nutzer geachtet, indem freiwillige, anonymisierte Datensammlungen verwendet werden.
-Da die Datenspende des Features PKServer und des Features TRL Update freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
+Da die Datenspende des Features DK-Server und des Features TRL Update freiwillig ist, benötigt man eine hohe Beteiligung an Nutzern, die Daten teilen.
 Ohne die Datenspende ist es kaum möglich eine genaue Funktion für den Riskikowert R\textsubscript{CWA-Likely-Positive} zu bestimmen. 
 Zudem ist die Berechnung des Risikos R\textsubscript{CWA-Positive}, welches aus der aktuellen CWA übernommen wurde,
 in der erweiterten Risikoberechnung mit eingebunden, wodurch nur ein höherer Risikowert zusammen kommen kann
@@ -930,14 +938,14 @@ Die erweiterte Risikoberechnung bietet einen hohen Grad an Transparenz bezüglic
 Außerdem werden durch die feinere Granulierung der Risikoberechnung und Risikoanzeige auch kleinere Risikostufen wahrgenommen. 
 Somit werden schneller Veränderungen des Infektionsrisikos dargestellt, wodurch dem in der CWA angezeigten Risiko mehr vertraut werden kann.
 
-Für die Verwendung des Familienfeatures und des PKServers müssen Sicherheitsmechanismen gegen Denial of Service Angriffe implementiert werden, 
+Für die Verwendung des Familienfeatures und des DK-Servers müssen Sicherheitsmechanismen gegen Denial of Service Angriffe implementiert werden, 
 auf die im Rahmen dieser Forschungsarbeit nicht weiter eingegangen wird.
 Im Vergleich dazu wird bei den im Abschnitt \ref{Feature TRL Update} vorgestellten Umfragen der Besitz eines eindeutigen Schlüssels vorausgesetzt,
 der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
 
-Obwohl es zwei weitere Server gibt (PKServer und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
+Obwohl es zwei weitere Server gibt (DK-Server und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
 Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
-Zudem werden die Daten auf dem PKServer und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
+Zudem werden die Daten auf dem DK-Server und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
 
 Da auch hier auf frewilliger Basis nur pseudonymisierte Identifier geteilt und auf die Server hochgeladen werden, wird die Privatsphäre der Nutzer nicht weiter, als in der aktuellen CWA, eingeschränkt.
 Außerdem werden Privatsphäre kritische Daten durch Kryptographie im Familienfeature vor äußeren Eingriffen geschützt und werden somit nur mit der eigenen Gruppe geteilt.
@@ -1258,9 +1266,9 @@ sowie ein demnächst Erscheinender digitaler Impfpass für die CWA.
 Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA dartstellen.
 
 Im Folgenden wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
-Hierbei handelt es sich um das Familienfeature, Feature PKServer und Feature TRL Update. 
+Hierbei handelt es sich um das Familienfeature, Feature DK-Server und Feature TRL Update. 
 Im Rahmen des Familienfeatures können Gruppen in der CWA angelegt werden, um längere Begegnungen mit der eigenen Familie nicht als mehrere unterschiedliche Begegnungen aufzuzeichnen. 
-Das Feature PKServer sammelt die TEKs der Personen, die als direkte Kontaktpersonen von Infizierten in der CWA identifiziert werden, um diese in der Risikoberechnung stärker zu gewichten. 
+Das Feature DK-Server sammelt die TEKs der Personen, die als direkte Kontaktpersonen von Infizierten in der CWA identifiziert werden, um diese in der Risikoberechnung stärker zu gewichten. 
 Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv getestete Auskunft über ihren Krankheitsverlauf geben können.
 Das TRL gibt dabei an, wie infektiös eine Person im derzeitigen Krankheitsverlauf ist, weshalb genauere Informationen über den Verlauf sehr wichtig sind.
 Mit diesen Daten lässt sich das aktuelle TRL genauer berechnen.
