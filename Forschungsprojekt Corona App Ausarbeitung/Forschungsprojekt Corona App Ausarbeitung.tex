@@ -354,17 +354,12 @@ Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abb
 %	\label{Risikoberechnung_Abbildung}
 %\end{figure*}
 
-Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
-Dafür wird die Risikoberechnung der CWA erweitert, um damit einen neuen \textit{Risikowert} zu berechnen, der das Infektionsrisiko widerspiegelt.
-
-Um das Risiko zu berechnen, dass von Infizierten ausgeht, die ihr Ergebnis nicht in die CWA eingetragen haben, wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt.
-Die \textit{Positiv-Begegnungs-Wahrscheinlichkeit} beschreibt die Wahrscheinlichkeit, dass eine Person infiziert ist.
-Die Positiv-Begegnungs-Wahrscheinlichkeit ist für infizierte Personen immer Eins und wird deshalb nicht in der aktuellen CWA explizit erwähnt.
-Für weitere Personengruppen wird das Risiko durch das Übertragungspotenzial, sowie die Positiv-Begegnungs-Wahrscheinlicheit bestimmt.
+Die aktuelle CWA berechnet nur Begegnungen mit Infizierten, die ihr Testergebnis in die CWA eingetragen haben.
+In der erweiterten Risikoberechnungen sollten jedoch Begegnungen mit allen Personenegruppen mit einberechnet werden.
 
 %Definitionen
 Dabei wird zwischen zwei Personengruppen unterschieden, die jeweils in 3 Untergruppen unterteilt werden, 
-da die Positiv-Begegnungs-Wahrscheinlichkeit von Person zu Person stark variieren kann.
+da die Infektionswahrscheinlichkeit in manchen Personengruppen höher ist als in Anderen.
 Es wird grundsätlich unterschieden zwischen \textit{CWA-User}, die von der CWA somit aufgezeichnet werden und \textit{Not-CWA-User}, 
 die die CWA nicht aktiv nutzen und somit nicht aufgezeichnet werden. Die CWA nicht aktiv nutzen heißt, dass keine TEKs geteilt werden.
 Die CWA-User werden in drei Untergruppen aufgeteilt:
@@ -409,8 +404,10 @@ Zuletzt wird die erweiterte Risikoberechnung in Abschnitt \ref{Bewertung_Risikob
 
 Im Folgenden wird das Familienfeature vorgestellt, welches später für die erweiterte Risikoberechnung benötigt wird.
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
-Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln und somit einen genaueren Risikowert zu berechnen.
-Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
+Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln und 
+somit einen genaueren Risikowert zu berechnen.
+Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, 
+die keinen passenden TEK in irgendeiner Gruppe haben.
 %Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} miteinberechnet werden,
 %sondern nur in R\textsubscript{CWA-Positive}.
 %Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{CWALikelyPositive} und \ref{CWALikelyNegative} erläutert.
@@ -429,25 +426,27 @@ In Abbildung \ref{Familienfeature_Abbildung} ist eine Übersicht des Familienfea
 
 Als Servergruppe wird eine Gruppe auf einem speziell für das Familienfeature angelegten Server bezeichnet.
 Über den Server werden später die TEKs von unterschiedlichen CWA Nutzern ausgetauscht.
-Eine Servergruppe besitzt eine für den Server einmalige \textit{ID}, einen \textit{Private Signing Key} und eine \textit{Liste mit verschlüsselten TEKs}.
+Eine Servergruppe besitzt eine für den Server einmalige \textit{ID}, einen \textit{Private Signing Key } und eine \textit{Liste mit verschlüsselten TEKs}.
+
 Die Liste der verschlüsselten TEKs ist beim Anlegen einer neuen Servergruppe leer.
 
 Jeder Nutzer der CWA kann beliebig viele lokale Gruppen in der eigenen CWA erstellen, mit denen der Nutzer TEKs austauschen möchte.
-Innerhalb einer lokalen Gruppe wird ein \textit{Private Signing Key}, ein \textit{Private Encryption Key} und eine \textit{Servergruppen ID} gespeichert.
-Die Verwendung des Private Signing Keys, Private Encryption Keys und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
-Der Private Signing Key und insbesondere Private Encryption Key einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
-Es gibt zwei verschiedene Möglichkeiten den Private Signing Key, Private Encryption Key und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
+Innerhalb einer lokalen Gruppe wird ein \textit{Private Signing Key} (PSK), ein \textit{Private Encryption Key} (PEK) und eine \textit{Servergruppen ID} gespeichert.
+PSKs und PEKs werden genutzt, um TEKs zu verschlüsseln und signieren.
+Die Verwendung des PSK, PEKs und der Servergruppen ID wird in den nächsten Absätzen genauer erläutert.
+Der PSK und insbesondere PEK einer Gruppe müssen geheim gehalten werden, damit die Privatsphäre keines Mitglieds verletzt wird.
+Es gibt zwei verschiedene Möglichkeiten den PSK, PEK und die Servergruppen ID einer lokalen Gruppe hinzuzufügen.
 Dafür kann man entweder eine neue Servergruppe anlegen oder einer bereits existierenden Servergruppe beitreten.
 
-Entscheidet man sich dazu eine neue Servergruppe anzulegen, so wird lokal in der CWA ein Private Signing Key und ein Private Encryption Key generiert.
-Der Private Signing Key wird zusammen mit einer Anfrage, eine neue Servergruppe zu erstellen, an den Server gesendet.
-Ein Verlust des Private Signing Keys kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
-Allerdings reicht der Private Signing Key nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem Private Encryption Key verschlüsselt sind.
+Entscheidet man sich dazu eine neue Servergruppe anzulegen, so wird lokal in der CWA ein PSK und ein PEK generiert.
+Der PSK wird zusammen mit einer Anfrage, eine neue Servergruppe zu erstellen, an den Server gesendet.
+Ein Verlust des PSKs kann dazu führen, dass ein Angreifer willkürlich TEKs hochladen und herunterladen kann, die dieser Gruppe zugeordnet werden.
+Allerdings reicht der PSK nicht aus, um die TEKs von Gruppenmitgliedern lesen zu können, da diese mit dem PEK verschlüsselt sind.
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
-Der lokal erstellte Private Signing Key, Private Encryption Key, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
+Der lokal erstellte PSK, PEK, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
 
 Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man ein Mitglied der Servergruppe.
-Das Mitglied der Servergruppe teilt den Private Signing Key, Private Encryption Key und die Servergruppen ID durch zum Beispiel einen QR-Code.
+Das Mitglied der Servergruppe teilt den PSK, PEK und die Servergruppen ID durch zum Beispiel einen QR-Code.
 Diese müssen dann nur noch abgespeichert werden.
 
 An dieser Stelle ist anzumerken, dass jedes Mitglied neue Personen zur Gruppe hinzufügen kann, ohne, dass andere Mitglieder etwas davon mitbekommen.
@@ -455,20 +454,20 @@ Aus diesem Grund wird nochmal betont Gruppen nur mit vertrauenswürdigen Persone
 Sollte eine Person unbefugten Zugriff auf eine Gruppe haben, ist es nicht möglich, dieser Person den Zugriff zu entziehen.
 In diesem Fall muss die lokale Gruppe gelöscht werden, damit keine weiteren TEKs geteilt werden.
 
-Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen Private Signing Keys, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
+Hat man ein oder mehrere Gruppen lokal erstellt und die zugehörigen PSKs, private encyrption keys und Servergruppen IDs hinzugefügt, werden automatisch alle 24h die eigenen TEKs auf den Server hochgeladen und die TEKs der anderen Mitglieder heruntergeladen.
 Damit außer der Gruppenmitglieder niemand Zugriff auf die TEKs hat, wird dabei folgendes Verfahren angewandt:
 
-Die TEKs werden mithilfe des Private Encryption Keys einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem Private Signing Key der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
+Die TEKs werden mithilfe des PEKs einer Gruppe und eines sicheren, symmetrischen Verschlüsselunsverfahrens verschlüsselt und dann mit dem PSK der Gruppe und einem sicheren, symmetrischen Signaturverfahren signiert.
 Dies wird zusammen mit der Servergruppen ID der Gruppe an den Server gesendet.
-Der Server nutzt den Private Signing Key zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
+Der Server nutzt den PSK zugehörig zur mitgeschickten ID, um die TEKs zu validieren.
 Sind die TEKs validiert, werden sie der Liste der verschlüsselten TEKs zusammen mit ihrem Hochladedatum hinzugefügt.
 Die verschlüsselten TEKs werden wegen der Inkubationszeit nach 14 Tagen aus der Liste der verschlüsselten TEKs gelöscht, da sie danach nicht mehr benötigt werden.
 Dies geschieht iterativ für jede lokale Gruppe.
 
 Um die TEKs der Gruppenmitglieder einer Gruppe herunterzuladen, muss eine Anfrage an den Server gestellt werden.
 Diese Anfrage beinhaltet die Servergruppen ID der Gruppe und das Datum des letzten Downloads.
-Mithilfe des Private Signing Keys wird die Anfrage validiert und die verschlüsselten TEKs vom Server an die CWA gesendet, die nach dem Datum des letzten lokalen Downloads hochgeladen wurden.
-Die verschlüsselten TEKs können dann mit dem Private Encryption Key der Gruppe entschlüsselt werden.
+Mithilfe des PSKs wird die Anfrage validiert und die verschlüsselten TEKs vom Server an die CWA gesendet, die nach dem Datum des letzten lokalen Downloads hochgeladen wurden.
+Die verschlüsselten TEKs können dann mit dem PEK der Gruppe entschlüsselt werden.
 Auch hier geschieht dies iterativ für jede lokale Gruppe.\\
 
 \subsection{Feature PKServer}
@@ -611,7 +610,11 @@ sowie die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern.\\
 
 Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
-Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier 1. 
+Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, ist die Positiv-Begegnungs-Wahrscheinlichkeit hier 1.
+
+
+
+
 Es wird also nur das Übertragungspotential betrachtet. Dafür wird zunächst zu einer Begegnung die \textit{Weighted Exposure Time} ausgewertet. 
 Die Weighted Exposure Time bestimmt die Gewichtung der Begegnungszeit \textit{t} anhand der geringsten Dämpfung (attenuation) \textit{att}  wie folgt: 
 
@@ -694,7 +697,7 @@ da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Posi
 Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
 
 Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
-Aus diesem Grund wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
+Aus diesem Grund wird die \textot{Positiv-Begegnungs-Wahrscheinlichkeit} benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
 Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
 
 \centerline{\text{ }}
@@ -947,7 +950,7 @@ werden die Kosten für diese einen ähnlichen Umfang haben.
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
 In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
 Im Sinne der erweiterten Corona Warn App möchten wir das Crowd-Sensing Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darzustellen. 
-Damit kann ein Nutzer eine Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
+Damit kann eine Nutzer eine Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
 Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. 
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
@@ -960,7 +963,7 @@ Jedoch müssten dafür neben der Standorte der einzelnen Smartphones auch die RP
 Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten um anonyme RPIs handelt) auf einem zentralen Server würde jedoch der grundsätzlichen Philosophie der Corona Warn App widersprechen.
 Diese verfolgte in ihrer Kontaktverfolgung einen möglichst dezentralen Ansatz, um die Privatsphäre der Nutzer zu garantieren.
 Dementsprechend suchen wir ebenfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen. 
-Hierfür wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angegangen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
+Hierfür wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angeganen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
 \textit{Infrastrukturbasierte Lösung mit Masten: }\\
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
 Nach Ablauf des Zeitintervalls werden die erfasste Anzahl an Smartphones zunächst ausgewertet und zu einem Zahlenwert aggregiert.
@@ -1215,7 +1218,8 @@ Jedoch ist die Density-Map ein Feature, welches auch außerhalb der Pandemiezeit
 Gerade in Zeiten, in denen keine größeren Einschränkungen gelten, ist es vermutlich umso wichtiger, weiterhin bewusst Abstand zu größeren Ansammlungen zu halten, um der Ausbreitung einer weiteren Infektionswelle vorzubeugen.\\
 Deshalb trägt die Density-Map vor allem in Zeiten der Lockerung der Beschränkungsmaßnahmen einen guten Teil dazu bei, diesen Zustand zu erhalten.\\
 Unabhängig vom Kontext der Pandemie hat die Erstellung einer Density-Map, welche auf der anonymisierten Verfolgung von Kontakten basiert, ebenfalls viele Verwendungen.\\
-So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. Die erarbeiteten Formeln lassen sich generell in Echtzeit-Karten verwenden, wo durch anonyme Datensammlung nach dem Prinzip des Crowd-Sensing fehlerhafte Werte entstehen können.\\ 
+So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. Die erarbeiteten Formeln lassen sich generell in Echtzeit-Karten verwenden,
+wo durch anonyme Datensammlung nach dem Prinzip des Crowd-Sensing fehlerhafte Werte entstehen können.\\ 
 Die Auswertung der gesammelten Daten und Korrigierung mittels der in dieser Arbeit ermittelten Formel wäre also auch in diesen Bereichen anwendbar und hat somit Relevanz über den Zeitraum der Pandemie hinaus.\\
 
 Auch die Tatsache, dass bereits ein vergleichbares Feature von Google existiert, stellt den Nutzen des Features natürlich in Frage.\\
