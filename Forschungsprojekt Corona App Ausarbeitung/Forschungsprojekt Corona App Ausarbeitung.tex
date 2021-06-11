@@ -58,36 +58,36 @@ Corona, Corona-Warn-App, Crowd-Sensing, Density-Map, Risikoberechnung
 
 \section{Einleitung} \label{Einleitung}
 Seit nun mehr als eineinhalb Jahren breitet sich das Corona Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nicht erlebte Ausnahmezustände.
-Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Virus gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermuten lässt \cite{Dunkelziffer}. 
+Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Virus gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höhere Werte vermuten lässt \cite{Dunkelziffer}. 
 In Deutschland wurden dem Robert Koch Institut insgesamt 3,7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
-Insbesondere stellen dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeitraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
+Insbesondere stellen dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeitraum von 14 Tagen, in dem ein Infizierter andere anstecken kann, ohne selbst Symptome zu zeigen, eine große Herausforderung dar.
 
 Um die Ausbreitung des Virus weitmöglichst einzudämmen, wurden im Land zahlreiche Vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
-Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen.
+Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen lassen.
 Vor der Erforschung und Herstellung der Impfstoffe galt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudämmen. 
-Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen nachzuverfolgen und zu isolieren, damit die Infektionsketten des Virus unterbrochen werden.
-So ist man beispielsweise verpflichtet, in Resaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
+Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenziell angesteckte Personen nachzuverfolgen und zu isolieren, damit die Infektionsketten des Virus unterbrochen werden.
+So ist man beispielsweise verpflichtet, in Restaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
 
-Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, 
+Eine solche manuelle Kontaktverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, 
 da man sich alle Kontakte innerhalb des langen Zeitraumes von zwei Wochen merken und wieder ins Gedächtnis rufen muss.
 
 Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung vereinfachen sollte: Die Corona Warn App \cite{CWA}. 
-Diese soll dabei helfen, die Kontaktverfolgung per Smartphone zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
-Ein zentraler Aspekt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenautauschs garantiert ist.
+Diese soll dabei helfen, die Kontaktverfolgung per Smartphone zu automatisieren und dabei effektiver und effizienter vorzugehen als die manuelle Methode.
+Ein zentraler Aspekt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenaustauschs garantiert ist.
 
 Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App. 
-So stand sie hinsichtlich des Datenschutzes öfters in der Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
+So stand sie hinsichtlich des Datenschutzes öfter in der Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
 Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen, da zu wenige Leute die App nutzen \cite{CWAKritik2}.
 Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenken, die von der Bevölkerung geäußert wurden (wie etwa, dass die App uns ausspioniere) stellten sich als Mythen heraus. 
 Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte, da die Downloadzahlen gering sind \cite{Downloads}. 
 Es gibt somit noch Lücken und Erweiterungsbedarf für eine wirkungsvolle und ausgereifte App.
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
-Einen besonderen Fokus legen wir hierbei auf die Crowd-Sensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
-Ziel des Crowd-Sensings ist es, ein großes Sensorennetz mit bereits vorhandenen Geräten (wie beispielsweies Smartphones) aufzubauen, um gesammelte Daten zentral verarbeiten zu können. 
-Dies kann in kürzester Zeit ohne teure Infrastruktur realisiert werden, da Smartphones bereits Flächendeckend vorhanden sind.
-Die Probleme der Crowd-Sensing Methode, wie die Integrität und Privatheit der Daten, wurden in der Corona Warn App gezielt aufgegriffen und behandelt durch 
-anonymen Datenaustausch per Bluetooth Low Energy und von Teststellen verifizierte positive Testergebnisse.
+Einen besonderen Fokus legen wir hierbei auf die Crowd-Sensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereinander ausgetauscht und verarbeitet werden.
+Ziel des Crowd-Sensings ist es, ein großes Sensorennetz mit bereits vorhandenen Geräten (wie beispielsweise Smartphones) aufzubauen, um gesammelte Daten zentral verarbeiten zu können. 
+Dies kann in kürzester Zeit ohne teure Infrastruktur realisiert werden, da Smartphones bereits flächendeckend vorhanden sind.
+Die Probleme der Crowd-Sensing Methode, wie die Integrität und Privatheit der Daten, wurden in der Corona Warn App, durch 
+anonymen Datenaustausch per Bluetooth Low Energy und von Teststellen verifizierte positive Testergebnisse, gezielt aufgegriffen und behandelt.
 
 Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronavirus noch effektiver einzudämmen, 
 zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
@@ -96,11 +96,11 @@ Dabei sind wir folgendermaßen vorgegangen:
 Zunächst wurde eine Vielzahl aller möglichen funktionalen Erweiterungen identifiziert und eine Übersicht aus diesen erstellt. 
 Daraufhin wurden zwei vielversprechende Features herausgegriffen: Die \textbf{erweiterte Risikoberechnung} und die \textbf{Density-Map}.
 
-Bei der Erweiterten Risikoberechnung wird die aktuelle Risikoberechnung der Corona Warn App um zwei weitere Summanden erweitert und feingranularer in der Nutzeroberfäche dargestellt. 
-Dabei soll neben dem Kontakt mit infizierten Personen, welche derzeit ausschließlich betrachtet werden, auch Begegnungen mit allen anderen Personengruppen berücksichtigt werden.
+Bei der erweiterten Risikoberechnung wird die aktuelle Risikoberechnung der Corona Warn App um zwei weitere Summanden erweitert und feingranularer in der Nutzeroberfläche dargestellt. 
+Dabei sollen neben dem Kontakt mit infizierten Personen, welche derzeit ausschließlich betrachtet werden, auch Begegnungen mit allen anderen Personengruppen berücksichtigt werden.
 
-Die Density-Map hingegen soll eine grafische Übersicht darüber geben, an welchen Orten sich derzeit eine Vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
-Hierbei wurden verschiedene Lösungsansätze zur Umsetzung ausgewählt, ohne dabei die bestehenden Sicherheits- und Privatheitsstandarts der bestehenden Corona Warn App zu verletzen. 
+Die Density-Map hingegen soll eine grafische Übersicht darüber geben, an welchen Orten sich derzeit eine Vielzahl von Menschen aufhält, damit diese gezielt gemieden werden können. 
+Hierbei wurden verschiedene Lösungsansätze zur Umsetzung ausgewählt, ohne dabei die bestehenden Sicherheits- und Privatheitsstandards der bestehenden Corona Warn App zu verletzen. 
 
 Diese beiden Erweiterungen werden zusammen mit einer Reihe weiterer Nebenfeatures ausgearbeitet und hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand bewertet. 
 
@@ -124,7 +124,6 @@ Die Aerosole dagegen sind leichter und können somit länger in der Luft schwebe
 was dazu führt, dass in geschlossenen Räumen eine Ansteckungsgefahr bis zu vier Meter um die infektiöse Person besteht. 
 Der Ansteckungszeitraum beträgt 10-20 Tage und sorgt dafür, dass potenziell infektiöse Personen bis zu 14 Tage in Quarantäne müssen.
 Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 2,2 Milliarden Impfdosen \cite{CoronaZahlenWorld} verabreicht, um das Coronavirus einzudämmen.
-%Hier fehlen Quellen zu den ganzen Daten. Woher kommen die?
 
 Die Pandemie schränkt das Alltagsleben der gesamten Bevölkerung ein. 
 Durch verschiedene Lockdowns war es nicht mehr möglich, nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten \cite{Notbremse}. 
@@ -577,7 +576,7 @@ wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildu
 
 \begin{figure*}[htbp]
 	\centering
-	\includegraphics[width=1.4\textwidth]{"RiskCalculation"}
+	\includegraphics[width=1.0\textwidth]{"RiskCalculation"}
 	\caption{Erweiterte Risikoberechnung adoptiert von Abbildung \ref{Risikoberechnung_Abbildung}}
 	\label{ErweiterteRisikoberechnung_Abbildung}
 \end{figure*}
