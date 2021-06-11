@@ -258,15 +258,19 @@ Digitalisierung ist zudem ein positiv konnotierter Begriff, welcher einen Anreiz
 Dies ist von großer Relevanz, da es das Ziel ist, dass die Corona-Warn-App von 100\% der Bevölkerung genutzt wird.
 
 Implementiert man zusätzlich dazu eine Art Krankenakte, in der man Merkmale wie Gewicht und Vorerkrankungen einträgt, ließe sich dadurch die Impfpriorisierung und die Reihenfolge in der Bevölkerung besser organisieren.
-Benötigte Daten für einen generellen Impfpass wären:\\
-- Name \\
-- Krankenkasse\\
-- Durchgeführte Impfungen\\
-Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:\\
-- Alter\\
-- Vorerkrankungen \\
-- Gewicht \\
-- Beruf/Arbeitsumfeld\\
+Benötigte Daten für einen generellen Impfpass wären:
+\begin{itemize}
+	\item[--]Name
+	\item[--]Krankenkasse
+	\item[--]Durchgeführte Impfungen
+\end{itemize} 
+Für die Einschätzung der Impfpriorisierung wäre zusätzlich erforderlich:
+\begin{itemize}
+	\item[--]Alter
+	\item[--]Vorerkrankungen
+	\item[--]Gewicht 
+	\item[--]Beruf/Arbeitsumfeld
+\end{itemize} 
 Bei einem unverbindlichen Impfpass wären diese Angaben nicht gesichert, die Integrität der Daten also nicht gewährleistet. Dies resultiert darin, dass der Impfpass nicht von offiziellen Einrichtungen genutzt werden könnte, sondern lediglich vom Nutzer selbst.\\
 Stattdessen müsste man, um die Daten als integer zu garantieren, die Bearbeitung des Impfpass beschränken, sodass nur offizielle Stellen wie Krankenhäuser oder Arztpraxen diesen bearbeiten können.\\
 Somit wird die Integrität der Daten gewährt, welche dann für das Krankenwesen genutzt werden können.\\
@@ -332,63 +336,68 @@ In Version 1.13 der CWA wurde bereits eine freiwillige Datenspende in Zusammenar
 \section{Erweiterte Risikoberechnung} \label{Erweiterte_Risikoberechnung}
 
 %Aktuelle Risikoberechnung
-Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an; 
+Die Risikoberechnung der aktuellen Corona Warn App zeigt einem Nutzer zwei Risiken an: 
 das erhöhte Risiko mit einem roten Bildschirm und das geringe Risiko mit einem grünen Bildschirm. 
 Generell wird angenommen, dass, wegen der Inkubationszeit, Tests beziehungsweise Begegnungen innerhalb der letzten 14 Tage stattgefunden haben.
-Um dieses zu berechnen wird zum einen das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
-die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. Und zum anderen die Wahrscheinlichkeit, 
-dass eine Person infiziert ist, die im folgenden als \textit{Positiv-Begegnungs-Wahrscheinlichkeit} bezeichnet wird.
+Um das Risiko zu berechnen wird das \textit{Übertragunspotenzial} aus Begegnungsdauer und Begegnungsnähe mit einer Person, 
+die ein positives Testergebnis in die CWA eingetragen hat, mit einbezogen. 
 Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
-wird der Bildschirm rot und ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
-da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
+wird der Bildschirm rot und ein erhöhtes Risiko angezeigt. 
 Diese Berechnung hätte einen höheren Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten \cite{EffectivenessCWA}.
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
-	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung} }
-	\label{Risikoberechnung_Abbildung}
-\end{figure*}
+%\begin{figure*}[h]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
+%	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung} }
+%	\label{Risikoberechnung_Abbildung}
+%\end{figure*}
+
+Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
+Dafür wird die Risikoberechnung der CWA erweitert, um damit einen neuen \textit{Risikowert} zu berechnen, der das Infektionsrisiko widerspiegelt.
+
+Um das Risiko zu berechnen, dass von Infizierten ausgeht, die ihr Ergebnis nicht in die CWA eingetragen haben, wird die Positiv-Begegnungs-Wahrscheinlichkeit benötigt.
+Die \textit{Positiv-Begegnungs-Wahrscheinlichkeit} beschreibt die Wahrscheinlichkeit, dass eine Person infiziert ist.
+Die Positiv-Begegnungs-Wahrscheinlichkeit ist für infizierte Personen immer Eins und wird deshalb nicht in der aktuellen CWA explizit erwähnt.
+Für weitere Personengruppen wird das Risiko durch das Übertragungspotenzial, sowie die Positiv-Begegnungs-Wahrscheinlicheit bestimmt.
 
 %Definitionen
-Mit der Risikoberechnung wird das Übertragungspotenzial und die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnungen ermittelt,
-um damit die Gefahr infiziert worden zu sein, abzuschätzen.
-Aufgrund der aktuellen Test-Möglichkeiten und Downloadzahlen sollte die Risikoberechnung jedoch angepasst werden.
-Dafür wird die Risikoberechnung der CWA erweitert, 
-um damit einen \textit{Risikowert} zu berechnen, der die Gefahr widerspiegelt.
-
-Dabei wird zwischen zwei Personengruppen, die jeweils in 3 Untergruppen unterteilt werden, unterschieden, 
+Dabei wird zwischen zwei Personengruppen unterschieden, die jeweils in 3 Untergruppen unterteilt werden, 
 da die Positiv-Begegnungs-Wahrscheinlichkeit von Person zu Person stark variieren kann.
-Es wird unterschieden zwischen \textit{CWA-User}, die von der CWA somit aufgezeichnet werden und \textit{Not-CWA-User}, 
+Es wird grundsätlich unterschieden zwischen \textit{CWA-User}, die von der CWA somit aufgezeichnet werden und \textit{Not-CWA-User}, 
 die die CWA nicht aktiv nutzen und somit nicht aufgezeichnet werden. Die CWA nicht aktiv nutzen heißt, dass keine TEKs geteilt werden.
-Die CWA-User werden in drei Untergruppen aufgeteilt: 
-\textit{CWA-Positive} sind alle Personen, die einen positiven Test in die CWA eingetragen haben,
-\textit{CWA-Likely-Positive} sind alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen und
-\textit{CWA-Likely-Negative} sind alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
+Die CWA-User werden in drei Untergruppen aufgeteilt:
+\begin{itemize}
+\item[--]\textit{CWA-Positive}: Alle Personen, die einen positiven Test in die CWA eingetragen haben.
+\item[--]\textit{CWA-Likely-Positive}: Alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen.
+\item[--]\textit{CWA-Likely-Negative}: Alle Personen, die meist keine Begegnung mit CWA-Positive hatten und somit einen grünen Bildschirm auf der CWA angzeigt bekommen.
+\end{itemize}
 Ebenso werden die NOT-CWA-User in drei Untergruppen aufgeteilt: 
-\textit{Not-CWA-Positive} sind alle Personen, die ein positives Test Ergebnis haben, dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen), 
-\textit{Hidden-Positive} sind alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können und 
-\textit{Hidden-Negative} sind alle Personen, die nicht infiziert sind.
+\begin{itemize}
+\item[--]\textit{Not-CWA-Positive}: Alle Personen, die ein positives Test Ergebnis haben, dieses aber nicht in die CWA eingetragen haben (Es ist möglich, dass sie die CWA trotzdem passiv nutzen).
+\item[--]\textit{Hidden-Positive}: Alle Personen, die infiziert wurden, jedoch kein positives Testergebnis nachweisen können. 
+\item[--]\textit{Hidden-Negative}: Alle Personen, die nicht infiziert sind.
+\end{itemize}
 
 %Probleme und Lösungsvorschläge
 Bei näherer Betrachtung der aktuellen Risikoberechnung der CWA sind uns mehrere Kritikpunkte aufgefallen.
 Zum einen fließen nur Begegnungen mit CWA-Positive Personen in diese mit ein.
-Deshalb sollen in der erweiterten Risikoberechnung alle Personengruppen miteinbezogen werden.
-Zum anderen wird die Dunkelziffer nicht berücksichtigt. Diese soll im Folgenden durch die Begegnungsanzahl betrachtet werden.
+Deshalb sollen in der erweiterten Risikoberechnung alle Personengruppen miteinbezogen und unterschiedlich gewichtet werdem.
+Zum anderen wird die Dunkelziffer nicht berücksichtigt, die im Folgenden durch die Begegnungsanzahl betrachtet werden soll.
 Des weiteren soll die geringe Nutzerzahl der CWA zum Hochkorrigieren der Begegnungsanzahl genutzt werden.
 Als letzten Kritikpunkt wird die Granulierung und Transparenz der Risikoberechnung aufgezeigt. 
-Aus diesem Grund soll der Risikowert in vier unterschiedliche Risikostufen (grün, gelb, orange, rot) aufgeteilt werden, dessen Zustandekommen mit angezeigt wird.
+Aus diesem Grund soll der Risikowert, statt der bisherigen zwei, in vier unterschiedliche Risikostufen (grün, gelb, orange, rot) aufgeteilt werden, dessen Zustandekommen mit angezeigt wird.
 
 Für die erweiterte Risikoberechnung werden die Features Familienfeature, Feature TRL Update und
 Feature PK-Server benötigt.
 
-Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdigen Personen,
+Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdigen Personen, wie etwa Familienmitglieder,
 damit die Dunkelziffer besser miteinberechnet werden kann.
-Mit dem Feature TRL Update ist es möglich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen,
-um zu beachten, wie infektiös eine Person ist.
-Dabei ist das Beachten, wie infektiös eine Person ist, nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
+Mit dem Feature TRL Update ist es mögl, währendeich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen, um zu beachten, wie infektiös eine Person ist.
+Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
+Das TRL beschreibt den Grad der Infektiosität im Krankheitsfall an, 
+während das Übertragunspotenzial aus Begegnungsdauer und Nähe mit einer infizierten Person berechnet wird, um die Gefahr einer Infektion zu berechnen.  
 Das Feature PKServer wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der erweiterten Risikoberechnung gesondert zu gewichten.
 
 Die oben genannten Features werden in Abschnitt \ref{Familienfeature} bis \ref{Feature TRL Update} vorgestellt.
@@ -402,9 +411,9 @@ Im Folgenden wird das Familienfeature vorgestellt, welches später für die erwe
 Das Familienfeature ermöglicht es Gruppen von Verwandten bzw. Freunden zu erstellen und mit diesen Temporary-Exposure-Keys zu teilen.
 Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfangene Rolling Proximity Identifier bei der Risikoberechnung gesondert zu behandeln und somit einen genaueren Risikowert zu berechnen.
 Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, die keinen passenden TEK in irgendeiner Gruppe haben.
-Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} miteinberechnet werden,
-sondern nur in R\textsubscript{CWA-Positive}.
-Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{CWALikelyPositive} und \ref{CWALikelyNegative} erläutert.
+%Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} miteinberechnet werden,
+%sondern nur in R\textsubscript{CWA-Positive}.
+%Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{CWALikelyPositive} und \ref{CWALikelyNegative} erläutert.
 
 Das Austauschen von TEKs kann allerdings Eingriffe in die Privatsphäre zur Folge haben.
 Erkrankt eine Person aus einer Gruppe an Corona und gibt ihre TEKs als Diagnosis Keys frei, ist es für die anderen Gruppenangehörigen möglich mit hoher Wahrscheinlichkeit die erkrankte Person zu bestimmen.
@@ -561,8 +570,7 @@ Begegnungen mit sicher Infizierten (CWA-Positive Gruppe mit positivem Testergebn
 wahrscheinlich positiven Personen (CWA-Likely-Positive Gruppe) und wahrscheinlich nicht Infizierten (CWA-Likely-Negative Gruppe). 
 Dementsprechend setzt sich der neue Risikowert aus drei Summanden zusammen,
 damit die unterschiedlichen Personengruppen und Faktoren mit einbezogen werden können.
-Der \textit{neue Risikowert} R\textsubscript{new} wurde bereits in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert.
-Hier wird die Definition nochmals wiederholt.
+Der \textit{neue Risikowert} R\textsubscript{new} setzt sich somit aus folgenden Summanden zusammen:
 
 \centerline{\text{ }}
 \centerline{\text{R\textsubscript{new} := }}
@@ -1144,12 +1152,12 @@ Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweild
 Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
 Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
 Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\ \\
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.45\textwidth]{"Simulation"}
-	\caption{Darstellung der durchgeführten Simulation}
-	\label{sim}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.45\textwidth]{"Simulation"}
+%	\caption{Darstellung der durchgeführten Simulation}
+%	\label{sim}
+%\end{figure}
 \textit{Ergebnisse:}\\
 Abbildung \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne dass Social Distancing benutzt wird.\\
 Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
