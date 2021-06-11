@@ -161,7 +161,7 @@ Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person nicht ü
 Dieses ist anfangs niedrig, steigt dann auf ein Maximum an nimmt und innerhalb von 14 Tagen wieder ab. Um daraus ein Risiko Level abzuleiten müssen verschiedene Zeitpunkte bekannt sein. 
 Darunter zählen der Zeitpunkt der Ansteckung, der Symptombeginn, das Infektiös sei und drei weiter Zeitpunkte, die beim Testen aufgezeichnet werden müssen: 
 Zeitpunkt des Testens, Zeitpunkt des Ergebnis bekommen und Zeitpunkt des Hochladens. Aus diesen Werten ist es möglich den TRL so zu bestimmen, 
-dass er das Übertragungspotenzial widerspiegelt \cite{}(Quelle CWADoku).
+dass er das Übertragungspotenzial widerspiegelt \cite{CWADokuTRL}.
 Allerdings werden diese Zeitpunkte der akutellen CWA noch nicht bereitgestellt und es wird somit auf einen Standardwert zurückgegriffen.
 Deshalb wird in Abschnitt \ref{Feature TRL Update} das TRL Update  Feature vorgestellt, dass eine Lösung zeigt, diese fehlenden Daten zu sammeln.
 
@@ -341,7 +341,7 @@ dass eine Person infiziert ist, die im folgenden als \textit{Positiv-Begegnungs-
 Wenn das Übertragunspotenzial sich insgesamt zu einer Begegnungsdauer von 13 Minuten in weniger als 8 Metern Abstand aufsummiert, 
 wird der Bildschirm rot und ein erhöhtes Risiko angezeigt. Die Positiv-Begegnungs-Wahrscheinlichkeit ist in der aktuellen CWA immer 1, 
 da es sich in jedem Fall um Begegnungen mit infizierten Personen handelt.
-Diese Berechnung hätte einen hohen Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten \cite{}.
+Diese Berechnung hätte einen höheren Nutzen, wenn mehr Personen die App herunterladen würden und mehr Tests zur Verfügung gestellt werden könnten \cite{EffectivenessCWA}.
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
@@ -626,7 +626,7 @@ Wobei der \textit{attFactor} durch \SI{22}{dB} folgende Intervalle aus der Dista
 \centerline{\text{ }}
 
 Dabei kann man die Werte \SI{63}{dB} bzw. \SI{73}{dB}, als Signalstärke von einem Handy interpretieren, das 3 Meter bzw 8 Meter weit entfernt ist. 
-Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden \cite{}(Quelle cwa-risk-assessment).
+Dabei schwächen Kleidung, Körper oder andere Gegenstände das Signal ab und sorgen dafür, dass die meisten Begegnungen erst auf kleinerer Distanz aufgezeichnet werden \cite{RiskAssessment}.
 
 Mithilfe des Transmission Risk Levels TRL und des daraus resultierenden \textit{Transmission Risk Values} TRV wird danach aus der Weighted Exposure Time die \textit{Normalised Exposure Time t\textsubscript{­n}} berechnet.
 
@@ -1353,12 +1353,18 @@ Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich die
 \bibitem{DarfIchDas} InTradeSys GmbH, \glqq Darf ich das?-App\grqq,
 \\\url{https://www.darfichdas.info/}, 09.06.2021
 
-\bibitem{Risikoberechnung} Deutsche Telekom AG und SAP SE, \glqq Corona-Warn-App Documentation\grqq \\\url{https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk_calculation/risk_calculation_enf\_v2_overview.pdf}, 09.06.2021
+\bibitem{Risikoberechnung} Deutsche Telekom AG und SAP SE, \glqq Corona-Warn-App Documentation RiskCalculation\grqq \\\url{https://raw.githubusercontent.com/corona-warn-app/cwa-documentation/master/images/risk_calculation/risk_calculation_enf\_v2_overview.pdf}, 09.06.2021
 
 \bibitem{freiwilligeDatenspende} Bundesregierung, \glqq Freiwillige Datenspende für verbesserte Wirksamkeit\grqq, \\\url{https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182}, 09.06.2021
 
 \bibitem{Impfnachweis} Pharmazeutische Zeitung (PZ),\glqq Corona-Warn-App kann Impfnachweis anzeigen\grqq,
 \url{https://www.pharmazeutische-zeitung.de/corona-warn-app-kann-impfnachweis-anzeigen-126188/}, 10.06.2021
+
+\bibitem{CWADokuTRL} Deutsche Telekom AG und SAP SE, \glqq Corona-Warn-App Documentation TRL\grqq \\\url{https://github.com/corona-warn-app/cwa-documentation/blob/master/transmission_risk.pdf}
+
+\bibitem{RiskAssessment} Deutsche Telekom AG und SAP SE, \glqq Corona-Warn-App Documentation RiskAssessment\grqq \\\url{https://github.com/corona-warn-app/cwa-documentation/blob/master/cwa-risk-assessment.md}
+
+\bibitem{EffectivenessCWA} Almagor J., Picascia S., \glqq Exploring the effectiveness of a COVID-19 contact tracing app using an agent-based model.\grqq, \textit{Sci Rep 10, 22235}, 2020, doi: 10.1038/s41598-020-79000-y
 
 \end{thebibliography}
 \vspace{12pt}
