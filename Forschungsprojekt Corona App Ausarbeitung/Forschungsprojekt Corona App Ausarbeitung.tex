@@ -44,7 +44,7 @@ Das Coronavirus sorgt nun seit Anfang 2020 sowohl in Deutschland als auch weltwe
 Um die Ausbreitung des Virus weitestmöglich einzudämmen wurden vielerlei Maßnahmen und Vorkehrungen getroffen, wie etwa Kontaktbeschränkungen oder Lockdowns.
 Eine der effektivsten Methoden, die Infektonsketten zu unterbrechen und die Ausbreitung zu verlangsamen, ist die Kontakverfolgung. 
 Dabei werden von einem Infizierten alle Kontaktpersonen innerhalb der letzten 14 Tage ermittelt, welche sich dann in Isolation begeben sollten. 
-Da die manuelle Kontaktverfolgung ein aufwändiges Unterfangen darstellt wurde im Auftrag der Bundesregierung Deutschland vom RKI entwickelt, die diese Kontaktverfolgung per Smartphone automatisieren soll. 
+Da die manuelle Kontaktverfolgung ein aufwändiges Unterfangen darstellt, wurde im Auftrag der Bundesregierung vom RKI die Corona Warn App entwickelt, die diese Kontaktverfolgung per Smartphone automatisieren soll. 
 Die Corona Warn App stand seit ihrer Herausgabe jedoch häufig unter Kritik und scheint in vielerlei Hinsicht noch nicht komplett ausgereift zu sein.
 Unser Ziel ist es, mögliche Erweiterungen der Corona Warn App zu finden und zu analysieren.
 Hierbei wird ein besonderer Fokus auf die Crowd-Sensing Mechanismen gelegt, welche die Corona Warn App vorzuweisen hat. 
@@ -58,7 +58,7 @@ Corona, Corona-Warn-App, Crowd-Sensing, Density-Map, Risikoberechnung
 
 \section{Einleitung} \label{Einleitung}
 Seit nun mehr als eineinhalb Jahren breitet sich das Corona Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nicht erlebte Ausnahmezustände.
-Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Virus gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermuten lässt. \cite{Dunkelziffer}
+Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Virus gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermuten lässt \cite{Dunkelziffer}. 
 In Deutschland wurden dem Robert Koch Institut insgesamt 3,7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
 Insbesondere stellen dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeitraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
 
@@ -70,7 +70,7 @@ So ist man beispielsweise verpflichtet, in Resaurants oder Bars seine Kontaktdat
 
 Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, 
 da man sich alle Kontakte innerhalb des langen Zeitraumes von zwei Wochen merken und wieder ins Gedächtnis rufen muss.
-%Hier könnte man noch schreiben, dass es kaum möglich ist die alle zu kontaktieren, da keine handynummer oä.
+
 Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung vereinfachen sollte: Die Corona Warn App \cite{CWA}. 
 Diese soll dabei helfen, die Kontaktverfolgung per Smartphone zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
 Ein zentraler Aspekt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenautauschs garantiert ist.
@@ -79,7 +79,7 @@ Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App.
 So stand sie hinsichtlich des Datenschutzes öfters in der Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
 Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen, da zu wenige Leute die App nutzen \cite{CWAKritik2}.
 Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenken, die von der Bevölkerung geäußert wurden (wie etwa, dass die App uns ausspioniere) stellten sich als Mythen heraus. 
-Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte, da die Downloadzahlen gering sind. \cite{Downloadzahlen} 
+Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte, da die Downloadzahlen gering sind \cite{Downloads}. 
 Es gibt somit noch Lücken und Erweiterungsbedarf für eine wirkungsvolle und ausgereifte App.
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
@@ -1001,7 +1001,7 @@ In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen.
 Im Sinne der erweiterten Corona Warn App möchten wir das Crowd-Sensing Feature benutzen, 
 um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder in Geschäften aufzuzeichnen und grafisch auf einer Karte darzustellen. 
 Damit kann ein Nutzer die Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
-Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. \cite{GoogleStosszeiten} 
+Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten \cite{GoogleStosszeiten}. 
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
 Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE-Features der Corona Warn App vor. \\
@@ -1028,7 +1028,7 @@ Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst
 
 Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander mittels anonymer RPIs per BLE. 
 Somit sind in diesem Aspekt Sicherheit und Privatsphäre in gleichem Maße gesichert, wie bei der bisherigen Corona Warn App. 
-Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Begegnungszahl und nicht die einzelnen RPI‘s der begegneten Geräte. 
+Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Begegnungsanzahl und nicht die einzelnen RPI‘s der begegneten Geräte. 
 Diese Aggregation der Daten stellt sicher, dass keine einzelnen RPIs oder Personen über die Masten hinweg nachverfolgt und damit identifiziert werden können. 
 Abb. \ref{mast_func} zeigt den groben Ablauf eines zentralen Masten. \\ 
 \begin{figure}[h]
@@ -1191,7 +1191,7 @@ Sie sind demnach flexibler, was den Standort angeht.
 Das letzte zentrale Problem, welches nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, 
 dass nicht jede Person ein Smartphone besitzt und die CWA auf seinem Smartphone installiert hat. 
 Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. 
-Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%) die CWA. \cite{Downloads}
+Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%) die CWA \cite{Downloads}.
 Unter der Annahme, dass die Nutzer der CWA auf die Standorte bezogen gleichverteilt sind bedeutet dies, 
 dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.
 
@@ -1202,7 +1202,7 @@ Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifiziere
 Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.
 
 Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten.
-Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}.\\
+Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator\grqq{} von Miguel Ángel Durán \cite{Simulation}.\\
 
 \subsubsection{Simulation der RPI-basierten Formel}
 \text{}\\
@@ -1386,21 +1386,21 @@ Jedes der Features wurde im Anschluss nach den Kriterien: Privatsphäre, Nutzen,
 Einige der von uns vorgestellten Nebenfeatures wurden im Verlauf der Arbeit von anderen Parteien in ähnlicher Form bereits umgesetzt oder sind in naher Zukunft zu erwarten.
 So existieren bereits eine Lotterie für Geimpfte in den USA als eine Umsetzung des Gamification-Features, 
 die \glqq Darf ich das? \grqq -App für ortsbezogene Maßnahmen und Beschränkungen, 
-sowie ein demnächst Erscheinender digitaler Impfpass für die CWA. 
+sowie ein demnächst erscheinender, digitaler Impfpass für die CWA. 
 Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA darstellen.
 
 Im Folgenden wurde die erweiterte Risikoberechnung und darin einfließende Features im Genaueren betrachtet. 
 Hierbei handelt es sich um das Familienfeature, Feature DK-Server und Feature TRL Update. 
 Im Rahmen des Familienfeatures können Gruppen in der CWA angelegt werden, um längere Begegnungen mit der eigenen Familie nicht als mehrere unterschiedliche Begegnungen aufzuzeichnen. 
 Das Feature DK-Server sammelt die TEKs der Personen, die als direkte Kontaktpersonen von Infizierten in der CWA identifiziert werden, um diese in der Risikoberechnung stärker zu gewichten. 
-Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv getestete Auskunft über ihren Krankheitsverlauf geben können.
+Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv Getestete Auskunft über ihren Krankheitsverlauf geben können.
 Das TRL gibt dabei an, wie infektiös eine Person im derzeitigen Krankheitsverlauf ist, weshalb genauere Informationen über den Verlauf sehr wichtig sind.
 Mit diesen Daten lässt sich das aktuelle TRL genauer berechnen.
 
 Die drei Features werden genutzt, um die aktuelle Risikoberechnung mit zwei weiteren Summanden zu erweitern.
 Die Summanden lösen aktuelle Probleme der CWA, indem sie alle Personengruppen mit einbezieht, die in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert werden.
 Außerdem wird aufrund der geringen Nutzerzahl der CWA von 33\% die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert, um die tatsächliche Begegnungsanzahl abzuschätzen. 
-Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv getesteten ein Risiko zuzuschreiben.
+Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv Getesteten ein Risiko zuzuschreiben.
 Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden.
