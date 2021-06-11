@@ -705,10 +705,11 @@ indem die Weighted Exposure Time ausgewertet wird.
 Aus der Weighted Exposure Time wird danach allerdings nicht die Normalised Exposure Time bestimmt, wie dies beim Summand R\textsubscript{CWA-Positive} der Fall ist, 
 da dafür ein positives Testergebnis vorausgesetzt wird, welches CWA-Likely-Positive Personen nicht vorweisen können.
 
-Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet.
-Die analog zum Risiko R\textsubscript{CWA-Positive} eine gewichtete Begegnungsdauer mit CWA-Likely-Positive Personen beschreibt.
+Anstelle dessen wird als nächstes aus der Weighted Exposure Time jeder Begegnung die \textit{Standardized Exposure Time t\textsubscript{s}} berechnet,
+die analog zum Risiko R\textsubscript{CWA-Positive} eine gewichtete Begegnungsdauer mit CWA-Likely-Positive Personen beschreibt.
 
-Da die Begegnung der CWA-Likely-Positive Personengruppe angehört, ist es nicht sicher, dass diese auch Corona hat. 
+Da die Personen der CWA-Likely-Positive Personengruppe kein positives Testergebnis als Nachweis haben, 
+kann man nicht mit Sicherheit sagen, dass diese auch infiziert ist. 
 Aus diesem Grund wird die \textit{Positiv-Begegnungs-Wahrscheinlichkeit} benötigt, welche die Wahrscheinlichkeit angibt, dass die Begegnung infiziert ist. 
 Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahrscheinlichkeit der Begegnung angibt.
 
@@ -721,23 +722,24 @@ Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom DK-Server
 
 Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
 Zunächst werden, Intervalle gebildet, da die Menge der Risikowerte nicht diskret, sondern stetig ist.
-Anhand der auf dem DK-Server und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall $x_i$ mit $i \in N$ und einer Intervallgröße von 1 die Wahrscheinlichkeit bestimmt, 
-dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. Dabei gilt für jedes Intervall:
+Anhand der auf dem DK-Server und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall 
+$x_i$ mit $i \in N$ und einer Intervallgröße von Eins die Wahrscheinlichkeit bestimmt, 
+dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. 
+Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
 \centerline{$x_i := [13+i, 14+i[$}
 \centerline{\text{ }}
 
-Es sind somit nur Risikowerte über 13 relevant, da die Risikowerte auf dem DK-Server alle $\geq 13$ sind.
-Damit die Wahrscheinlicht bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
+Da die Risikowerte auf dem DK-Server alle $\geq 13$ sind, sind nur Risikowerte über 13 relevant.
+Damit die Wahrscheinlichkeit bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
 wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben und die Anzahl an Personen, 
 die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind. 
 
 Dafür werden die TEKs auf dem DK-Server und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
-Aus den TEKs auf dem DK-Server kann die Anzahl an Personen bestimmt werden,
-die einen Risikowert innerhalb des Intervalls $x_i$ haben.
-Werden zusätzlich zu den TEKs auf dem DK-Server die Diagnosis Keys auf dem CWA Server dazu genommen, 
-kann damit die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
+Aus den TEKs auf dem DK-Server kann die Anzahl an Personen bestimmt werden, die einen Risikowert innerhalb des Intervalls $x_i$ haben.
+Wenn zusätzlich zu den TEKs auf dem DK-Server die Diagnosis Keys auf dem CWA Server dazu genommen werden, 
+kann die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
 indem die TEKs auf dem DK-Server und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
 Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit $P_{x_i}$, infiziert zu sein, wie folgt bestimmen:
 
@@ -751,12 +753,17 @@ die auf DK-Server und den CWA Server hochgeladen wurden und einen Risikowert inn
 Zur \textit{Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$} werden alle TEKs auf dem DK-Server gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
 
 Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA Server einige Tage vergehen und 
-Keys auf beiden Servern nur 14 Tage lang gespeichert werden, muss für die Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden.
+Keys auf beiden Servern nur 14 Tage gespeichert werden, muss für die Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden.
+Dies liegt vor Allem daran, dass sich Personen nicht direkt testen lassen können, wenn sie einen roten Bildschirm angezeigt bekommen.
 
-Die Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$, der 14 Tage in der Vergangenheit liegt, bis zu einem Endzeitpunkt $s_1$, 
-der 7 Tage nach $s_0$ liegt, gezählt. 
+Die Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$ bis zu einem Endzeitpunkt $s_1$ gezählt.
+Der Startzeitpunkt $s_0$ befindet sich 14 Tage in der Vergangenheit und $s_1$ befindet sich genau 7 Tage nach $s_0$.
+
+%TODO Grund für 7Tage bzw ist die Begründung wichtig ? 
+Dabei wurde eine Intervalllänge von 7 Tagen gewählt, da dies die Zeit die ein Nutzer hat um sich bei einem roten Bildschirm testen zu lassen und die Anzahl TEKs, 
+die für die Berechnung verwendet werden können gleich gewichtet.
 Die Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
-Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den DK-Server hochgeladen worden sein. 
+Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den DK-Server hochgeladen worden sein, da sonst die TEKs nicht in die Berechnung einfließen. 
 
 Verwendet man zur Bestimmung der Funktion \textit{f} zum Beispiel die TEKs der letzten 7 Tage auf dem DK-Server, 
 so werden viele dieser TEKs nicht als Diagnosis Keys auf den CWA Server hochgeladen, 
@@ -774,6 +781,7 @@ Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden:
 \centerline{$t_s := \text{Weighted Exposure Time} \cdot f(ContactRS)$}
 \centerline{\text{ }}
 
+Wie oben beschrieben ist $t_s$ eine gewichtete Begegnungsdauer mit CWA-Likely-Positive Personen.
 Hierbei ist ContactRS der Risikowert des Begegneten.
 Als nächstes wird aus den Standardized Exposure Times der einzelnen Begegnungen mit CWA-Likely-Positive Personen die Summe gebildet und das Ergebnis auf 13 begrenzt, 
 um daraus das Risiko R\textsubscript{CWA-Likely-Positive} zu erhalten:
@@ -786,11 +794,12 @@ Die Begrenzung des Summanden R\textsubscript{CWA-Likely-Positive} auf 13 hat zur
 dass CWA-Likely-Positive Personen nur einen Risikowert $\le 13$ bei anderen Personen hervorrufen können. 
 Dies verhindert, dass sich eine Kaskade von CWA-Likely-Positive Personen bilden kann. 
 
-Nimmt man diese Begrenzung nicht vor, 
-ist es möglich, dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen hohen Risikowert $\geq 13$ hervorrufen kann, 
+Nimmt man diese Begrenzung nicht vor, ist es möglich, 
+dass eine einzelne CWA-Likely-Positive Person bei einer großen Anzahl an Personen einen hohen Risikowert $\geq 13$ hervorrufen kann, 
 die wiederum bei weiteren Personen hohe Risikowerte $\geq 13$ hervorrufen können und so weiter. 
 Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen Risikowert immer noch erhöhte Risikowerte $\leq 13$ bei anderen hervorrufen, 
-jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten haben, diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
+jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten haben, 
+diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 
 \subsubsection{R\textsubscript{CWA-Likely-Negative}}
 \label{CWALikelyNegative}
