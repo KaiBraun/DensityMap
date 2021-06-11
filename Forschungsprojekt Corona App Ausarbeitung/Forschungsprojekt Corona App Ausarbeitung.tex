@@ -99,7 +99,7 @@ Daraufhin wurden zwei vielversprechende Features herausgegriffen: Die \textbf{er
 Bei der Erweiterten Risikoberechnung wird die aktuelle Risikoberechnung der Corona Warn App um zwei weitere Summanden erweitert und feingranularer in der Nutzeroberfäche dargestellt. 
 Dabei soll neben dem Kontakt mit infizierten Personen, welche derzeit ausschließlich betrachtet werden, auch Begegnungen mit allen anderen Personengruppen berücksichtigt werden.
 
-Die Density Map hingegen soll eine grafische Übersicht darüber geben, an welchen Orten sich derzeit eine Vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
+Die Density-Map hingegen soll eine grafische Übersicht darüber geben, an welchen Orten sich derzeit eine Vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
 Hierbei wurden verschiedene Lösungsansätze zur Umsetzung ausgewählt, ohne dabei die bestehenden Sicherheits- und Privatheitsstandarts der bestehenden Corona Warn App zu verletzen. 
 
 Diese beiden Erweiterungen werden zusammen mit einer Reihe weiterer Nebenfeatures ausgearbeitet und hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand bewertet. 
@@ -113,21 +113,21 @@ In Abschnitt \ref{Conclusion} befindet sich unsere abschließende Zusammenfassun
 \section{Bestehende Arbeiten} \label{rel_work}
 
 In diesem Abschnitt wird zunächst auf die Corona Lage, sowie auf die Funktionsweise der aktuellen Corona Warn App, eingegangen, auf der unsere Arbeit basiert. 
-Des weiteren werden  bestehende Arbeiten in Richtung Crowd-Sensing, insbesondere mittels des BLE Features, untersucht. 
+Des Weiteren werden  bestehende Arbeiten in Richtung Crowd-Sensing, insbesondere mittels des BLE Features, sowie die zur CWA ähnliche Luca-untersucht. 
 \subsection{Corona Lage}
 Bei Corona oder COVID-19 handelt es sich um eine Krankheit, die durch die Coronaviren SARS-CoV-2 ausgelöst wird. 
 Anfang 2020 waren diese Viren verantwortlich für die darauf folgende, weltweite Corona Pandemie, die aktuell zu ca. 3 500 000 Toten \cite{CoronaZahlenWorld} weltweit geführt hat. 
 Corona kann symptomatisch sowie asymptomatisch auftreten, wobei Husten und Atemprobleme zu typischen Symptomen zählen.
-Übertragen wird Corona durch Schleimhäute, die durch Tröpfcheninfektion oder Aerosole gereizt werden können.
+Übertragen wird Corona durch Schleimhäute, die durch Tröpfcheninfektion oder Aerosole gereizt werden können \cite{Ubertragungswege}.
 Bei der Tröpfcheninfektion handelt es sich um Infektionen auf kurze Distanz. Durch zum Beispiel Niesen werden Tröpfchen in die Luft geschleudert, die innerhalb von 1-2 Metern auf den Boden sinken und in diesem Radius auch Infektionen auslösen können. 
 Die Aerosole dagegen sind leichter und können somit länger in der Luft schweben, 
 was dazu führt, dass in geschlossenen Räumen eine Ansteckungsgefahr bis zu vier Meter um die infektiöse Person besteht. 
-Der Ansteckungszeitraum beträgt 10-20 Tage und sorgt dafür, dass potenziell infektiöse Personen bis zu 14 Tage in Quarantäne müssen \cite{Ubertragungswege}.
-Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 1,4 Milliarden Impfdosen verabreicht, um das Coronavirus einzudämmen.
+Der Ansteckungszeitraum beträgt 10-20 Tage und sorgt dafür, dass potenziell infektiöse Personen bis zu 14 Tage in Quarantäne müssen.
+Mittlerweile wurden Impfstoffe gegen das Virus entwickelt und weltweit 2,2 Milliarden Impfdosen \cite{CoronaZahlenWorld} verabreicht, um das Coronavirus einzudämmen.
 %Hier fehlen Quellen zu den ganzen Daten. Woher kommen die?
 
 Die Pandemie schränkt das Alltagsleben der gesamten Bevölkerung ein. 
-Durch verschiedene Lockdowns war es nicht mehr möglich, nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten. 
+Durch verschiedene Lockdowns war es nicht mehr möglich, nach 20 Uhr das Haus ohne driftigen Grund zu verlassen und sich im öffentlichen Raum ohne Maske aufzuhalten \cite{Notbremse}. 
 Aufgrund der hohen Übertragungsrate ist es wichtig, Kontakte nachzuverfolgen und Infektionsketten zu unterbrechen.
 Nicht nur um die Anzahl Toter zu verringern, sondern auch um die Rückkehr in den Alltag zu ermöglichen, sollte Corona eingedämmt werden.
 Aus diesen Gründen wurde nach einer Corona Warn App verlangt, die ermöglichen soll, dass Kontakte automatisch nachverfolgt werden können und gefährdete Personen gewarnt werden.
@@ -149,7 +149,7 @@ Der Corona Warn App zugrunde liegendes Feature ist das \glqq Exposure Notificati
 welches in Kooperation von Google und Apple für Kontaktverfolgungs-Apps entwickelt wurde und das Bluetooth Low Energy (BLE) Feature nutzt, 
 um die Begegnungsdaten der Smartphones anonym untereinander auszutauschen. \\
 
-\subsection{Exposure Notification Framework:} \label{Ex_not_frame}
+\subsection{Exposure Notification Framework} \label{Ex_not_frame}
 Das Exposure Notification Framework basiert auf dem \textit{Decentralized Privacy-Preserving Proximity Tracing} (DP-3T) Protokoll \cite{DP-3T}.
 Jeden Tag wird vom Framework ein sogenannter \textit{Temporary Exposure Key} (TEK) generiert. Dieser hält 24 Stunden und ist ein zufällig ausgewählter Schlüssel. 
 Aus diesem TEK werden \textit{Rolling Proximity Identifier} (RPIs) abgeleitet. 
@@ -157,14 +157,14 @@ Diese RPIs haben eine Lebensdauer von 10-15 Minuten, bevor sie gelöscht werden 
 dass sich aus den RPIs nicht der TEK ableiten lässt. 
 Die RPIs werden nun unter den Smartphones im Falle einer Begegnung mithilfe von BLE ausgetauscht. Neben den RPIs werden zudem verschlüsselt Informationen über die Begegnungsdauer, sowie dem ungefähren Abstand ausgetauscht.
 Falls sich nun eine Person mit dem Coronavirus infiziert, werden dessen TEKs (nun \textit{Diagnosis Keys} genannt) der letzten 14 Tage auf einen zentralen Server hochgeladen.
-Dieser zentrale Server wird in diesem Dokument als \textit{CWA Server} bezeichnet.
-Jedes Smartphone hat Zugriff auf den CWA Server und kann die Diagnosis Keys aller infizierten Personen herunterladen.
+Dieser zentrale Server wird in diesem Dokument als \textit{CWA-Server} bezeichnet.
+Jedes Smartphone hat Zugriff auf den CWA-Server und kann die Diagnosis Keys aller infizierten Personen herunterladen.
 Mithilfe der Diagnosis Keys können dann die gespeicherten RPIs aus den Begegnungen abgeglichen und, im Falle einer Übereinstimmung, die Begegnungsdauer und der Abstand entschlüsselt werden. 
 Zusammen mit dem \textit{Transmission Risk Level} (TRL) bestimmt die Corona Warn App aus diesen Informationen einen \textit{Risikowert}, der das Infektionsrisiko der Person widerspiegelt.
 
-\subsection{Transmission Risk Level (TRL):} \label{TRL}
+\subsection{Transmission Risk Level (TRL)} \label{TRL}
 Das Transmission Risk Level ist ein Maß dafür, wie infektiös eine erkrankte Person ist. Je höher das TRL ist, desto wahrscheinlicher ist es, sich von dieser Person mit dem Virus anzustecken.
-Das TRL wird in der CWA lokal berechnet und auf dem CWA Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
+Das TRL wird in der CWA lokal berechnet und auf dem CWA-Server zu jedem Diagnosis Key abgespeichert, um diesem ein Übertragungs Risiko (TRL) zuzuordnen. 
 Dieses Risiko Level beruht auf der Annahme, dass eine infizierte Person nicht über den gesamten Krankheitsverlauf das gleiche Übertragungspotenzial besitzt. 
 Dieses ist anfangs niedrig, steigt dann auf ein Maximum an und nimmt innerhalb von 14 Tagen wieder ab. Um daraus ein Risiko Level abzuleiten, müssen verschiedene Zeitpunkte bekannt sein. 
 Darunter zählen der Zeitpunkt der Ansteckung, der Symptombeginn, das Infektiössein und drei weitere Zeitpunkte, die beim Testen aufgezeichnet werden müssen: 
@@ -172,6 +172,19 @@ Zeitpunkt des Testens, Zeitpunkt des Ergebnis bekommen und Zeitpunkt des Hochlad
 dass er das Übertragungspotenzial widerspiegelt \cite{CWADokuTRL}.
 Allerdings werden diese Zeitpunkte der aktuellen CWA noch nicht bereitgestellt und es wird somit auf einen Standardwert zurückgegriffen.
 Deshalb wird in Abschnitt \ref{Feature TRL Update} das TRL Update  Feature vorgestellt, dass eine Lösung zeigt, diese fehlenden Daten zu sammeln.
+
+\subsection{Luca-App}
+Die Luca-App ist eine Alternative zur CWA, welche nicht von der Bundesregierung entwickelt wurde, sondern von einer Zusammenarbeit der neXenioGmbH, 
+dem Hasso-Plattner-Institut sowie der Musikgruppe \glqq Die Fantastischen Vier\grqq. Sie wurde mit dem Ziel der Entlastung der Gesundheitsämter sowie einer 
+effizienteren Kontaktrückverfolgung entwickelt \cite{LucaApp}. Wie auch die CWA bietet sie eine Möglichkeit zur Aufzeichnung von Kontakten, 
+um Infektionsketten zu unterbrechen. Statt einer anonymen Speicherung von getroffenen Kontakten ohne Standort meldet man sich als Benutzer der Luca-App beim Besuch eines öffentlichen Platzes
+mittels Scannen eines QR-Codes an \cite{LucaAppKontaktverfolgung}. Dies führt dazu, dass der jeweilige Betreiber des Ortes die im Voraus in der App hinterlegten Kontaktdaten erhält und den Benutzer über diese im Falle einer infizierten Person benachrichtigen kann.
+Dies erleichtert die Rückverfolgung im Falle einer Infektion, da hier der Standort als weiteres Indiz für Begegnungen benutzt wird.\\
+Um trotzdem Datenschutz für den Nutzer bieten zu können, werden nach eigenen Angaben der Macher \cite{LucaAppSicherheit} diese sehr sensiblen Daten zweifach verschlüsselt, nach 30 Tagen gelöscht sowie nur im 
+Falle einer Infektion nach Freigabe des Nutzers entschlüsselt.\\
+Trotz dieser Sicherheitsvorkehrungen gab es viel Kritik an der Luca-App \cite{LucaKritik1} \cite{LucaKritik2}, welche vor Allem auf Probleme in der Sicherheit sowie Effizienz hinwies. 
+Diese Kontroverse führte dazu, dass die Downloadzahlen gering blieben und dadurch der Nutzen der Luca-App begrenzt.\\
+Die Entwicklung der Luca-App zeigt jedoch, dass es verschiedene Ansätze geben kann, mittels Crowd-Sensing Daten zu sammeln und auszuwerten.
 
 \subsection{Crowd-Sensing und Bluetooth Low Energy}
 Die allermeisten technischen Geräte besitzen in der heutigen Zeit die Möglichkeit, sich mit dem Internet zu verbinden und Daten untereinander auszutauschen.
@@ -194,9 +207,9 @@ Für das Beispiel der Luftverschmutzung könnte beispielsweise der Fall auftrete
 Die Corona Warn App stellt die Datenintegrität dadurch her, dass Nutzer einen vom Gesundheitsamt bereitgestellten Code eingeben müssen, damit man als Infizierter verifiziert ist \cite{CWA}.
 Ein weiteres Problem stellt die Privatheit der Daten dar. 
 Werden beim Crowd-Sensing sensible Nutzerdaten, wie der Standort mitgeliefert, könnte damit unter Umständen eine Menge von Nutzerdaten auf einem zentralen Server gesammelt und missbraucht werden.
-Auch in diesem Fall bietet die Corona Warn App Schutz, indem nur anonyme TEKs auf den CWA Server geladen werden und sensiblere Daten, wie die Begegnungsdauer und Entfernung dezentral und verschlüsselt auf den einzelnen Smartphones vorliegen.
+Auch in diesem Fall bietet die Corona Warn App Schutz, indem nur anonyme TEKs auf den CWA-Server geladen werden und sensiblere Daten, wie die Begegnungsdauer und Entfernung dezentral und verschlüsselt auf den einzelnen Smartphones vorliegen.
 
-\subsection{BLE Crowd-Sensing:}
+\subsection{BLE Crowd-Sensing}
 Auch im Bereich BLE existieren Crowd-Sensing Anwendungen zum Erfassen von Daten und Erstellen von Density-Maps. 
 Tschuhiya et al. \cite{BLESensorDevices} beschäftigen sich mit der allgemeinen Nutzbarkeit des BLE Features zum Erstellen von Maps. 
 Anstelle von Smartphones werden hier Arduinos verwendet, um verschiedene Sensordaten, wie Druck, Luftfeuchtigkeit, Lichtintensität usw. zu messen. 
@@ -252,10 +265,11 @@ Die Frage ist also, ob die neue Funktion Skepsis oder Missbilligung beim Nutzer 
 
 \subsection{Übersicht aller Erweiterungen}
 
-Im Folgenden werden Erweiterungen beschrieben, welche als Lösungen für bestehende Probleme dienen und als Feature in die Corona Warn App implementiert werden könnten oder dies mittlerweile bereits sind. Sie werden anhand unserer in Abschnitt \ref{Bewertungskriterien} genannten Kriterien erläutert und spezifiziert.\\
-
+Im Folgenden werden Erweiterungen beschrieben, welche als Lösungen für bestehende Probleme dienen und als Feature in die Corona Warn App implementiert werden könnten oder 
+dies mittlerweile bereits sind. Sie werden anhand unserer in Abschnitt \ref{Bewertungskriterien} genannten Kriterien erläutert und spezifiziert.\\
 
 \subsubsection{Impfpass}
+\text{}\\
 In der aktuellen Situation ist es wichtig, nachweisen zu können, dass man geimpft wurde. 
 Dies könnte man entweder dadurch regeln, einen analogen Impfnachweis immer bei sich zu tragen, oder durch einen digitalen Impfpass in der Corona-Warn-App.
 
@@ -285,8 +299,8 @@ Somit wird die Integrität der Daten gewährt, welche dann für das Krankenwesen
 Im Verlauf dieser Arbeit wurde ein Teil dieses Feature in der Corona-Warn-App implementiert \cite{Impfnachweis}, allerdings nur für die Impfung gegen Corona. Impfungen gegen andere Krankheiten werden noch nicht berücksichtigt.\\
 Der gewählte Ansatz verfolgt eine beschränkte Bearbeitung des Impfnachweises, sodass der Nachweis als offizielles Dokument für z.B. Reisen in andere Länder benutzt werden kann.\\ 
 
-
 \subsubsection{Gamification}
+\text{}\\
 Eine Möglichkeit, das Problem einer zu niedrigen Nutzung der App zu adressieren, ist Gamification. Dadurch versuchen wir, den Anreiz zu steigern, die App herunterzuladen und auch aktiv zu benutzen.
 
 Gamification der App kann es in verschiedenen Varianten geben. 
@@ -308,6 +322,7 @@ Eine Umsetzung dieses Features wurde im Laufe dieser Forschungsarbeit bereits in
 Jeder Geimpfte hat dabei eine Chance den Hauptgewinn von einer Millionen US-Dollar zu gewinnen.\\
 
 \subsubsection{Ortsbezogene Informationen}
+\text{}\\
 Ein Problem das im Verlauf der Pandemie auftritt ist die undurchsichtige und inkonsistente Informationsgebung 
 hinsichtlich der beschlossenen Maßnahmen und Einschränkungen an die sich die Bevölkerung richten muss. 
 Viele dieser Maßnahmen wurden nicht auf Bundesebene beschlossen, sondern unabhängig von den Landesministerien, je nach Ausmaß der Krankheitsfälle im jeweiligen Bundesland.
@@ -326,6 +341,7 @@ Da die Informationen größtenteils auf den jeweiligen Webseiten der Länder zu 
 Dieses Feature existiert seit Oktober 2020 bereits in inoffizieller Ausführung als \glqq Darf ich das?\grqq{} -App von der InTradeSys GmbH \cite{DarfIchDas}.\\
 
 \subsubsection{Integration von Applikationen}
+\text{}\\
 Es existieren viele verschiedene Plattformen, die fast täglich neue Nachrichten zur aktuellen Corona-Situation herausgeben \cite{RKI}, \cite{BMG}, Daten zur Eindämmung der Pandemie sammeln \cite{RKIDatenspende}, \cite{Gedaechtnistest} oder Neuigkeiten zu Forschungsarbeiten mit Bezug zu Corona veröffentlichen \cite{GesundheitsforschungNews}.
 In diesem Feature werden Nachrichten, Datensammlungen, Umfragen und Forschungsarbeiten als \textit{Informationen} zusammengefasst.
 Die CWA ist der perfekte Ort all diese Informationen der Plattformen zu vereinen. 
@@ -358,12 +374,12 @@ Diese Berechnung hätte einen höheren Nutzen, wenn mehr Personen die App herunt
 Je mehr Tests durchgeführt werden und auch in die CWA eingetragen werden, umso genauer wird die aktuelle Risikoberechnung. 
 Die aktuelle Risikoberechnung der CWA ist in Abbildung \ref{Risikoberechnung_Abbildung} zu sehen.
 
-%\begin{figure*}[h]
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
-%	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung} }
-%	\label{Risikoberechnung_Abbildung}
-%\end{figure*}
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{"Aktuelle_Risikoberechnung"}
+	\caption{Aktuelle Risikoberechnung \cite{Risikoberechnung} }
+	\label{Risikoberechnung_Abbildung}
+\end{figure*}
 
 Die aktuelle CWA berechnet nur Begegnungen mit Infizierten, die ihr Testergebnis in die CWA eingetragen haben.
 In der erweiterten Risikoberechnungen sollten jedoch Begegnungen mit allen Personenegruppen mit einberechnet werden.
@@ -420,9 +436,6 @@ Mithilfe der geteilten TEKs ist es möglich von Freunden bzw. Verwandten empfang
 somit einen genaueren Risikowert zu berechnen.
 Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den TEKs aus den einzelnen Gruppen abgeglichen werden und nur die RPIs mit einbezogen werden, 
 die keinen passenden TEK in irgendeiner Gruppe haben.
-%Insbesondere heißt dies, dass Begegnungen mit Freunden bzw. Verwandten nicht in R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} miteinberechnet werden,
-%sondern nur in R\textsubscript{CWA-Positive}.
-%Warum es sinnvoll ist die Begegnungen von Freunden bzw. Verwandten aus R\textsubscript{CWA-Likely-Positive} und R\textsubscript{CWA-Likely-Negative} auszuschließen wird explizit in den dazugehörigen Abschnitten \ref{CWALikelyPositive} und \ref{CWALikelyNegative} erläutert.
 
 Das Austauschen von TEKs kann allerdings Eingriffe in die Privatsphäre zur Folge haben.
 Erkrankt eine Person aus einer Gruppe an Corona und gibt ihre TEKs als Diagnosis Keys frei, ist es für die anderen Gruppenangehörigen mit hoher Wahrscheinlichkeit möglich, die erkrankte Person zu bestimmen.
@@ -493,7 +506,7 @@ Jedoch sind CWA-Likely-Positive Personen mit einer erhöhten Wahrscheinlichkeit 
 Diese sollen mithilfe dieses Features in den Summanden R\textsubscript{CWA-Likely-Positive} in Abschnitt \ref{CWALikelyPositive} mit einbezogen werden.
 
 Damit diese in die Risikoberechnung mit einfließen können, benötigen wir die TEKs der CWA-Likely-Positive Personen.
-Ähnlich wie beim CWA Server sollen diese TEKs auch auf einem Server gesammelt und von da aus verteilt werden.
+Ähnlich wie beim CWA-Server sollen diese TEKs auch auf einem Server gesammelt und von da aus verteilt werden.
 Dieser Server wird in diesem Dokument als der \textit{Direkte Kontakte Server} (DK-Server) bezeichnet.
 Wird in der CWA ein erhöhtes Risiko mit einem Risikowert $\geq$ 13 erkannt und durch einen roten Bildschirm angezeigt, 
 so sollen die TEKs der letzten 14 Tage, verbunden mit dem zum roten Bildschirm führenden Risikowert, auf den DK-Server hochgeladen werden.
@@ -502,10 +515,10 @@ Aufgrund der Inkubationszeit werden TEKs auf dem DK-Server, die älter als 14 Ta
 
 Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom DK-Server herunter und leitet daraus die RPIs ab.
 Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt \ref{CWALikelyPositive} beschrieben.
-Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA Server.
+Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA-Server.
 Der mit einem TEK verbundene Risikowert wird dazu genutzt, um die Wahrscheinlichkeit zu ermitteln, dass der Teilende des TEKs mit Corona infiziert ist.
 
-Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, 
+Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA-Server im Falle eines positiven Testergebnisses wird kein eindeutiger, 
 autorisierter Schlüssel benötigt, um TEKs auf den DK-Server hochladen zu können.
 Dadurch entfällt die Integrität der hochgeladenen TEKs.
 Dies wirft verschiedene Probleme auf, die im Folgenden diskutiert werden. 
@@ -569,8 +582,9 @@ wobei die angepasste Grafik in Abbildung \ref{ErweiterteRisikoberechnung_Abbildu
 	\label{ErweiterteRisikoberechnung_Abbildung}
 \end{figure*}
 
-\subsubsection{Probleme und Lösungsansätze}
-\label{Probleme_und_Loesungsansaetze_Risikoberechnung}
+\subsubsection{Probleme und Lösungsansätze}\label{Probleme_und_Loesungsansaetze_Risikoberechnung}
+\text{}\\
+
 
 Das Hauptproblem der Risikoberechnung der aktuellen CWA ist, dass diese zu wenige, relevante Faktoren mit einberechnet, denn nur CWA-Positive Personen werden mit einbezogen.
 Alle anderen Personengruppen werden ignoriert, was dazu führt, dass  der Risikowert geringer ist als er eigentlich sein sollte. 
@@ -631,8 +645,8 @@ nebem dem farbigen Bildschirm in der App angezeigt.
 Außerdem wird die Begegnungsdauer und Begegnungsnähe zu CWA-Positive Nutzern angezeigt.\\
 
 \subsubsection{R\textsubscript{CWA-Positive}}\label{CWAPositive}
-
-Das Risiko R\textsubscript{CWA-Positive} entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
+\text{}\\
+Das Risiko R\textsubscript{CWA-Positive} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, blauer Kasten) entspricht der aktuellen Risikoberechnung der CWA (Stand 26.04.2021). 
 In dieses Risiko fließen alle Begegnungen mit der Personengruppe CWA-Positive ein. 
 Da CWA-Positive Personen ein positives Testergebnis in der CWA eingetragen haben, kann davon ausgegangen werden, dass diese auch infiziert sind.
 
@@ -699,10 +713,9 @@ Zuletzt wird aus den Normalised Exposure Times der einzelnen Begegnungen die Sum
 \centerline{ \text{R\textsubscript{CWA-Positive}} $ := \sum t_n$}
 \centerline{\text{ }}
 
-\subsubsection{R\textsubscript{CWA-Likely-Positive}}
-\label{CWALikelyPositive}
-
-Das Risiko R\textsubscript{CWA-Likely-Positive} ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
+\subsubsection{R\textsubscript{CWA-Likely-Positive}}\label{CWALikelyPositive}
+\text{}\\
+Das Risiko R\textsubscript{CWA-Likely-Positive} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, roter Kasten) ergibt sich aus den Begegnungen mit CWA-Likely-Positive Personen, 
 die eine erhöhte Wahrscheinlichkeit aufweisen, infiziert zu sein und deswegen in der Berechnung gesondert behandelt werden. 
 
 Hierbei werden Begegnungen mit Gruppenangehörigen aus dem Familienfeature, Abschnitt \ref{Familienfeature}, nicht mit einbezogen, 
@@ -710,8 +723,8 @@ da diese sonst aufgrund der potenziell langen Begegnungsdauer und kurzen Distanz
 man im Regelfall diesen Personen ohnehin sofort mitteilt, wenn man ansteckend sein könnte. 
 
 Zudem werden Begegnungen mit Diagnosis Keys nicht mit einberechnet, da diese bereits im Summand R\textsubscript{CWA-Positive} betrachtet werden. 
-Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den Diagnosis Keys auf dem CWA Server abgeglichen werden und nur die RPIs mit einbezogen werden, 
-für die keine passenden Diagnosis Keys auf dem CWA Server existieren.
+Dies geschieht, indem bei der Risikoberechnung die Begegnungs RPIs mit den Diagnosis Keys auf dem CWA-Server abgeglichen werden und nur die RPIs mit einbezogen werden, 
+für die keine passenden Diagnosis Keys auf dem CWA-Server existieren.
 
 Zuerst wird, wie im Risiko R\textsubscript{CWA-Positive} im Abschnitt \ref{CWAPositive}, das Übertragungspotenzial einer Begegnung bestimmt, 
 indem die Weighted Exposure Time ausgewertet wird. 
@@ -734,54 +747,55 @@ Hierzu wird die Funktion \textit{f} eingeführt, die die Positiv-Begegnungs-Wahr
 Die Funktion \textit{f} nimmt als Input den Risikowert der Begegnung und gibt die Wahrscheinlichkeit zurück, dass diese infiziert ist.
 Der Risikowert wurde zuvor mit dem Temporary Exposure Key zusammen vom DK-Server heruntergeladen, wie in Abschnitt \ref{DK-Server} beschrieben.
 
-Um \textit{f} zu bestimmen wird folgendes Verfahren angewandt:
-Zunächst werden, Intervalle gebildet, da die Menge der Risikowerte nicht diskret, sondern stetig ist.
-Anhand der auf dem DK-Server und dem CWA Server gesammelten Daten wird für jedes Risikowert-Intervall 
-$x_i$ mit $i \in N$ und einer Intervallgröße von Eins die Wahrscheinlichkeit bestimmt, 
-dass eine Begegnung, mit einem Risikowert innerhalb $x_i$, infiziert ist. 
+Um \textit{f} zu bestimmen wird ermittelt wie viele der CWA-Likely Positive Personen tatsächlich an Corona erkrankt sind, also zu CWA-Positive Personen wurden.
+Dabei werden alle CWA-Positive Personen, die zuvor CWA-Likely-Positive waren, gezählt und durch die Anzahl aller CWA-Likely-Positive Personen geteilt.
+
+\centerline{\text{ }}
+\centerline{$P_{x} := \frac{\text{Anzahl (CWA-Likely-Positive mit Risikowert=x } \cap \text{ CWA-Positive})}{\text{Anzahl (CWA-Likely-Positive mit Risikowert=x)}}$}
+\centerline{\text{ }}
+
+Da es sich bei den Risikowerten um stetige Werte handelt, müssen diese in Intervalle $x_i$ mit $i \in \mathbb{N}^{\geq 13}$ eingeteilt werden.
+Da die Risikowerte auf dem DK-Server alle $\geq 13$ sind, werden nur die $x_i$ mit $i \geq 13$ betrachtet.
 Dabei gilt für jedes Intervall:
 
 \centerline{\text{ }}
-\centerline{$x_i := [13+i, 14+i[$}
+\centerline{$x_i := [i, i+1[$}
 \centerline{\text{ }}
 
-
-Da die Risikowerte auf dem DK-Server alle $\geq 13$ sind, sind nur Risikowerte über 13 relevant.
 Damit die Wahrscheinlichkeit bestimmt werden kann, dass eine Person mit einem Risikowert innerhalb eines bestimmten Intervalls $x_i$ infiziert ist, 
-wird die Anzahl an Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben und die Anzahl an Personen, 
-die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind. 
+wird die Anzahl aller Personen benötigt, die einen Risikowert innerhalb des Intervalls $x_i$ haben, sowie die Anzahl an Personen, 
+die einen Risikowert innerhalb des Intervalls $x_i$ haben und später an Corona erkrankt sind. 
 
-Dafür werden die TEKs auf dem DK-Server und die Diagnosis Keys auf dem CWA Server als historische Daten verwendet.
+Dafür werden die TEKs auf dem DK-Server und die Diagnosis Keys auf dem CWA-Server als historische Daten verwendet.
 Aus den TEKs auf dem DK-Server kann die Anzahl an Personen bestimmt werden, die einen Risikowert innerhalb des Intervalls $x_i$ haben.
-Wenn zusätzlich zu den TEKs auf dem DK-Server die Diagnosis Keys auf dem CWA Server dazu genommen werden, 
+Wenn zusätzlich zu den TEKs auf dem DK-Server die Diagnosis Keys auf dem CWA-Server dazu genommen werden, 
 kann die Anzahl an Personen bestimmt werden, die sowohl einen Risikowert innerhalb des Intervalls $x_i$ haben, als auch später an Corona erkrankt sind, 
-indem die TEKs auf dem DK-Server und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA Server abgeglichen werden. 
+indem die TEKs auf dem DK-Server und den zugehörigen Risikowerten mit den Diagnosis Keys auf dem CWA-Server abgeglichen werden. 
 Daraus lässt sich für jedes Intervall $x_i$ die Wahrscheinlichkeit $P_{x_i}$, infiziert zu sein, wie folgt bestimmen:
 
 \centerline{\text{ }}
-\centerline{$P_{x_i} := \frac{\text{Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert} \in x_i}{\text{Anzahl TEKs auf dem DK-Server mit Risikowert} \in x_i}$}
+\centerline{$P_{x_i} := \frac{\text{Anzahl (TEKs auf dem DK-Server und CWA-Server mit Risikowert} \in x_i)}{\text{Anzahl (TEKs auf dem DK-Server mit Risikowert} \in x_i)}$}
 \centerline{\text{ }}
 
-Zur \textit{Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
-die auf DK-Server und den CWA Server hochgeladen wurden und einen Risikowert innerhalb $x_i$ aufweisen. 
+Zur \textit{Anzahl TEKs auf dem DK-Server und CWA-Server mit Risikowert $\in x_i$} werden nur die TEKs gezählt, 
+die auf DK-Server und den CWA-Server hochgeladen wurden und einen Risikowert innerhalb $x_i$ aufweisen. 
 
 Zur \textit{Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$} werden alle TEKs auf dem DK-Server gezählt, die einen Risikowert innerhalb $x_i$ aufweisen.
 
-Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA Server einige Tage vergehen und 
+Da in der Regel zwischen dem Hochladen eines TEKs auf den TEK Server und dem Hochladen des gleichen TEKs als Diagnosis Key auf den CWA-Server einige Tage vergehen und 
 Keys auf beiden Servern nur 14 Tage gespeichert werden, muss für die Bestimmung der Funktion $f$ die richtige Datenmenge genommen werden.
 Dies liegt vor Allem daran, dass sich Personen nicht direkt testen lassen können, wenn sie einen roten Bildschirm angezeigt bekommen.
 
 Die Anzahl TEKs auf dem DK-Server mit Risikowert $\in x_i$ werden ab dem Startzeitpunkt $s_0$ bis zu einem Endzeitpunkt $s_1$ gezählt.
 Der Startzeitpunkt $s_0$ befindet sich 14 Tage in der Vergangenheit und $s_1$ befindet sich genau 7 Tage nach $s_0$.
+Es wird ein Zeitraum von 7 Tagen gewählt, damit zum einen genügend historische Daten zur Verfügung stehen
+und zum anderen CWA-Likely-Positive Personen genügend Zeit haben, ein positives Testergebnis zu erhalten und zu teilen.
 
-%TODO Grund für 7Tage bzw ist die Begründung wichtig ? 
-Dabei wurde eine Intervalllänge von 7 Tagen gewählt, da dies die Zeit die ein Nutzer hat um sich bei einem roten Bildschirm testen zu lassen und die Anzahl TEKs, 
-die für die Berechnung verwendet werden können gleich gewichtet.
-Die Anzahl TEKs auf dem DK-Server und CWA Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
+Die Anzahl TEKs auf dem DK-Server und CWA-Server mit Risikowert $\in x_i$ werden ab dem gleichen Startzeitpunkt $s_0$ bis zum Tag der Bestimmung der Funktion $f$ gezählt.
 Dabei muss allerdings der TEK im Zeitraum $s_0$ bis $s_1$ auf den DK-Server hochgeladen worden sein, da sonst die TEKs nicht in die Berechnung einfließen. 
 
 Verwendet man zur Bestimmung der Funktion \textit{f} zum Beispiel die TEKs der letzten 7 Tage auf dem DK-Server, 
-so werden viele dieser TEKs nicht als Diagnosis Keys auf den CWA Server hochgeladen, 
+so werden viele dieser TEKs nicht als Diagnosis Keys auf den CWA-Server hochgeladen, 
 obwohl diese infiziert sind, da noch kein positives Testergebnis aufgrund der geringen zeitlichen Distanz vorliegt. 
 Die davon betroffenen TEKs würden die Funktion $f$ negativ beeinflussen.
 
@@ -789,7 +803,7 @@ Nachdem für jedes Intervall $x_i$ die Wahrscheinlichkeit, infiziert zu sein, be
 die jedem Risikowert die Positiv-Begegnungs-Wahrscheinlichkeit zuordnet. 
 Hierbei ist besonders zu beachten, dass die Funktion $f$ periodisch mit aktuelleren Daten neu berechnet und für die CWA aktualisiert werden muss. 
 Eine Aktualisierungsperiode sollte ca. 7 Tage andauern, da der Zeitraum $s_0$ bis $s_1$ 7 Tage lang ist.
-Beim Herunterladen von Keys (vom CWA Server oder DK-Server) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
+Beim Herunterladen von Keys (vom CWA-Server oder DK-Server) innerhalb der CWA muss dann gleichzeitig die aktualisierte Funktion $f$ heruntergeladen werden. 
 Mithilfe der Funktion $f$ kann dann $t_s$ bestimmt werden: 
 
 \centerline{\text{ }}
@@ -816,9 +830,8 @@ Durch die Begrenzung kann zwar eine CWA-Likely-Positive Person mit einem hohen R
 jedoch können die Personen, die dadurch einen erhöhten Risikowert erhalten haben, 
 diesen nur durch sehr lange Begegnungen, z.B. einen ganzen Tag, bei weiteren Personen hervorrufen.\\
 
-\subsubsection{R\textsubscript{CWA-Likely-Negative}}
-\label{CWALikelyNegative}
-
+\subsubsection{R\textsubscript{CWA-Likely-Negative}}\label{CWALikelyNegative}
+\text{}\\
 Das Risiko R\textsubscript{CWA-Likely-Negative} (Abbildung \ref{ErweiterteRisikoberechnung_Abbildung}, grüner Kasten) 
 bezieht alle Begegnungen mit Personen aus den Gruppen CWA-Likely-Negative und Not-CWA-User mit ein.
 Neben dem Unterschied der gezählten Personengruppen, gibt es bei den  Risiken R\textsubscript{CWA-Positive} und 
@@ -831,7 +844,7 @@ denn es befinden sich in den beschriebenen Personengruppen Infizierte, deren Erk
 Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 
 \begin{itemize}
-	\item Dunkelziffer: Mithilfe der Dunkelziffer ist eine genauere Abschätzung der Anzahl der mit Corona infizierten deutschen Bürger möglich. 
+	\item \textit{Dunkelziffer:} Mithilfe der Dunkelziffer ist eine genauere Abschätzung der Anzahl der mit Corona infizierten deutschen Bürger möglich. 
 	Denn Covid-19 hat die Eigenschaft nicht immer symptomatisch aufzutreten, es gibt somit viele Infizierte, 
 	die nicht aufgezeichnet werden. Dazu kommt noch, dass nicht alle Personen ihr Testergebnis in die App eintragen.
 	Die Dunkelziffer ist somit  ein Faktor, der beschreibt wie viele Personen mehr erkrankt sind, 
@@ -843,7 +856,7 @@ Somit muss das Risiko mit den folgenden Hauptpunkten angepasst werden:
 	ist die damals bestimmte Dunkelziffer von Sechs möglicherweise ungenau. 
 	Eine Dunkelziffer von Sechs würde allerdings bedeuten, dass die Anzahl der Infizierten um den Faktor Sechs größer ist, 
 	als die Anzahl durch Tests aufgezeichneten Infizierten.
-	\item  AppUsage: Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. 
+	\item \textit{AppUsage:} Eine Begegnung mit anderen Personen kann nur dann aufgezeichnet werden, wenn diese die Corona Warn App auch installiert haben. 
 	Begegnungen mit der Personengruppen Not-CWA-User werden somit nicht aufgezeichnet, sowie auch der Anteil an Infizierten aus dieser Gruppe. 
 	Da die derzeitige Nutzung deutlich unter 50\% liegt, muss dieser Faktor in die Risikoberechnung mit einfließen, 
 	indem die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert wird. 
@@ -972,13 +985,13 @@ Im Vergleich dazu wird bei den im Abschnitt \ref{Feature TRL Update} vorgestellt
 der die Teilnahme an einer Umfrage ermöglicht. Der dafür benötigte Schlüssel ist nur im Falle eines positiven Testergebnisses zu erhalten und sorgt dafür, dass kein Spam möglich ist.
 
 Obwohl es zwei weitere Server gibt (DK-Server und Familienfeature Server), auf denen Daten zentral gespeichert werden, bleiben die Risikoberechnung und Aufzeichnungen der RPIs dezentral. 
-Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA Server. 
-Zudem werden die Daten auf dem DK-Server und dem CWA Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
+Auf den zusätzlichen Servern werden ausgewählte TEKs gespeichert, wie auf dem CWA-Server. 
+Zudem werden die Daten auf dem DK-Server und dem CWA-Server dazu genutzt, die in Abschnitt \ref{CWALikelyPositive} beschriebene Funktion \textit{f} zentral zu bestimmen.
 
 Da auch hier auf freiwilliger Basis nur pseudonymisierte Identifier geteilt und auf die Server hochgeladen werden, wird die Privatsphäre der Nutzer nicht weiter, als in der aktuellen CWA, eingeschränkt.
 Außerdem werden Privatsphäre kritische Daten durch Kryptographie im Familienfeature vor äußeren Eingriffen geschützt und werden somit nur mit der eigenen Gruppe geteilt.
 
-Durch die Installation von zwei weiteren Servern, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA Server haben, 
+Durch die Installation von zwei weiteren Servern, werden zusätzliche Serverkosten anfallen. Da diese Server einen ähnlichen Aufbau wie der CWA-Server haben, 
 werden die Kosten für diese einen ähnlichen Umfang haben. 
 
 \section{Density-Map}
@@ -994,7 +1007,7 @@ Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. d
 Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb eine alternative Lösung mithilfe des BLE-Features der Corona Warn App vor. \\
 
 \subsection{Lösungsansatz} \label{Lösungsansatz}
-Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, 
+Das zentrale Problem, mit dem wir uns beim Erstellen einer Density-Map beschäftigen ist, 
 wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken oder zu verletzen. 
 
 Ein naiver Ansatz wäre beispielsweise, dass jedes Smartphone seine gesammelte Begegnungsanzahl auf einen zentralen Server hochlädt und dieser diese Daten auswertet. 
@@ -1003,17 +1016,19 @@ Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten u
 Diese verfolgte in ihrer Kontaktverfolgung einen möglichst dezentralen Ansatz, um die Privatsphäre der Nutzer zu garantieren.
 Dementsprechend suchen wir ebenfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen.
 Hierfür wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angegangen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
-\textit{Infrastrukturbasierte Lösung mit Masten: }\\
+
+\subsubsection{Infrastrukturbasierte Lösung mit Masten}
+\text{ }\\
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
 Nach Ablauf des Zeitintervalls werden die erfasste Anzahl an Smartphones zunächst ausgewertet und zu einem Zahlenwert aggregiert.
 Diese Anzahl an Begegnungen wird dann auf einen zentralen Server hochgeladen.
-Anders als beim naiven Ansatz, bei dem der zentrale Server die Daten aller Smartphones erfassen würde, ist hier die Aufzeichnung auf tausende bis zehntausende einzelne Masten verteilt. 
-Dadurch gäbe es keinen \glqq Single point of failure\grqq, bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würde. 
-Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst auf einen Server hochgeladen, reduziert dies den Datenstrom und die Last des zentralen Servers erheblich. 
+Anders als beim naiven Ansatz, bei dem der zentrale Server die Daten aller Smartphones erfassen würde, ist hier die Aufzeichnung auf Tausende bis Zehntausende einzelne Masten verteilt. 
+Dadurch gäbe es keinen \glqq Single point of failure\grqq, bei dem beispielsweise die Standorte aller Smartphones preisgegeben werden würden. 
+Da außerdem die Daten dezentral bei den Masten ausgewertet werden und dann erst auf einen Server hochgeladen werden, reduziert dies den Datenstrom und die Last des zentralen Servers erheblich. 
 
 Die Begegnungsaufzeichnung erfolgt analog zur Aufzeichnung mobiler Endgeräte untereinander mittels anonymer RPIs per BLE. 
-Somit sind in diesem Aspekt Sicherheit und Privatsphäre gleichermaßen gesichert, wie bei der bisherigen Corona Warn App. 
-Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Anzahl der Begegnungen und nicht die einzelnen RPI‘s der Geräte. 
+Somit sind in diesem Aspekt Sicherheit und Privatsphäre in gleichem Maße gesichert, wie bei der bisherigen Corona Warn App. 
+Außerdem sollen erst ab einem gewissen Threshhold von Aufzeichnungen (z.B. 5 Personen) die Daten auf den Server hochgeladen werden, sowie lediglich die Begegnungszahl und nicht die einzelnen RPI‘s der begegneten Geräte. 
 Diese Aggregation der Daten stellt sicher, dass keine einzelnen RPIs oder Personen über die Masten hinweg nachverfolgt und damit identifiziert werden können. 
 Abb. \ref{mast_func} zeigt den groben Ablauf eines zentralen Masten. \\ 
 \begin{figure}[h]
@@ -1032,85 +1047,91 @@ Nach Ablauf des 15 Minuten Intervalls lädt der Mast die gesammelte Anzahl an Be
 Da ein Mast unter Umständen einen größeren Bereich abdecken muss als ein normaler Nutzer, sollte das Signal (z.B. mit Repeatern) unter Umständen verstärkt werden.
 Andernfalls müsste ein Ort in mehrere Bereiche unterteilt werden, die dann von einzelnen Masten aufgezeichnet werden können. \\
 Hier wird auch deutlich, dass sich die Aufzeichnungsradien der einzelnen Masten möglichst nicht überschneiden sollte, da sonst ein Smartphone von mehreren Masten gleichzeitig aufgenommen wird.
-Eine mögliche Lösung für dieses Problem wäre, die BLE-Signale der Masten mit bestimmten Tags zu versehen, sodass ein Smartphone erkennt, falls es sich im Radius von mehreren Masten aufhält und dementsprechend nur einem Mast seine Daten sendet. 
+Eine mögliche Lösung für dieses Problem wäre die BLE-Signale der Masten mit bestimmten Tags zu versehen, sodass ein Smartphone erkennt, falls es sich im Radius von mehreren Masten aufhält und dementsprechend nur einem Mast seine Daten sendet. 
 
 Da die Installation zentraler Masten an jedem belebteren Platz ein aufwändiges und kostspieliges Unterfangen sein kann schlagen wir vor, dass registrierte/zertifizierte mobile Endgeräte ebenfalls als zentraler Mast fungieren können. 
 Hierfür müssen jedoch Einschränkungen gelten, sodass die Funktion als zentraler Mast auf beispielsweise einem Smartphone nicht missbraucht wird.
 Folgende Regeln und Restriktionen sollten für alle Masten gelten:
 \begin{itemize}
-	\item Masten können selbständig von Dritten erworben oder im Falle eines Smartphones, welches als zentraler Mast fungieren soll, die zertifizierte App installiert werden. 
+	\item Masten können selbständig von Dritten erworben werden oder im Falle eines Smartphones, welches als zentraler Mast fungieren soll, die zertifizierte App installiert werden.
 	Jedoch muss vor der Nutzung des Features das Gerät von einer offiziellen Behörde autorisiert werden. Damit darf dann etwa ein Restaurantbetreiber, über eine zentrale Behörde registriert, seine Einrichtung mit seinem Smartphone aufzeichnen. 
-	\item Zentrale Masten müssen währende ihrer Nutzung dauerhaft ihren Standort aktivieren und können nur im Umfeld ihres registrierten Bereiches (z.B. Ort des Restaurants) als Mast fungieren. 
+	\item Zentrale Masten müssen während ihrer Nutzung dauerhaft ihren Standort aktivieren und können nur im Umfeld ihres registrierten Bereiches (z.B. Ort des Restaurants) als Mast fungieren. 
 	Verlässt ein Mast den für ihn zugewiesenen Aufzeichnungsbereich sollt dieser seine Aufzeichnung automatisch stoppen. Dies verhindert, dass das Feature für unerlaubte Zwecke benutzt wird.
 	\item Verletzung der Eigenschaften sollte von anderen Nutzern gemeldet werden können. 
 	Beispiele für Verletzung der Eigenschaften wäre etwa eine Person, die in einem unerlaubten Gebiet (z.B. Wohngebiet) einen Masten betreibt oder ein Mast, der viele Begegnungen aufzeichnet, obwohl sich keine Person im Umkreis befindet.  
 \end{itemize}
 
-Masten, die ihre Begegnungen aufgezeichnet haben, laden die aggregierten auf einen zentralen Server hoch. 
-Dieser verarbeitet die gesammelten Daten aller Masten und erstellt die Density Map, welche dann vom Nutzer auf seinem Endgerät abgerufen werden kann.
-Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Density Map mittels zentraler Masten. \\
+Masten, die ihre Begegnungen aufgezeichnet haben, laden diese aggregiert auf einen zentralen Server hoch. 
+Dieser verarbeitet die gesammelten Daten aller Masten und erstellt die Density-Map, welche dann vom Nutzer auf seinem Endgerät abgerufen werden kann.
+Abb. \ref{density_creation} zeigt einen grafischen Ablauf zu Erstellung der Density-Map mittels zentraler Masten. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Density_Map_Overview"}
-	\caption{Übersicht: Erstellen der Density Map}
+	\caption{Übersicht: Erstellen der Density-Map}
 	\label{density_creation}
 \end{figure} 
 \\
 Wie in Abschnitt \ref{Ex_not_frame} beschrieben, besitzen die RPIs eine Lebensdauer von etwa 15 Minuten. 
-Dementsprechend muss beachtet werden, dass Smartphones auch  während des Aufenthaltes im Umkreis eines Masts ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
-Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die Tatsächliche Begegnungsanzahl herauszufinden. 
-Wie stark der Wert nach unten korrigiert werden muss, hängt hierbei von der Durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
-Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich nach $15 min.$ der Mast zurücksetzt) wird innerhalb der Aufenthaltsdauer am Masten jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
+Dementsprechend muss beachtet werden, dass Smartphones auch während des Aufenthaltes im Umkreis eines Masts ihren RPI regelmäßig ändern, wodurch ein Endgerät vom Mast als zwei unterschiedliche Begegnungen erkannt werden kann. 
+Der Mast zeichnet dementsprechend zu viele Begegnungen auf und muss seine gemessene Anzahl an Begegnungen nach unten korrigieren, um die tatsächliche Begegnungsanzahl herauszufinden. 
+Wie stark der Wert nach unten korrigiert werden muss, hängt hierbei von der durchschnittlichen Verweildauer eines Smartphones am Masten ab. 
+Beträgt die durchschnittliche Verweildauer beispielsweise 15 Minuten (was dem Maximalwert entspricht, da sich alle 15 min der Mast zurücksetzt) 
+wird innerhalb der Aufenthaltsdauer am Masten, jedes Endgerät auf jeden Fall einmal seinen RPI ändern und als neue Begegnung vom Mast aufgezeichnet werden. 
 In diesem Fall würde der Mast doppelt so viele Begegnungen aufzeichnen als es in der Realität sind.
-Ist die durchschnittliche Verweildauer hingegen kurz im Verhältnis zum Änderungsintervall der RPIs (z.B. 3 Minuten) ist die Wahrscheinlichkeit,  dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
+Ist die durchschnittliche Verweildauer hingegen im Verhältnis zum Änderungsintervall der RPIs (z.B. 3 Minuten) kurz ist die Wahrscheinlichkeit,
+dass sich in diesem Zeitintervall der RPI eines Smartphones ändert, sehr klein, was weniger mehrfache Aufzeichnungen zur Folge hat. 
 Wie stark ein aufgezeichneter Wert nach unten korrigiert werden sollte wird mit folgender \textit{ID-basierter Korrekturformel} errechnet: 
 \begin{equation}
 	\text{IDs} = \frac{\text{RPIs}}{(1+p)}
 \end{equation}
 Dabei ist \glqq RPIs\grqq{} die gemessene Anzahl an RPIs des Masten und \glqq IDs\grqq{}  die voraussichtlich tatsächliche Anzahl an Endgeräten.
 Die Wahrscheinlichkeit $p$ einer doppelten Registrierung ist definiert durch:
-
+\centerline{\text{ }}
 \centerline{$p = t_V / t_Z$}
+\centerline{\text{ }}
 wobei $t_Z$ die Dauer eines 15-Minuten Zyklus ist und $t_V$ die durchschnittliche Verweildauer während dieses Zyklus.
-Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der ID's doppelt gezählt werden mit: IDs$\cdot p$. 
-Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die ID's bekannt sind, folgende Formel: 
+Vorausgesetzt wir kennen die \glqq IDs\grqq{} können wir mittels $p$ ausrechnen, wie viele der IDs doppelt gezählt werden mit: IDs$\cdot p$. 
+Daraus ergibt sich für die gemessenen \glqq RPIs\grqq{} unter Annahme, dass die IDs bekannt sind, folgende Formel: 
+\centerline{\text{ }}
 \centerline{$\text{RPIs} = \text{IDs} + \text{IDs} \cdot p $}
+\centerline{\text{ }}
 Diese Formel nach \glqq IDs\grqq{} umgeformt ergibt die oben genannte Korrekturformel zur Berechnung der tatsächlichen Anzahl an Endgeräten und wird im Folgenden als ID-basierte Formel bezeichnet.
 
 Eine Übersicht, inwiefern der gemessene Wert mithilfe der ID-basierten Korrekturformel korrigiert wird, wird in Abb. \ref{cor_factor} aufgezeichnet. 
-Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smartphones (ID's) angibt.
-Wir gehen davon aus, dass der Mast in jedem Fall genau 100 ID's aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
+Auf der x-Achse befindet sich die durchschnittliche Verweildauer der Smartphones in Mastreichweite in Minuten, während die y-Achse die Anzahl an Smartphones (IDs) angibt.
+Wir gehen davon aus, dass der Mast in jedem Fall genau 100 IDs aufgezeichnet hat (blauer Graph). Je nach Verweildauer muss der gemessene Wert nun mittels Formel nach unten korrigiert werden (orangener Graph).\\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Korrekturfaktor"}
 	\caption{Korrekturfaktor in Abhängigkeit der durchschnittlichen Verweildauer}
 	\label{cor_factor}
 \end{figure} \\
-
 Eine Alternative zur ID-basierten Korrekturformel wurde zu Beginn der Forschungsarbeit erarbeitet und basiert darauf, den Anteil an doppelten Begegnungen von der gemessenen Anzahl abzuziehen. 
 Der Anteil wird dabei an Hand der Wahrscheinlichkeit einer doppelten Registrierung berechnet, welche wiederum von der durchschnittlichen Verweildauer abhängt.\\
-Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPIs abgezogen werden, um so den realen Wert zu erhalten.\\
+Bei einer Wahrscheinlichkeit \textit{p} einer doppelten Registrierung müssen \textit{p/2} Begegnungen von den RPIs abgezogen werden, um den realen Wert zu erhalten.\\
 Diese \textit{alternative Korrekturformel} ist somit wie folgt definiert:
 \begin{equation}
 	\text{IDs} = \text{RPIs} * (1-p/2)
 \end{equation}
-Auf Grund des Ansatzes, dass die Anzahl der IDs unbekannt ist und die Anzahl der RPIs bekannt, wird diese Formel im Folgenden als RPI-basierte Formel bezeichnet.\\
+Auf Grund des Ansatzes, dass die Anzahl der IDs unbekannt ist und die Anzahl der RPIs bekannt ist, wird diese Formel im Folgenden als RPI-basierte Formel bezeichnet.\\
 Beide Formeln werden im Abschnitt \textit{Simulation} evaluiert und miteinander verglichen.\\
 
-\textit{Ohne Masten:}\\
+\subsubsection{Infrastrukturloser Ansatz}
+\text{ }\\
 Beim Ansatz ohne zentrale Masten besteht die Idee darin, dass jedes Smartphone als\glqq mobiler Mast\grqq arbeitet und die Funktion eines Masten übernehmen kann.
 Auch bei diesem Ansatz möchten wir zunächst die Daten dezentral bündeln und aggregieren, um den bereits erwähnten Privatsphäre- und Sicherheitsrisiken des naiven Ansatzes entgegenzuwirken.  
 
 Begegnen sich zwei Smartphones tauschen diese, wie bisher in der aktuellen Corona Warn App, ihre RPIs und Daten untereinander aus. 
 Zusätzlich wird nun eines der beiden Geräte als Mast ausgewählt (Abb. \ref{mobile_mast}). 
 Dieses zeichnet die Begegnung der beiden untereinander auf und übernimmt alle bisherigen Aufzeichnungen des anderen Gerätes in diesem Zeitintervall.
-Die Aufzeichnungsdaten werden also transitiv bis Ende des Intervalls weitergegeben. 
+Die Aufzeichnungsdaten werden also transitiv bis zum Ende des Intervalls weitergegeben. 
 Nach Ablauf des Zeitintervalls lädt das Smartphone, welches als mobiler Mast ausgewählt wurde, die aggregierte Begegnungsanzahl mit seinem aktuellen Standort auf den zentralen Server.
 
-Bei dieser Methode können natürlich nur Smartphones, welche ihren Standort aktiv haben, als mobiler Mast arbeiten. 
-Im besten Fall hat jedes Handy diese Funktion aktiv. Smartphones, die ihren Standort nicht aktiv haben, werden können von anderen Smartphones mit aktiven Standort aufgezeichnet, jedoch selbst nie als mobiler Mast ausgewählt werden.
+Bei dieser Methode können natürlich nur Smartphones, welche ihren Standort aktiv haben, als mobiler Mast fungieren. 
+Im besten Fall hat jedes Handy diese Funktion aktiv. Smartphones, die ihren Standort nicht aktiv haben, werden von anderen Smartphones mit aktiven Standort aufgezeichnet, 
+können jedoch selbst nie als mobiler Mast ausgewählt werden.
 
-Anders als bei zentralen Masten kann nun an jedem Ort, an dem sich ein Smartphone mit der Corona Warn App befindet, eine Aufzeichnung für die Density-Map erfolgen. 
+Anders als bei zentralen Masten kann nun an jedem Ort, an dem sich ein Smartphone mit der CWA befindet, eine Aufzeichnung für die Density-Map erfolgen. 
 Die Datenerfassung der Density-Map ist somit nicht mehr von vorinstallierten zentralen Masten abhängig.\\
 \begin{figure}[h]
 	\centering
@@ -1118,18 +1139,19 @@ Die Datenerfassung der Density-Map ist somit nicht mehr von vorinstallierten zen
 	\caption{Smartphones als Mobile Masten}
 	\label{mobile_mast}
 \end{figure} \\
-Beim mobilen Ansatz können diverse Probleme auftreten, welche gelöst werden müssen: Zum Beispiel können zwei Smartphones A und B ihre gesamten Daten immer an das jeweilige andere Handy überreichen, bevor ihr 15 Minuten Intervall abgelaufen ist. 
+Beim mobilen Ansatz können diverse Probleme auftreten, welche gelöst werden müssen: 
+
+Zum Beispiel können zwei Smartphones A und B ihre gesamten Daten immer an das jeweilige andere Handy überreichen, bevor ihr 15 Minuten Intervall abgelaufen ist. 
 Somit bleiben die gesammelten Daten für unendlich lange Zeit lokal auf A oder B gespeichert, ohne dass sie jemals hochgeladen werden. 
-Eine Lösung für dieses Problem wäre immer das Smartphone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist.
+Eine Lösung für dieses Problem wäre, immer das Smartphone als mobilen Mast auszuwählen, das näher am „Reset“, also am Ablauf des 15-Minuten Intervalls ist.
 
 Ein weiteres Problem bei mobilen Masten besteht darin, dass sie sich innerhalb des Zeitintervalls über längere Strecken bewegen können während sie ihre Begegnungen aufzeichnen.
 In diesem Fall entsprechen Ort der Aufzeichnung eines anderen Gerätes und Ort des Hochladens der Daten nach Ablauf des Zeitintervalls nicht überein und das Bild der Density-Map wird verzerrt. 
-Dieses Problem wird teilweise bereits durch die Corona App selbst gelöst, welche Begegnungen erst dann aufzeichnet, sobald sich Geräte über etwas längere Zeit in Kontakt stehen. 
 Bei sich schnell bewegenden Smartphones müssten sich demnach anderer Smartphones mit gleicher Geschwindigkeit in dieselbe Richtung bewegen, damit eine Begegnung aufgezeichnet wird. 
 Das Verkürzen des Zeitintervalls für Uploads auf beispielsweise 5 Minuten würde diesem Problem ebenfalls entgegenwirken, da in kürzeren Intervallen die Smartphones sich im Schnitt weniger weit bewegen können.
 
-Eine weitere Lösung, die wir diesbezüglich vorschlagen ist ein sogenannter „Discount Faktor“. 
-Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in der Auswertung der Density Map. \\
+Eine weitere Lösung, die wir diesbezüglich vorschlagen ist ein sogenannter \textit{Discount Faktor}. 
+Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in der Auswertung der Density-Map. \\
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{"Discount_Faktor"}
@@ -1138,72 +1160,120 @@ Dieser gewichtet indirekte Verbindungen eines mobilen Masten schwächer in der A
 \end{figure} \\
 In Abbildung \ref{disc_factor} begegnen sich die beiden Smartphones $A$ und $B$. $A$ hat bereits die RPIs $X, Y, Z$ und $W$ aufgezeichnet und B die RPIs $X, Z, V, U$. 
 Nun tauschen die beiden Smartphones ihre RPIs gemäß Funktionsweise der Corona Warn App aus. Außerdem wird $A$ als mobiler Mast ausgewählt und übernimmt die Aufzeichnungen von $B$ für die Density-Map.
-Die RPIs $V$ und $U$ wurden nur von $B$ aufgezeichnet. Dies bedeutet, dass sie sich nicht im direkten Umkreis von $A$ befinden können. $B$ muss sich vor der Begegnung mit $A$ also an einem anderen Ort befunden haben und sich zu $A$ bewegt haben (aus Sicht von $A$).
+Die RPIs $V$ und $U$ wurden nur von $B$ aufgezeichnet. Dies bedeutet, dass sie sich nicht im direkten Umkreis von $A$ befinden können. 
+$B$ muss sich vor der Begegnung mit $A$ somit an einem anderen Ort befunden haben und sich zu $A$ bewegt haben (aus Sicht von $A$).
 Dementsprechend werden die Begegnungen RPIs $U$ und $V$ mit dem Discount Faktor $\gamma$ versehen.
 Der Discount Faktor kann auf verschiedene Arten realisiert werden. Er könnte beispielsweise einen Zahlenwert im Intervall $(0,1)$ annehmen. 
-Somit würden indirekte Begegnungen mit dem Faktor multipliziert und nicht voll gewertet werden. Im Beispiel wären die zwei indirekten Begegnungen $U$ und $V$ mit gewähltem $\gamma = 0.6$ versehen und nur als $2 \cdot 0.6 = 1.2$ Begegnungen aufgezeichnet werden.
+Somit würden indirekte Begegnungen mit dem Faktor multipliziert und nicht voll gewertet werden. 
+Im Beispiel wären die zwei indirekten Begegnungen $U$ und $V$ mit gewähltem $\gamma = 0.6$ versehen und nur als $2 \cdot 0.6 = 1.2$ Begegnungen aufgezeichnet werden.
 
-Eine andere Lösung wäre beim Auswerten der Density-Map indirekten Begegnungen mit anderen Standorten zu versehen. 
-Während alle direkten Begegnungen von $A$ im unmittelbaren Umkreis seines Standortes auf der Map angezeigt werden $U$ und $V$(beim Hochladen aggregiert in 2 Begegnungen) in einem größeren Radius um $A$ angezeigt.
+Eine andere Lösung wäre, beim Auswerten der Density-Map, indirekte Begegnungen mit anderen Standorten zu versehen. 
+Während alle direkten Begegnungen von $A$ im unmittelbaren Umkreis seines Standorts auf der Map angezeigt werden,
+werden $U$ und $V$(beim Hochladen aggregiert in 2 Begegnungen) in einem größeren Radius um $A$ angezeigt.
 In diesem Fall wäre der Discount Faktor nur eine Markierung und müsste keinen numerischen Wert erhalten. 
 
 Der Discount Faktor kann ebenfalls transitiv weitergegeben werden. 
 Werden etwa die beiden indirekten Begegnungen $U$ und $V$ an ein weiteres Smartphone $C$ übergeben, so werden sie bei $C$ doppelt mit dem Discount Faktor versehen.\\
-\\
-\textit{Hybridlösung:}\\
+
+\subsubsection{Hybridlösung}
+\text{ }\\
 Um die Effekte beider Ansätze nutzen zu können und die Effizienz weitmöglichst zu erhöhen, schlagen wir eine Hybridlösung aus zentralen und mobilen Masten vor. 
-Die Umsetzung hierfür ist relativ simpel. Wie oben beschrieben, werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density-Map zu sammeln. 
+Die Umsetzung hierfür ist relativ simpel. 
+Wie oben beschrieben, werden an häufig besuchten Orten und Plätzen zentrale Masten aufgestellt, um Daten für die Density-Map zu sammeln. 
 Überall dort, wo jedoch keine solchen zentralen Masten existieren, greift der dezentrale Ansatz und die Mobiltelefone fungieren als mobile Masten. 
-Der im infrastrukuturbasierten Ansatz beschriebene spezielle Tag für RPIs der Masten kann hier verwendet werden, damit ein Smartphone erkennt, ob er sich zurzeit im Umkreis eines zentralen Masten befindet oder nicht. 
-Mittels Hybridlösung könnte man die Vorteile beider Ansätze vereinen und die Nachteile ausgleichen. Zentrale Masten können zuverlässiger einen festen Ort aufzeichnen, da für diese Funktion optimiert sind und sich dauerhaft an diesem Ort befinden.
+Der im infrastrukuturbasierten Ansatz beschriebene spezielle Tag für RPIs der Masten kann hier verwendet werden, damit ein Smartphone erkennt, 
+ob es sich zurzeit im Umkreis eines zentralen Masten befindet oder nicht. 
+Mittels Hybridlösung könnte man die Vorteile beider Ansätze vereinen und die Nachteile ausgleichen. 
+Zentrale Masten können zuverlässiger einen festen Ort aufzeichnen, da für diese Funktion optimiert sind und sich dauerhaft an diesem Ort befinden.
 Mobile Masten hingegen können an jedem beliebigen Ort eine Ansammlung vieler Smartphones und damit vieler Menschen erkennen und auch eine Bewegung großer Menschenmassen aufzeichnen.
-Sie sind demnach flexibler, was den Standort angeht.\\
-\\
-Das letzte zentrale Problem, welches nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, dass nicht jede Person ein Smartphone besitzt und die  Corona Warn App auf seinem Smartphone installiert hat. 
-Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%). \cite{Downloads}
-Unter der Annahme, dass die Nutzer der App auf die Standorte bezogen gleichverteilt sind bedeutet dies, dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.\\
+Sie sind demnach flexibler, was den Standort angeht.
+
+Das letzte zentrale Problem, welches nicht nur unsere Lösungsansätze sondern auch die Corona Warn App im allgemeinen stark betrifft ist, 
+dass nicht jede Person ein Smartphone besitzt und die CWA auf seinem Smartphone installiert hat. 
+Dementsprechend liegen die aufgezeichneten Werte durch die Masten stets unter der tatsächlichen Anzahl der Personen, die sich am entsprechenden Ort befinden. 
+Laut aktuellem Stand (Mai 2021) benutzen etwa 27,8mio (33\%) die CWA. \cite{Downloads}
+Unter der Annahme, dass die Nutzer der CWA auf die Standorte bezogen gleichverteilt sind bedeutet dies, 
+dass man die gemessene Anzahl etwa verdreifachen muss, um die tatsächliche Anzahl an Personen zu erhalten.
 
 \subsection{Simulation}
 
-Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen. haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.\\
-Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.\\
-Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten. Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}.
+Um die im Lösungsansatz erarbeiteten theoretischen Überlegungen zu verifizieren und deren Umsetzbarkeit nachzuweisen haben wir eine Simulation des mastenbasierten Ansatzes implementiert und evaluiert.
+
+Eine reale Umsetzung des Features mit echten Masten und Smartphones erwies sich als zu umfangreich und im Rahmen unseres Forschungsprojektes zeitlich nicht umsetzbar.
+
+Die Simulation beschränkt sich auf die Umsetzung mittels zentraler Masten.
+Als Grundlage diente uns hierfür die Simulation \glqq COVID-19 Spread Simulator \grqq von Miguel Ángel Durán \cite{Simulation}.\\
+
 \subsubsection{Simulation der RPI-basierten Formel}
 \text{}\\
-Wie bereits in Abschnitt \ref{Lösungsansatz} beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.\\
-Im ersten Teil unserer Simulationen testen wir zunächst die \textit{RPI-basierte Korrekturformel}.\\
+Wie bereits in Abschnitt \ref{Lösungsansatz} beschrieben, existiert eine bestimme Wahrscheinlichkeit einer doppelten Registrierung innerhalb eines Mastes, 
+wodurch der gemessene Wert stets angeglichen werden muss, um den realen Wert zu approximieren.
+
+Im ersten Teil unserer Simulationen testen wir zunächst die \textit{RPI-basierte Korrekturformel}\\
+\centerline{}
 \centerline{$\text{IDs} = \text{RPIs} * (1-p/2)$}
-und im zweiten Teil dieses Abschnitts die \textit{ID-basierte Korrekturformel}
+\centerline{}
+und im zweiten Teil dieses Abschnitts die \textit{ID-basierte Korrekturformel}.\\
+\centerline{}
 \centerline{$\text{IDs} = \frac{\text{RPIs}}{(1+p)}$}
-Der Grund, weshalb zuerst die RPI-basierte Korrekturformel getestet wird ist, dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
+\centerline{}
+Der Grund, weshalb zuerst die RPI-basierte Korrekturformel getestet wird ist, 
+dass diese Formel als erstes innerhalb der Forschungsarbeit entstanden ist und erst nach der Auswertung unserer initialen Simulationsergebnisse die Ungenauigkeit dieser Formel aufgefallen ist.
 Daraufhin wurde die ID-basierte Korrekturformel erstellt. 
 
-Das Ziel der Simulation ist es festzustellen, wie nah der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
-\\
-\textit{Aufbau:}\\
-Wir simulieren 1000 Handys, in Abbildung 8 als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-Direction-Model bestimmt.\\
-Auf diesem Gebiet sind vier Masten, in Abbildung 8 dargestellt durch größere Kreise, welche persistent speichern, welche Handys in ihrer Reichweite liegen und wie lange dies der Fall ist.\\
-Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig mit der korrekten Anzahl zu vergleichen.\\
-Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus' eines Mastes. Dazu wird während des Zyklus zu jeder ID eine Zeitdauer gemessen und aus diesen der Durchschnitt ermittelt.\\
-Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Zähler hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. Am Ende eines Zyklus werden diese Zähler addiert und durch die gemessene Anzahl der Handys geteilt.\\
-Zwischenzeitliches Verlassen des Radius des Mastes setzt den Zähler nicht zurück. Stattdessen wird nach Wiedereintritt an Hand der ID der alte Zähler weitergeführt.\\
-Die Zähler messen die Zeit in Ticks, welche die generelle Zeiteinheit der Simulation ist. Ein Durchlauf einer Simulation dauert 16000 Ticks, während der die Masten in einem Zyklus von 200 Ticks ihre Aufzeichnungen durchführen.\\
-Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.\\
-Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.\\
-Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Zählern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.\\
-Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.\\ 
-Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.\\
-Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\ \\
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=0.45\textwidth]{"Simulation"}
-%	\caption{Darstellung der durchgeführten Simulation}
-%	\label{sim}
-%\end{figure}
-\textit{Ergebnisse:}\\
-Abbildung \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne dass Social Distancing benutzt wird.\\
-Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.\\
-Auf der x-Achse befindet sich die Zeit, die den gesamten Verlauf der Simulation darstellt.\\
+Das Ziel der Simulation ist es festzustellen, wie nahe der durch beide Formeln berichtigte Wert an der tatsächlichen Anzahl an Handys liegt.\\
+
+\subsubsection{Aufbau}
+\text{}\\
+Wir simulieren 1000 Handys, in Abb. \ref{sim} als Punkte dargestellt, mit zufälliger Bewegung und Position über ein festgelegtes Gebiet wandern. 
+Die Geschwindigkeit und Richtung ihrer Bewegung wird durch ein Random-Direction-Model bestimmt.
+
+Auf diesem Gebiet sind vier Masten, in Abb. \ref{sim} dargestellt durch größere Kreise, welche persistent speichern, welche Handys in ihrer Reichweite liegen und wie lange dies der Fall ist.
+
+Jeder Kreis hat eine sich periodisch verändernde, temporäre ID (RPI) und eine individuelle, permanente ID. 
+Dies ermöglicht es uns, das Zählen von RPI’s zu simulieren und gleichzeitig mit der korrekten Anzahl zu vergleichen.
+
+Die durchschnittliche Verweildauer wird immer aktuell berechnet nach Ablauf des Zyklus' eines Mastes. 
+Dazu wird während des Zyklus zu jeder ID eine Zeitdauer gemessen und aus diesen der Durchschnitt ermittelt.
+
+Zur Laufzeit der Simulation speichern die Masten eintretende mobile Objekte ab und zählen ab dem Zeitpunkt des Eintritts einen Zähler hoch, welcher die Dauer des Aufenthalts im Radius des Mastes misst. 
+Am Ende eines Zyklus werden diese Zähler addiert und durch die gemessene Anzahl der Handys geteilt.
+
+Zwischenzeitliches Verlassen des Radius des Mastes setzt den Zähler nicht zurück. 
+Stattdessen wird nach Wiedereintritt an Hand der ID der alte Zähler weitergeführt.
+
+Die Zähler messen die Zeit in Ticks, welche die generelle Zeiteinheit der Simulation ist.
+Ein Durchlauf einer Simulation dauert 16000 Ticks, während der die Masten in einem Zyklus von 200 Ticks ihre Aufzeichnungen durchführen.
+
+Je höher die durchschnittliche Verweildauer $t_V$ des Zyklus ist, desto höher ist die Wahrscheinlichkeit p, dass ein einziges Handy doppelt registriert wird.
+Zu Verifizierungszwecken haben wir die durchschnittliche Verweildauer mit Hilfe der permanenten IDs berechnet, was den tatsächlichen Wert liefert.
+
+Benutzt man stattdessen die RPIs, verringert sich die durchschnittliche Verweildauer, 
+da Handys doppelt gezählt werden können und dadurch fälschlicherweise mit mehreren Zählern gerechnet wird, die dabei geringe Zeitdauern liefern. Die durchschnittliche Verweildauer nimmt also ab.
+
+Durch eine geringere Verweildauer nimmt auch die Genauigkeit des korrigierten Wertes ab. 
+Da das Ziel unserer Simulation die Abschätzung der Güte unseres angeglichenen Wertes ist, rechnen wir mit der tatsächlichen Verweildauer, um Nebenfaktoren zu minimieren.
+ 
+Die Berechnung der durchschnittlichen Verweildauer anhand von RPIs würde jedoch bei einer Umsetzung in der Praxis verwendet werden, da aus Datenschutzgründen nicht die IDs und ihre Verweildauer gemessen werden.
+Die Simulation bietet zudem die Möglichkeit, Social Distancing durchzuführen. 
+Um den Effekt dieser Maßnahme darzustellen, wurde die Geschwindigkeit von Handys zeitweise auf Null reduziert. 
+Dies führt dazu, dass nur einige wenige Kreise sich überhaupt bewegen, die Anzahl an Ein- und Austritten bei Masten also stark reduziert ist.\\ 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{"Simulation"}
+	\caption{Darstellung der durchgeführten Simulation}
+	\label{sim}
+\end{figure}
+
+\subsubsection{Ergebnisse}
+\text{}\\
+Abbildung \ref{mast_data_plotted_old} stellt die gesammelten Daten in einem Schaubild dar, ohne dass Social Distancing benutzt wird.
+
+Hierbei ist der rote Graph die durchschnittliche Verweildauer, der grüne Graph der gemessene Wert, der orangene Graph der korrigierte Wert und der blaue Graph der reale Wert.
+
+Auf der x-Achse befindet sich die Zeit, die den gesamten Verlauf der Simulation darstellt.
+
 Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist die durchschnittliche Verweildauer wesentlich höher und der angeglichene Wert liegt näher an dem gemessen Wert als in Abb. \ref{mast_data_plotted_old}. \\ \\
 \begin{figure}[h]
 	\centering
@@ -1217,15 +1287,22 @@ Mit Social Distancing (Abb. \ref{mast_data_plotted_social_distancing_old}) ist d
 	\caption{Ergebnisse mit Social Distancing}
 	\label{mast_data_plotted_social_distancing_old}
 \end{figure}
-\textit{Schlussfolgerung:}\\
-Die gesammelten Daten belegen, dass die durch die RPI-basierte Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph). Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.\\
-Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.\\
+\subsubsection{Schlussfolgerung}
+\text{}\\
+Die gesammelten Daten belegen, dass die durch die RPI-basierte Korrekturformel berechnete Anzahl (orangener Graph) wesentlich näher an der tatsächlichen Zahl (blauer Graph) liegt als die gemessene Menge (grüner Graph).
+Es fällt jedoch auf, dass in fast allen Fällen die berechnete Zahl immer noch größer ist als die tatsächliche. Nur in einzelnen Fällen wird die Zahl zu niedrig abgeschätzt.
 
-Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die RPI-basierte Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.
+Hinzu kommt die Beobachtung, dass je höher die durchschnittliche Verweildauer, desto geringer die Differenz zwischen korrigierten und realen Wert. 
+Die Genauigkeit unserer Abschätzung wird demnach besser, je höher die Verweildauer ist.
+
+Aus dem Ergebnis lässt sich die Erkenntnis gewinnen, dass die RPI-basierte Korrekturformel nicht optimal ist, da der berechnete Wert stets zu groß ist, 
+sich grundlegend jedoch im Vergleich zum gemessenen Wert ein Wert näher an der realen Anzahl berechnen lässt.\\
 
 \subsubsection{Simulation der ID-basierten Korrekturformel}
-Um die ID-basierte Korrekturformel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.\\
-Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing} gezeigten Werte.
+\text{}\\
+Um die ID-basierte Korrekturformel zu testen, benutzen wir dieselbe Simulation wie zuvor, mit der Berechnung des korrigierten Wertes als einzigen Unterschied.
+
+Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} und Abbildung \ref{mast_data_plotted_social_distancing} gezeigten Werte.\\
 
 \begin{figure}[h]
 	\centering
@@ -1241,48 +1318,64 @@ Mit Hilfe dieser Formel ergeben sich die in Abbildung \ref{mast_data_plotted} un
 	\label{mast_data_plotted_social_distancing}
 \end{figure}
 
-\textit{Ergebnisse:}\\
-Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die ID-basierte Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. Die Approximation ist also auch hier generell erfolgreich.\\
-Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig und nicht standardmäßig zu hoch abgeschätzt, wie dies in der vorherigen Simulation mit der RPI-basierten Formel der Fall war.\\
-Der durchschnittliche Unterschied zwischen korrigiertem und realen Wert ist zudem niedriger mit dieser Formel als bei der Verwendung der RPI-basierten Korrekturformel.\\
+\subsubsection{Ergebnisse}
+\text{}\\
+Wie auch im ersten Abschnitt lässt sich feststellen, dass der durch die ID-basierte Formel korrigierte Wert immer näher am realen Wert liegt als der gemessene Wert. 
+Die Approximation ist somit auch hier generell erfolgreich.
 
-\textit{Schlussfolgerung:}\\
-Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die ID-basierte Korrekturformel besser als die RPI-basierte Korrekturformel für die Erfüllung unseres Ziels, die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.\\
+Zusätzlich dazu sind die korrigierten Werte in dieser Simulation in gleichen Anteilen etwas zu hoch oder zu niedrig und nicht standardmäßig zu hoch abgeschätzt,
+wie dies in der vorherigen Simulation mit der RPI-basierten Formel der Fall war.
 
-\subsection{Bewertung}
-Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.\\
-Die Hauptidee hinter der Implementierung dieser Erweiterung innerhalb der Corona Warn App ist die, Orte großer Menschenmassen bewusst zu meiden und damit die Ausbreitung des Viruses einzudämmen.\\
-Durch einen vorausschauenderen Lebensalltag oder Kontaktbeschränkungen seitens der Regierung kann dieser Effekt auch erreicht werden.\\
-Jedoch ist die Density-Map ein Feature, welches auch außerhalb der Pandemiezeit effektiv genutzt werden kann und einen Nutzen bringt.\\
-Gerade in Zeiten, in denen keine größeren Einschränkungen gelten, ist es vermutlich umso wichtiger, weiterhin bewusst Abstand zu größeren Ansammlungen zu halten, um der Ausbreitung einer weiteren Infektionswelle vorzubeugen.\\
-Deshalb trägt die Density-Map vor allem in Zeiten der Lockerung der Beschränkungsmaßnahmen einen guten Teil dazu bei, diesen Zustand zu erhalten.\\
-Unabhängig vom Kontext der Pandemie hat die Erstellung einer Density-Map, welche auf der anonymisierten Verfolgung von Kontakten basiert, ebenfalls viele Verwendungen.\\
-So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. Die erarbeiteten Formeln lassen sich generell in Echtzeit-Karten verwenden,
-wo durch anonyme Datensammlung nach dem Prinzip des Crowd-Sensing fehlerhafte Werte entstehen können.\\ 
-Die Auswertung der gesammelten Daten und Korrigierung mittels der in dieser Arbeit ermittelten Formel wäre also auch in diesen Bereichen anwendbar und hat somit Relevanz über den Zeitraum der Pandemie hinaus.\\
+Der durchschnittliche Unterschied zwischen korrigiertem und realem Wert ist zudem niedriger mit dieser Formel, als bei der Verwendung der RPI-basierten Korrekturformel.\\
 
-Auch die Tatsache, dass bereits ein vergleichbares Feature von Google existiert, stellt den Nutzen des Features natürlich in Frage.\\
+\subsubsection{Schlussfolgerung}
+\text{}\\
+Durch den geringeren Unterschied zwischen korrigiertem und realen Wert ist die ID-basierte Korrekturformel besser als die RPI-basierte Korrekturformel für die Erfüllung unseres Ziels, 
+die Anzahl von individuellen Handys innerhalb eines Mastes zu berechnen.
+
+\subsection{Diskussion}
+Das Feature der Density-Map erzielt im Hinblick auf die Eindämmung des Coronavirus keinen besonders hohen Nutzen im Vergleich zu anderen vorgestellten Erweiterungen.
+Die Hauptidee hinter der Implementierung dieser Erweiterung innerhalb der Corona Warn App ist die, Orte großer Menschenmassen bewusst zu meiden und damit die Ausbreitung des Viruses einzudämmen.
+
+Durch einen vorausschauenderen Lebensalltag oder Kontaktbeschränkungen seitens der Regierung kann dieser Effekt auch erreicht werden.
+Jedoch ist die Density-Map ein Feature, welches auch außerhalb der Pandemiezeit effektiv genutzt werden kann und einen Nutzen bringt.
+Gerade in Zeiten, in denen keine größeren Einschränkungen gelten, ist es vermutlich umso wichtiger, weiterhin bewusst Abstand zu größeren Ansammlungen zu halten, 
+um der Ausbreitung einer weiteren Infektionswelle vorzubeugen.
+
+Deshalb trägt die Density-Map vor Allem in Zeiten der Lockerung der Beschränkungsmaßnahmen einen guten Teil dazu bei, diesen Zustand zu erhalten.
+Unabhängig vom Kontext der Pandemie hat die Erstellung einer Density-Map, welche auf der anonymisierten Verfolgung von Kontakten basiert, ebenfalls viele Verwendungen.
+So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. 
+Die erarbeiteten Formeln lassen sich generell in Echtzeit-Karten verwenden, wo durch anonyme Datensammlung nach dem Prinzip des Crowd-Sensing fehlerhafte Werte entstehen können.
+Die Auswertung der gesammelten Daten und Korrigierung mittels der in dieser Arbeit ermittelten Formel wäre also auch in diesen Bereichen anwendbar und hat somit Relevanz über den Zeitraum der Pandemie hinaus.
+
+Auch die Tatsache, dass bereits ein vergleichbares Feature von Google existiert, stellt den Nutzen des Features natürlich in Frage.
 Jedoch wird das Feature dem Ziel, eine im Hinblick auf Privatsphäre fortgeschrittenere Alternative zu entwickeln, gerecht. 
-Die Density-Map sammelt in allen vorgestellten Lösungsansätzen keine sensiblen Nutzerdaten und verfolgt einen weitestgehend dezentralen Ansatz.\\
-Trotzdem ist logisch, dass man bei einem Feature, welches die Ansammlung größerer Menschenmassen tracken möchte, nicht zu 100\% anonym ist.\\
-Vielmehr greift hier der Effekt der K-Anonymity, dass man nur eine von vielen Personen ist, sowie der Fakt, dass die eigene Identität hinter einem temporären RPI verborgen ist.\\
-Trotzdem ist es gerade im infrastrukturlosen Ansatz ohne zentrale Masten möglich, Ansammlungen von Menschen im privaten Raum (wie etwa Partys) zu tracken.\\
+Die Density-Map sammelt in allen vorgestellten Lösungsansätzen keine sensiblen Nutzerdaten und verfolgt einen weitestgehend dezentralen Ansatz.
 
-Auch im Hinblick auf Akzeptabilität könnte das Feature auf Probleme stoßen.\\
-Unwissende Nutzer, die sich nicht mit der Umsetzung des Features auskennen, könnten davon ausgehen, dass man mithilfe der Density-Map dauerhaft getrackt werden kann.\\
-Ein ähnliches Phänomen gab es bereits, als die Corona Warn App das erste Mal vorgestellt wurde.\\
-Dagegen hilft eine klare Aufklärung darüber, wie das Feature im Konkreten funktioniert, sowie eine freiwillige Teilnahme am Benutzen der Density-Map.\\
+Trotzdem ist logisch, dass man bei einem Feature, welches die Ansammlung größerer Menschenmassen tracken möchte, nicht zu 100\% anonym ist.
+Vielmehr greift hier der Effekt der K-Anonymity, dass man nur eine von vielen Personen ist, sowie der Fakt, dass die eigene Identität hinter einem temporären RPI verborgen ist.
+Trotzdem ist es gerade im infrastrukturlosen Ansatz ohne zentrale Masten möglich, Ansammlungen von Menschen im privaten Raum (wie etwa Partys) zu tracken.
 
-Im Aspekt der Sicherheit stellt die Density-Map kein höheres Risiko als die bisherige Corona Warn App dar.\\ 
-Es existieren keine sensiblen Nutzerdaten, die durch eine Angriff auf das System preisgegeben werden könnten. Durch die dezentrale Auswertung und Aggregation der Daten existiert außerdem kein Single Point of Failure.\\
-Es könnte natürlich passieren, dass einzelne Masten gehackt werden, wodurch beispielsweise die Begegnungsaufzeichnung für diesen Ort verfälscht werden könnte.\\
-Dies stellt jedoch weder ein Risiko für alle anderen Masten dar, noch für einen Nutzer, der sich in Nähe eines gehackten Masten befindet, da wie bereits genannt nur anonyme und verschlüsselte Daten mit dem Masten ausgetauscht werden.
+Auch im Hinblick auf Akzeptabilität könnte das Feature auf Probleme stoßen.
+Unwissende Nutzer, die sich nicht mit der Umsetzung des Features auskennen, könnten davon ausgehen, dass man mithilfe der Density-Map dauerhaft getrackt werden kann.
+Ein ähnliches Phänomen gab es bereits, als die CWA das erste Mal vorgestellt wurde.
+Dagegen hilft eine klare Aufklärung darüber, wie das Feature im Konkreten funktioniert, sowie eine freiwillige Teilnahme am Benutzen der Density-Map.
 
-Für die Umsetzung des Density-Map Features ergibt sich ein größerer Aufwand zur Installation der zentralen Masten. Um eine gute deutschlandweite Abdeckung zu erreichen, müssten hierfür vermutlich zehn- bis hunderttausende Geräte zu Verfügung gestellt werden, die als zentrale Masten fungieren könnten.\\
-Beim infrastrukturlosen Ansatz würde dieser Punkt jedoch wegfallen.\\
+Im Aspekt der Sicherheit stellt die Density-Map kein höheres Risiko als die bisherige CWA dar.
+Es existieren keine sensiblen Nutzerdaten, die durch eine Angriff auf das System preisgegeben werden könnten. 
 
-Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona Warn App, sowohl im Hinblick auf die Eindämmung des Virus, als auch für eine unabhängige Nutzung außerhalb der Pandemie, dar.\\
-Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
+Durch die dezentrale Auswertung und Aggregation der Daten existiert außerdem kein Single Point of Failure.
+Es könnte natürlich passieren, dass einzelne Masten gehackt werden, wodurch beispielsweise die Begegnungsaufzeichnung für diesen Ort verfälscht werden könnte.
+
+Dies stellt jedoch weder ein Risiko für alle anderen Masten dar, noch für einen Nutzer, der sich in Nähe eines gehackten Masten befindet,
+da wie bereits genannt nur anonyme und verschlüsselte Daten mit dem Masten ausgetauscht werden.
+
+Für die Umsetzung des Density-Map Features ergibt sich ein größerer Aufwand zur Installation der zentralen Masten.
+Um eine gute deutschlandweite Abdeckung zu erreichen, müssten hierfür vermutlich zehn- bis hunderttausende Geräte zu Verfügung gestellt werden, die als zentrale Masten fungieren könnten.
+Beim infrastrukturlosen Ansatz würde dieser Punkt jedoch wegfallen.
+
+Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona Warn App, sowohl im Hinblick auf die Eindämmung des Virus, als auch für eine unabhängige Nutzung außerhalb der Pandemie, dar.
+Dabei schafft sie es, das BLE-Feature der CWA erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
 
 \section{Zusammenfassung und Ausblick} \label{Conclusion}
 Die Corona Warn App ist ein essenzieller Bestandteil der Strategie zur Eindämmung der Corona-Pandemie. 
@@ -1292,11 +1385,11 @@ Jedes der Features wurde im Anschluss nach den Kriterien: Privatsphäre, Nutzen,
 
 Einige der von uns vorgestellten Nebenfeatures wurden im Verlauf der Arbeit von anderen Parteien in ähnlicher Form bereits umgesetzt oder sind in naher Zukunft zu erwarten.
 So existieren bereits eine Lotterie für Geimpfte in den USA als eine Umsetzung des Gamification-Features, 
-die \glqq Darf ich das? \grqq -App für orstbezogene Maßnahmen und Beschränkungen, 
+die \glqq Darf ich das? \grqq -App für ortsbezogene Maßnahmen und Beschränkungen, 
 sowie ein demnächst Erscheinender digitaler Impfpass für die CWA. 
-Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA dartstellen.
+Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA darstellen.
 
-Im Folgenden wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
+Im Folgenden wurde die erweiterte Risikoberechnung und darin einfließende Features im Genaueren betrachtet. 
 Hierbei handelt es sich um das Familienfeature, Feature DK-Server und Feature TRL Update. 
 Im Rahmen des Familienfeatures können Gruppen in der CWA angelegt werden, um längere Begegnungen mit der eigenen Familie nicht als mehrere unterschiedliche Begegnungen aufzuzeichnen. 
 Das Feature DK-Server sammelt die TEKs der Personen, die als direkte Kontaktpersonen von Infizierten in der CWA identifiziert werden, um diese in der Risikoberechnung stärker zu gewichten. 
@@ -1308,7 +1401,8 @@ Die drei Features werden genutzt, um die aktuelle Risikoberechnung mit zwei weit
 Die Summanden lösen aktuelle Probleme der CWA, indem sie alle Personengruppen mit einbezieht, die in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert werden.
 Außerdem wird aufrund der geringen Nutzerzahl der CWA von 33\% die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert, um die tatsächliche Begegnungsanzahl abzuschätzen. 
 Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv getesteten ein Risiko zuzuschreiben.
-Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.\\
+Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.
+
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden.
 Außerdem steigert dieses Feature die Effizienz und Nutzen der CWA, da die transparente und feingranularere Risikoberechnung schneller und genaueres Feedback zum aktuellen Verhalten bietet. 
 Trotz niedriger Beteiligung an Nutzern wird der aktuelle Risikowert nicht unterschritten, er würde sich allerdings nicht drastisch verändern.
@@ -1322,8 +1416,10 @@ der infrastrukuturbasierte Ansatz mittels zentraler Masten, sowie der infrastruk
 
 Im infrastrukturbasierten Ansatz werden zentrale Masten an stark besuchten Orten und Plätzen aufgestellt, die mithilfe der BLE-Funktion die Anzahl aller erfassten Smartphones aufzeichnen.
 Die aufgezeichnete Anzahl wird im Intervall von 15 Minuten zunächst beim Mast aggregiert und dann auf einen zentralen Server geladen, auf dem die Daten aller Masten verarbeitet und eine Density-Map erstellt werden kann.
-Dabei muss beachtet werden, dass die tatsächliche Anzahl an Personen durch mehrere Faktoren von der vom Mast gemessenen Anzahl abweicht und dementsprechend korrigiert werden muss.\\
-Zum einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Masten aufgezeichnet, welche mittels der Korrekturformel nach unten korrigiert werden.\\
+Dabei muss beachtet werden, dass die tatsächliche Anzahl an Personen durch mehrere Faktoren von der vom Mast gemessenen Anzahl abweicht und dementsprechend korrigiert werden muss.
+
+Zum Einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Mast aufgezeichnet, welche mittels der Korrekturformel nach unten korrigiert werden.
+
 Des Weiteren besitzt nur ein Bruchteil der Bevölkerung die CWA. Für diesen Fall wurde von einer Gleichverteilung der Nutzer unter der Bevölkerung ausgegangen und der gemessene Wert der Masten auf die Gesamtbevölkerung abgeschätzt.
 
 Beim infrastrukturlosen Ansatz fällt die Implementierung der zentralen Masten weg. 
@@ -1335,19 +1431,20 @@ Dabei werden 100 Smartphones mittels Punkte simuliert, die sich in einem Random-
 Zudem gibt es noch den \glqq Social Distancing \grqq{} Modus, bei dem etwa 80\% der Handys keine Bewegung aufweisen und somit ein Lockdown simuliert wird.
 Mithilfe von vier zentralen Masten werden die Smartphones im Umkreis der jeweiligen Masten aufgezeichnet. 
 Zu Verifizierungszwecken besitzen die Handys sowohl eine feste ID, als auch die temporären RPIs, die der Mast im Falle einer Begegnung aufzeichnen kann. 
-Die Ergebnisse der Aufzeichnung zeigen, dass die Korrekturformel sowohl im Falle mit, als auch ohne Social Distancing den gemessenen Wert gut nach unten korrigieren kann. 
+Die Ergebnisse der Aufzeichnung zeigen, dass die Korrekturformel sowohl im Falle mit, als auch ohne Social Distancing den gemessenen Wert sinnvoll korrigieren kann. 
 
 Die Density-Map stellt eine effektive Methode dar, Orte mit vielen Besuchern bewusst meiden zu können.
 Dabei bietet sie eine Privatsphäre-konforme Alternative zum Stoßzeiten Feature von Google, da hier die anonymen RPIs zur Aufzeichnung verwendet werden. 
 Außerdem werden die Daten dezentral gebündelt und aggregiert, wodurch einzelne Personen nicht nachverfolgt werden können. 
 
-Die gewonnenen Erkenntnisse stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar, welche besonders durch die mit Hilfe von Crowd-Sensing gewonnenen Daten neue Aspekte bieten.\\
+Die gewonnenen Erkenntnisse stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar, welche besonders durch die mit Hilfe von Crowd-Sensing gewonnenen Daten neue Aspekte bieten.
+
 In diesem Zusammenhang wäre es lohnenswert, die in den Absätzen größtenteils theoretischen Ausarbeitungen in der Zukunft in einer realen Umgebung zu testen und zu untersuchen. 
 Damit könnten die theoretischen Ausarbeitungen im Feld validiert und im nächsten Schritt in die aktuelle CWA eingebunden werden.
 Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich diese Erweiterungen auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit der Nutzer auswirken. 
 
 \begin{thebibliography}{00}
-\bibitem{CoronaZahlenWorld} Center for Systems Science and Engineering, Johns Hopkins University, \glqq COVID-19 Dashboard\grqq, \url{https://coronavirus.jhu.edu/map.html}, 07.06.2021
+\bibitem{CoronaZahlenWorld} Center for Systems Science and Engineering, Johns Hopkins University, \glqq COVID-19 Dashboard\grqq, \url{https://coronavirus.jhu.edu/map.html}, 11.06.2021
 
 \bibitem{CoronaZahlenDe} Robert Koch Institut, \glqq COVID-19: Fallzahlen in Deutschland und weltweit\grqq,\\ \url{https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html}, 07.06.2021
 
@@ -1408,7 +1505,7 @@ Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich die
 
 \bibitem{freiwilligeDatenspende} Bundesregierung, \glqq Freiwillige Datenspende für verbesserte Wirksamkeit\grqq, \\\url{https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-warn-app-update-1-13-1873182}, 09.06.2021
 
-\bibitem{Impfnachweis} Pharmazeutische Zeitung (PZ),\glqq Corona-Warn-App kann Impfnachweis anzeigen\grqq,
+\bibitem{Impfnachweis} Pharmazeutische Zeitung (PZ), \glqq Corona-Warn-App kann Impfnachweis anzeigen\grqq,
 \url{https://www.pharmazeutische-zeitung.de/corona-warn-app-kann-impfnachweis-anzeigen-126188/}, 10.06.2021
 
 \bibitem{CWADokuTRL} Deutsche Telekom AG und SAP SE, \glqq Corona-Warn-App Documentation TRL\grqq \\\url{https://github.com/corona-warn-app/cwa-documentation/blob/master/transmission_risk.pdf}
@@ -1417,7 +1514,17 @@ Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich die
 
 \bibitem{EffectivenessCWA} Almagor J., Picascia S., \glqq Exploring the effectiveness of a COVID-19 contact tracing app using an agent-based model.\grqq, \textit{Sci Rep 10, 22235}, 2020, doi: 10.1038/s41598-020-79000-y
 
-\bibitem{Ubertragungswege} Rpbert Koch Institut,\glqq Epidemiologischer Steckbrief zu SARS-CoV-2 und COVID-19\grqq, \\\url{https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/Steckbrief.html}, 09.06.2021
+\bibitem{Ubertragungswege} Robert Koch Institut, \glqq Epidemiologischer Steckbrief zu SARS-CoV-2 und COVID-19\grqq, \\\url{https://www.rki.de/DE/Content/InfAZ/N/Neuartiges\_Coronavirus/Steckbrief.html}, 09.06.2021
+
+\bibitem{LucaKritik1} hessenschau, \glqq Darum warnen Sicherheitsexperten vor der Luca-App\grqq, \\\url{https://www.hessenschau.de/gesellschaft/it-professor-im-interview-darum-warnen-sicherheitsexperten-vor-der-luca-app,kritik-an-luca-app-100.html}, 11.06.2021
+
+\bibitem{LucaKritik2} regensburg-digital, \glqq Warnen Sie Ihre Bürgerinnen und Bürger vor der Luca-App\grqq, \\\url{https://www.hessenschau.de/gesellschaft/it-professor-im-interview-darum-warnen-sicherheitsexperten-vor-der-luca-app,kritik-an-luca-app-100.html}, 11.06.2021
+
+\bibitem{LucaApp} neXenio, \\\url{https://www.luca-app.de/}, 11.06.2021
+
+\bibitem{LucaAppSicherheit} neXenio, \\\url{https://www.luca-app.de/system-2/}, 11.06.2021
+
+\bibitem{LucaAppKontaktverfolgung} Dr. Datenschutz, intersoft consulting services, \glqq My name is\glqq Luca\grqq - Lob und Kritik an der Kontaktverfolgungs-App\grqq, \\\url{https://www.dr-datenschutz.de/my-name-is-luca-lob-und-kritik-an-der-kontaktverfolgungs-app/}, 11.06.2021 
 
 \end{thebibliography}
 \vspace{12pt}
