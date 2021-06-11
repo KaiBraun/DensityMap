@@ -58,32 +58,41 @@ Corona, Corona-Warn-App, Density Map, Risikoberechnung
 \section{Einleitung} \label{Einleitung}
 Seit nun mehr als eineinhalb Jahren breitet sich das Corona Virus auf der Erde aus und zwingt die Weltbevölkerung in bis dahin noch nicht erlebte Ausnahmezustände.
 Laut derzeitigem Stand wurden etwa 173 Millionen mit dem Virus infiziert und rund 3,7 Millionen sind an den Folgen des Viruses gestorben \cite{CoronaZahlenWorld}, wobei die Dunkelziffer weitaus höher Werte vermuten lässt. 
-In Deutschland wurdem dem Robert Koch Institut insgesamt 3.7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
+In Deutschland wurden dem Robert Koch Institut insgesamt 3,7 Millionen Infizierte und etwa 90.000 Todesopfer gemeldet \cite{CoronaZahlenDe}. 
 Insbesondere stellen dabei das extrem hohe Ansteckungsrisiko und der lange infektiöse Zeintraum von 14 Tagen, in denen ein Infizierter andere anstecken kann, ohne selber Symptome zu zeigen, eine große Herausforderung dar.
 
-Um die Ausbreitung des Viruses weitmöglichst einzudämmen wurden im Land zahlreiche Vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
+Um die Ausbreitung des Viruses weitmöglichst einzudämmen, wurden im Land zahlreiche Vorkehrungen, wie etwa Kontaktbeschränkungen, Maskenpflicht oder Lockdowns, getroffen. 
 Mittlerweile befinden sich auch verschiedene Impfstoffe gegen das Virus im Umlauf, welche eine baldige Rückkehr zur Normalität erhoffen.
 Vor der Erforschung und Herstellung der Impfstoffe gilt jedoch die Kontaktverfolgung und Beschränkung als effektivste Methode das Virus einzudämmen. 
-Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen, nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
-So ist man beispielsweise verpflichtet in Resaurant oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
-Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von 2 Wochen merken und wieder ins Gedächtnis rufen muss.
+Hierbei wird bei einer infizierten Person versucht, alle Kontakte und damit potenzielle angesteckte Personen nachzuverfolgen und zu isolieren, damit die Infektionsketten des Viruses unterbrochen werden.
+So ist man beispielsweise verpflichtet, in Resaurants oder Bars seine Kontaktdaten zu hinterlegen, damit man im Falle einer potenziellen Begegnung mit einem Infizierten in der Einrichtung benachrichtigt werden kann.
+Eine solche manuelle Kontakverfolgung kann sich jedoch als ein sehr schwieriges und aufwändiges Unterfangen herausstellen, da man sich alle Kontakte innerhalb des langen Zeitraumes von zwei Wochen merken und wieder ins Gedächtnis rufen muss.
 Aus diesem Grund wurde vom Robert Koch Institut eine App entwickelt, die diese Kontaktverfolgung automatisieren sollte: Die Corona Warn App \cite{CWA}. 
 Diese soll dabei helfen, die Kontaktverfolgung zu automatisieren und dabei effektiver und effizienter vorgehen als die manuelle Methode.
-Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anomynen Datenautausches garantiert ist.
+Ein zentraler Bestandspunkt der App ist die Privatsphäre, die mittels dezentraler Kontaktverfolgung und anonymen Datenautausches garantiert ist.
 
-Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App. So stand sie hinsichtlich des Datenschutzes öfters in Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
+Seit ihrer Herausgabe gab es viele Diskussionen und Kritik rund um die App. So stand sie hinsichtlich des Datenschutzes öfters in der Kritik und musste noch während ihrer Entwicklung nachgebessert werden \cite{CWAKritik}. 
 Andere Stimmen behaupteten, die App sei überhaupt nicht effektiv und würde nicht nennenswert zur Eindämmung der Pandemie beitragen, da zu wenige Leute die App nutzen \cite{CWAKritik2}.
-Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenken, die von der Bevölkerung geäußert werden (wie etwa, dass die App uns ausspioniere) stellen sich als Mythen heraus. 
+Mittlerweile sind die Stimmen der Kritiker leiser geworden und viele der Bedenken, die von der Bevölkerung geäußert werden (wie etwa, dass die App uns ausspioniere) stellten sich als Mythen heraus. 
 Trotzdem scheint es so, als sei die Corona Warn App nicht der Erfolg, den sich die Bundesregierung erhofft hatte und es gäbe noch Lücken und Erweiterungsbedarf für eine wirkungsvolle und ausgereifte App.
 
 Das Ziel unserer Arbeit ist es, Erweiterungsmöglichkeiten der bisherigen Corona Warn App zu finden und diese zu beurteilen. 
 Einen besonderen Fokus legen wir hierbei auf die Crowd-Sensing Mechanismen der Corona Warn App, da hier von einer großen Menge an Nutzern über die Smartphones anonymisierte Kontaktdaten untereindander ausgetauscht und verarbeitet werden.
-Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
-Dabei sind wir folgendermaßen vorgegangen: Zunächst wurde eine Übersicht aller von uns überlegten Erweiterungen erstellt. 
-Diese Erweiterungen wurden dann in Haupt- und Nebenfeatures unterteilt. 
+Das Ziel des Crowd-Sensings ist es, ein großes Sensornetz mit bereits vorhandenen Geräten (wie beispielsweies Smartphones) aufzubauen und gesammelte Daten zentral verarbeiten zu können. 
+Dies kann in kürzester Zeit ohne teure Infrastruktur realisiert werden, da Smartphones bereits Flächendeckend vorhanden sind.
+Die Probleme der Crowd-Sensing Methode, wie die Integrität und Privatheit der daten, wurden in der Corona Warn App gezielt aufgegriffen und behandelt durch Anonymen Datenaustausch per Bluetooth Low Energy und von Teststellen verifizierte positive Testergebnisse.
 
-In den Nebenfeatures finden sich eine Reihe von kleineren oder weniger aufwändigen Erweiterungen, wohingegen wir bei den zwei großen Hauptfeatures, der \textbf{erweiterten Risikoberechnung} und der \textbf{Density-Map}, noch tiefer in den Aufbau und die Funktionsweise der jeweiligen Features hineingehen.
-Alle vorgeschlagenen Erweiterungen werden in ihren jeweiligen Abschnitten zusätzlich noch hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand beurteilt. 
+Unsere Erweiterungen sollen zum einen dazu beitragen, die Ausbreitung des Coronaviruses noch effektiver einzudämmen, zum anderen aber auch weitere nützliche Features bieten, die im Hinblick auf das Virus und für die Nutzer interessant und hilfreich wären.
+Dabei sind wir folgendermaßen vorgegangen: Zunächst wurde eine Vielzahl aller möglichen funktionalen Erweiterungen identifiziert und eine Übersicht erstellt. 
+Darafhin wurden zwei vielversprechende Features herausgegriffen: Die \textbf{erweiterte Risikoberechnung} und die \textbf{Density-Map}.
+
+Bei der Erweiterten Risikoberechnung wird die aktuelle Risikoberechnung der Corona Warn App um zwei weitere Summanden erweitert und feingranularer in der Nutzeroberfäche dargestellt. 
+Dabei soll neben dem Kontakt mit Infizierten Personen, welche derzeit ausschließlich betrachtet werden, auch Begegnungen mit allen anderen Personengruppen berücksichtigt werden.
+
+Die Density Map hingegen soll eine grafische Übersicht darüber geben, an welchen Orten sich derzeit eine vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
+Hierbei wurden verschiedene Lösungsansätze zur Umsetzung ausgewählt, ohne dabei die bestehenden Sicherheits- und Privatheitsstandarts der bestehenden Corona Warn App zu verletzen. 
+
+Diese beiden Erweiterungen werden zusammen mit einer Reihe weiterer Nebenfeatures ausgearbeitet und hinsichtlich Sicherheit, Privatsphäre, Nutzen und Aufwand bewertet. 
 
 Der Rest der Arbeit ist folgendermaßen aufgebaut: In Abschnitt \ref{rel_work} befinden sich bestehende Arbeiten. 
 Insbesodere gehen wir genauer auf die Funktion der bisherigen Corona Warn App ein. 
@@ -1223,7 +1232,8 @@ Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona W
 Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
 
 \section{Zusammenfassung und Ausblick} \label{Conclusion}
-In dieser Forschungsarbeit wurden verschiedene Erweiterungen zur aktuellen Corona Warn App erläutert und auf unterschiedliche Kriterien hin beurteilt. 
+Die Corona Warn App ist ein essenzieller Bestandteil der Stratedie zur Eindämmung der Corona-Pandemie. 
+Im Rahmen dieser Forschungsarbeit wurden verschiedene Erweiterungen zur aktuellen Corona Warn App erläutert und auf unterschiedliche Kriterien hin beurteilt. 
 Dabei wurden zunächst einige kleinere Nebenfeatures betrachtet, bevor auf die zwei Haupfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map} näher eingegangen wurde. 
 Jedes der Features wurde im Anschluss nach den Kriterien: Privatsphäre, Nutzen, Umsetzbarkeit, Akzeptabilität, Sicherheit und benötigte Daten bewertet. 
 
@@ -1233,13 +1243,14 @@ die \glqq Darf ich das? \grqq -App für orstbezogene Maßnahmen und Beschränkun
 sowie ein demnächst Erscheinender digitaler Impfpass für die CWA. 
 Dies bestätigt, dass Bedarf nach den Features bestand und diese eine sinnvolle Erweiterung der CWA dartstellen.
 
-Im Abschnitt \ref{Erweiterte_Risikoberechnung} wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
+Im Folgenden wurde die erweiterte Risikoberechnung und darin einfließende Features im genaueren betrachtet. 
 Hierbei handelt es sich um das Familienfeature, Feature PKServer und Feature TRL Update. 
 Im Rahmen des Familienfeatures können Gruppen in der CWA angelegt werden, um längere Begegnungen mit der eigenen Familie nicht als mehrere unterschiedliche Begegnungen aufzuzeichnen. 
-Das Feature PKServer sammelt die TEKs der Personen, die einen Risikowert $>13$ in der CWA besitzen, um diese in der Risikoberechnung stärker zu gewichten. 
+Das Feature PKServer sammelt die TEKs der Personen, die als direkte Kontaktpersonen von Infizierten in der CWA identifiziert werden, um diese in der Risikoberechnung stärker zu gewichten. 
 Das dritte Teilfeature TRL Update behandelt eine Umfrage, damit positiv getestete Auskunft über ihren Krankheitsverlauf geben können.
-
+Das TRL gibt dabei an, wie infektiös eine Person im derzeitigen Krankheitsverlauf ist, weshalb genauere Informationen über den Verlauf sehr wichtig sind.
 Mit diesen Daten lässt sich das aktuelle TRL genauer berechnen.
+
 Die drei Features werden genutzt, um die aktuelle Risikoberechnung mit zwei weiteren Summanden zu erweitern.
 Die Summanden lösen aktuelle Probleme der CWA, indem sie alle Personengruppen mit einbezieht, die in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert werden.
 Außerdem wird aufrund der geringen Nutzerzahl der CWA von 33\% die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert, um die tatsächliche Begnungsanzahl abzuschätzen. 
@@ -1247,12 +1258,13 @@ Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv getes
 Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.
 
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden.
-Außerdem würde dieses Feature die Effizienz und Nutzen der CWA steigern, da die transparente und feingranularere Risikoberechnung schneller und genaueres Feedback zum aktuellen Verhalten bietet. 
-Trotz niedriger Beteiligung an Nutzern würde der aktuelle Risikowert nicht unterschritten werden, er würde sich allerdings nicht drastisch verändern.
+Außerdem steigert dieses Feature die Effizienz und Nutzen der CWA, da die transparente und feingranularere Risikoberechnung schneller und genaueres Feedback zum aktuellen Verhalten bietet. 
+Trotz niedriger Beteiligung an Nutzern wird der aktuelle Risikowert nicht unterschritten, er würde sich allerdings nicht drastisch verändern.
 Obwohl zwei weitere Server zentral Daten sammeln, wird durch Anonymisierung die Privatheit und Sicherheit garantiert.
 Die Risikoberechnung findet weiterhin dezentral auf den Smartphones der Nutzer statt. 
 
 Das zweite Hauptfeature beschäftigt sich mit der Density-Map. 
+Sie gibt eine grafische Übersicht darüber, an welchen Orten sich derzeit eine vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
 Hierfür wurden unterschiedliche Ansätze überlegt, die das Problem der dezentralen und anonymen Datenerfassung angehen: 
 der infrastrukuturbasierte Ansatz mittels zentraler Masten, sowie der infrastrukturlose Ansatz ohne Masten. 
 
@@ -1267,9 +1279,9 @@ Nun werden einzelne Smartphones untereinander als mobiler Mast festgelegt, die i
 Auch hier werden die Daten zunächst aggregiert, bevor sie auf den zantralen Server geladen werden.
 
 Für den infrastrukuturbasierten Ansatz wurde eine Simulation erstellt, die die Umsetzbarkeit des Features und die Korrektheit der Formel zur Korrektur nachweisen soll. 
-Dabei werden 100 Smartphones mittels Punkte simuliert, die sich in einem Random-Direction Model über ein festes Gebiet bewegen. 
-Zudem gibt es nocht den \glqq Social Distancing \grqq{} Modus, bei dem etwa 80\% der Handy's keine Bewegung aufweisen und somit ein Lockdown simuliert wird.
-Mithilfe von 4 zentralen Masten werden die Smartphones im Umkreis der jeweiligen Masten aufgezeichnet. 
+Dabei werden 100 Smartphones mittels Punkte simuliert, die sich in einem Random-Direction-Model über ein festes Gebiet bewegen. 
+Zudem gibt es nocht den \glqq Social Distancing \grqq{} Modus, bei dem etwa 80\% der Handys keine Bewegung aufweisen und somit ein Lockdown simuliert wird.
+Mithilfe von vier zentralen Masten werden die Smartphones im Umkreis der jeweiligen Masten aufgezeichnet. 
 Zu Verifizierungszwecken besitzen die Handys sowohl eine feste ID, als auch die temporären RPIs, die der Mast im Falle einer Begegnung aufzeichnen kann. 
 Die Ergebnisse der Aufzeichnung zeigen, dass die Korrekturformel sowohl im Falle mit, als auch ohne Social Distancing den gemessenen Wert gut nach unten korrigieren kann. 
 
@@ -1277,10 +1289,10 @@ Die Density-Map stellt eine effektive Methode dar, Orte mit vielen Besuchern bew
 Dabei bietet sie eine Privatsphäre-konforme Alternative zum Stoßzeiten Feature von Google, da hier die anonymen RPIs zur Aufzeichnung verwendet werden. 
 Außerdem werden die Daten dezentral gebündelt und aggregiert, wodurch einzelne Personen nicht nachverfolgt werden können. 
 
-Die gewonnenen Erkenntnisse aus den Absätzen \ref{Erweiterte_Risikoberechnung} und \ref{Density_Map} stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar. 
+Die gewonnenen Erkenntnisse stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar. 
 In diesem Zusammenhang wäre es lohnenswert, die in den Absätzen größtenteils theoretischen Ausarbeitungen in der Zukunft in einer realen Umgebung zu testen und zu untersuchen. 
-Damit könnten die theoretischen Ausarbeitungen validiert und im nächsten Schritt in die aktuelle CWA eingebunden werden.
-Des Weiteren könnte im Falle der Implementierung vorgestellter Erweiterungsmöglichkeiten untersucht werden, inwiefern sich diese auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit der Nutzer auswirken. 
+Damit könnten die theoretischen Ausarbeitungen im Feld validiert und im nächsten Schritt in die aktuelle CWA eingebunden werden.
+Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich diese Erweiterungen auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit der Nutzer auswirken. 
 
 \begin{thebibliography}{00}
 \bibitem{CoronaZahlenWorld} Center for Systems Science and Engineering, Johns Hopkins University, \glqq COVID-19 Dashboard\grqq, \textit{ https://coronavirus.jhu.edu/map.html}, 07.06.2021
