@@ -360,9 +360,9 @@ In der erweiterten Risikoberechnungen sollten jedoch Begegnungen mit allen Perso
 %Definitionen
 Dabei wird zwischen zwei Personengruppen unterschieden, die jeweils in 3 Untergruppen unterteilt werden, 
 da die Infektionswahrscheinlichkeit in manchen Personengruppen höher ist als in Anderen.
-Es wird grundsätlich unterschieden zwischen \textit{CWA-User}, die von der CWA somit aufgezeichnet werden und \textit{Not-CWA-User}, 
+Es wird grundsätzlich unterschieden zwischen \textit{CWA-User}, die von der CWA aufgezeichnet werden und \textit{Not-CWA-User}, 
 die die CWA nicht aktiv nutzen und somit nicht aufgezeichnet werden. Die CWA nicht aktiv nutzen heißt, dass keine TEKs geteilt werden.
-Die CWA-User werden in drei Untergruppen aufgeteilt:
+Die CWA-User werden in folgende drei Untergruppen aufgeteilt:
 \begin{itemize}
 \item[--]\textit{CWA-Positive}: Alle Personen, die einen positiven Test in die CWA eingetragen haben.
 \item[--]\textit{CWA-Likely-Positive}: Alle Personen, die mindestens eine Begegnung mit CWA-Positive hatten und einen roten Bildschirm auf der CWA angezeigt bekommen.
@@ -389,9 +389,9 @@ Feature PK-Server benötigt.
 
 Das Familienfeature verhindert das mehrmalige Aufzeichnen von vertrauenswürdigen Personen, wie etwa Familienmitglieder,
 damit die Dunkelziffer besser miteinberechnet werden kann.
-Mit dem Feature TRL Update ist es mögl, währendeich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen, um zu beachten, wie infektiös eine Person ist.
-Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff Übertragungspotenzial zu verwechseln.
-Das TRL beschreibt den Grad der Infektiosität im Krankheitsfall an, 
+Mit dem Feature TRL Update ist es möglich den Krankheitsverlauf in die Risikoberechnung mit einfließen zu lassen, um zu beachten, wie infektiös eine Person zu einem bestimmten Zeitpunkt ist.
+Dabei ist dies nicht mit dem im Abschnitt \ref{Erweiterte_Risikoberechnung} definierten Begriff des Übertragungspotenzials zu verwechseln.
+Das TRL beschreibt den Grad der Infektiosität im Krankheitsfall, 
 während das Übertragunspotenzial aus Begegnungsdauer und Nähe mit einer infizierten Person berechnet wird, um die Gefahr einer Infektion zu berechnen.  
 Das Feature DK-Server wird benötigt, um Begegnungen mit CWA-Likely-Positive Personen zu erkennen und diese in der erweiterten Risikoberechnung gesondert zu gewichten.
 
@@ -445,7 +445,7 @@ Allerdings reicht der PSK nicht aus, um die TEKs von Gruppenmitgliedern lesen zu
 Der Server erstellt auf die Anfrage hin eine neue Servergruppe mit einer noch nicht verwendeten ID und schickt die ID an den Anfragesteller zurück.
 Der lokal erstellte PSK, PEK, sowie die erhaltene Servergruppen ID werden der Gruppe zugehörig abgespeichert.
 
-Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man Kontaknt zu einem Mitglied der Servergruppe.
+Im Falle der zweiten Möglichkeit, einer bereits existierenden Servergruppe beizutreten, benötigt man Kontakt zu einem Mitglied der Servergruppe.
 Das Mitglied der Servergruppe teilt den PSK, PEK und die Servergruppen ID durch zum Beispiel einen QR-Code.
 Diese müssen dann nur noch abgespeichert werden.
 
@@ -491,7 +491,7 @@ Aufgrund der Inkubationszeit werden TEKs auf dem DK-Server, die älter als 14 Ta
 Die CWA lädt regelmäßig alle neuen TEKs mit den zugehörigen Risikowerten vom DK-Server herunter und leitet daraus die RPIs ab.
 Die Verwendung der RPIs und Risikowerte in der Risikoberechnung wird im Abschnitt \ref{CWALikelyPositive} beschrieben.
 Das Ableiten der RPIs aus den heruntergeladenen TEKs funktioniert genau so, wie das Ableiten der RPIs aus den Diagnosis Keys auf dem CWA Server.
-Der mit einem TEK verbundene Risikowert wird dazu genutzt, um die Wahrscheinlichkeit zu ermitteln, ob der Teilende des TEKs mit Corona infiziert ist.
+Der mit einem TEK verbundene Risikowert wird dazu genutzt, um die Wahrscheinlichkeit zu ermitteln, dass der Teilende des TEKs mit Corona infiziert ist.
 
 Anders als beim Teilen von TEKs als Diagnosis Keys mit dem CWA Server im Falle eines positiven Testergebnisses wird kein eindeutiger, 
 autorisierter Schlüssel benötigt, um TEKs auf den DK-Server hochladen zu können.
@@ -514,7 +514,7 @@ Dies ermöglicht Denial of Service Angriffe mit verhältnismäßig geringem Aufw
 
 \subsection{Feature TRL Update}
 \label{Feature TRL Update}
-In diesem Feature wird das volle Potenzial des TRLs, welches in Abschnitt \ref{TRL} genauer beschrieben wurde, genutzt. 
+In diesem Feature wird das volle Potenzial des Transmission Risk Levels, welches in Abschnitt \ref{TRL} genauer beschrieben wurde, genutzt. 
 Dafür wird festgelegt, dass das TRL den ursprünglichen Standardwert von Vier nicht unterschreiten darf,
 da mit zu geringer Sicherheit gesagt werden kann, dass eine infizierte Person nicht mehr infektiös ist. 
 Die Implementierung für das TRL existiert bereits in der CWA, jedoch existieren die benötigten Daten noch nicht.
