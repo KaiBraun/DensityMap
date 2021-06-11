@@ -5390,7 +5390,7 @@ between column types.}%
 % compsoc conferences use regular period/space punctuation
 \ifCLASSOPTIONcompsoc
 \ifCLASSOPTIONconference
-\def\@IEEEsectpunct{.\ }
+\def\@IEEEsectpunct{~}
 \fi\fi
 
 
