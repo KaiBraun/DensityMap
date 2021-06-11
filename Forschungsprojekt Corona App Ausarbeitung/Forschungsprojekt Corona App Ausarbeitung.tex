@@ -938,8 +938,8 @@ werden die Kosten für diese einen ähnlichen Umfang haben.
 \label{Density_Map}
 Eine Density-Map zeigt an, wo sich bestimmte Datenpunkte auf einer Karte häufen. 
 In der Regel findet sie Anwendung bei Bevölkerungsaufzeichnungen. 
-Im Sinne der erweiterten Corona Warn App möchten wir das Crowd-Sensing Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darstzuellen. 
-Damit kann eine Nutzer eine Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
+Im Sinne der erweiterten Corona Warn App möchten wir das Crowd-Sensing Feature benutzen, um in nahezu Echtzeit die Besucherzahl an öffentlichen Orten oder Geschäften aufzuzeichnen und grafisch auf einer Karte darzustellen. 
+Damit kann ein Nutzer eine Density-Map innerhalb der App aufrufen und stark besuchte Gegenden identifizieren und meiden. 
 Ein ähnliches Feature wird bereits vom Unternehmen Google angeboten. 
 Wer in dessen Suchmaschine nach Geschäften in der Umgebung sucht kann neben den Öffnungszeiten meist auch die live Stoßzeiten und durchschnittliche Aufenthaltsdauer ansehen. 
 Google verwendet hierfür jedoch personalisierte Daten seiner Nutzer, wie z.B. den Standort um diese Aufzeichnung vorzunehmen. 
@@ -948,11 +948,11 @@ Um die Sicherheit und Privatsphäre der Nutzer zu schützen schlagen wir deshalb
 \text{ }\\
 Das zentrale Problem, mit dem wir uns beim Erstellen einer Density Map beschäftigen ist, wie die anonymen Daten gebündelt und auf einen zentralen Server geladen werden können, ohne die Sicherheits-/Privacy Aspekte signifikant einzuschränken/verletzen. 
 Ein naiver Ansatz wäre beispielsweise, dass jedes Smartphone seine gesammelte Begegnungsanzahl auf einen zentralen Server hochlädt und dieser diese Daten auswertet. 
-Jedoch müssten dafür neben der Standorte der einzelnen Smatphones auch die RPIs aller aufgezeichneten Geräte mit hochgeladen werden, um etwa eine doppelte Zählung bestimmter Endgeräte zu verhindern. 
+Jedoch müssten dafür neben der Standorte der einzelnen Smartphones auch die RPIs aller aufgezeichneten Geräte mit hochgeladen werden, um etwa eine doppelte Zählung bestimmter Endgeräte zu verhindern. 
 Eine derartige Sammlung aller Kontaktdaten (auch wenn es sich bei diesen Daten um anonyme RPIs handelt) auf einem zentralen Server würde jedoch der grundsätzlichen Philosophie der Corona Warn App widersprechen.
 Diese verfolgte in ihrer Kontaktverfolgung einen möglichst dezentralen Ansatz, um die Privatsphäre der Nutzer zu garantieren.
 Dementsprechend suchen wir ebenfalls gezielt nach Verfahren, welche weitmöglichst eine dezentrale Lösung verfolgen. 
-Hierfür haben wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angeganen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
+Hierfür wurden für die Umsetzung zwei Verfahren erarbeitet, mit welchen das Problem angegangen wird: Eine infrastrukuturbasierte Lösung mittels \textbf{zentraler Masten}, welche in Echtzeit die BLE-Geräte in ihrem festen Empfangsgebiet aufzeichnen, sowie eine infrastrukturlose Lösung \textbf{ohne Masten}. \\ \\
 \textit{Infrastrukturbasierte Lösung mit Masten: }\\
 Die Idee zentraler Masten besteht darin, dass diese an stark besuchten Orten/Plätzen, wie z.B. Supermärkten oder Haltestellen, ihre Umgebung scannen und für ein gewisses Zeitintervall alle erfassten Smartphones aufzeichnen. 
 Nach Ablauf des Zeitintervalls werden die erfasste Anzahl an Smartphones zunächst ausgewertet und zu einem Zahlenwert aggregiert.
@@ -1207,7 +1207,8 @@ Jedoch ist die Density-Map ein Feature, welches auch außerhalb der Pandemiezeit
 Gerade in Zeiten, in denen keine größeren Einschränkungen gelten, ist es vermutlich umso wichtiger, weiterhin bewusst Abstand zu größeren Ansammlungen zu halten, um der Ausbreitung einer weiteren Infektionswelle vorzubeugen.\\
 Deshalb trägt die Density-Map vor allem in Zeiten der Lockerung der Beschränkungsmaßnahmen einen guten Teil dazu bei, diesen Zustand zu erhalten.\\
 Unabhängig vom Kontext der Pandemie hat die Erstellung einer Density-Map, welche auf der anonymisierten Verfolgung von Kontakten basiert, ebenfalls viele Verwendungen.\\
-So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. Die Auswertung der gesammelten Daten und Korrigierung mittels der in dieser Arbeit ermittelten Formel wäre auch in diesen Bereichen anwendbar und hat somit Relevanz über den Zeitraum der Pandemie hinaus.\\
+So lässt sich zum Beispiel messen, wie viele Plätze in einem Zug bereits belegt sind, oder ob ein öffentlicher Platz wie ein Spielplatz überfüllt ist. Die erarbeiteten Formeln lassen sich generell in Echtzeit-Karten verwenden, wo durch anonyme Datensammlung nach dem Prinzip des Crowd-Sensing fehlerhafte Werte entstehen können.\\ 
+Die Auswertung der gesammelten Daten und Korrigierung mittels der in dieser Arbeit ermittelten Formel wäre also auch in diesen Bereichen anwendbar und hat somit Relevanz über den Zeitraum der Pandemie hinaus.\\
 
 Auch die Tatsache, dass bereits ein vergleichbares Feature von Google existiert, stellt den Nutzen des Features natürlich in Frage.\\
 Jedoch wird das Feature dem Ziel, eine im Hinblick auf Privatsphäre fortgeschrittenere Alternative zu entwickeln, gerecht. 
@@ -1233,9 +1234,9 @@ Alles in Allem stellt das Density-Map Feature eine gute Erweiterung der Corona W
 Dabei schafft sie es, das BLE-Feature der App erweitert zu nutzen und dabei den bisher gesetzten Privatsphärestandards gerecht zu werden. 
 
 \section{Zusammenfassung und Ausblick} \label{Conclusion}
-Die Corona Warn App ist ein essenzieller Bestandteil der Stratedie zur Eindämmung der Corona-Pandemie. 
+Die Corona Warn App ist ein essenzieller Bestandteil der Strategie zur Eindämmung der Corona-Pandemie. 
 Im Rahmen dieser Forschungsarbeit wurden verschiedene Erweiterungen zur aktuellen Corona Warn App erläutert und auf unterschiedliche Kriterien hin beurteilt. 
-Dabei wurden zunächst einige kleinere Nebenfeatures betrachtet, bevor auf die zwei Haupfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map} näher eingegangen wurde. 
+Dabei wurden zunächst einige kleinere Nebenfeatures betrachtet, bevor auf die zwei Hauptfeatures der \textit{Erweiterten Risikoberechnung} und der \textit{Density-Map} näher eingegangen wurde. 
 Jedes der Features wurde im Anschluss nach den Kriterien: Privatsphäre, Nutzen, Umsetzbarkeit, Akzeptabilität, Sicherheit und benötigte Daten bewertet. 
 
 Einige der von uns vorgestellten Nebenfeatures wurden im Verlauf der Arbeit von anderen Parteien in ähnlicher Form bereits umgesetzt oder sind in naher Zukunft zu erwarten.
@@ -1256,8 +1257,7 @@ Die drei Features werden genutzt, um die aktuelle Risikoberechnung mit zwei weit
 Die Summanden lösen aktuelle Probleme der CWA, indem sie alle Personengruppen mit einbezieht, die in Abschnitt \ref{Erweiterte_Risikoberechnung} definiert werden.
 Außerdem wird aufrund der geringen Nutzerzahl der CWA von 33\% die Anzahl der aufgezeichneten Begegnungen nach oben korrigiert, um die tatsächliche Begnungsanzahl abzuschätzen. 
 Zudem wird die Dunkelziffer genutzt, um auch Begegnungen mit nicht positiv getesteten ein Risiko zuzuschreiben.
-Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.
-
+Des Weiteren wird die Risikoberechnung transparent und durch zwei neue Farben feingranularer darstellt.\\
 Mithilfe der erweiterten Risikoberechnung kann das Infektionsrisiko besser abgeschätzt werden.
 Außerdem steigert dieses Feature die Effizienz und Nutzen der CWA, da die transparente und feingranularere Risikoberechnung schneller und genaueres Feedback zum aktuellen Verhalten bietet. 
 Trotz niedriger Beteiligung an Nutzern wird der aktuelle Risikowert nicht unterschritten, er würde sich allerdings nicht drastisch verändern.
@@ -1265,15 +1265,15 @@ Obwohl zwei weitere Server zentral Daten sammeln, wird durch Anonymisierung die 
 Die Risikoberechnung findet weiterhin dezentral auf den Smartphones der Nutzer statt. 
 
 Das zweite Hauptfeature beschäftigt sich mit der Density-Map. 
-Sie gibt eine grafische Übersicht darüber, an welchen Orten sich derzeit eine vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
+Sie gibt eine grafische Übersicht darüber, an welchen Orten sich derzeit eine Vielzahl von Menschen aufhalten, damit diese gezielt gemieden werden können. 
 Hierfür wurden unterschiedliche Ansätze überlegt, die das Problem der dezentralen und anonymen Datenerfassung angehen: 
 der infrastrukuturbasierte Ansatz mittels zentraler Masten, sowie der infrastrukturlose Ansatz ohne Masten. 
 
-Im infrastrukturbasierten Ansatz werden zentrale Masten and stark Besuchten Orten und Plätzen aufgestellt, die mithilfe der BLE-Funktion die Anzahl aller erfassten Smartphones aufzeichnen.
-Die aufgezeichnete Anzahl wird im Intervall von 15 Minuten zunächst beim Masten aggregiert und dann auf einen zentralen Server geladen, auf dem die Daten aller Masten verarbeitet und eine Density-Map erstellt werden kann.
-Dabei musste beachtet werden, dass die tatsächliche Anzahl an Personen durch mehrere Faktoren von der gemessenen Anzahl vom Masten abweicht und demensprechend korrigiert werden musste.
-Zum einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Masten aufgezeichnet, welche mittels der Korrekturformel nach unten korrigiert wurden.
-Des weiteren besitzt nur ein Bruchteil der Bevölkerung die CWA. Für diesen Fall wurde von einer Gleichverteilung der Nutzer unter der Bevölkerung ausgegangen und der gemessene Wert der Masten auf die Gesamtbevölkerung abgeschätzt.
+Im infrastrukturbasierten Ansatz werden zentrale Masten an stark besuchten Orten und Plätzen aufgestellt, die mithilfe der BLE-Funktion die Anzahl aller erfassten Smartphones aufzeichnen.
+Die aufgezeichnete Anzahl wird im Intervall von 15 Minuten zunächst beim Mast aggregiert und dann auf einen zentralen Server geladen, auf dem die Daten aller Masten verarbeitet und eine Density-Map erstellt werden kann.
+Dabei muss beachtet werden, dass die tatsächliche Anzahl an Personen durch mehrere Faktoren von der vom Mast gemessenen Anzahl abweicht und dementsprechend korrigiert werden muss.\\
+Zum einen werden durch die sich regelmäßig ändernden RPIs zu viele Begegnungen vom Masten aufgezeichnet, welche mittels der Korrekturformel nach unten korrigiert werden.\\
+Des Weiteren besitzt nur ein Bruchteil der Bevölkerung die CWA. Für diesen Fall wurde von einer Gleichverteilung der Nutzer unter der Bevölkerung ausgegangen und der gemessene Wert der Masten auf die Gesamtbevölkerung abgeschätzt.
 
 Beim infrastrukturlosen Ansatz fällt die Implementierung der zentralen Masten weg. 
 Nun werden einzelne Smartphones untereinander als mobiler Mast festgelegt, die ihre Umgebung aufzeichnen.
@@ -1290,7 +1290,7 @@ Die Density-Map stellt eine effektive Methode dar, Orte mit vielen Besuchern bew
 Dabei bietet sie eine Privatsphäre-konforme Alternative zum Stoßzeiten Feature von Google, da hier die anonymen RPIs zur Aufzeichnung verwendet werden. 
 Außerdem werden die Daten dezentral gebündelt und aggregiert, wodurch einzelne Personen nicht nachverfolgt werden können. 
 
-Die gewonnenen Erkenntnisse stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar. 
+Die gewonnenen Erkenntnisse stellen im Hinblick auf eine ausgereiftere CWA vielversprechende Erweiterungsmöglichkeiten dar, welche besonders durch die mit Hilfe von Crowd-Sensing gewonnenen Daten neue Aspekte bieten.\\
 In diesem Zusammenhang wäre es lohnenswert, die in den Absätzen größtenteils theoretischen Ausarbeitungen in der Zukunft in einer realen Umgebung zu testen und zu untersuchen. 
 Damit könnten die theoretischen Ausarbeitungen im Feld validiert und im nächsten Schritt in die aktuelle CWA eingebunden werden.
 Des Weiteren könnte durch Benutzerstudien untersucht werden, inwiefern sich diese Erweiterungen auf die Nutzerzahlen, die Risikoberechnung und auf die Zufriedenheit der Nutzer auswirken. 
